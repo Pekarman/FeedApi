@@ -16,10 +16,7 @@ namespace FeedAPI.Services
 
         public IEnumerable<Article> GetItems()
         {
-            if (articles == null)
-            {
-                Initialize();
-            }
+            Initialize();            
 
             return articles;
         }
