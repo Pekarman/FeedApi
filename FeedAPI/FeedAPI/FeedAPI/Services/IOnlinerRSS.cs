@@ -1,9 +1,6 @@
 ﻿using FeedAPI.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel.Syndication;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace FeedAPI.Services
@@ -13,13 +10,13 @@ namespace FeedAPI.Services
         public IEnumerable<Article> GetItems();
     }
 
-    public class PeopleOnlinerRSS : IOnlinerRss
+    public class OnlinerRSS : IOnlinerRss
     {
         private List<Article> articles;
 
         public IEnumerable<Article> GetItems()
         {
-            if (articles == null) 
+            if (articles == null)
             {
                 Initialize();
             }
@@ -29,23 +26,40 @@ namespace FeedAPI.Services
 
         private void Initialize()
         {
-            IEnumerable<SyndicationItem> items;
-
-            using (XmlReader reader = XmlReader.Create("https://people.onliner.by/feed"))
-            {
-                var formatter = new Rss20FeedFormatter();
-                formatter.ReadFrom(reader);
-                SyndicationFeed feed = formatter.Feed;
-                items = formatter.Feed.Items;
-            }
+            List<string> sources = new List<string> {
+                                                      "https://people.onliner.by/feed",
+                                                      "https://money.onliner.by/feed",
+                                                      "https://auto.onliner.by/feed",
+                                                      "https://tech.onliner.by/feed",
+                                                      "https://realt.onliner.by/feed"
+                                                     };
 
             articles = new List<Article>();
 
-            foreach (var item in items)
+            foreach (string source in sources)
             {
-                articles.Add(new Article { Title = item.Title.Text,
-                                           Summary = item.Summary.Text,
-                                           PublishDate = item.PublishDate.DateTime });
+                IEnumerable<SyndicationItem> items;
+                SyndicationFeed feed;
+
+                using (XmlReader reader = XmlReader.Create(source))
+                {
+                    var formatter = new Rss20FeedFormatter();
+                    formatter.ReadFrom(reader);
+                    feed = formatter.Feed;
+                    items = formatter.Feed.Items;
+                }
+
+
+                foreach (var item in items)
+                {
+                    articles.Add(new Article
+                    {
+                        Category = feed.Description.Text,
+                        Title = item.Title.Text,
+                        Summary = item.Summary.Text,
+                        PublishDate = item.PublishDate.DateTime
+                    });
+                }
             }
         }
     }

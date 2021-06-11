@@ -25,13 +25,18 @@ namespace FeedAPI.Controllers
         }
 
         [HttpGet]
-        public JsonResult Get()
+        public JsonResult GetOnlinerNews()
         {
             var articles = _onlinerRSS.GetItems();
 
-            string json = JsonConvert.SerializeObject(articles, Formatting.Indented);
+            if (articles != null)
+            {
+                string json = JsonConvert.SerializeObject(articles, Formatting.Indented);
 
-            return new JsonResult(json);
+                return new JsonResult(json);
+            }
+
+            return new JsonResult("Articles not found.");
         }
     }
 }
