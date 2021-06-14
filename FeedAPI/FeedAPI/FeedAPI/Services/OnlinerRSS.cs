@@ -1,6 +1,7 @@
 ﻿using FeedAPI.Models;
 using System.Collections.Generic;
 using System.ServiceModel.Syndication;
+using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace FeedAPI.Services
@@ -47,18 +48,46 @@ namespace FeedAPI.Services
                     items = formatter.Feed.Items;
                 }
 
+                string linkPattern = @"<p><a href=\s*(.+?)\s*>";
+                string imageLinkPattern = @"<img src=\s*(.+?.jpeg)";
+                string descPattern = @"</a></p><p>(.+?)</p><p><";
+                string link = string.Empty;
+                string imageLink = string.Empty;
+                string desc = string.Empty;
+                Match m;
 
                 foreach (var item in items)
                 {
+                    m = Regex.Match(item.Summary.Text, linkPattern);
+
+                    if (m.Success)
+                    {
+                        link = m.Groups[1].Value.Trim('"');
+                    }
+
+                    m = Regex.Match(item.Summary.Text, imageLinkPattern);
+
+                    if (m.Success)
+                    {
+                        imageLink = m.Groups[1].Value.Trim('"');
+                    }
+
+                    m = Regex.Match(item.Summary.Text, descPattern);
+
+                    if (m.Success)
+                    {
+                        desc = m.Groups[1].Value;
+                    }
+
                     articles.Add(new Article
                     {
-                        Category = feed.Description.Text,
                         Title = item.Title.Text,
-                        Source = feed.Generator,
-                        Link = item.Id,
-                        Summary = item.Summary.Text,
+                        Source = feed.Description.Text,
+                        Link = link,
+                        ImageLink = imageLink,
+                        Content = desc,
                         PublishDate = item.PublishDate.DateTime
-                    }); ;
+                    });
                 }
             }
         }
