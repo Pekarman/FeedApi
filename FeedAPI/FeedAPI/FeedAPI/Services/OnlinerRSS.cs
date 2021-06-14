@@ -14,9 +14,9 @@ namespace FeedAPI.Services
         const string techSource = "https://tech.onliner.by/feed";
         const string realtSource = "https://realt.onliner.by/feed";
 
-        private List<Article> articles;
+        private List<Item> articles;
 
-        public IEnumerable<Article> GetArticles()
+        public List<Item> GetArticles()
         {
             Initialize();            
 
@@ -33,7 +33,7 @@ namespace FeedAPI.Services
                                                       realtSource
                                                      };
 
-            articles = new List<Article>();
+            articles = new List<Item>();
 
             foreach (string source in sources)
             {
@@ -79,9 +79,10 @@ namespace FeedAPI.Services
                         desc = m.Groups[1].Value;
                     }
 
-                    articles.Add(new Article
+                    articles.Add(new Item
                     {
                         Title = item.Title.Text,
+                        Author = "Default Onliner Author", //добавить авторов
                         Source = feed.Description.Text,
                         Link = link,
                         ImageLink = imageLink,

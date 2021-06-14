@@ -5,6 +5,6 @@ namespace FeedAPI.Services
 {
     public interface IOnlinerRss
     {
-        public IEnumerable<Article> GetArticles();
+        public List<Item> GetArticles();
     }
 }

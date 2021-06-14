@@ -33,6 +33,7 @@
     ".NETCoreApp,Version=v5.0": {
       "FeedAPI/1.0.0": {
         "dependencies": {
+          "NewsAPI": "0.6.0",
           "Newtonsoft.Json": "13.0.1",
           "Swashbuckle.AspNetCore": "5.6.3",
           "System.ServiceModel.Syndication": "5.0.0",
@@ -337,6 +338,20 @@
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {}
+        }
+      },
+      "NewsAPI/0.6.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/portable45-net45+win8+wpa81/NewsAPI.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/portable45-net45+win8+wpa81/NewsAPI.dll": {}
         }
       },
       "Newtonsoft.Json/13.0.1": {
@@ -2127,6 +2142,13 @@
       "sha512": "sha512-Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw==",
       "path": "microsoft.openapi/1.2.3",
       "hashPath": "microsoft.openapi.1.2.3.nupkg.sha512"
+    },
+    "NewsAPI/0.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sS2W+VHUPT8pXmFla6GvESgTdnRcieSZsCcqCCu7IOSuqJotMERn8FXof/Y0F3m7ESMv5v3QHwuhMM514m35kA==",
+      "path": "newsapi/0.6.0",
+      "hashPath": "newsapi.0.6.0.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.1": {
       "type": "package",

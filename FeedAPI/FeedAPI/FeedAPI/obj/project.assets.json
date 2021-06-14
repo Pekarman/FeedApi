@@ -22,6 +22,18 @@
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {}
         }
       },
+      "NewsAPI/0.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "10.0.3"
+        },
+        "compile": {
+          "lib/portable45-net45+win8+wpa81/NewsAPI.dll": {}
+        },
+        "runtime": {
+          "lib/portable45-net45+win8+wpa81/NewsAPI.dll": {}
+        }
+      },
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
@@ -139,6 +151,18 @@
         "lib/netstandard2.0/Microsoft.OpenApi.xml",
         "microsoft.openapi.1.2.3.nupkg.sha512",
         "microsoft.openapi.nuspec"
+      ]
+    },
+    "NewsAPI/0.6.0": {
+      "sha512": "sS2W+VHUPT8pXmFla6GvESgTdnRcieSZsCcqCCu7IOSuqJotMERn8FXof/Y0F3m7ESMv5v3QHwuhMM514m35kA==",
+      "type": "package",
+      "path": "newsapi/0.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/portable45-net45+win8+wpa81/NewsAPI.dll",
+        "newsapi.0.6.0.nupkg.sha512",
+        "newsapi.nuspec"
       ]
     },
     "Newtonsoft.Json/13.0.1": {
@@ -262,6 +286,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "NewsAPI >= 0.6.0",
       "Newtonsoft.Json >= 13.0.1",
       "Swashbuckle.AspNetCore >= 5.6.3",
       "System.ServiceModel.Syndication >= 5.0.0"
@@ -306,6 +331,10 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "NewsAPI": {
+            "target": "Package",
+            "version": "[0.6.0, )"
+          },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.1, )"
@@ -340,5 +369,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'NewsAPI 0.6.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "NewsAPI",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

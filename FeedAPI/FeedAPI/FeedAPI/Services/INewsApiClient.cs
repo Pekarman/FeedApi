@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace FeedAPI.Services
 {
-    public interface INewsApi
+    public interface INewsApiClient
     {
-        public IEnumerable<Article> GetArticles();
+        public List<Item> GetArticles();
     }
 }

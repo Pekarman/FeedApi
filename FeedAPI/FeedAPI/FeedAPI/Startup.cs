@@ -28,7 +28,7 @@ namespace FeedAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IOnlinerRss, OnlinerRSS>();
-            services.AddTransient<INewsApi, NewsApi>();
+            services.AddTransient<INewsApiClient, NewsApi>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

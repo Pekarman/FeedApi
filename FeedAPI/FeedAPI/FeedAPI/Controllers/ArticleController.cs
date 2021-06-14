@@ -19,9 +19,9 @@ namespace FeedAPI.Controllers
     public class ArticleController : ControllerBase
     {
         private readonly IOnlinerRss _onlinerRSS;
-        private readonly INewsApi _newsApi;
+        private readonly INewsApiClient _newsApi;
 
-        public ArticleController(IOnlinerRss onlinerRSS, INewsApi newsApi)
+        public ArticleController(IOnlinerRss onlinerRSS, INewsApiClient newsApi)
         {
             _onlinerRSS = onlinerRSS;
             _newsApi = newsApi;
@@ -33,7 +33,7 @@ namespace FeedAPI.Controllers
             var articlesOnliner = _onlinerRSS.GetArticles();
             var articlesNewsApi = _newsApi.GetArticles();
 
-            var articles = articlesOnliner.Concat<Article>(articlesNewsApi);
+            var articles = articlesOnliner.Concat<Item>(articlesNewsApi);
 
             if (articles != null)
             {

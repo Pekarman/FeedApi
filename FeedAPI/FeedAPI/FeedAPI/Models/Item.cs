@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FeedAPI.Models
 {
-    public class Article
+    public class Item
     {        
         public string Title { get; set; }
         public string Author { get; set; }

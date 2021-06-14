@@ -1,5 +1,9 @@
 ﻿using FeedAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using NewsAPI;
+using NewsAPI.Models;
+using NewsAPI.Constants;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -7,33 +11,45 @@ using System.Text.RegularExpressions;
 
 namespace FeedAPI.Services
 {
-    public class NewsApi : INewsApi
+    public class NewsApi : INewsApiClient
     {
         private string keyWord = "Apple";
-        private string from = "2021-06-11";
-        private string sortBy = "popularity";
+        private DateTime from = DateTime.Today;
         private string apiKey = "d11afab6486343cfa40068ffd60f9e68";
 
-        private List<Article> articles;
+        private List<Item> articles;
 
-        public IEnumerable<Article> GetArticles()
+        public List<Item> GetArticles()
         {
-            articles = new List<Article>();
+            articles = new List<Item>();
 
-            var url = "https://newsapi.org/v2/everything?" +
-                      $"q={keyWord}&" +
-                      $"from={from}&" +
-                      $"sortBy={sortBy}&" +
-                      $"apiKey={apiKey}";
+            var newsApiClient = new NewsApiClient(apiKey);
+            var articlesResponse = newsApiClient.GetEverything(new EverythingRequest
+            {
+                Q = keyWord,
+                SortBy = SortBys.Popularity,
+                Language = Languages.RU,
+                From = from,
+            }) ;
 
-            var response = new WebClient().DownloadString(url);
+            if (articlesResponse.Status == Statuses.Ok)
+            {
+                foreach (var article in articlesResponse.Articles)
+                {
+                    articles.Add(new Item
+                    {
+                        Title = article.Title,
+                        Author = article.Author,
+                        Source = article.Source.Name,
+                        Link = article.Url,
+                        ImageLink = article.UrlToImage,
+                        Content = article.Content,
+                        PublishDate = (DateTime)article.PublishedAt
+                    });
+                }
+            }
 
             return articles;
-        }
-
-        private void Parse(string response)
-        {
-            Regex regex = new("");
         }
     }
 }
