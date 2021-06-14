@@ -1,6 +1,0 @@
-0000000000000000000000000000000000000000 869f460c822779efa0b6396e99eb2c569eb25e00 MINSK\Dzmitry_Paulavets <Dzmitry_Paulavets@epam.com> 1623411573 +0300	branch: Created from Dev
-869f460c822779efa0b6396e99eb2c569eb25e00 f8bdbcebd74fcdd921ac093e415765508f57bf89 MINSK\Dzmitry_Paulavets <Dzmitry_Paulavets@epam.com> 1623411654 +0300	commit: Adding people.onlinerService with controller
-f8bdbcebd74fcdd921ac093e415765508f57bf89 0331e06caa478c79d1cb13840fc4f6e9364e5d68 MINSK\Dzmitry_Paulavets <Dzmitry_Paulavets@epam.com> 1623423960 +0300	commit: update
-0331e06caa478c79d1cb13840fc4f6e9364e5d68 d22a2ca68b393b0ce6614cb24a9ccf2ad701209b MINSK\Dzmitry_Paulavets <Dzmitry_Paulavets@epam.com> 1623426799 +0300	commit: Adding model
-d22a2ca68b393b0ce6614cb24a9ccf2ad701209b 8412ac04389f764f122f9bc0773f7bc281e8f07b MINSK\Dzmitry_Paulavets <Dzmitry_Paulavets@epam.com> 1623428637 +0300	commit: NewsApi
-8412ac04389f764f122f9bc0773f7bc281e8f07b 2dba798a4af7fd8013af8b3e9123021c6e34d4c6 MINSK\Dzmitry_Paulavets <Dzmitry_Paulavets@epam.com> 1623671339 +0300	commit: Refactoring
