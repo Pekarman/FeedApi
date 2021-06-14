@@ -1,0 +1,35 @@
+{
+  "$id": "1",
+  "AutoRefresh": true,
+  "AutoRefreshRemotes": true,
+  "CommitTextLinks": null,
+  "DraftCommitMsg": "",
+  "IncomingSavedCount": 0,
+  "LastCheckedRemotes": "2021-06-14T18:45:12.695667+03:00",
+  "LastUsedView": 1,
+  "LogBranchFilterIndex": 0,
+  "OutgoingSavedCount": 0,
+  "SidebarExpandedItems": [
+    "Branches",
+    "Remotes",
+    "Remotes/origin"
+  ],
+  "SidebarWidth": 210.0,
+  "SubtreeLinks": [],
+  "NeedsLargeFilesPull": false,
+  "RemoteProjectLinks": [
+    {
+      "$id": "2",
+      "BaseUrl": "https://github.com/",
+      "Identifier": "",
+      "RemoteName": "origin",
+      "Type": 0,
+      "Username": "Pekarman",
+      "CloneUrl": "https://github.com/Pekarman/NewsFeedOnliner",
+      "ProjectUrl": "https://github.com/Pekarman/NewsFeedOnliner",
+      "AccountId": "Pekarman@github.com",
+      "AvatarUrl": null,
+      "DisplayName": "origin: https://github.com/"
+    }
+  ]
+}
