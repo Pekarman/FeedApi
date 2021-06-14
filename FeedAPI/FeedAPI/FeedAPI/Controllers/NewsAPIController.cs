@@ -22,9 +22,9 @@ namespace FeedAPI.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            JsonResult json = newsApi.Get();
+            var result = newsApi.GetArticles();
 
-            return new JsonResult(json);
+            return new JsonResult(result);
         }
     }
 }

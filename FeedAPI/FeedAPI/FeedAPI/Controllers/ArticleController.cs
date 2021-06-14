@@ -10,6 +10,7 @@ using System.Text.Json;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using Newtonsoft.Json;
+using FeedAPI.Models;
 
 namespace FeedAPI.Controllers
 {
@@ -18,16 +19,21 @@ namespace FeedAPI.Controllers
     public class ArticleController : ControllerBase
     {
         private readonly IOnlinerRss _onlinerRSS;
+        private readonly INewsApi _newsApi;
 
-        public ArticleController(IOnlinerRss onlinerRSS)
+        public ArticleController(IOnlinerRss onlinerRSS, INewsApi newsApi)
         {
             _onlinerRSS = onlinerRSS;
+            _newsApi = newsApi;
         }
 
         [HttpGet]
         public JsonResult GetOnlinerNews()
         {
-            var articles = _onlinerRSS.GetItems();
+            var articlesOnliner = _onlinerRSS.GetArticles();
+            var articlesNewsApi = _newsApi.GetArticles();
+
+            var articles = articlesOnliner.Concat<Article>(articlesNewsApi);
 
             if (articles != null)
             {
