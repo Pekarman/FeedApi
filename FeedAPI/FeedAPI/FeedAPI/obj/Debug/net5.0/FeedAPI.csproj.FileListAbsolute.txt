@@ -26,3 +26,6 @@ C:\Source\Repos\NewsFeedOnliner\FeedAPI\FeedAPI\FeedAPI\obj\Debug\net5.0\FeedAPI
 C:\Source\Repos\NewsFeedOnliner\FeedAPI\FeedAPI\FeedAPI\obj\Debug\net5.0\ref\FeedAPI.dll
 C:\Source\Repos\NewsFeedOnliner\FeedAPI\FeedAPI\FeedAPI\obj\Debug\net5.0\FeedAPI.pdb
 C:\Source\Repos\NewsFeedOnliner\FeedAPI\FeedAPI\FeedAPI\obj\Debug\net5.0\FeedAPI.genruntimeconfig.cache
+C:\Source\Repos\NewsFeedOnliner\FeedAPI\FeedAPI\FeedAPI\bin\Debug\net5.0\System.ServiceModel.Syndication.dll
+C:\Source\Repos\NewsFeedOnliner\FeedAPI\FeedAPI\FeedAPI\obj\Debug\net5.0\FeedAPI.csproj.AssemblyReference.cache
+C:\Source\Repos\NewsFeedOnliner\FeedAPI\FeedAPI\FeedAPI\bin\Debug\net5.0\Newtonsoft.Json.dll
