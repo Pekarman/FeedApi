@@ -1,13 +1,9 @@
-﻿using FeedAPI.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FeedAPI.Services
+﻿namespace FeedAPI.Services
 {
-    public interface INewsApiClient
+    /// <summary>
+    /// Interface for NewsApi service.
+    /// </summary>
+    public interface INewsApiClient : IFeed
     {
-        public List<Item> GetArticles();
     }
 }

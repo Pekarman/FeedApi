@@ -1,10 +1,9 @@
-﻿using FeedAPI.Models;
-using System.Collections.Generic;
-
-namespace FeedAPI.Services
+﻿namespace FeedAPI.Services
 {
-    public interface IOnlinerRss
+    /// <summary>
+    /// Interface for OnlinerRss service.
+    /// </summary>
+    public interface IOnlinerRss : IFeed
     {
-        public List<Item> GetArticles();
     }
 }

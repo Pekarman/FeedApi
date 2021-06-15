@@ -1,42 +1,47 @@
-﻿using FeedAPI.Models;
-using Microsoft.AspNetCore.Mvc;
-using NewsAPI;
-using NewsAPI.Models;
-using NewsAPI.Constants;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using FeedAPI.Models;
+using Microsoft.AspNetCore.Mvc;
+using NewsAPI;
+using NewsAPI.Constants;
+using NewsAPI.Models;
+using Newtonsoft.Json;
 
 namespace FeedAPI.Services
 {
+    /// <summary>
+    /// Service to inject.
+    /// </summary>
     public class NewsApi : INewsApiClient
     {
+        private const string ApiKey = "d11afab6486343cfa40068ffd60f9e68";
         private string keyWord = "Apple";
         private DateTime from = DateTime.Today;
-        private string apiKey = "d11afab6486343cfa40068ffd60f9e68";
 
         private List<Item> articles;
 
-        public List<Item> GetArticles()
+        /// <inheritdoc/>
+        public async Task<IEnumerable<Item>> GetArticlesAsync()
         {
-            articles = new List<Item>();
+            this.articles = new List<Item>();
 
-            var newsApiClient = new NewsApiClient(apiKey);
-            var articlesResponse = newsApiClient.GetEverything(new EverythingRequest
+            var newsApiClient = new NewsApiClient(ApiKey);
+            var articlesResponse = await newsApiClient.GetEverythingAsync(new EverythingRequest
             {
-                Q = keyWord,
+                Q = this.keyWord,
                 SortBy = SortBys.Popularity,
                 Language = Languages.RU,
-                From = from,
-            }) ;
+                From = this.from,
+            });
 
             if (articlesResponse.Status == Statuses.Ok)
             {
                 foreach (var article in articlesResponse.Articles)
                 {
-                    articles.Add(new Item
+                    this.articles.Add(new Item
                     {
                         Title = article.Title,
                         Author = article.Author,
@@ -44,12 +49,12 @@ namespace FeedAPI.Services
                         Link = article.Url,
                         ImageLink = article.UrlToImage,
                         Content = article.Content,
-                        PublishDate = (DateTime)article.PublishedAt
+                        PublishDate = (DateTime)article.PublishedAt,
                     });
                 }
             }
 
-            return articles;
+            return this.articles;
         }
     }
 }

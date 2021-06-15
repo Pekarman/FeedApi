@@ -1,39 +1,39 @@
-﻿using FeedAPI.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ServiceModel.Syndication;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Xml;
+using FeedAPI.Models;
 
 namespace FeedAPI.Services
 {
     public class OnlinerRSS : IOnlinerRss
     {
-        const string peopleSource = "https://people.onliner.by/feed";
-        const string moneySource = "https://money.onliner.by/feed";
-        const string autoSource = "https://auto.onliner.by/feed";
-        const string techSource = "https://tech.onliner.by/feed";
-        const string realtSource = "https://realt.onliner.by/feed";
+        private const string PeopleSource = "https://people.onliner.by/feed";
+        private const string MoneySource = "https://money.onliner.by/feed";
+        private const string AutoSource = "https://auto.onliner.by/feed";
+        private const string TechSource = "https://tech.onliner.by/feed";
+        private const string RealtSource = "https://realt.onliner.by/feed";
+
+        private const string LinkPattern = @"<p><a href=\s*(.+?)\s*>";
+        private const string ImageLinkPattern = @"<img src=\s*(.+?.jpeg)";
+        private const string DescPattern = @"</a></p><p>(.+?)</p><p><";
 
         private List<Item> articles;
 
-        public List<Item> GetArticles()
+        /// <inheritdoc/>
+        public async Task<IEnumerable<Item>> GetArticlesAsync()
         {
-            Initialize();            
+            List<string> sources = new List<string>
+            {
+                PeopleSource,
+                MoneySource,
+                AutoSource,
+                TechSource,
+                RealtSource,
+            };
 
-            return articles;
-        }
-
-        private void Initialize()
-        {
-            List<string> sources = new List<string> {
-                                                      peopleSource,
-                                                      moneySource,
-                                                      autoSource,
-                                                      techSource,
-                                                      realtSource
-                                                     };
-
-            articles = new List<Item>();
+            this.articles = new List<Item>();
 
             foreach (string source in sources)
             {
@@ -43,14 +43,12 @@ namespace FeedAPI.Services
                 using (XmlReader reader = XmlReader.Create(source))
                 {
                     var formatter = new Rss20FeedFormatter();
+
                     formatter.ReadFrom(reader);
                     feed = formatter.Feed;
                     items = formatter.Feed.Items;
                 }
 
-                string linkPattern = @"<p><a href=\s*(.+?)\s*>";
-                string imageLinkPattern = @"<img src=\s*(.+?.jpeg)";
-                string descPattern = @"</a></p><p>(.+?)</p><p><";
                 string link = string.Empty;
                 string imageLink = string.Empty;
                 string desc = string.Empty;
@@ -58,39 +56,41 @@ namespace FeedAPI.Services
 
                 foreach (var item in items)
                 {
-                    m = Regex.Match(item.Summary.Text, linkPattern);
+                    m = Regex.Match(item.Summary.Text, LinkPattern);
 
                     if (m.Success)
                     {
                         link = m.Groups[1].Value.Trim('"');
                     }
 
-                    m = Regex.Match(item.Summary.Text, imageLinkPattern);
+                    m = Regex.Match(item.Summary.Text, ImageLinkPattern);
 
                     if (m.Success)
                     {
                         imageLink = m.Groups[1].Value.Trim('"');
                     }
 
-                    m = Regex.Match(item.Summary.Text, descPattern);
+                    m = Regex.Match(item.Summary.Text, DescPattern);
 
                     if (m.Success)
                     {
                         desc = m.Groups[1].Value;
                     }
 
-                    articles.Add(new Item
+                    this.articles.Add(new Item
                     {
                         Title = item.Title.Text,
-                        Author = "Default Onliner Author", //добавить авторов
+                        Author = "Default Onliner Author", // Add authors
                         Source = feed.Description.Text,
                         Link = link,
                         ImageLink = imageLink,
                         Content = desc,
-                        PublishDate = item.PublishDate.DateTime
+                        PublishDate = item.PublishDate.DateTime,
                     });
                 }
             }
+
+            return this.articles;
         }
     }
 }

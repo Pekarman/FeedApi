@@ -1,16 +1,16 @@
-﻿using FeedAPI.Services;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.ServiceModel.Syndication;
-using System.Text.Json;
 using System.Text.Encodings.Web;
+using System.Text.Json;
 using System.Text.Unicode;
-using Newtonsoft.Json;
+using System.Threading.Tasks;
 using FeedAPI.Models;
+using FeedAPI.Services;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace FeedAPI.Controllers
 {
@@ -18,22 +18,24 @@ namespace FeedAPI.Controllers
     [ApiController]
     public class ArticleController : ControllerBase
     {
-        private readonly IOnlinerRss _onlinerRSS;
-        private readonly INewsApiClient _newsApi;
+        private readonly IOnlinerRss onlinerRSS;
+        private readonly INewsApiClient newsApi;
 
         public ArticleController(IOnlinerRss onlinerRSS, INewsApiClient newsApi)
         {
-            _onlinerRSS = onlinerRSS;
-            _newsApi = newsApi;
+            this.onlinerRSS = onlinerRSS;
+            this.newsApi = newsApi;
         }
 
         [HttpGet]
-        public JsonResult GetOnlinerNews()
+        public async Task<JsonResult> GetOnlinerNewsAsync()
         {
-            var articlesOnliner = _onlinerRSS.GetArticles();
-            var articlesNewsApi = _newsApi.GetArticles();
+            var articlesOnliner = await this.onlinerRSS.GetArticlesAsync();
+            var articlesNewsApi = await this.newsApi.GetArticlesAsync();
 
             var articles = articlesOnliner.Concat<Item>(articlesNewsApi);
+
+            //var articles = onlinerRSS.GetArticlesAsync().Concat<Item>(newsApi.GetArticlesAsync());
 
             if (articles != null)
             {

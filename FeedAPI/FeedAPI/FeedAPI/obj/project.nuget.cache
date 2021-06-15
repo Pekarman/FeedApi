@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "R4Rhjnj7YIYywRsD/wFCNZbXdHFq+cIntl56ZDuI/WFZOuxWhyC8ClwrR3i9tOVDAM99NZlw0SklG8YNrnGSHA==",
+  "dgSpecHash": "33iOhrdsAOhfP9GB8RrQ0ZGAurTfFY6U7X4ooylPzkb6ERFRdqkbt+d6kXIq6BEMJCEC6UlnfJ9Jsgsmz4WouQ==",
   "success": true,
   "projectFilePath": "C:\\Source\\Repos\\NewsFeedOnliner\\FeedAPI\\FeedAPI\\FeedAPI\\FeedAPI.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\Dzmitry_Paulavets\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\Dzmitry_Paulavets\\.nuget\\packages\\newsapi\\0.6.0\\newsapi.0.6.0.nupkg.sha512",
     "C:\\Users\\Dzmitry_Paulavets\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\Dzmitry_Paulavets\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512",
     "C:\\Users\\Dzmitry_Paulavets\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "C:\\Users\\Dzmitry_Paulavets\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
     "C:\\Users\\Dzmitry_Paulavets\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
