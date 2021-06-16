@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel.Syndication;
-using System.Text.Encodings.Web;
-using System.Text.Json;
-using System.Text.Unicode;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using FeedAPI.Models;
 using FeedAPI.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 

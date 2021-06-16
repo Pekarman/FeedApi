@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
 using System.Xml;
-using AutoMapper;
 using FeedAPI.Models;
 
 namespace FeedAPI.Services
@@ -17,10 +17,6 @@ namespace FeedAPI.Services
         private const string AutoSource = "https://auto.onliner.by/feed";
         private const string TechSource = "https://tech.onliner.by/feed";
         private const string RealtSource = "https://realt.onliner.by/feed";
-
-        private const string LinkPattern = @"<p><a href=\s*(.+?)\s*>";
-        private const string ImageLinkPattern = @"<img src=\s*(.+?.jpeg)";
-        private const string DescPattern = @"</a></p><p>(.+?)</p><p><";
 
         /// <inheritdoc/>
         public async Task<IEnumerable<Item>> GetArticlesAsync()
@@ -51,17 +47,7 @@ namespace FeedAPI.Services
                     items = formatter.Feed.Items;
                 }
 
-                var config = new MapperConfiguration(cfg => cfg.CreateMap<SyndicationItem, Item>()
-                                                    .ForMember("Title", opt => opt.MapFrom(c => c.Title.Text))
-                                                    .ForMember("Author", opt => opt.MapFrom(c => "Default Onliner Author")) // Add authors
-                                                    .ForMember("Source", opt => opt.MapFrom(c => feed.Description.Text))
-                                                    .ForMember("Link", opt => opt.MapFrom(c => c.Summary.Text.GetRegexValue(LinkPattern)))
-                                                    .ForMember("ImageLink", opt => opt.MapFrom(c => c.Summary.Text.GetRegexValue(ImageLinkPattern)))
-                                                    .ForMember("Content", opt => opt.MapFrom(c => c.Summary.Text.GetRegexValue(DescPattern)))
-                                                    .ForMember("PublishDate", opt => opt.MapFrom(c => c.PublishDate.DateTime)));
-                var mapper = new Mapper(config);
-
-                return mapper.Map<IEnumerable<SyndicationItem>, IEnumerable<Item>>(items);
+                articles.AddRange(items.Select<SyndicationItem, Item>(x => new SyndicationItemAdapter(x, feed)));
             }
 
             return articles;
