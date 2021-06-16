@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using AutoMapper;
 using FeedAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using NewsAPI;
@@ -13,7 +15,7 @@ using Newtonsoft.Json;
 namespace FeedAPI.Services
 {
     /// <summary>
-    /// Service to inject.
+    /// Service for getting NewsApi feed.
     /// </summary>
     public class NewsApi : INewsApiClient
     {
@@ -21,12 +23,10 @@ namespace FeedAPI.Services
         private string keyWord = "Apple";
         private DateTime from = DateTime.Today;
 
-        private List<Item> articles;
-
         /// <inheritdoc/>
         public async Task<IEnumerable<Item>> GetArticlesAsync()
         {
-            this.articles = new List<Item>();
+            var articles = new List<Item>();
 
             var newsApiClient = new NewsApiClient(ApiKey);
             var articlesResponse = await newsApiClient.GetEverythingAsync(new EverythingRequest
@@ -39,22 +39,17 @@ namespace FeedAPI.Services
 
             if (articlesResponse.Status == Statuses.Ok)
             {
-                foreach (var article in articlesResponse.Articles)
-                {
-                    this.articles.Add(new Item
-                    {
-                        Title = article.Title,
-                        Author = article.Author,
-                        Source = article.Source.Name,
-                        Link = article.Url,
-                        ImageLink = article.UrlToImage,
-                        Content = article.Content,
-                        PublishDate = (DateTime)article.PublishedAt,
-                    });
-                }
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<Article, Item>()
+                                                    .ForMember("Source", opt => opt.MapFrom(c => c.Source.Name))
+                                                    .ForMember("Link", opt => opt.MapFrom(c => c.Url))
+                                                    .ForMember("ImageLink", opt => opt.MapFrom(c => c.UrlToImage))
+                                                    .ForMember("PublishDate", opt => opt.MapFrom(c => (DateTime)c.PublishedAt)));
+                var mapper = new Mapper(config);
+
+                articles = mapper.Map<List<Article>, List<Item>>(articlesResponse.Articles);
             }
 
-            return this.articles;
+            return articles;
         }
     }
 }

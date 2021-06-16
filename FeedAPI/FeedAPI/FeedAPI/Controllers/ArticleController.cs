@@ -35,8 +35,6 @@ namespace FeedAPI.Controllers
 
             var articles = articlesOnliner.Concat<Item>(articlesNewsApi);
 
-            //var articles = onlinerRSS.GetArticlesAsync().Concat<Item>(newsApi.GetArticlesAsync());
-
             if (articles != null)
             {
                 string json = JsonConvert.SerializeObject(articles, Formatting.Indented);
