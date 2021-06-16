@@ -21,7 +21,7 @@ namespace FeedAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> GetOnlinerNewsAsync()
+        public async Task<JsonResult> GetFeedAsync()
         {
             var articlesOnliner = await this.onlinerRSS.GetArticlesAsync();
             var articlesNewsApi = await this.newsApi.GetArticlesAsync();
