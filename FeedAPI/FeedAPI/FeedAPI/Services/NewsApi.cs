@@ -34,7 +34,7 @@ namespace FeedAPI.Services
 
             if (articlesResponse.Status == Statuses.Ok)
             {
-                return articlesResponse.Articles.Select<Article, Item>(x => new ArticleAdapter(x));
+                return articlesResponse.Articles.Select<Article, Item>(x => new ArticleAdapter(x).GetArticle());
             }
 
             return articles;

@@ -47,7 +47,7 @@ namespace FeedAPI.Services
                     items = formatter.Feed.Items;
                 }
 
-                articles.AddRange(items.Select<SyndicationItem, Item>(x => new SyndicationItemAdapter(feed, x)));
+                articles.AddRange(items.Select<SyndicationItem, Item>(x => new SyndicationItemAdapter(feed, x).GetArticle()));
             }
 
             return articles;

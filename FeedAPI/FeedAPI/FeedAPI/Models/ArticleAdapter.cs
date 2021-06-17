@@ -4,7 +4,7 @@ using NewsAPI.Models;
 
 namespace FeedAPI.Services
 {
-    public class ArticleAdapter : Item
+    public class ArticleAdapter : Item, IArticleAdapter
     {
         private readonly Article article;
 
@@ -13,18 +13,18 @@ namespace FeedAPI.Services
             this.article = article;
         }
 
-        public new string Title => this.article.Title;
-
-        public new string Author => this.article.Author;
-
-        public new string Source => this.article.Source.Name;
-
-        public new string Link => this.article.Url;
-
-        public new string ImageLink => this.article.UrlToImage;
-
-        public new string Content => this.article.Content;
-
-        public new DateTime PublishDate => (DateTime)this.article.PublishedAt;
+        public Item GetArticle()
+        {
+            return new Item()
+            {
+                Title = this.article.Title,
+                Author = this.article.Author,
+                Source = this.article.Source.Name,
+                Link = this.article.Url,
+                ImageLink = this.article.UrlToImage,
+                Content = this.article.Content,
+                PublishDate = (DateTime)this.article.PublishedAt,
+            };
+        }
     }
 }
