@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
 using System.Xml;
 using FeedAPI.Models;
+using Services.Configs;
 
 namespace FeedAPI.Services
 {
@@ -12,22 +14,16 @@ namespace FeedAPI.Services
     /// </summary>
     public class OnlinerRSS : IOnlinerRss
     {
-        private const string PeopleSource = "https://people.onliner.by/feed";
-        private const string MoneySource = "https://money.onliner.by/feed";
-        private const string AutoSource = "https://auto.onliner.by/feed";
-        private const string TechSource = "https://tech.onliner.by/feed";
-        private const string RealtSource = "https://realt.onliner.by/feed";
-
         /// <inheritdoc/>
         public async Task<IEnumerable<Item>> GetArticlesAsync()
         {
             List<string> sources = new ()
             {
-                PeopleSource,
-                MoneySource,
-                AutoSource,
-                TechSource,
-                RealtSource,
+                OnlinerConfig.PeopleSource,
+                OnlinerConfig.MoneySource,
+                OnlinerConfig.AutoSource,
+                OnlinerConfig.TechSource,
+                OnlinerConfig.RealtSource,
             };
 
             var articles = new List<Item>();
@@ -47,10 +43,25 @@ namespace FeedAPI.Services
                     items = formatter.Feed.Items;
                 }
 
-                articles.AddRange(items.Select<SyndicationItem, Item>(x => new SyndicationItemAdapter(feed, x).GetArticle()));
+                var result = items.Select<SyndicationItem, Item>(x => new SyndicationItemAdapter(feed, x).GetArticle());
+
+                if (result != null)
+                {
+                    articles.AddRange(result);
+                }
+                else
+                {
+                    throw new Exception($"Onliner feed can not load from source: {source}");
+                }
+                
             }
 
-            return articles;
+            if (articles.Count != 0)
+            {
+                return articles;
+            }
+
+            throw new Exception("Onliner feed can not load.");
         }
     }
 }

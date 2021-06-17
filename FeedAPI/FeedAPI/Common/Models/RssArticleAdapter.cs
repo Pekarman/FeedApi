@@ -4,11 +4,11 @@ using NewsAPI.Models;
 
 namespace FeedAPI.Services
 {
-    public class ArticleAdapter : Item, IArticleAdapter
+    public class RssArticleAdapter : IArticleAdapter
     {
         private readonly Article article;
 
-        public ArticleAdapter(Article article)
+        public RssArticleAdapter(Article article)
         {
             this.article = article;
         }

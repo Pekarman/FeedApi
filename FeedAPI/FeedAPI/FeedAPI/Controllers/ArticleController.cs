@@ -23,16 +23,21 @@ namespace FeedAPI.Controllers
         [HttpGet]
         public async Task<JsonResult> GetFeedAsync()
         {
-            var articlesOnliner = await this.onlinerRSS.GetArticlesAsync();
-            var articlesNewsApi = await this.newsApi.GetArticlesAsync();
-
-            var articles = articlesOnliner.Concat<Item>(articlesNewsApi);
-
-            if (articles != null)
+            try
             {
-                string json = JsonConvert.SerializeObject(articles, Formatting.Indented);
+                var articlesOnliner = await this.onlinerRSS.GetArticlesAsync();
+                var articlesNewsApi = await this.newsApi.GetArticlesAsync();
+                var articles = articlesOnliner.Concat<Item>(articlesNewsApi);
+                if (articles != null)
+                {
+                    string json = JsonConvert.SerializeObject(articles, Formatting.Indented);
 
-                return new JsonResult(json);
+                    return new JsonResult(json);
+                }
+            }
+            catch (System.Exception e)
+            {
+                return new JsonResult(e.Message);
             }
 
             return new JsonResult("Articles not found.");

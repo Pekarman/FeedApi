@@ -4,7 +4,7 @@ using FeedAPI.Models;
 
 namespace FeedAPI.Services
 {
-    public class SyndicationItemAdapter : Item, IArticleAdapter
+    public class SyndicationItemAdapter : IArticleAdapter
     {
         private const string LinkPattern = @"<p><a href=\s*(.+?)\s*>";
         private const string ImageLinkPattern = @"<img src=\s*(.+?.jpeg)";

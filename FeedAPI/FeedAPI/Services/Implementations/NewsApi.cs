@@ -6,6 +6,7 @@ using FeedAPI.Models;
 using NewsAPI;
 using NewsAPI.Constants;
 using NewsAPI.Models;
+using Services.Configs;
 
 namespace FeedAPI.Services
 {
@@ -14,7 +15,6 @@ namespace FeedAPI.Services
     /// </summary>
     public class NewsApi : INewsApiClient
     {
-        private const string ApiKey = "d11afab6486343cfa40068ffd60f9e68";
         private readonly string keyWord = "Apple";
         private readonly DateTime from = DateTime.Today;
 
@@ -23,7 +23,7 @@ namespace FeedAPI.Services
         {
             var articles = new List<Item>();
 
-            var newsApiClient = new NewsApiClient(ApiKey);
+            var newsApiClient = new NewsApiClient(NewsApiConfig.ApiKey);
             var articlesResponse = await newsApiClient.GetEverythingAsync(new EverythingRequest
             {
                 Q = this.keyWord,
@@ -34,10 +34,10 @@ namespace FeedAPI.Services
 
             if (articlesResponse.Status == Statuses.Ok)
             {
-                return articlesResponse.Articles.Select<Article, Item>(x => new ArticleAdapter(x).GetArticle());
+                return articlesResponse.Articles.Select<Article, Item>(x => new RssArticleAdapter(x).GetArticle());
             }
 
-            return articles;
+            throw new Exception("NewsApi feed can not be load.");
         }
     }
 }
