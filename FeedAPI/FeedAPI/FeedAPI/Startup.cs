@@ -1,6 +1,7 @@
 using FeedAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,6 +23,8 @@ namespace FeedAPI
         {
             services.AddTransient<IOnlinerRss, OnlinerRSS>();
             services.AddTransient<INewsApiClient, NewsApi>();
+
+            services.AddCors();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -46,8 +49,15 @@ namespace FeedAPI
 
             app.UseAuthorization();
 
+            app.UseCors(builder => builder.AllowAnyOrigin());
+
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGet("/", async context =>
+                {
+                    await context.Response.WriteAsync("It's Api cors response");
+                });
+
                 endpoints.MapControllers();
             });
         }

@@ -3,12 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedService } from './shared.service';
+import { SharedService } from './services/shared.service';
+import { ArticleHttpService } from './services/article.http.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ArticleComponent } from './article/article.component';
-import { ShowArticleComponent } from './article/show-article/show-article.component';
+import { ArticleComponent } from './components/article/article.component';
+import { ShowArticleComponent } from './components/article-list/show-article.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { ShowArticleComponent } from './article/show-article/show-article.compon
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [SharedService],
+  providers: [ArticleHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
