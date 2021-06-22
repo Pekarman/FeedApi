@@ -1,11 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ArticleHttpService } from 'src/app/services/article.http.service';
-import { Article } from 'src/app/Models/Article';
 
 @Component({
-  selector: 'app-show-article',
-  templateUrl: './show-article.component.html',
-  styleUrls: ['./show-article.component.css']
+  selector: 'app-article-list',
+  templateUrl: './article-list.component.html',
+  styleUrls: ['./article-list.component.css']
 })
 
 export class ShowArticleComponent implements OnInit {
@@ -13,8 +12,7 @@ export class ShowArticleComponent implements OnInit {
   constructor(private service: ArticleHttpService) {
    }
 
-  @Input()
-  ArticleList: Article[] = [];
+  @Input() ArticleList = [];
 
   ngOnInit(): void {
     this.refreshArticleList();
@@ -26,4 +24,10 @@ export class ShowArticleComponent implements OnInit {
     });
   }
 
+  @Input() isMatch(regex: string, source: string): boolean{
+
+    if(source.toLowerCase().indexOf(regex.toLowerCase()) > -1)    return true;
+    else return false;
+
+  }
 }

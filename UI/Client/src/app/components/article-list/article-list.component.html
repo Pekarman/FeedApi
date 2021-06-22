@@ -1,0 +1,19 @@
+
+<h2>Today</h2>
+<input name="searchBox"/>
+<input type="submit" value="Find"/>
+<ul>
+    <div>
+        <li *ngFor="let article of ArticleList">
+            <div *ngIf="isMatch('', article['title'])">            
+                <a [href]="article['link']">
+                    <h5>{{article['title']}}</h5>
+                    <p>{{article['source']}}</p>
+                    <img [src]="article['imageLink']" width="200"/>
+                </a>
+            </div>
+        </li>
+    </div>
+</ul>
+
+

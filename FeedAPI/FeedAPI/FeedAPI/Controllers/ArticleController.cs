@@ -21,7 +21,7 @@ namespace FeedAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> GetFeedAsync()
+        public async Task<IActionResult> GetFeedAsync()
         {
             try
             {
@@ -30,9 +30,11 @@ namespace FeedAPI.Controllers
                 var articles = articlesOnliner.Concat<Item>(articlesNewsApi);
                 if (articles != null)
                 {
-                    string json = JsonConvert.SerializeObject(articles, Formatting.Indented);
+                    //var json = JsonConvert.SerializeObject(articles, Formatting.Indented);
 
-                    return new JsonResult(json);
+                    return this.Ok(articles);
+
+                    //return new JsonResult(JsonConvert.SerializeObject(articles, Formatting.Indented));
                 }
             }
             catch (System.Exception e)
