@@ -12,7 +12,9 @@ export class ShowArticleComponent implements OnInit {
   constructor(private service: ArticleHttpService) {
    }
 
-  @Input() ArticleList = [];
+  ArticleList = [];
+
+  searchValue: string = "";
 
   ngOnInit(): void {
     this.refreshArticleList();
@@ -23,11 +25,9 @@ export class ShowArticleComponent implements OnInit {
       this.ArticleList = data;
     });
   }
-
-  @Input() isMatch(regex: string, source: string): boolean{
-
+  
+  isMatch(regex: string, source: string): boolean{
     if(source.toLowerCase().indexOf(regex.toLowerCase()) > -1)    return true;
     else return false;
-
   }
 }

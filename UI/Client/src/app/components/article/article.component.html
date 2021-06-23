@@ -1,1 +1,9 @@
-<p>Article component</p>
+
+<div>
+    <a [href]="article['link']">
+        <h5>{{article['title']}}</h5>
+        <p>{{article['source']}}</p>
+        <img [src]="article['imageLink']" width="200"/>
+    </a>
+</div>
+

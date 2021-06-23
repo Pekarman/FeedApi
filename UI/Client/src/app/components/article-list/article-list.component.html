@@ -1,19 +1,14 @@
-
 <h2>Today</h2>
-<input name="searchBox"/>
-<input type="submit" value="Find"/>
-<ul>
-    <div>
-        <li *ngFor="let article of ArticleList">
-            <div *ngIf="isMatch('', article['title'])">            
-                <a [href]="article['link']">
-                    <h5>{{article['title']}}</h5>
-                    <p>{{article['source']}}</p>
-                    <img [src]="article['imageLink']" width="200"/>
-                </a>
-            </div>
+<div class="search">
+    <input class="searchbox" type="text" name="searchBox" [(ngModel)]="searchValue"/>
+</div>
+
+
+
+<ul>    
+    <div *ngFor="let article of ArticleList">
+        <li *ngIf="isMatch(searchValue, article['title'])">
+            <app-article [article]="article"></app-article>
         </li>
     </div>
 </ul>
-
-
