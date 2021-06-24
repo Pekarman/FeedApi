@@ -1,21 +1,17 @@
+<div id="header">
+  <app-header (textGhanged) = "changeSearchValue($event)"></app-header>
+</div>
 
-<div class="container">
+<div class="row">
+  <div id="content">
+    <div class="inner-content">
+      <app-article-list [item] = "searchValue"></app-article-list>
+    </div>
+  </div>
+</div>
 
-  <h3 class="d-flex justify-content-center">FeedApi Client</h3>
-
-  <!-- <nav class="navbar navbar-expand-sm bg-light navbar-dark">
-    <ul class="navbar-nav">      
-
-      <li class="nav-item">
-        <button routerLink="show-article"
-        class="m-1 btn btn-light btn-outline-primary" Button>Show Articles</button>
-      </li>
-
-    </ul>
-  </nav> -->
-  
-  <app-article-list></app-article-list>
+<div id="footer">
+  <app-footer></app-footer>
+</div>
 
   <router-outlet></router-outlet>
-
-</div>

@@ -1,14 +1,10 @@
-<h2>Today</h2>
-<div class="search">
-    <input class="searchbox" type="text" name="searchBox" [(ngModel)]="searchValue"/>
+<div id="article">
+    <ul>    
+        <div *ngFor="let article of ArticleList">
+            <li *ngIf="isMatch(searchValue, article['title'])">
+                <app-article [article]="article"></app-article>
+            </li>
+        </div>
+    </ul>
 </div>
 
-
-
-<ul>    
-    <div *ngFor="let article of ArticleList">
-        <li *ngIf="isMatch(searchValue, article['title'])">
-            <app-article [article]="article"></app-article>
-        </li>
-    </div>
-</ul>

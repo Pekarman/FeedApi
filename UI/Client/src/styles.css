@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: rgba(111, 167, 132, 0.582);
+}
+
+#header {
+    background:rgba(100, 111, 207, 0.466);
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+#footer {
+    background:rgba(100, 111, 207, 0.466);
+    height: 50px;
+    margin-top: 10px;  
+}
+
+.inner-content {
+    min-height: 1000px;
+}
+
+.half {
+    width: 50%;
+    float: left;
+}
+.row:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+  .row { display: inline-block; }
+  /* start commented backslash hack \*/
+  * html .clearfix { height: 1%; }
+  .row { display: block; }
+  /* close commented backslash hack */

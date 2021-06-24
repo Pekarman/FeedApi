@@ -1,20 +1,20 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ArticleHttpService } from 'src/app/services/article.http.service';
 
+
 @Component({
   selector: 'app-article-list',
   templateUrl: './article-list.component.html',
   styleUrls: ['./article-list.component.css']
 })
 
-export class ShowArticleComponent implements OnInit {
+export class ArticleList implements OnInit {
 
-  constructor(private service: ArticleHttpService) {
-   }
+  constructor(private service: ArticleHttpService) {}
 
   ArticleList = [];
 
-  searchValue: string = "";
+  @Input('item') searchValue: string = "";
 
   ngOnInit(): void {
     this.refreshArticleList();

@@ -8,13 +8,17 @@ import { ArticleHttpService } from './services/article.http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticleComponent } from './components/article/article.component';
-import { ShowArticleComponent } from './components/article-list/article-list.component';
+import { ArticleList } from './components/article-list/article-list.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArticleComponent,
-    ShowArticleComponent,
+    ArticleList,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

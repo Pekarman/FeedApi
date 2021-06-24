@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ArticleHttpService } from './services/article.http.service';
 
 @Component({
@@ -7,16 +7,14 @@ import { ArticleHttpService } from './services/article.http.service';
   styleUrls: ['./app.component.css'],
   providers: [ArticleHttpService]
 })
-export class AppComponent {
-  
-  title = 'Client';
-  response: string = "default response";
+export class AppComponent {  
 
-  constructor(private httpService: ArticleHttpService){}
+  constructor(){}
 
-  submit(){
-    this.httpService.getArticles().subscribe((data:any) => {
-      this.response = data;
-    })
+  searchValue: string = "";
+
+  changeSearchValue(value : string){
+    this.searchValue = value;
+    console.log(value);
   }
 }
