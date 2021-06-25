@@ -1,7 +1,7 @@
 <div id="article">
     <ul>    
         <div *ngFor="let article of ArticleList">
-            <li *ngIf="isMatch(searchValue, article['title'])">
+            <li class="item col-11" *ngIf="isMatch(searchValue, article['title'])">
                 <app-article [article]="article"></app-article>
             </li>
         </div>

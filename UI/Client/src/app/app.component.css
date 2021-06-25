@@ -1,0 +1,19 @@
+#header {
+    /* background:rgba(100, 111, 207, 0.466); */
+    height: 100px;
+    margin-bottom: 10px;
+    
+    border-bottom-style: dashed;
+    border-bottom-color: black;
+    border-bottom-width: 5px;
+}
+
+#footer {
+    /* background:rgba(100, 111, 207, 0.466); */
+    height: 50px;
+    margin-top: 10px;  
+}
+
+.inner-content {
+    min-height: 1000px;
+}

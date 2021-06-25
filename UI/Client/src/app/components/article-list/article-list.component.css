@@ -1,5 +1,12 @@
-li {
-    margin: auto;    
+li.item {
+    margin-bottom: 20px;   
+    border-bottom-style:solid;
+    border-bottom-color: black;
+    border-bottom-width: 5px;
+}
+
+ul {
+    list-style-type: none;
 }
 
 input{
