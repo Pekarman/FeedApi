@@ -4,7 +4,7 @@
     margin-bottom: 10px;
     
     border-bottom-style: dashed;
-    border-bottom-color: black;
+    border-bottom-color: rgb(40, 46, 73);
     border-bottom-width: 5px;
 }
 
@@ -14,6 +14,6 @@
     margin-top: 10px;  
 }
 
-.inner-content {
+#content {
     min-height: 1000px;
 }

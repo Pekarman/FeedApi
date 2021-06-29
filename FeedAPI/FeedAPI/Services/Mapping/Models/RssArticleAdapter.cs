@@ -22,7 +22,7 @@ namespace FeedAPI.Services
                 Source = this.article.Source.Name,
                 Link = this.article.Url,
                 ImageLink = this.article.UrlToImage,
-                Content = this.article.Content,
+                Content = this.article.Description,
                 PublishDate = (DateTime)this.article.PublishedAt,
             };
         }

@@ -7,7 +7,8 @@ namespace FeedAPI.Services
     public class SyndicationItemAdapter : IArticleAdapter
     {
         private const string LinkPattern = @"<p><a href=\s*(.+?)\s*>";
-        private const string ImageLinkPattern = @"<img src=\s*(.+?.jpeg)";
+        private const string ImageLinkPatternJpeg = @"<img src=\s*(.+?.jpeg)";
+        private const string ImageLinkPatternPng = @"<img src=\s*(.+?.png)";
         private const string DescPattern = @"</a></p><p>(.+?)</p><p><";
 
         private readonly SyndicationFeed feed;
@@ -27,7 +28,7 @@ namespace FeedAPI.Services
                 Author = "Default Onliner Author",
                 Source = this.feed.Description.Text,
                 Link = this.item.Summary.Text.GetRegexValue(LinkPattern),
-                ImageLink = this.item.Summary.Text.GetRegexValue(ImageLinkPattern),
+                ImageLink = this.item.Summary.Text.GetRegexValue(ImageLinkPatternJpeg).Length > 0 ? this.item.Summary.Text.GetRegexValue(ImageLinkPatternJpeg) : this.item.Summary.Text.GetRegexValue(ImageLinkPatternPng),
                 Content = this.item.Summary.Text.GetRegexValue(DescPattern),
                 PublishDate = this.item.PublishDate.DateTime,
             };

@@ -1,7 +1,7 @@
 li.item {
     margin-bottom: 20px;   
     border-bottom-style:solid;
-    border-bottom-color: black;
+    border-bottom-color: rgb(40, 46, 73);
     border-bottom-width: 5px;
 }
 
