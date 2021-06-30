@@ -4,7 +4,7 @@ import { ArticleHttpService } from './services/article.http.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
   providers: [ArticleHttpService]
 })
 export class AppComponent {  

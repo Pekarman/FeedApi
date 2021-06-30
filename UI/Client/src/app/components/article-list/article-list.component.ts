@@ -5,7 +5,7 @@ import { ArticleHttpService } from 'src/app/services/article.http.service';
 @Component({
   selector: 'app-article-list',
   templateUrl: './article-list.component.html',
-  styleUrls: ['./article-list.component.css']
+  styleUrls: ['./article-list.component.scss']
 })
 
 export class ArticleList implements OnInit {

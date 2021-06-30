@@ -1,6 +1,6 @@
 #header {
     /* background:rgba(100, 111, 207, 0.466); */
-    height: 100px;
+    max-height: 50px;
     margin-bottom: 10px;
     
     border-bottom-style: dashed;
@@ -16,4 +16,10 @@
 
 #content {
     min-height: 1000px;
+}
+
+@media only screen and (max-width:600px){
+    #header {
+        max-height: 50px;
+    }
 }
