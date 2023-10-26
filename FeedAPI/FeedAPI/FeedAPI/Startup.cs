@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using FeedAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Services.Implementations;
+using Services.Interfaces;
 
 namespace FeedAPI
 {
@@ -18,11 +22,25 @@ namespace FeedAPI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IOnlinerRss, OnlinerRSS>();
             services.AddTransient<INewsApiClient, NewsApi>();
+
+            services.AddTransient<IItemsApiClient, ItemsApi>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IUserSessionService, UserSessionService>();
+
+            services.AddDistributedMemoryCache(); // добавляем IDistributedMemoryCache
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
             services.AddCors();
 
@@ -33,7 +51,9 @@ namespace FeedAPI
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -50,6 +70,8 @@ namespace FeedAPI
             app.UseAuthorization();
 
             app.UseCors(builder => builder.AllowAnyOrigin());
+
+            app.UseSession();   // adding sessions management middleware
 
             app.UseEndpoints(endpoints =>
             {

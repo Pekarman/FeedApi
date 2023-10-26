@@ -9,17 +9,13 @@
 }
 
 #footer {
-    /* background:rgba(100, 111, 207, 0.466); */
+    background-color: #ddd;
     height: 50px;
+    width: 100%;
     margin-top: 10px;  
 }
 
 #content {
-    min-height: 1000px;
-}
-
-@media only screen and (max-width:600px){
-    #header {
-        max-height: 50px;
-    }
+    min-height: 90vh;
+    height: 100%;
 }

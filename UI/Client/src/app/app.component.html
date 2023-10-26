@@ -1,13 +1,12 @@
-<div id="header">
+<!-- <div id="header">
   <app-header (textGhanged) = "changeSearchValue($event)"></app-header>
-</div>
+</div> -->
 
-  <div id="content">
-      <app-article-list [item] = "searchValue"></app-article-list>
-  </div>
+<div id="content">
+    <!-- <app-article-list [item] = "searchValue"></app-article-list> -->
+    <router-outlet></router-outlet>
+</div>
 
 <div id="footer">
   <app-footer></app-footer>
 </div>
-
-<router-outlet></router-outlet>

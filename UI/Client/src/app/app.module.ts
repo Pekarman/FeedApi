@@ -11,6 +11,9 @@ import { ArticleComponent } from './components/article/article.component';
 import { ArticleList } from './components/article-list/article-list.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AuthService } from './services/auth.service';
+import { SessionService } from './services/session.service';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ArticleList,
     HeaderComponent,
     FooterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,11 @@ import { FooterComponent } from './components/footer/footer.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ArticleHttpService],
+  providers: [
+    ArticleHttpService,
+    AuthService,
+    SessionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

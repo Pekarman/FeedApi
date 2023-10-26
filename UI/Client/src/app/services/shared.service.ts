@@ -15,4 +15,8 @@ export class SharedService {
   getArticlesList():Observable<any[]>{
     return this.http.get<any>(this.APIUrl + 'Api/Article');
   }
+
+  getAll():Observable<any[]>{
+    return this.http.get<any>(this.APIUrl + 'Api/Items');
+  }
 }
