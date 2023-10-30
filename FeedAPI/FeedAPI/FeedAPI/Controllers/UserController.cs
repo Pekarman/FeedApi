@@ -85,11 +85,11 @@ namespace FeedAPI.Controllers
 
         // Add new user
         [HttpPut]
-        public async Task<IActionResult> AddUserAsync(string username, string password, string secretPhrase)
+        public async Task<IActionResult> AddUserAsync(UserRegister regUser)
         {
             try
             {
-                User user = await this.userService.AddUserAsync(username, password, secretPhrase);
+                User user = await this.userService.AddUserAsync(regUser.firstName, regUser.lastName, regUser.username, regUser.email, regUser.password, regUser.phrase);
                 if (user != null)
                 {
                     return this.Ok(user);
@@ -157,5 +157,21 @@ namespace FeedAPI.Controllers
 
             return new JsonResult($"User cannot be deleted.");
         }
+
+        public class UserRegister
+        {
+            public string firstName { get; set; }
+
+            public string lastName { get; set; }
+
+            public string username { get; set; }
+
+            public string email { get; set; }
+
+            public string password { get; set; }
+
+            public string phrase { get; set; }
+        }
+
     }
 }

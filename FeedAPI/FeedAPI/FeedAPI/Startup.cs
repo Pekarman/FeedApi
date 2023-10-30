@@ -73,6 +73,7 @@ namespace FeedAPI
             app.UseCors(builder => {
                 builder.AllowAnyOrigin();
                 builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
             });
 
             app.UseSession();   // adding sessions management middleware

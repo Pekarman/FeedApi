@@ -13,6 +13,12 @@ namespace Common.EntityFramework.Models
         [Column("id")]
         public int Id { get; set; }
 
+        [Column("firstName")]
+        public string? FirstName { get; set; }
+
+        [Column("lastName")]
+        public string? LastName { get; set; }
+
         [Column("username")]
         public string? Username { get; set; }
 
@@ -72,6 +78,8 @@ namespace Common.EntityFramework.Models
 
         public User(
             int id,
+            string firstName,
+            string lastName,
             string username,
             int usertypeid,
             string usertypename,
@@ -87,6 +95,8 @@ namespace Common.EntityFramework.Models
             )
         {
             Id = id;
+            FirstName = firstName;
+            LastName = lastName;
             Username = username;
             UserTypeId = usertypeid;
             UserType = new UserType(usertypeid, usertypename);

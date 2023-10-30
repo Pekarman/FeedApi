@@ -13,7 +13,7 @@ namespace Services.Interfaces
 
         public Task<User> GetUserAsync(int id);
 
-        public Task<User> AddUserAsync(string username, string password, string secretPhrase, int usertypeid = 2);
+        public Task<User> AddUserAsync(string firstName, string lastName, string username, string email, string password, string secretPhrase, int usertypeid = 2);
 
         public Task<bool> DeleteUserAsync(string username, string password);
 

@@ -24,6 +24,8 @@ namespace Services.Implementations
                         o => o.UserTypeId, i => i.Id,
                         (i, o) => new User(
                             i.Id,
+                            i.FirstName,
+                            i.LastName,
                             i.Username,
                             i.UserTypeId,
                             o.TypeName,
@@ -57,6 +59,8 @@ namespace Services.Implementations
                         i => i.Id,
                         (i, o) => new User(
                             i.Id,
+                            i.FirstName,
+                            i.LastName,
                             i.Username,
                             i.UserTypeId,
                             o.TypeName,
@@ -77,7 +81,7 @@ namespace Services.Implementations
             return user;
         }
 
-        public async Task<User> AddUserAsync(string username, string password, string secretPhrase, int usertypeid = 2)
+        public async Task<User> AddUserAsync(string firstName, string lastname, string username, string email, string password, string secretPhrase, int usertypeid = 2)
         {
             User user;
 
@@ -88,6 +92,7 @@ namespace Services.Implementations
                 if (isExistUsername) throw new ArgumentException($"User with name {username} already exists.");
 
                 int id = db.Users.Count() + 1;
+                //Constructor change
                 user = new User(id, username, usertypeid);
 
                 var passHash = BCrypt.Net.BCrypt.EnhancedHashPassword(password, 11);
