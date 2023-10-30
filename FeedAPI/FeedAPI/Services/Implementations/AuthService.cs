@@ -25,8 +25,8 @@ namespace Services.Implementations
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                User user = db.Users.Where(u => u.Username == loginData.Email).FirstOrDefault();
-                if (user == null) throw new ArgumentException($"User with name {loginData.Email} is not exists.");
+                User user = db.Users.Where(u => u.Email == loginData.Email).FirstOrDefault();
+                if (user == null) throw new ArgumentException($"User with email {loginData.Email} does not exists.");
 
                 PassData passData = db.PassData.Where(p => p.UserId == user.Id).FirstOrDefault();
                 bool isPasswordMatch = BCrypt.Net.BCrypt.EnhancedVerify(loginData.Password, passData.PassHash);
