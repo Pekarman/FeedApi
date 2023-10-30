@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserRegister } from 'src/app/Models/UserRegister';
+import { AuthService } from 'src/app/services/auth.service';
+import { SessionService } from 'src/app/services/session.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,7 +16,7 @@ export class RegisterComponent implements OnInit {
   myForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
-    username: new FormControl('', [Validators.required]),
+    userName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.pattern('^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$')]),
     password2: new FormControl('', [Validators.required, Validators.pattern('^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$')]),
@@ -22,7 +24,18 @@ export class RegisterComponent implements OnInit {
     phrase2: new FormControl('', [Validators.required, Validators.pattern('')]),
   });
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private authService: AuthService,
+    private sessionService: SessionService
+    ) { }
+
+  notSamePassword: boolean = false;
+  notSamePhrase: boolean = false;
+
+  invalidResponseError: boolean = false;
+  errorText: string = '';
+
 
   ngOnInit(): void {
   }
@@ -33,20 +46,28 @@ export class RegisterComponent implements OnInit {
     var user = new UserRegister(
       this.myForm.controls.firstName.value,
       this.myForm.controls.lastName.value,
-      this.myForm.controls.username.value,
+      this.myForm.controls.userName.value,
       this.myForm.controls.email.value,
       this.myForm.controls.password.value,
       this.myForm.controls.phrase.value
     );
-    debugger;
+    // debugger;
 
     this.userService.createUser(user)
       .subscribe((response: any) => {
-        debugger;
-      });
+        if (response.id) {
+          debugger;
 
-    // if (form.valid) 
-    // console.log(form);
+          // this.authService.login(response.Email, form.controls.password.value, form.controls.phrase.value)
+          // .subscribe((response: any) => {
+          //   this.sessionService.setSession(response);
+          // });
+
+        } else {
+          this.errorText = response;
+          this.invalidResponseError = true;
+        }
+      });
   }
 
   validateForm(form: FormGroup) {

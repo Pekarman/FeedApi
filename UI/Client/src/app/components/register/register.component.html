@@ -44,7 +44,7 @@
                             </div>
                             <div class="login-form__input">
                                 <label for="email">Email</label>
-                                <input type="text" id="email" autocomplete="off" class="form-control form-control-lg" placeholder="" name="email" formControlName="email" required>
+                                <input type="text" id="email" autocomplete="off" class="form-control form-control-lg" placeholder="example@gmail.com" name="email" formControlName="email" required>
                             </div>
                             <div class="login-form__input">
                                 <label for="password">Password</label>
@@ -62,13 +62,9 @@
                                 <label for="phrase2">Repeat your secret phrase</label>
                                 <input type="password" id="phrase2" autocomplete="off" class="form-control form-control-lg" placeholder="" name="phrase2" formControlName="phrase2" required>
                             </div>
-                            <!-- <div class="login-form__input">
-                                <div class="checkbox">
-                                    <input type="checkbox" data-val="true" id="rememberMe" name="rememberMe" formControlName="rememberMe" required>
-                                    <label for="rememberMe">Remember Me</label>
-                                </div>
-                            </div> -->
-                            <label id="error-message"></label>
+                            <div id="invalidResponseError" *ngIf="invalidResponseError" class="alert alert-warning fade in mb-25" style="display:block;">
+                                <p>{{ errorText }}</p>
+                            </div> 
                             <div class="login-form__submit">
                                 <button type="submit" class="btn btn-lg btn-block btn-primary">Register</button>
                             </div>
@@ -77,8 +73,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <input name="__RequestVerificationToken" type="hidden" value="CfDJ8G0nGU8YJ6pArU8WeNAQpzOj6ekjA1sBlaODgobQLFmfXCcJ5x_DhEfxN7IeZnTZ49JpA4pE4t_0oeaPT_KDUYqofJBPgHhRgFR9av9NzPPdxA6raP_QJRQ-KOQ4khCYCdFOugajHnjj9-sEr0svvbw">
-                    <input name="Input.RememberMe" type="hidden" value="false"> -->
                 </form>
             </section>
         </div>

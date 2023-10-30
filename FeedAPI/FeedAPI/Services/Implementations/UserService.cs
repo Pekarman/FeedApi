@@ -81,19 +81,20 @@ namespace Services.Implementations
             return user;
         }
 
-        public async Task<User> AddUserAsync(string firstName, string lastname, string username, string email, string password, string secretPhrase, int usertypeid = 2)
+        public async Task<User> AddUserAsync(string firstName, string lastName, string username, string email, string password, string secretPhrase, int usertypeid = 2)
         {
             User user;
 
             using (ApplicationContext db = new ApplicationContext())
             {
                 bool isExistUsername = db.Users.Where(u => u.Username == username).Any();
-
                 if (isExistUsername) throw new ArgumentException($"User with name {username} already exists.");
 
+                bool isExistEmail = db.Users.Where(u => u.Email == email).Any();
+                if (isExistEmail) throw new ArgumentException($"User with email {email} already exists.");
+
                 int id = db.Users.Count() + 1;
-                //Constructor change
-                user = new User(id, username, usertypeid);
+                user = new User(id, firstName, lastName, username, email, usertypeid);
 
                 var passHash = BCrypt.Net.BCrypt.EnhancedHashPassword(password, 11);
                 var secretPhraseHash = BCrypt.Net.BCrypt.EnhancedHashPassword(secretPhrase, 11);

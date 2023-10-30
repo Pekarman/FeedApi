@@ -68,12 +68,14 @@ namespace Common.EntityFramework.Models
             UserTypeId = usertypeid;
         }
 
-        public User(int id, string username, int usertypeid, string usertypename)
+        public User(int id, string firstName, string lastName, string username, string email, int usertypeid)
         {
             Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
             Username = username;
             UserTypeId = usertypeid;
-            UserType = new UserType(usertypeid, usertypename);
         }
 
         public User(
