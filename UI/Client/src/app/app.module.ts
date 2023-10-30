@@ -15,6 +15,8 @@ import { AuthService } from './services/auth.service';
 import { SessionService } from './services/session.service';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { LocalizationModule } from './localization/localization.module';
+import { JsonPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -31,12 +33,13 @@ import { RegisterComponent } from './components/register/register.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LocalizationModule
   ],
   providers: [
     ArticleHttpService,
     AuthService,
-    SessionService
+    SessionService,
   ],
   bootstrap: [AppComponent]
 })

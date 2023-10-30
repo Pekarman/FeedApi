@@ -19,10 +19,12 @@ export class RegisterComponent implements OnInit {
     userName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.pattern('^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$')]),
-    password2: new FormControl('', [Validators.required, Validators.pattern('^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$')]),
-    phrase: new FormControl('', [Validators.required, Validators.pattern('')]),
-    phrase2: new FormControl('', [Validators.required, Validators.pattern('')]),
+    password2: new FormControl('', [Validators.required]),
+    phrase: new FormControl('', [Validators.required]),
+    phrase2: new FormControl('', [Validators.required]),
   });
+
+  localePath: string = "Pages/RegisterPage/"
 
   constructor(
     private userService: UserService,
@@ -32,6 +34,11 @@ export class RegisterComponent implements OnInit {
 
   notSamePassword: boolean = false;
   notSamePhrase: boolean = false;
+
+  invalidEmailError: boolean = false;
+  invalidPasswordError: boolean = false;
+  passwordMatchesError: boolean = false;
+  phraseMatchesError: boolean = false;
 
   invalidResponseError: boolean = false;
   errorText: string = '';
@@ -43,6 +50,8 @@ export class RegisterComponent implements OnInit {
   onSubmit(form: FormGroup) {
     this.validateForm(form);
 
+    if (!this.myForm.valid) return;
+
     var user = new UserRegister(
       this.myForm.controls.firstName.value,
       this.myForm.controls.lastName.value,
@@ -51,12 +60,13 @@ export class RegisterComponent implements OnInit {
       this.myForm.controls.password.value,
       this.myForm.controls.phrase.value
     );
-    // debugger;
 
     this.userService.createUser(user)
       .subscribe((response: any) => {
         if (response.id) {
           debugger;
+
+
 
           // this.authService.login(response.Email, form.controls.password.value, form.controls.phrase.value)
           // .subscribe((response: any) => {
@@ -70,10 +80,10 @@ export class RegisterComponent implements OnInit {
       });
   }
 
-  validateForm(form: FormGroup) {
-    // this.invalidEmailError = !form.controls.email.valid;
-    // this.invalidPasswordError = !form.controls.password.valid;
-    // this.invalidPhraseError = !form.controls.phrase.valid;
+  validateForm(form: FormGroup) {    
+    this.invalidEmailError = !form.controls.email.valid;
+    this.invalidPasswordError = !form.controls.password.valid;
+    this.passwordMatchesError = form.controls.password.value !== form.controls.password2.value;
+    this.phraseMatchesError = form.controls.phrase.value !== form.controls.phrase2.value;
   }
-
 }

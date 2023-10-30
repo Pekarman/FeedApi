@@ -1,0 +1,25 @@
+{
+    "Pages" : {
+        "RegisterPage" : {
+            "title": "Register",
+            "alreadyRegister" : "Already registered?",
+            "login": "Login",
+            "fieldsNames" : {
+                "firstName" : "First Name",
+                "lastName" : " Last Name",
+                "username" : "Username",
+                "email" : "Email",
+                "password" : "Password",
+                "password2" : "Repeat your passswod",
+                "phrase" : "Secret Phrase",
+                "phrase2" : "Repeat secret phrase"
+            }
+        }
+    },
+    "Errors" : {
+        "invalidEmailError" : "Invalid email format.",
+        "invalidPasswordError" : "Password should consist of small/big letters, numbers and special symbols.",
+        "passwordMatchesError" : "Password doesn't match.",
+        "phraseMatchesError" : "Secret phrase doesn't match."
+    }
+}

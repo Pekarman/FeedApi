@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ArticleHttpService } from './services/article.http.service';
 import { SharedService } from './services/shared.service';
+import { LocalizationService } from './localization/localization.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,10 @@ import { SharedService } from './services/shared.service';
 })
 export class AppComponent {  
 
-  constructor(private service: SharedService){}
+  constructor(
+    private service: SharedService,
+    private localizationService: LocalizationService
+    ){}
 
   searchValue: string = "";
 
@@ -20,7 +24,8 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-    this.refreshArticleList();
+    this.localizationService.initiate('ru-RU');
+    // this.refreshArticleList();
   }
 
   

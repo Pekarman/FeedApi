@@ -1,0 +1,25 @@
+{
+    "Pages" : {
+        "RegisterPage" : {
+            "title": "Зарегистрироваться",
+            "alreadyRegister" : "Уже зарегистрированы?",
+            "login": "Войти",
+            "fieldsNames" : {
+                "firstName" : "Имя",
+                "lastName" : " Фамилия",
+                "username" : "Имя пользователя",
+                "email" : "Электронная почта",
+                "password" : "Пароль",
+                "password2" : "Повторите пароль",
+                "phrase" : "Секретная фраза",
+                "phrase2" : "Повторите секретную фразу"
+            }
+        }
+    },
+    "Errors" : {
+        "invalidEmailError" : "Неверный формат почты.",
+        "invalidPasswordError" : "Пароль должен содержать прописные/строчные буквы, цифры и специальные символы.",
+        "passwordMatchesError" : "Пароль не совпадает.",
+        "phraseMatchesError" : "Секретная фраза не совпадает."
+    }
+}
