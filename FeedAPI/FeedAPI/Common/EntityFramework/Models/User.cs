@@ -50,6 +50,9 @@ namespace Common.EntityFramework.Models
         [Column("isActive")]
         public bool IsActive { get; set; }
 
+        [Column("locale")]
+        public string? Locale { get; set; }
+
         public User() { }
 
         public User(int id, string username, int usertypeid)
@@ -79,6 +82,7 @@ namespace Common.EntityFramework.Models
             string bankCode,
             string companyName,
             double? balance,
+            string locale,
             bool isActive = false
             )
         {
@@ -93,6 +97,7 @@ namespace Common.EntityFramework.Models
             BankAccount = bankAccount;
             CompanyName = companyName;
             Balance = balance;
+            Locale = locale;
             IsActive = isActive;
         }
 

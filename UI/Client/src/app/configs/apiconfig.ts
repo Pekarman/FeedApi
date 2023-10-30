@@ -1,5 +1,3 @@
 export class ApiConfig{
-    readonly APIUrl="https://localhost:44341/";
-  
-  
+    readonly ApiUrl="https://localhost:44341/";
   }

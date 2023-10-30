@@ -34,6 +34,7 @@ namespace Services.Implementations
                             i.BankCode,
                             i.CompanyName,
                             i.Balance,
+                            i.Locale,
                             i.IsActive)).ToList();
 
                     return users;
@@ -66,6 +67,7 @@ namespace Services.Implementations
                             i.BankCode,
                             i.CompanyName,
                             i.Balance,
+                            i.Locale,
                             i.IsActive)).FirstOrDefault();
 
                     return user;

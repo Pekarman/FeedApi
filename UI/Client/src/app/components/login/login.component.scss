@@ -11,7 +11,13 @@ hr {
     margin-bottom: 2rem;
 }
 
-input[type=checkbox]:checked, input[type=checkbox]:not(:checked), input[type=radio]:checked, input[type=radio]:not(:checked) {
+input[type=checkbox]:checked+label:before {
+    background-color: #238723;
+    background-image: url(..\..\images\svg\checkbox-checked.svg);
+    border-color: #238723;
+}
+
+input[type=checkbox], input[type=checkbox]:not(:checked), input[type=radio]:checked, input[type=radio]:not(:checked) {
     display: block;
     position: absolute;
     width: 1px;

@@ -8,7 +8,7 @@ import { ApiConfig } from '../configs/apiconfig';
 })
 export class SharedService {
   
-  readonly APIUrl=new ApiConfig().APIUrl;
+  readonly APIUrl=new ApiConfig().ApiUrl;
 
   constructor(private http:HttpClient) { }
 

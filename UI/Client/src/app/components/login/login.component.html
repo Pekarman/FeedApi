@@ -11,31 +11,41 @@
                 </div>
             </div>
             <section>
-                <form id="account" method="post" onsubmit="return ValidateLoginCredentials()" novalidate="novalidate">
+                <form  [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
                     <div class="tile-body">
                         <div class="login-form">
                             <!-- change below display: none -->
-                            <div id="lblErrorMessage" class="alert alert-error fade in mb-25" style="display:block;">
-                                <p>Please enter a valid login ID and/or password.</p>
+                            <div id="invalidEmailError" *ngIf="invalidEmailError" class="alert alert-error fade in mb-25" style="display:block;">
+                                <p>Please enter a valid login email.</p>
                             </div>
-                            <div id="lblEmailMessage" class="alert alert-error fade in mb-25" style="display:block;">
-                                <p>Enter your IAAI.com login email address.</p>
+                            <div id="invalidPasswordError" *ngIf="invalidPasswordError" class="alert alert-error fade in mb-25" style="display:block;">
+                                <p>Please enter a valid password.</p>
                             </div>
-                            <div id="lblBuyerProfileCalims" class="alert alert-warning fade in mb-25" style="display:block;">
+                            <div id="invalidPhraseError" *ngIf="invalidPhraseError" class="alert alert-error fade in mb-25" style="display:block;">
+                                <p>Please enter a valid secret phrase.</p>
+                            </div>
+                            <div id="dataError" *ngIf="dataError" class="alert alert-error fade in mb-25" style="display:block;">
+                                <p>Enter your login email address.</p>
+                            </div>
+                            <div id="loginError" *ngIf="loginError" class="alert alert-warning fade in mb-25" style="display:block;">
                                 <p>Unable to login, please contact Buyer Services for assistance.</p>
                             </div>
                             <div class="login-form__input">
-                                <label for="Input_Email">Email</label>
-                                <input type="text" id="Email" autocomplete="off" class="form-control form-control-lg" placeholder="" name="Input.Email" value="">
+                                <label for="email">Email</label>
+                                <input type="text" id="email" autocomplete="off" class="form-control form-control-lg" placeholder="" name="email" formControlName="email" required>
                             </div>
                             <div class="login-form__input">
-                                <label for="Input_Password">Password</label>
-                                <input type="password" id="Password" autocomplete="off" class="form-control form-control-lg" placeholder="" name="Input.Password">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" autocomplete="off" class="form-control form-control-lg" placeholder="" name="password" formControlName="password" required>
+                            </div>
+                            <div class="login-form__input">
+                                <label for="phrase">Secret phrase</label>
+                                <input type="password" id="phrase" autocomplete="off" class="form-control form-control-lg" placeholder="" name="phrase" formControlName="phrase" required>
                             </div>
                             <div class="login-form__input">
                                 <div class="checkbox">
-                                    <input type="checkbox" data-val="true" data-val-required="The RememberMe field is required." id="Input_RememberMe" name="Input.RememberMe" value="true">
-                                    <label for="Input_RememberMe">Remember Me</label>
+                                    <input type="checkbox" data-val="true" id="rememberMe" name="rememberMe" formControlName="rememberMe" required>
+                                    <label for="rememberMe">Remember Me</label>
                                 </div>
                             </div>
                             <label id="error-message"></label>
