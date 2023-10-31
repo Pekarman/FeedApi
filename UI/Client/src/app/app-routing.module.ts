@@ -5,12 +5,14 @@ import { ArticleComponent } from './components/article/article.component';
 import { ArticleList } from './components/article-list/article-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   {path: 'article', component:ArticleComponent},
   {path: 'show-article', component:ArticleList},
   {path: 'login', component:LoginComponent},
-  {path: 'register', component:RegisterComponent}
+  {path: 'register', component:RegisterComponent},
+  {path: 'dashboard', component:DashboardComponent}
 ];
 
 @NgModule({

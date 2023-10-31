@@ -16,12 +16,15 @@ namespace FeedAPI.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        private readonly IUserService userService;
+
         private readonly IUserSessionService userSessionService;
 
         private readonly IAuthService authService;
 
-        public AuthController(IUserSessionService userSessionService, IAuthService authService)
+        public AuthController(IUserService userSerrvice, IUserSessionService userSessionService, IAuthService authService)
         {
+            this.userService = userService;
             this.userSessionService = userSessionService;
             this.authService = authService;
         }
@@ -34,6 +37,9 @@ namespace FeedAPI.Controllers
             {
                 var sessionId = await this.authService.LoginAsync(data);
                 var session = await this.userSessionService.GetUserSessionAsync(sessionId);
+                var user = await this.userService.GetUserAsync(session.UserId);
+
+                session.user = user;
 
                 if (session != null)
                 {

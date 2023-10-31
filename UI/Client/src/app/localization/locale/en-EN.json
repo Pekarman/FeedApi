@@ -14,6 +14,15 @@
                 "phrase" : "Secret Phrase",
                 "phrase2" : "Repeat secret phrase"
             }
+        },
+        "LoginPage" : {
+            "title": "Log in",
+            "fieldsNames" : {
+                "email" : "Email",
+                "password" : "Password",
+                "phrase" : "Secret phrase",
+                "rememberMe" : "Remember Me"
+            }
         }
     },
     "Errors" : {

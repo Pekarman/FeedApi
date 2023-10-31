@@ -25,6 +25,8 @@ namespace Common.EntityFramework.Models
         [Column("lastChangeTimeStamp")]
         public DateTime LastChangeTimeStamp { get; set; }
 
+        public User user { get; set; }
+
         public UserSession(int id, int userId, string locale, DateTime loginTimeStamp, DateTime lastChangeTimeStamp)
         {
             Id = id;
