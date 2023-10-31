@@ -214,6 +214,13 @@ input {
   border-color: #ccc;
 
 }
+.btn-primary:disabled {
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+  border-color: #ccc;
+
+}
 
 .link {
     font-size: 1.4rem;
@@ -234,6 +241,8 @@ input {
     margin-bottom: 1rem;
 
     &-error {
+        color: #bf0f0f;
+        font-size:larger;
         color: #bf0f0f;
         font-size:larger;
         color: #ff0000;
