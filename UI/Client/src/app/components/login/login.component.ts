@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup, NgForm, RequiredValidator, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
-import { SessionService } from 'src/app/services/session.service';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {FormControl, FormGroup, NgForm, RequiredValidator, Validators} from '@angular/forms';
+import {AuthService} from 'src/app/services/auth.service';
+import {SessionService} from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.pattern('^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$')]),
     phrase: new FormControl('', [Validators.required, Validators.pattern('')]),
-    rememberMe: new FormControl('', [Validators.required])
+    rememberMe: new FormControl('', [Validators.required]),
   });
 
   invalidEmailError: boolean = false;
@@ -26,22 +26,30 @@ export class LoginComponent implements OnInit {
   dataError: boolean = false;
   loginError: boolean = false;
 
-  constructor(private authService: AuthService, private sessionService: SessionService) { }
+  showPassword: boolean = false;
+  text:string = 'text';
+  password:string = 'password';
+
+  constructor(private authService: AuthService, private sessionService: SessionService) {
+  }
 
   ngOnInit(): void {
   }
 
   onSubmit(form: FormGroup) {
     this.validateForm(form);
-    debugger;
+    // debugger;
     this.authService.login(form.controls.email.value, form.controls.password.value, form.controls.phrase.value)
       .subscribe((response: any) => {
-        debugger;
+        // debugger;
         this.sessionService.setSession(response);
       });
-
-    // if (form.valid) 
+    // if (form.valid)
     // console.log(form);
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
   validateForm(form: FormGroup) {

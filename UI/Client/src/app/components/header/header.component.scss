@@ -14,3 +14,47 @@ a {
     color: rgb(5, 61, 5);
     text-decoration: none;
 }
+
+@media only screen and (min-width: 1200px) {
+  .header.header-desktop .profile {
+    height: 80px;
+    margin-left: auto;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .header.header-desktop .profile {
+    background-color: #ffffff;
+    height: auto;
+    padding: 0;
+    order: 2;
+    margin-left: auto;
+  }
+}
+
+.profile {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  height: auto;
+  margin-left: auto;
+}
+
+
+element.style {
+}
+.header.header-desktop .header__user {
+  display: flex !important;
+}
+.header__user {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}

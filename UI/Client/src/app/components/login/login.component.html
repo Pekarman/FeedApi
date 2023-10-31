@@ -1,66 +1,89 @@
 <div class="wrapper-inner ">
-    <div class="container container-xs container-responsive">
-        <div class="tile tile-no-style">
-            <!-- <div class="tile-header tile-header--logo">
-                <a href="https://www.iaai.com" class="logo">Homepage</a>
-            </div> -->
-            <div class="tile-header tile-header--login">
-                <div>
-                    <h1 class="heading-3">Log in</h1>
-                    <hr class="hr-highlight hr-highlight-condensed">
-                </div>
-            </div>
-            <section>
-                <form  [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
-                    <div class="tile-body">
-                        <div class="login-form">
-                            <!-- change below display: none -->
-                            <div id="invalidEmailError" *ngIf="invalidEmailError" class="alert alert-error fade in mb-25" style="display:block;">
-                                <p>Please enter a valid login email.</p>
-                            </div>
-                            <div id="invalidPasswordError" *ngIf="invalidPasswordError" class="alert alert-error fade in mb-25" style="display:block;">
-                                <p>Please enter a valid password.</p>
-                            </div>
-                            <div id="invalidPhraseError" *ngIf="invalidPhraseError" class="alert alert-error fade in mb-25" style="display:block;">
-                                <p>Please enter a valid secret phrase.</p>
-                            </div>
-                            <div id="dataError" *ngIf="dataError" class="alert alert-error fade in mb-25" style="display:block;">
-                                <p>Enter your login email address.</p>
-                            </div>
-                            <div id="loginError" *ngIf="loginError" class="alert alert-warning fade in mb-25" style="display:block;">
-                                <p>Unable to login, please contact Buyer Services for assistance.</p>
-                            </div>
-                            <div class="login-form__input">
-                                <label for="email">Email</label>
-                                <input type="text" id="email" autocomplete="off" class="form-control form-control-lg" placeholder="" name="email" formControlName="email" required>
-                            </div>
-                            <div class="login-form__input">
-                                <label for="password">Password</label>
-                                <input type="password" id="password" autocomplete="off" class="form-control form-control-lg" placeholder="" name="password" formControlName="password" required>
-                            </div>
-                            <div class="login-form__input">
-                                <label for="phrase">Secret phrase</label>
-                                <input type="password" id="phrase" autocomplete="off" class="form-control form-control-lg" placeholder="" name="phrase" formControlName="phrase" required>
-                            </div>
-                            <div class="login-form__input">
-                                <div class="checkbox">
-                                    <input type="checkbox" data-val="true" id="rememberMe" name="rememberMe" formControlName="rememberMe" required>
-                                    <label for="rememberMe">Remember Me</label>
-                                </div>
-                            </div>
-                            <label id="error-message"></label>
-                            <div class="login-form__submit">
-                                <button type="submit" class="btn btn-lg btn-block btn-primary">Log in</button>
-                            </div>
-                            <div class="login-form__forgot">
-                                <a class="link" id="forgot-password" href="/Identity/Account/ForgotPassword?returnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3DAuctionCenterPortal%26redirect_uri%3Dhttps%253A%252F%252Fwww.iaai.com%252Fsignin-oidc%26response_type%3Dcode%26scope%3Dopenid%2520profile%2520email%2520phone%2520offline_access%2520BuyerProfileClaims%26code_challenge%3Dp3NhGS4Sb4_jyjOJFTxMFhUKz5gdpj9OiXBlIGAqIdE%26code_challenge_method%3DS256%26response_mode%3Dform_post%26nonce%3D638339282784098062.YjRlNzk0NDQtZjE3Yy00NWVmLWJjNDQtMmZhZjdkNmI5ZjQzZGU5ODQ3OTQtZTI5Mi00MjYzLTk1ZTEtMDg0YmI5N2YzYzc2%26state%3DCfDJ8GTaZxQpzZ9Lj8W9282zg1wOzO81lynQHrWyeJ3dw5Q1awdOOYeX8YNyb9ohg947eMMBlkV7AMd0QdHOcI_vlozvlI3gd_lwLCZkwPlcRuzbc6N5dhsfDOKrhrSwU7gAFlUtCew29i7SrVz3ikO4C86o5n1jrdFwn2alRlYpjpvGh4qsk8V2-J7E5T4Ce8P9pbav1NkeDJ1ArxgTitcBUdgEAxP7Y-qX5oyhVe1lHvFKSMJFXrr_SQaMZNL6AP_zcFWJXDDrZTwP0RBFtYvqIYpUMXIgftHT-TmJtBf-uYpg1I9Z3iTAtiT4-GKR15ElxLhirAFY-daX6pWeH24BoRrvBz8s02PuvfZFUj4idv28BN21Be-fZan3H1ZkCMt8eMmuSZrhf6NNigx9PTZFLckGw9O8qYqokUw22tnfhoa6ZqHKCS7xpFqBPTFHHoV6ZU1gXNZJN1OZ175npZenMuJ6golg_D2LkBwtEQsAIZov">Forgot Password?</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <input name="__RequestVerificationToken" type="hidden" value="CfDJ8G0nGU8YJ6pArU8WeNAQpzOj6ekjA1sBlaODgobQLFmfXCcJ5x_DhEfxN7IeZnTZ49JpA4pE4t_0oeaPT_KDUYqofJBPgHhRgFR9av9NzPPdxA6raP_QJRQ-KOQ4khCYCdFOugajHnjj9-sEr0svvbw">
-                    <input name="Input.RememberMe" type="hidden" value="false"> -->
-                </form>
-            </section>
+  <div class="container container-xs container-responsive">
+    <div class="tile tile-no-style">
+      <!-- <div class="tile-header tile-header--logo">
+          <a href="https://www.iaai.com" class="logo">Homepage</a>
+      </div> -->
+      <div class="tile-header tile-header--login">
+        <div>
+          <h1 class="heading-3">Log in</h1>
+          <hr class="hr-highlight hr-highlight-condensed">
         </div>
+      </div>
+      <section>
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+          <div class="tile-body">
+            <div class="login-form">
+              <!-- change below display: none -->
+
+              <!--                            <div id="dataError" *ngIf="dataError" class="alert alert-error fade in mb-25" style="display:block;">-->
+              <!--                                <p>Enter your login email address.</p>-->
+              <!--                            </div>-->
+              <!--                            <div id="loginError" *ngIf="loginError" class="alert alert-warning fade in mb-25" style="display:block;">-->
+              <!--                                <p>Unable to login, please contact Buyer Services for assistance.</p>-->
+              <!--                            </div>-->
+              <div class="login-form__input">
+                <label for="email">Email</label>
+                <input type="text" id="email" autocomplete="off" class="form-control form-control-lg" placeholder=""
+                       name="email" formControlName="email" required>
+              </div>
+              <div id="invalidEmailError" *ngIf="invalidEmailError" class="alert alert-error fade in mb-25"
+                   style="display:block;">
+                <p>Please enter a valid login email.</p>
+              </div>
+              <div class="login-form__input">
+                <label for="password">Password</label>
+                <input [type]="showPassword ? text : password" id="password" autocomplete="off"
+                       class="form-control form-control-lg" placeholder="" name="password" formControlName="password"
+                       required>
+                <span class="eyeicon" (click)="togglePasswordVisibility()">
+                   <ng-container *ngIf="showPassword; else hidePassword">
+                    <img class="icon"
+                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7OrlYiF4Vh3828FGw-C4FQL14iso7mksYzw&usqp=CAU"/>
+                   </ng-container>
+                 <ng-template #hidePassword>
+                     <img class="icon" src="https://seekicon.com/free-icon-download/eye_1.png"/>
+                   </ng-template>
+                </span>
+              </div>
+              <div id="invalidPasswordError" *ngIf="invalidPasswordError" class="alert alert-error fade in mb-25"
+                   style="display:block;">
+                <p>Please enter a valid password.</p>
+              </div>
+              <div class="login-form__input">
+                <label for="phrase">Secret phrase</label>
+                <input [type]="showPassword ? text : password" id="phrase" autocomplete="off" class="form-control form-control-lg"
+                       placeholder="" name="phrase" formControlName="phrase" required>
+              </div>
+              <div id="invalidPhraseError" *ngIf="invalidPhraseError" class="alert alert-error fade in mb-25"
+                   style="display:block;">
+                <p>Please enter a valid secret phrase.</p>
+              </div>
+              <div class="login-form__input">
+                <div class="checkbox">
+                  <input type="checkbox" data-val="true" id="rememberMe" name="rememberMe" formControlName="rememberMe"
+                         required>
+                  <label for="rememberMe">Remember Me</label>
+                </div>
+              </div>
+              <label id="error-message"></label>
+              <div class="login-form__submit">
+                <!--                                <button type="submit" class="btn btn-lg btn-block btn-primary" [disabled]="invalidEmailError || invalidPasswordError || invalidPhraseError"  [ngClass]="{'disabled-button': invalidEmailError || invalidPasswordError || invalidPhraseError }">Log in</button>>Log in</button>-->
+                <button type="submit" class="btn btn-lg btn-block btn-primary"
+                        [disabled]="invalidEmailError || invalidPasswordError || invalidPhraseError">Log in
+                </button>
+              </div>
+              <div class="login-form__forgot">
+                <a class="link" id="forgot-password"
+                   href="/Identity/Account/ForgotPassword?returnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3DAuctionCenterPortal%26redirect_uri%3Dhttps%253A%252F%252Fwww.iaai.com%252Fsignin-oidc%26response_type%3Dcode%26scope%3Dopenid%2520profile%2520email%2520phone%2520offline_access%2520BuyerProfileClaims%26code_challenge%3Dp3NhGS4Sb4_jyjOJFTxMFhUKz5gdpj9OiXBlIGAqIdE%26code_challenge_method%3DS256%26response_mode%3Dform_post%26nonce%3D638339282784098062.YjRlNzk0NDQtZjE3Yy00NWVmLWJjNDQtMmZhZjdkNmI5ZjQzZGU5ODQ3OTQtZTI5Mi00MjYzLTk1ZTEtMDg0YmI5N2YzYzc2%26state%3DCfDJ8GTaZxQpzZ9Lj8W9282zg1wOzO81lynQHrWyeJ3dw5Q1awdOOYeX8YNyb9ohg947eMMBlkV7AMd0QdHOcI_vlozvlI3gd_lwLCZkwPlcRuzbc6N5dhsfDOKrhrSwU7gAFlUtCew29i7SrVz3ikO4C86o5n1jrdFwn2alRlYpjpvGh4qsk8V2-J7E5T4Ce8P9pbav1NkeDJ1ArxgTitcBUdgEAxP7Y-qX5oyhVe1lHvFKSMJFXrr_SQaMZNL6AP_zcFWJXDDrZTwP0RBFtYvqIYpUMXIgftHT-TmJtBf-uYpg1I9Z3iTAtiT4-GKR15ElxLhirAFY-daX6pWeH24BoRrvBz8s02PuvfZFUj4idv28BN21Be-fZan3H1ZkCMt8eMmuSZrhf6NNigx9PTZFLckGw9O8qYqokUw22tnfhoa6ZqHKCS7xpFqBPTFHHoV6ZU1gXNZJN1OZ175npZenMuJ6golg_D2LkBwtEQsAIZov">Forgot
+                  Password?</a>
+              </div>
+            </div>
+          </div>
+          <!-- <input name="__RequestVerificationToken" type="hidden" value="CfDJ8G0nGU8YJ6pArU8WeNAQpzOj6ekjA1sBlaODgobQLFmfXCcJ5x_DhEfxN7IeZnTZ49JpA4pE4t_0oeaPT_KDUYqofJBPgHhRgFR9av9NzPPdxA6raP_QJRQ-KOQ4khCYCdFOugajHnjj9-sEr0svvbw">
+          <input name="Input.RememberMe" type="hidden" value="false"> -->
+        </form>
+      </section>
     </div>
+  </div>
 </div>

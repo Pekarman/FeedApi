@@ -163,6 +163,13 @@ label, .label, .label-lg {
         height: 5rem;
     }
 }
+//.fa-eye{
+//  position: absolute;
+//  top: 28%;
+//  right: 4%;
+//  cursor: pointer;
+//  color: lightgray;
+//}
 
 input {
     padding: .5rem 1rem;
@@ -181,6 +188,8 @@ input {
     white-space: nowrap;
     overflow: hidden;
 
+
+
     &-primary {
         background-color: #018dc9;
         border: .1rem solid transparent;
@@ -197,6 +206,13 @@ input {
         padding: 1.7rem 2.5rem;
         height: 5rem;
     }
+}
+.btn-primary:disabled {
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+  border-color: #ccc;
+
 }
 
 .link {
@@ -218,6 +234,8 @@ input {
     margin-bottom: 1rem;
 
     &-error {
+        color: #bf0f0f;
+        font-size:larger;
         color: #ff0000;
     }
 }
