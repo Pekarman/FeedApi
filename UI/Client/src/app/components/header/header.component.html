@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-4">
             <a href="../../../index.html">
-                <h2>Today</h2>
+                <h2>{{ 'Pages/Header/title' | translate }}</h2>
             </a>
         </div>
         <!-- <div class="col-4">
@@ -12,10 +12,13 @@
         <div class="col-4">
           <div class="profile">
             <div class="header__user" id="loginRow">
-              <div>
-                <a aria-label="Register a new account" href="/register">Register</a>
+              <div *ngIf="!session.user.id">
+                <a href="/register">{{ 'Pages/RegisterPage/title' | translate }}</a>
                 <span class="or">or</span>
-                <a href="/login" aria-label="Log In">Log In</a>
+                <a href="/login">{{ 'Pages/LoginPage/title' | translate }}</a>
+              </div>
+              <div (click)="logout()" *ngIf="session.user.id">
+                <a>{{ 'Pages/Logout' | translate }}</a>
               </div>
               <div class="dropdown dropdown--profile">
                 <span class="dropdown-avatar"></span>

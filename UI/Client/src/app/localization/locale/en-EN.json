@@ -1,5 +1,8 @@
 {
     "Pages" : {
+        "Header" : {
+            "title" : "Today"
+        },
         "RegisterPage" : {
             "title": "Register",
             "alreadyRegister" : "Already registered?",
@@ -23,7 +26,8 @@
                 "phrase" : "Secret phrase",
                 "rememberMe" : "Remember Me"
             }
-        }
+        },
+        "Logout" : "Logout"
     },
     "Errors" : {
         "invalidEmailError" : "Invalid email format.",

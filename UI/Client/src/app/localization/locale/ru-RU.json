@@ -1,5 +1,8 @@
 {
     "Pages" : {
+        "Header" : {
+            "title" : "Сегодня"
+        },
         "RegisterPage" : {
             "title": "Зарегистрироваться",
             "alreadyRegister" : "Уже зарегистрированы?",
@@ -23,7 +26,8 @@
                 "phrase" : "Секретная фраза",
                 "rememberMe" : "Запомнить меня"
             }
-        }
+        },
+        "Logout" : "Выйти"
     },
     "Errors" : {
         "invalidEmailError" : "Неверный формат почты.",

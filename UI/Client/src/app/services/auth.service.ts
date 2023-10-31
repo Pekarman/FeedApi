@@ -17,8 +17,8 @@ export class AuthService {
     return this.http.post(this.ApiUrl + 'api/Auth', { email, password, phrase });
   }
   
-  logout(): void {
-    this.http.post('api/logout', {}).subscribe(() => {
+  logout(sessionId: number): void {
+    this.http.delete('api/Auth', {params: {sessionId}}).subscribe(() => {
       this.sessionService.clearSession();
     });
   }

@@ -22,7 +22,7 @@ namespace FeedAPI.Controllers
 
         private readonly IAuthService authService;
 
-        public AuthController(IUserService userSerrvice, IUserSessionService userSessionService, IAuthService authService)
+        public AuthController(IUserService userService, IUserSessionService userSessionService, IAuthService authService)
         {
             this.userService = userService;
             this.userSessionService = userSessionService;
