@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   isShowOrHideValueInputPhrase: boolean = false;
   text:string = 'text';
   password:string = 'password';
+  localePath:string ='Pages/LoginPage/'
 
   constructor(private authService: AuthService, private sessionService: SessionService) {
   }
