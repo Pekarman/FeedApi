@@ -21,7 +21,8 @@
                 "email" : "Email",
                 "password" : "Password",
                 "phrase" : "Secret phrase",
-                "rememberMe" : "Remember Me"
+                "rememberMe" : "Remember Me",
+              "forgotPassword": "Forgot Password?"
             }
         }
     },

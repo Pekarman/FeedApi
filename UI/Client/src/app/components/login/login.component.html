@@ -6,7 +6,7 @@
       </div> -->
       <div class="tile-header tile-header--login">
         <div>
-          <h1 class="heading-3">Log in</h1>
+          <h1 class="heading-3">{{ localePath + 'title' | translate : localePath }}</h1>
           <hr class="hr-highlight hr-highlight-condensed">
         </div>
       </div>
@@ -23,16 +23,16 @@
               <!--                                <p>Unable to login, please contact Buyer Services for assistance.</p>-->
               <!--                            </div>-->
               <div class="login-form__input">
-                <label for="email">Email</label>
+                <label for="email">{{ localePath + 'fieldsNames/email' | translate : localePath }}</label>
                 <input type="text" id="email" autocomplete="off" class="form-control form-control-lg" placeholder=""
                        name="email" formControlName="email" required>
               </div>
               <div id="invalidEmailError" *ngIf="invalidEmailError" class="alert alert-error fade in mb-25"
                    style="display:block;">
-                <p>Please enter a valid login email.</p>
+                <p>{{ 'Errors/invalidEmailError' | translate : localePath }}</p>
               </div>
               <div class="login-form__input">
-                <label for="password">Password</label>
+                <label for="password">{{ localePath + 'fieldsNames/password' | translate : localePath }}</label>
                 <input [type]="isShowOrHideValueInputPassword ? text : password" id="password" autocomplete="off"
                        class="form-control form-control-lg" placeholder="" name="password" formControlName="password"
                        required>
@@ -46,12 +46,12 @@
                    </ng-template>
                 </span>
               </div>
-              <div id="invalidPasswordError" *ngIf="invalidPasswordError" class="alert alert-error fade in mb-25"
-                   style="display:block;">
-                <p>Please enter a valid password.</p>
-              </div>
+<!--              <div id="invalidPasswordError" *ngIf="invalidPasswordError" class="alert alert-error fade in mb-25"-->
+<!--                   style="display:block;">-->
+<!--                <p>Please enter a valid password.</p>-->
+<!--              </div>-->
               <div class="login-form__input">
-                <label for="phrase">Secret phrase</label>
+                <label for="phrase">{{ localePath + 'fieldsNames/phrase' | translate : localePath }}</label>
                 <input [type]="isShowOrHideValueInputPhrase ? text : password" id="phrase" autocomplete="off" class="form-control form-control-lg"
                        placeholder="" name="phrase" formControlName="phrase" required>
                 <span class="eyeicon" (click)="togglePhraseVisibility()">
@@ -72,20 +72,19 @@
                 <div class="checkbox">
                   <input type="checkbox" data-val="true" id="rememberMe" name="rememberMe" formControlName="rememberMe"
                          required>
-                  <label for="rememberMe">Remember Me</label>
+                  <label for="rememberMe">{{ localePath + 'fieldsNames/rememberMe' | translate : localePath }}</label>
                 </div>
               </div>
               <label id="error-message"></label>
               <div class="login-form__submit">
                 <!--                                <button type="submit" class="btn btn-lg btn-block btn-primary" [disabled]="invalidEmailError || invalidPasswordError || invalidPhraseError"  [ngClass]="{'disabled-button': invalidEmailError || invalidPasswordError || invalidPhraseError }">Log in</button>>Log in</button>-->
                 <button type="submit" class="btn btn-lg btn-block btn-primary"
-                        [disabled]="invalidEmailError || invalidPasswordError || invalidPhraseError">Log in
+                        [disabled]="invalidEmailError || invalidPasswordError || invalidPhraseError">{{ localePath + 'title' | translate : localePath }}
                 </button>
               </div>
               <div class="login-form__forgot">
                 <a class="link" id="forgot-password"
-                   href="/Identity/Account/ForgotPassword?returnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3DAuctionCenterPortal%26redirect_uri%3Dhttps%253A%252F%252Fwww.iaai.com%252Fsignin-oidc%26response_type%3Dcode%26scope%3Dopenid%2520profile%2520email%2520phone%2520offline_access%2520BuyerProfileClaims%26code_challenge%3Dp3NhGS4Sb4_jyjOJFTxMFhUKz5gdpj9OiXBlIGAqIdE%26code_challenge_method%3DS256%26response_mode%3Dform_post%26nonce%3D638339282784098062.YjRlNzk0NDQtZjE3Yy00NWVmLWJjNDQtMmZhZjdkNmI5ZjQzZGU5ODQ3OTQtZTI5Mi00MjYzLTk1ZTEtMDg0YmI5N2YzYzc2%26state%3DCfDJ8GTaZxQpzZ9Lj8W9282zg1wOzO81lynQHrWyeJ3dw5Q1awdOOYeX8YNyb9ohg947eMMBlkV7AMd0QdHOcI_vlozvlI3gd_lwLCZkwPlcRuzbc6N5dhsfDOKrhrSwU7gAFlUtCew29i7SrVz3ikO4C86o5n1jrdFwn2alRlYpjpvGh4qsk8V2-J7E5T4Ce8P9pbav1NkeDJ1ArxgTitcBUdgEAxP7Y-qX5oyhVe1lHvFKSMJFXrr_SQaMZNL6AP_zcFWJXDDrZTwP0RBFtYvqIYpUMXIgftHT-TmJtBf-uYpg1I9Z3iTAtiT4-GKR15ElxLhirAFY-daX6pWeH24BoRrvBz8s02PuvfZFUj4idv28BN21Be-fZan3H1ZkCMt8eMmuSZrhf6NNigx9PTZFLckGw9O8qYqokUw22tnfhoa6ZqHKCS7xpFqBPTFHHoV6ZU1gXNZJN1OZ175npZenMuJ6golg_D2LkBwtEQsAIZov">Forgot
-                  Password?</a>
+                   href="/Identity/Account/ForgotPassword?returnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3DAuctionCenterPortal%26redirect_uri%3Dhttps%253A%252F%252Fwww.iaai.com%252Fsignin-oidc%26response_type%3Dcode%26scope%3Dopenid%2520profile%2520email%2520phone%2520offline_access%2520BuyerProfileClaims%26code_challenge%3Dp3NhGS4Sb4_jyjOJFTxMFhUKz5gdpj9OiXBlIGAqIdE%26code_challenge_method%3DS256%26response_mode%3Dform_post%26nonce%3D638339282784098062.YjRlNzk0NDQtZjE3Yy00NWVmLWJjNDQtMmZhZjdkNmI5ZjQzZGU5ODQ3OTQtZTI5Mi00MjYzLTk1ZTEtMDg0YmI5N2YzYzc2%26state%3DCfDJ8GTaZxQpzZ9Lj8W9282zg1wOzO81lynQHrWyeJ3dw5Q1awdOOYeX8YNyb9ohg947eMMBlkV7AMd0QdHOcI_vlozvlI3gd_lwLCZkwPlcRuzbc6N5dhsfDOKrhrSwU7gAFlUtCew29i7SrVz3ikO4C86o5n1jrdFwn2alRlYpjpvGh4qsk8V2-J7E5T4Ce8P9pbav1NkeDJ1ArxgTitcBUdgEAxP7Y-qX5oyhVe1lHvFKSMJFXrr_SQaMZNL6AP_zcFWJXDDrZTwP0RBFtYvqIYpUMXIgftHT-TmJtBf-uYpg1I9Z3iTAtiT4-GKR15ElxLhirAFY-daX6pWeH24BoRrvBz8s02PuvfZFUj4idv28BN21Be-fZan3H1ZkCMt8eMmuSZrhf6NNigx9PTZFLckGw9O8qYqokUw22tnfhoa6ZqHKCS7xpFqBPTFHHoV6ZU1gXNZJN1OZ175npZenMuJ6golg_D2LkBwtEQsAIZov">{{ localePath + 'fieldsNames/forgotPassword' | translate : localePath }}</a>
               </div>
             </div>
           </div>
