@@ -48,6 +48,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
+    this.myForm.updateValueAndValidity();
     this.validateForm(form);
 
     if (!this.myForm.valid) return;
@@ -63,15 +64,11 @@ export class RegisterComponent implements OnInit {
 
     this.userService.createUser(user)
       .subscribe((response: any) => {
-        if (response.id) {
-          debugger;
-
-
-
-          // this.authService.login(response.Email, form.controls.password.value, form.controls.phrase.value)
-          // .subscribe((response: any) => {
-          //   this.sessionService.setSession(response);
-          // });
+        if (response.id) {          
+          this.authService.login(response.Email, user.password, user.phrase)
+            .subscribe((response: any) => {
+              this.sessionService.setSession(response);
+            });
 
         } else {
           this.errorText = response;
