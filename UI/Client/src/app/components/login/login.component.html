@@ -33,11 +33,11 @@
               </div>
               <div class="login-form__input">
                 <label for="password">Password</label>
-                <input [type]="showPassword ? text : password" id="password" autocomplete="off"
+                <input [type]="isShowOrHideValueInputPassword ? text : password" id="password" autocomplete="off"
                        class="form-control form-control-lg" placeholder="" name="password" formControlName="password"
                        required>
                 <span class="eyeicon" (click)="togglePasswordVisibility()">
-                   <ng-container *ngIf="showPassword; else hidePassword">
+                   <ng-container *ngIf="isShowOrHideValueInputPassword; else hidePassword">
                     <img class="icon"
                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7OrlYiF4Vh3828FGw-C4FQL14iso7mksYzw&usqp=CAU"/>
                    </ng-container>
@@ -52,8 +52,17 @@
               </div>
               <div class="login-form__input">
                 <label for="phrase">Secret phrase</label>
-                <input [type]="showPassword ? text : password" id="phrase" autocomplete="off" class="form-control form-control-lg"
+                <input [type]="isShowOrHideValueInputPhrase ? text : password" id="phrase" autocomplete="off" class="form-control form-control-lg"
                        placeholder="" name="phrase" formControlName="phrase" required>
+                <span class="eyeicon" (click)="togglePhraseVisibility()">
+                   <ng-container *ngIf="isShowOrHideValueInputPhrase; else hidePassword">
+                    <img class="icon"
+                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7OrlYiF4Vh3828FGw-C4FQL14iso7mksYzw&usqp=CAU"/>
+                   </ng-container>
+                 <ng-template #hidePassword>
+                     <img class="icon" src="https://seekicon.com/free-icon-download/eye_1.png"/>
+                   </ng-template>
+                </span>
               </div>
               <div id="invalidPhraseError" *ngIf="invalidPhraseError" class="alert alert-error fade in mb-25"
                    style="display:block;">

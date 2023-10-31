@@ -6,6 +6,20 @@
 hr {
     height: .5rem;
 }
+.login-form__input input {
+  position: relative;
+}
+.login-form__input .eyeicon  {
+  position: absolute;
+  top: 65%;
+  right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+img{
+  width: 20px;
+  height: 20px;
+}
 
 .login-form__input {
     margin-bottom: 2rem;
@@ -62,7 +76,7 @@ input[type=checkbox], input[type=checkbox]:not(:checked), input[type=radio]:chec
     font-size: 1.4rem;
 }
 
-.login-form {    
+.login-form {
     &__submit {
         padding-top: .5rem;
         padding-bottom: 1rem;

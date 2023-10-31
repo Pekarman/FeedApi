@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserRegister } from 'src/app/Models/UserRegister';
-import { AuthService } from 'src/app/services/auth.service';
-import { SessionService } from 'src/app/services/session.service';
-import { UserService } from 'src/app/services/user.service';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserRegister} from 'src/app/Models/UserRegister';
+import {AuthService} from 'src/app/services/auth.service';
+import {SessionService} from 'src/app/services/session.service';
+import {UserService} from 'src/app/services/user.service';
+import value from "*.json";
 
 @Component({
   selector: 'app-register',
@@ -30,10 +31,13 @@ export class RegisterComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private sessionService: SessionService
-    ) { }
+  ) {
+  }
 
   notSamePassword: boolean = false;
   notSamePhrase: boolean = false;
+  text:string = 'text';
+  password:string = 'password';
 
   invalidEmailError: boolean = false;
   invalidPasswordError: boolean = false;
@@ -42,7 +46,31 @@ export class RegisterComponent implements OnInit {
 
   invalidResponseError: boolean = false;
   errorText: string = '';
+  isShowOrHidePassword: boolean = false;
+  isShowOrHideReplPassword: boolean = false;
+  isShowOrHideSecretPhrase: boolean = false;
+  isShowOrHideReplSecretPhrase: boolean = false;
 
+
+  togglePhrasesVisibility(phrase: string) {
+   switch (phrase){
+     case 'Password':
+       this.isShowOrHidePassword = !this.isShowOrHidePassword;
+       break
+     case 'ReplPassword':
+       this.isShowOrHideReplPassword = !this.isShowOrHideReplPassword;
+       break
+     case 'SecretPhrase':
+       this.isShowOrHideSecretPhrase = !this.isShowOrHideSecretPhrase;
+       break
+     case 'ReplSecretPhrase':
+       this.isShowOrHideReplSecretPhrase = !this.isShowOrHideReplSecretPhrase;
+       break
+     default:
+       alert(phrase)
+
+   }
+  }
 
   ngOnInit(): void {
   }
@@ -64,7 +92,7 @@ export class RegisterComponent implements OnInit {
 
     this.userService.createUser(user)
       .subscribe((response: any) => {
-        if (response.id) {          
+        if (response.id) {
           this.authService.login(response.Email, user.password, user.phrase)
             .subscribe((response: any) => {
               this.sessionService.setSession(response);
@@ -77,7 +105,7 @@ export class RegisterComponent implements OnInit {
       });
   }
 
-  validateForm(form: FormGroup) {    
+  validateForm(form: FormGroup) {
     this.invalidEmailError = !form.controls.email.valid;
     this.invalidPasswordError = !form.controls.password.valid;
     this.passwordMatchesError = form.controls.password.value !== form.controls.password2.value;

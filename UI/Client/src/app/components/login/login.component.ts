@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
   dataError: boolean = false;
   loginError: boolean = false;
 
-  showPassword: boolean = false;
+  isShowOrHideValueInputPassword: boolean = false;
+  isShowOrHideValueInputPhrase: boolean = false;
   text:string = 'text';
   password:string = 'password';
 
@@ -49,7 +50,10 @@ export class LoginComponent implements OnInit {
   }
 
   togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
+    this.isShowOrHideValueInputPassword = !this.isShowOrHideValueInputPassword;
+  }
+  togglePhraseVisibility(){
+    this.isShowOrHideValueInputPhrase = !this.isShowOrHideValueInputPhrase;
   }
 
   validateForm(form: FormGroup) {
