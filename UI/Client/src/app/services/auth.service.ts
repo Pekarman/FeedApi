@@ -17,9 +17,7 @@ export class AuthService {
     return this.http.post(this.ApiUrl + 'api/Auth', { email, password, phrase });
   }
   
-  logout(sessionId: number): void {
-    this.http.delete('api/Auth', {params: {sessionId}}).subscribe(() => {
-      this.sessionService.clearSession();
-    });
+  logout(sessionId: number): Observable<any> {
+    return this.http.delete(this.ApiUrl +'api/Auth/' + sessionId);
   }
 }

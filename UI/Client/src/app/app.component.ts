@@ -24,15 +24,16 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+    // debugger;
     this.localizationService.initiate('ru-RU');
     // this.refreshArticleList();
   }
 
   
-  refreshArticleList() {
-    var result = this.service.getAll().subscribe((result) => {
-      console.log(result);
-    });
+  // refreshArticleList() {
+  //   var result = this.service.getAll().subscribe((result) => {
+  //     console.log(result);
+  //   });
     
-  }
+  // }
 }

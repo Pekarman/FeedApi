@@ -14,14 +14,6 @@
         <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
           <div class="tile-body">
             <div class="login-form">
-              <!-- change below display: none -->
-
-              <!--                            <div id="dataError" *ngIf="dataError" class="alert alert-error fade in mb-25" style="display:block;">-->
-              <!--                                <p>Enter your login email address.</p>-->
-              <!--                            </div>-->
-              <!--                            <div id="loginError" *ngIf="loginError" class="alert alert-warning fade in mb-25" style="display:block;">-->
-              <!--                                <p>Unable to login, please contact Buyer Services for assistance.</p>-->
-              <!--                            </div>-->
               <div class="login-form__input">
                 <label for="email">{{ localePath + 'fieldsNames/email' | translate : localePath }}</label>
                 <input type="text" id="email" autocomplete="off" class="form-control form-control-lg" placeholder=""
@@ -46,10 +38,6 @@
                    </ng-template>
                 </span>
               </div>
-<!--              <div id="invalidPasswordError" *ngIf="invalidPasswordError" class="alert alert-error fade in mb-25"-->
-<!--                   style="display:block;">-->
-<!--                <p>Please enter a valid password.</p>-->
-<!--              </div>-->
               <div class="login-form__input">
                 <label for="phrase">{{ localePath + 'fieldsNames/phrase' | translate : localePath }}</label>
                 <input [type]="isShowOrHideValueInputPhrase ? text : password" id="phrase" autocomplete="off" class="form-control form-control-lg"
@@ -77,7 +65,6 @@
               </div>
               <label id="error-message"></label>
               <div class="login-form__submit">
-                <!--                                <button type="submit" class="btn btn-lg btn-block btn-primary" [disabled]="invalidEmailError || invalidPasswordError || invalidPhraseError"  [ngClass]="{'disabled-button': invalidEmailError || invalidPasswordError || invalidPhraseError }">Log in</button>>Log in</button>-->
                 <button type="submit" class="btn btn-lg btn-block btn-primary"
                         [disabled]="invalidEmailError || invalidPasswordError || invalidPhraseError">{{ localePath + 'title' | translate : localePath }}
                 </button>
@@ -88,8 +75,6 @@
               </div>
             </div>
           </div>
-          <!-- <input name="__RequestVerificationToken" type="hidden" value="CfDJ8G0nGU8YJ6pArU8WeNAQpzOj6ekjA1sBlaODgobQLFmfXCcJ5x_DhEfxN7IeZnTZ49JpA4pE4t_0oeaPT_KDUYqofJBPgHhRgFR9av9NzPPdxA6raP_QJRQ-KOQ4khCYCdFOugajHnjj9-sEr0svvbw">
-          <input name="Input.RememberMe" type="hidden" value="false"> -->
         </form>
       </section>
     </div>

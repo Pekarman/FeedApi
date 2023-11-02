@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { SessionService } from 'src/app/services/session.service';
 
@@ -12,10 +13,16 @@ export class HeaderComponent implements OnInit {
 
   session: any;
 
-  constructor(private sessionService: SessionService, private authService: AuthService) { }
+  isLoggedIn: boolean = false;
+
+  constructor(
+    private sessionService: SessionService,
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.session = this.sessionService.getSession();
+    this.isLoggedIn = this.session !== null;
   }
 
   searchValue = "";
@@ -27,6 +34,11 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout(this.session.id);
+    this.authService.logout(this.session.id).subscribe((response: any) => {
+      console.log(response);
+      this.sessionService.clearSession();
+      
+      this.isLoggedIn = false;
+    });
   }
 }

@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, NgForm, RequiredValidator, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import {AuthService} from 'src/app/services/auth.service';
 import {SessionService} from 'src/app/services/session.service';
 
@@ -32,7 +33,11 @@ export class LoginComponent implements OnInit {
   password:string = 'password';
   localePath:string ='Pages/LoginPage/'
 
-  constructor(private authService: AuthService, private sessionService: SessionService) {
+  constructor(
+    private authService: AuthService,
+    private sessionService: SessionService,
+    private router: Router
+    ) {
   }
 
   ngOnInit(): void {
@@ -40,14 +45,11 @@ export class LoginComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
     this.validateForm(form);
-    // debugger;
     this.authService.login(form.controls.email.value, form.controls.password.value, form.controls.phrase.value)
       .subscribe((response: any) => {
-        // debugger;
         this.sessionService.setSession(response);
+        this.router.navigate(['/']);
       });
-    // if (form.valid)
-    // console.log(form);
   }
 
   togglePasswordVisibility() {

@@ -14,12 +14,7 @@ export class LocalizationService {
 
   locale!: any;
 
-  constructor() {
-    this.locales = [
-      localeRu,
-      localeEn
-    ]
-  }
+  constructor() {}
 
   initiate(locale: string){
     switch (locale) {
@@ -31,14 +26,11 @@ export class LocalizationService {
         this.locale = localeEn;
         break;
       }
-      defalt : { 
-        this.locale = this.locales[0];
-        break;
-      }
     }
   }
 
   translate(input : string, args: any): string {
+    if (!this.locale?.Pages) this.initiate(this.locale as unknown as string);
     var item = this.locale;
     var keys = input.split('/');
     keys.forEach(key => {

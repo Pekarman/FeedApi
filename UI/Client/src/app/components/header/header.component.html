@@ -12,16 +12,20 @@
         <div class="col-4">
           <div class="profile">
             <div class="header__user" id="loginRow">
-              <div *ngIf="!session.user.id">
+              <div *ngIf="!isLoggedIn">
                 <a href="/register">{{ 'Pages/RegisterPage/title' | translate }}</a>
                 <span class="or">or</span>
                 <a href="/login">{{ 'Pages/LoginPage/title' | translate }}</a>
               </div>
-              <div (click)="logout()" *ngIf="session.user.id">
+              <div (click)="logout()" *ngIf="isLoggedIn">
                 <a>{{ 'Pages/Logout' | translate }}</a>
               </div>
-              <div class="dropdown dropdown--profile">
-                <span class="dropdown-avatar"></span>
+              <div class="dropdown dropdown--profile"  *ngIf="isLoggedIn">
+                <span class="dropdown-avatar">
+                  <!-- <select>
+                    <option (click)="logout()" >{{ 'Pages/Logout' | translate }}</option>
+                  </select> -->
+                </span>
               </div>
             </div>
           </div>

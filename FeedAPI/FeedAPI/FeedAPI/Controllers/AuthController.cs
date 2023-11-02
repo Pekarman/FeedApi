@@ -55,7 +55,7 @@ namespace FeedAPI.Controllers
         }
 
         // Delete user session
-        [HttpDelete]
+        [HttpDelete("{sessionId}")]
         public async Task<IActionResult> DeleteUserSessionAsync(int sessionId)
         {
             try
@@ -63,7 +63,7 @@ namespace FeedAPI.Controllers
                 bool result = await this.authService.LogoutAsync(sessionId);
                 if (result)
                 {
-                    return this.Ok($"UserSession with sessionId {sessionId} was deleted.");
+                    return new JsonResult($"UserSession with sessionId {sessionId} was deleted.");
                 }
             }
             catch (ArgumentException e)
