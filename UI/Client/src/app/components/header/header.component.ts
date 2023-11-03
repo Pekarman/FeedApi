@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   session: any;
 
   isLoggedIn: boolean = false;
+  isDropdownVisible: boolean = false;
 
   constructor(
     private sessionService: SessionService,
@@ -21,7 +22,12 @@ export class HeaderComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    debugger;
     this.session = this.sessionService.getSession();
+
+    if (this.session == "Password or secret phrase is incorrect.") {
+      return;
+    }
     this.isLoggedIn = this.session !== null;
   }
 
@@ -31,6 +37,18 @@ export class HeaderComponent implements OnInit {
 
   onTextChange(){
     this.textGhanged.emit(this.searchValue);
+  }
+
+  onAvatarClick() {
+    this.isDropdownVisible = !this.isDropdownVisible;
+  }
+
+  openProfilePage() {
+    this.router.navigate(['/userProfile']);
+  }
+
+  openSettingsPage() {
+    this.router.navigate(['/userSettings']);
   }
 
   logout() {

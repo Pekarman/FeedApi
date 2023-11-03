@@ -1,7 +1,12 @@
 {
     "Pages" : {
         "Header" : {
-            "title" : "Сегодня"
+            "title" : "Сегодня",
+            "dropdown" : {
+                "profile" : "Профиль",
+                "settings" : "Настройки",
+                "logout" : "Выйти"
+            }
         },
         "RegisterPage" : {
             "title": "Зарегистрироваться",

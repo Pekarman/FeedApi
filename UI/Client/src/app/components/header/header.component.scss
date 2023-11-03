@@ -5,34 +5,68 @@
     color:rgb(21, 94, 21);
 }
 
+.header__user {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.container {
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  min-width: 100%;
+}
+.option {
+  background-color: lightgrey;
+  position: absolute;  
+  min-width: 100px;
+  min-height: 25px;
+  padding-left: 5px;
+
+  &.opt-1 {
+    top: 70px;
+  }  
+
+  &.opt-2 {
+    top: 100px;
+  }  
+
+  &.opt-3 {
+    top: 130px;
+  }
+}
+
 div.row {
   margin-top: 35px;
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
 div.header__user div {
-  min-width: 10hh;
+  // min-width: 10hh;
   align-self: flex-end;
   cursor: pointer;
-  & a, span {
-    flex: 1;
-  }
+    & a, span {
+      flex: 1;
+    }
+}
+.dropdown--profile {
+  position: relative;
+  top: 10px;
+  width: 100px;
 }
 
 .profile {
   align-items: flex-end;
   flex: 1;
   float: right;
+  min-width: 100%;
 }
 
-.col-4 {
+.flex-1 {
   flex:1;
-}
-
-.header__user .or {
-  font-size: 1.4rem;
-  color: #666;
-  margin: 0 0.5rem;
+  display: flex;
+  position: relative;
 }
 
 a {
@@ -72,24 +106,6 @@ a {
   margin-left: auto;
 }
 
-
-element.style {
-}
-.header.header-desktop .header__user {
-  display: flex !important;
-}
-.header__user {
-  display: flex;
-  align-items: center;
-  margin: 0;
-}
-
-.container {
-  position: absolute;
-  bottom: 5px;
-  width: 100%;
-}
-
 @media (min-width: 768px) {
   .dropdown--profile .dropdown-avatar {
       width: 4rem;
@@ -98,19 +114,16 @@ element.style {
   }
 }
 
-.dropdown--profile .dropdown-avatar {
-    margin-left: 0.5rem;
-    margin-right: 0;
-    border-radius: 50%;
+.dropdown--profile.dropdown-avatar {
+    position: relative;
+    top: 10px;
     display: inline-block;
-    width: 3.5rem;
     height: 3.5rem;
     font-size: 1.4rem;
-    border: 0.3rem solid #D8D8D8;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-size: 2rem 2rem;
+    background-size: 3rem 3rem;
     background-repeat: no-repeat;
     background-position: center;
     background-image: url(..\..\images\svg\user.svg);
