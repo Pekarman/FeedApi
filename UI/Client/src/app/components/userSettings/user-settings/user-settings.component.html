@@ -1,0 +1,14 @@
+<div class="block">
+
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+    <h1>{{localePath + 'Title' | translate}}</h1>
+   <app-users-button label="{{localePath + 'ChangeEmail' | translate}}" ></app-users-button>
+   <app-users-button label="{{localePath + 'ChangePassword' | translate}}"></app-users-button>
+   <app-users-button label="{{localePath + 'ChangePhrase' | translate}}"></app-users-button>
+   <app-users-button label="{{localePath + 'DeleteUser' | translate}}"></app-users-button>
+   <app-users-button  label="{{'GoBack' | translate}}"></app-users-button>
+
+
+  </form>
+</div>
+

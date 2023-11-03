@@ -54,7 +54,7 @@
               </div>
               <div id="invalidPhraseError" *ngIf="invalidPhraseError" class="alert alert-error fade in mb-25"
                    style="display:block;">
-                <p>Please enter a valid secret phrase.</p>
+                <p>{{  'Errors/phraseMatchesError' | translate : localePath }}</p>
               </div>
               <div class="login-form__input">
                 <div class="checkbox">

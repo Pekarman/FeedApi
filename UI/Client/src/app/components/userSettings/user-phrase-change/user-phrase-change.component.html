@@ -1,0 +1,9 @@
+<div class="block">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+    <h1>{{localePath + 'Title' | translate}}</h1>
+    <app-labeled-input label="{{localePath + 'OldPhrase'| translate}}"></app-labeled-input>
+    <app-labeled-input label="{{localePath + 'NewPhrase' | translate}}"></app-labeled-input>
+    <app-labeled-input label="{{localePath + 'ReplayPhrase' | translate}}"></app-labeled-input>
+    <app-ok-cancel okText="{{localePath + 'Ok' | translate}}" cancelText="{{localePath + 'Cancel' | translate}}"></app-ok-cancel>
+  </form>
+</div>

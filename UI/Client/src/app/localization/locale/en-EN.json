@@ -32,13 +32,57 @@
               "forgotPassword": "Forgot Password?"
             }
         },
-        "Logout" : "Logout"
+        "Logout" : "Logout",
+      "UserSettings" : {
+        "Title": "User settings",
+        "ChangeEmail": "Change email",
+        "ChangePassword": "Change password",
+        "ChangePhrase": "Change Phrase",
+        "DeleteUser": "Delete user",
+        "Ok": "Ok",
+        "Cancel": "Cancel",
+
+        "ChangeEmailSettings" : {
+          "Title" : "Email settings",
+          "ChangeEmail": "Change email",
+          "Password": "Enter your password",
+          "Ok": "Ok",
+          "Cancel": "Cancel"
+        },
+
+        "ChangePasswordSettings": {
+          "Title" : "Password settings",
+          "OldPassword": "Please enter old password",
+          "NewPassword": "Please enter new password",
+          "ReplayPassword": "Please repeat password",
+          "Ok": "Ok",
+          "Cancel": "Cancel"
+        },
+        "ChangeSecretPhrase":{
+          "Title" : "Phrase settings",
+          "OldPhrase": "Please enter your old phrase",
+          "NewPhrase": "Please enter your new phrase",
+          "ReplayPhrase": "Replay your new phrase",
+          "Ok": "Ok",
+          "Cancel": "Cancel"
+        },
+        "DeleteUsers": {
+          "Title" : "Delete users",
+          "Password": "Please enter password",
+          "Phrase" : "Please enter phrase",
+          "Ok": "Ok",
+          "Cancel": "Cancel"
+        }
+      }
+
     },
     "Errors" : {
         "invalidEmailError" : "Invalid email format.",
         "invalidPasswordError" : "Password should consist of small/big letters, numbers and special symbols.",
         "passwordMatchesError" : "Password doesn't match.",
         "phraseMatchesError" : "Secret phrase doesn't match."
-    }
+    },
+  "GoBack": "Back"
+
 }
 }

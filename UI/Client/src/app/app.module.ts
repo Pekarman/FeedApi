@@ -18,6 +18,14 @@ import { RegisterComponent } from './components/register/register.component';
 import { LocalizationModule } from './localization/localization.module';
 import { JsonPipe } from '@angular/common';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UserSettingsComponent } from './components/userSettings/user-settings/user-settings.component';
+import { UserEmailChangeComponent } from './components/userSettings/user-email-change/user-email-change.component';
+import { UserPasswordChangeComponent } from './components/userSettings/user-password-change/user-password-change.component';
+import { UserPhraseChangeComponent } from './components/userSettings/user-phrase-change/user-phrase-change.component';
+import { DeleteUserComponent } from './components/userSettings/delete-user/delete-user.component';
+import { LabeledInputComponent } from './components/common/labeled-input/labeled-input.component';
+import { OkCancelComponent } from './components/common/ok-cancel/ok-cancel.component';
+import { UsersButtonComponent } from './components/common/users-button/users-button.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +37,14 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
+    UserSettingsComponent,
+    UserEmailChangeComponent,
+    UserPasswordChangeComponent,
+    UserPhraseChangeComponent,
+    DeleteUserComponent,
+    LabeledInputComponent,
+    OkCancelComponent,
+    UsersButtonComponent,
   ],
   imports: [
     BrowserModule,

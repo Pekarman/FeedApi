@@ -1,0 +1,18 @@
+<div class="login-form__input">
+  <div class="form-Item">
+    <label for="phrase">{{label}}</label>
+    <input  [(ngModel)]="inputValue" [type]="isShowPassword ? text : password" id="phrase" autocomplete="off" class="form-control form-control-lg"
+           placeholder="" name="phrase"  required>
+    <span class="eyeicon" (click)="togglePassword()">
+                   <ng-container *ngIf="isShowPassword; else hidePassword">
+                    <img class="icon"
+                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7OrlYiF4Vh3828FGw-C4FQL14iso7mksYzw&usqp=CAU"/>
+                   </ng-container>
+                 <ng-template #hidePassword>
+                     <img class="icon" src="https://seekicon.com/free-icon-download/eye_1.png"/>
+                   </ng-template>
+                </span>
+  </div>
+
+
+</div>

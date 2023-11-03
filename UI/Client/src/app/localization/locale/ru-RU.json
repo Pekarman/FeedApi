@@ -33,12 +33,54 @@
               "forgotPassword": "Забыли пароль?"
             }
         },
-        "Logout" : "Выйти"
+        "Logout" : "Выйти",
+      "UserSettings" : {
+        "Title": "Пользовательские настройки",
+        "ChangeEmail": "Изменить емаил",
+        "ChangePassword": "Изменить пароль",
+        "ChangePhrase": "Изменить фразу",
+        "DeleteUser": "Удалить пользователя",
+        "Ok": "Подтвердить",
+        "Cancel": "Отменить",
+
+        "ChangeEmailSettings" : {
+          "Title": "Настройка почты",
+          "ChangeEmail": "Изменить емаил",
+          "Password": "Введите пароль",
+          "Ok": "Подтвердить",
+          "Cancel": "Отменить"
+        },
+        "ChangePasswordSettings": {
+          "Title": "Настройка пароля",
+          "OldPassword": "Введите старый пароль",
+          "NewPassword": "Введите новый пароль",
+          "ReplayPassword": "Повторите пароль",
+          "Ok": "Подтвердить",
+          "Cancel": "Отмена"
+        },
+        "ChangeSecretPhrase":{
+          "Title": "Настройка фразы",
+          "OldPhrase": "Введите старую фразу",
+          "NewPhrase": "Введите новую фразу",
+          "ReplayPhrase": "Повторите фразу",
+          "Ok": "Подтвердить",
+          "Cancel": "Отменить"
+        },
+        "DeleteUsers": {
+          "Title": "Удалить пользователя",
+          "Password": "Введите пароль",
+          "Phrase" : "Введите фразу",
+          "Ok": "Подтвердить",
+          "Cancel": "Отменить"
+        }
+      }
     },
     "Errors" : {
         "invalidEmailError" : "Неверный формат почты.",
         "invalidPasswordError" : "Пароль должен содержать прописные/строчные буквы, цифры и специальные символы.",
         "passwordMatchesError" : "Пароль не совпадает.",
         "phraseMatchesError" : "Секретная фраза не совпадает."
-    }
+    },
+  "GoBack": "Назад"
+
 }
