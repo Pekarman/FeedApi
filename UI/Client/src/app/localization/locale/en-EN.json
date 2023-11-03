@@ -1,7 +1,11 @@
 {
     "Pages" : {
         "Header" : {
-            "title" : "Today"
+            "title" : "Today",
+            "dropdown" : {
+                "profile" : "Profile",
+                "settings" : "Settings",
+                "logout" : "Logout"
         },
         "RegisterPage" : {
             "title": "Register",
@@ -36,4 +40,5 @@
         "passwordMatchesError" : "Password doesn't match.",
         "phraseMatchesError" : "Secret phrase doesn't match."
     }
+}
 }
