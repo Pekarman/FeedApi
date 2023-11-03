@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'show-article', component:ArticleList},
   {path: 'login', component:LoginComponent},
   {path: 'register', component:RegisterComponent},
-  {path: 'dashboard', component:DashboardComponent},
+  {path: '', component:DashboardComponent},
   {path: 'userSettings', component:UserSettingsComponent},
   {path: 'userSettings/changeEmail', component:UserEmailChangeComponent},
   {path: 'userSettings/changePassword', component:UserPasswordChangeComponent},

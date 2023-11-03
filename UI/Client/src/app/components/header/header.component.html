@@ -42,9 +42,6 @@
               <div class="flex-1"  *ngIf="isLoggedIn" class="flex-1">            
                 <h3 class="dropdown--profile flex-1">{{ session?.user?.firstName + session?.user?.lastName }}</h3>
               </div>
-              <div (click)="logout()" *ngIf="isLoggedIn" class="flex-1">
-                <a>{{ 'Pages/Logout' | translate }}</a>
-              </div>
             </div>
           </div>
         </div>

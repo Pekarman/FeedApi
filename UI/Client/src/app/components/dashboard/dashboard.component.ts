@@ -23,7 +23,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.session = this.sessionService.getSession();
-    // debugger;
   }
 
 }

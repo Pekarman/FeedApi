@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-button',
@@ -8,9 +9,15 @@ import {Component, Input, OnInit} from '@angular/core';
 export class UsersButtonComponent implements OnInit {
   @Input()label:string = '';
   @Input()background: string = ''
-  constructor() { }
+  @Input() path: string = '';
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  onClick() {    
+    this.router.navigate([this.path]);
   }
 
 }

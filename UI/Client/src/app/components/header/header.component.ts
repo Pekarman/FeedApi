@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    debugger;
     this.session = this.sessionService.getSession();
 
     if (this.session == "Password or secret phrase is incorrect.") {
