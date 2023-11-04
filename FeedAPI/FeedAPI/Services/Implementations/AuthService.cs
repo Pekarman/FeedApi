@@ -34,7 +34,8 @@ namespace Services.Implementations
 
                 if (!isPasswordMatch || !isPhraseMatch) throw new ArgumentException("Password or secret phrase is incorrect.");
 
-                var id = db.UserSessions.Max(item => item.Id + 1);
+                int id;
+                if (db.UserSessions.Count() == 0) id = 1; else id = db.UserSessions.Max(item => item.Id + 1);
                 var time = DateTime.UtcNow;
                 UserSession session = new UserSession(id, user.Id, user.Locale, time, time);
 

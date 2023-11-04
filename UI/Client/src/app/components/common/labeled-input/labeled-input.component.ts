@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormControl, FormGroup, NgModel, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, NgModel, Validators} from "@angular/forms";
 import {AuthService} from "src/app/services/auth.service";
 import {SessionService} from "src/app/services/session.service";
 
@@ -11,6 +11,9 @@ import {SessionService} from "src/app/services/session.service";
 })
 export class LabeledInputComponent implements OnInit {
   @Input() label: string = '';
+  @Input() ngModel: any = '';
+  @Input() control!: any;
+
 
   isShowPassword: boolean = true;
   text: string = 'text';
@@ -30,7 +33,10 @@ export class LabeledInputComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    // this.control.valueChanges.subscribe((item: any) => {
+    //   var a = item;
+    //   debugger;
+    // });
   }
 
 }
