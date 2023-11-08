@@ -37,10 +37,10 @@
                   (click)="logout()">
                     <span class="">{{ 'Pages/Header/dropdown/logout' | translate }}</span>     
                   </div>
-                </div>           
+                </div>
               </div>
-              <div class="flex-1"  *ngIf="isLoggedIn" class="flex-1">            
-                <h3 class="dropdown--profile flex-1">{{ session?.user?.firstName + session?.user?.lastName }}</h3>
+              <div class="flex-1"  *ngIf="isLoggedIn" class="flex-1">
+                <h3 class="dropdown--profile flex-1">{{ session?.user?.firstName + ' ' + session?.user?.lastName }}</h3>
               </div>
             </div>
           </div>

@@ -1,0 +1,7 @@
+<div id="deal">   
+    <div class="container" *ngFor="let deal of DealsList">
+        <div class="item col-12" *ngIf="isMatch(searchValue, deal['productName'])">
+            <app-deal-list-view [deal]="deal"></app-deal-list-view>
+        </div>
+    </div>
+</div>

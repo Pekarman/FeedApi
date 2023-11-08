@@ -1,15 +1,14 @@
 ﻿using Common.EntityFramework.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.EntityFramework
 {
     public class ApplicationContext : DbContext
     {
+        public DbSet<Deal> Deals { get; set; } = null!;
+
+        public DbSet<Asset> Assets { get; set; } = null!;
+
         public DbSet<User> Users { get; set; } = null!;
 
         public DbSet<UserType> UserTypes { get; set; } = null!;
