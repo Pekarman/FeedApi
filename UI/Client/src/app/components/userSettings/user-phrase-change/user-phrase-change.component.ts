@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "src/app/services/auth.service";
 import {SessionService} from "src/app/services/session.service";
+import {ChangePassword} from "src/app/Models/ChangePassword";
+import {ChangePhrase} from "src/app/Models/ChangePhrase";
+import {UserService} from "src/app/services/user.service";
 
 @Component({
   selector: 'app-user-phrase-change',
@@ -11,26 +14,26 @@ import {SessionService} from "src/app/services/session.service";
 export class UserPhraseChangeComponent implements OnInit {
 localePath:string = 'Pages/UserSettings/ChangeSecretPhrase/'
   myForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-    phrase: new FormControl('', [Validators.required, Validators.pattern('')]),
-    rememberMe: new FormControl('', [Validators.required]),
+    oldPhrase: new FormControl('', [Validators.required, Validators.pattern('')]),
+    newPhrase: new FormControl('', [Validators.required]),
+    replNewPhrase: new FormControl('', [Validators.required]),
+
   });
 
   invalidEmailError: boolean = false;
   invalidPasswordError: boolean = false;
   invalidPhraseError: boolean = false;
-  constructor(private authService: AuthService, private sessionService: SessionService) { }
+  constructor( private userService: UserService) { }
   onSubmit(form: FormGroup) {
-    this.validateForm(form);
-    // debugger;
-    this.authService.login(form.controls.email.value, form.controls.password.value, form.controls.phrase.value)
-      .subscribe((response: any) => {
-        // debugger;
-        this.sessionService.setSession(response);
-      });
-      alert(1)
+    const data = new ChangePhrase(this.myForm.controls.oldPhrase.value, this.myForm.controls.newPhrase.value, this.myForm.controls.replNewPhrase.value,);
+    this.userService.changePhrase(data).subscribe(response => {
+      debugger
+      console.log(response)
+    })
+
   }
+
+
   validateForm(form: FormGroup) {
     this.invalidEmailError = !form.controls.email.valid;
     this.invalidPasswordError = !form.controls.password.valid;
