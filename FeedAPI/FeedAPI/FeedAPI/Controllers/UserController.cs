@@ -107,19 +107,27 @@ namespace FeedAPI.Controllers
             return new JsonResult($"User cannot be added.");
         }
 
+        public class ChangePassword
+        {
+            public string username { get; set; }
+            public string oldPassword { get; set; }
+            public string newPassword { get; set; }
+            public bool isPassword { get; set; }
+        }
+
         // Change user password or secret phrase
         [HttpPatch]
-        public async Task<IActionResult> ChangePasswordAsync(string username, string oldPassword, string newPassword, bool isPassword)
+        public async Task<IActionResult> ChangePasswordAsync(ChangePassword changePassword)
         {
             try
             {
-                bool result = isPassword
-                    ? await this.userService.ChangePasswordAsync(username, oldPassword, newPassword)
-                    : await this.userService.ChangeSecretPhraseAsync(username, oldPassword, newPassword);
+                bool result = changePassword.isPassword
+                    ? await this.userService.ChangePasswordAsync(changePassword.username, changePassword.oldPassword, changePassword.newPassword)
+                    : await this.userService.ChangeSecretPhraseAsync(changePassword.username, changePassword.oldPassword, changePassword.newPassword);
 
                 if (result)
                 {
-                    return this.Ok("Password was changed.");
+                    return this.Ok(new JsonResult("Password was changed."));
                 }
             }
             catch (ArgumentException e)

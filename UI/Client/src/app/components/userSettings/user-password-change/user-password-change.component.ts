@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "src/app/services/auth.service";
 import {SessionService} from "src/app/services/session.service";
+import {UserService} from "src/app/services/user.service";
+import {ChangePassword} from "src/app/Models/ChangePassword";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-password-change',
@@ -9,34 +12,57 @@ import {SessionService} from "src/app/services/session.service";
   styleUrls: ['./user-password-change.component.scss']
 })
 export class UserPasswordChangeComponent implements OnInit {
+  locale: any;
   localePath: string = "Pages/UserSettings/ChangePasswordSettings/"
-  constructor(private authService: AuthService, private sessionService: SessionService) { }
+  responseError: string = ''
+
+  constructor(private userService: UserService, private sessionService: SessionService, private router: Router) {
+
+  }
+
   invalidEmailError: boolean = false;
   invalidPasswordError: boolean = false;
   invalidPhraseError: boolean = false;
 
+
   myForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-    phrase: new FormControl('', [Validators.required, Validators.pattern('')]),
-    rememberMe: new FormControl('', [Validators.required]),
+    oldPassword: new FormControl('', [Validators.required, Validators.pattern('')]),
+    newPassword: new FormControl('', [Validators.required, Validators.pattern('')]),
+    replNewPassword: new FormControl('', [Validators.required, Validators.pattern('')]),
   });
+
 
   validateForm(form: FormGroup) {
     this.invalidEmailError = !form.controls.email.valid;
     this.invalidPasswordError = !form.controls.password.valid;
     this.invalidPhraseError = !form.controls.phrase.valid;
   }
-  onSubmit(form: FormGroup) {
-    this.validateForm(form);
-    this.authService.login(form.controls.email.value, form.controls.password.value, form.controls.phrase.value)
-      .subscribe((response: any) => {
-        debugger
-        this.sessionService.setSession(response);
+
+
+
+    onSubmit(form: FormGroup) {
+      var data = new ChangePassword(this.myForm.controls.oldPassword.value, this.myForm.controls.newPassword.value, this.locale.user.username, true);
+
+      this.userService.changePassword(data).subscribe(response => {
+        if (response.value) {
+          this.router.navigate(['/userSettings'], {
+            state: { response: response } // Передача данных через state
+          });
+        } else {
+          this.responseError = response;
+        }
       });
-    // alert(1)
-  }
+      setTimeout(()=>{
+        this.responseError = '';
+      },3000)
+    }
+
+
+
+
   ngOnInit(): void {
+    this.locale = this.sessionService.getSession();
   }
 
+  protected readonly FormControl = FormControl;
 }
