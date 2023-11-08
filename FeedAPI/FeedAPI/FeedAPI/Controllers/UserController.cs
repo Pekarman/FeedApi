@@ -143,15 +143,15 @@ namespace FeedAPI.Controllers
         }
 
         // Delete user
-        [HttpDelete]
-        public async Task<IActionResult> DeleteUserAsync(string username, string password)
+        [HttpPost]
+        public async Task<IActionResult> DeleteUserAsync(DeleteUser user) 
         {
             try
             {
-                bool result = await this.userService.DeleteUserAsync(username, password);
+                bool result = await this.userService.DeleteUserAsync(user.username, user.password);
                 if (result)
                 {
-                    return this.Ok($"User with name {username} was deleted.");
+                    return this.Ok($"User with name {user?.username} was deleted.");
                 }
             }
             catch (ArgumentException e)
@@ -180,6 +180,13 @@ namespace FeedAPI.Controllers
 
             public string phrase { get; set; }
         }
+        public class DeleteUser
+        {
+            public string username { get; set; }
 
+            public string password { get; set; }
+
+        }
     }
+    
 }
