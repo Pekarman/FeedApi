@@ -29,6 +29,10 @@ const routes: Routes = [
   {path: 'userSettings/changePhrase', component:UserPhraseChangeComponent},
   {path: 'userSettings/deleteUser', component:DeleteUserComponent},
   {path: 'profilePage', component:ProfilePageComponent},
+  { path: '**',
+    redirectTo: '',
+    pathMatch: 'full'
+  },
 
 ];
 

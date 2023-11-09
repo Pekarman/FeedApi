@@ -27,6 +27,8 @@ import { LabeledInputComponent } from './components/common/labeled-input/labeled
 import { OkCancelComponent } from './components/common/ok-cancel/ok-cancel.component';
 import { UsersButtonComponent } from './components/common/users-button/users-button.component';
 import { ProfilePageComponent } from './components/profilePage/profile-page/profile-page.component';
+import { DealListViewComponent } from './components/deal-list-view/deal-list-view.component';
+import { DealListComponent } from './components/deal-list/deal-list.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { ProfilePageComponent } from './components/profilePage/profile-page/prof
     OkCancelComponent,
     UsersButtonComponent,
     ProfilePageComponent,
+    DealListViewComponent,
+    DealListComponent,
   ],
   imports: [
     BrowserModule,

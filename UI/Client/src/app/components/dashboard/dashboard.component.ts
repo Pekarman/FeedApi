@@ -14,7 +14,6 @@ export class DashboardComponent implements OnInit {
 
   changeSearchValue(value : string){
     this.searchValue = value;
-    console.log(value);
   }
 
   constructor(

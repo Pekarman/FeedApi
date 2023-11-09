@@ -12,28 +12,10 @@ import { LocalizationService } from './localization/localization.service';
 export class AppComponent {  
 
   constructor(
-    private service: SharedService,
     private localizationService: LocalizationService
     ){}
 
-  searchValue: string = "";
-
-  changeSearchValue(value : string){
-    this.searchValue = value;
-    console.log(value);
-  }
-
   ngOnInit(): void {
-    // debugger;
     this.localizationService.initiate('ru-RU');
-    // this.refreshArticleList();
   }
-
-  
-  // refreshArticleList() {
-  //   var result = this.service.getAll().subscribe((result) => {
-  //     console.log(result);
-  //   });
-    
-  // }
 }
