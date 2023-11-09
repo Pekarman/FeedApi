@@ -20,15 +20,19 @@ namespace FeedAPI.Controllers
             this.assetService = assetService;
         }
 
+        /// <summary>
+        /// Get all assets.
+        /// </summary>
+        /// <returns>All assets.</returns>
         [HttpGet]
-        public async Task<IActionResult> GetAllAssetssAsync()
+        public async Task<IActionResult> GetAllAssetsAsync()
         {
             try
             {
-                List<Asset> deals = await this.assetService.GetAllAssets();
-                if (deals.Count > 0)
+                List<Asset> assets = await this.assetService.GetAllAssets();
+                if (assets.Count > 0)
                 {
-                    return this.Ok(deals);
+                    return this.Ok(assets);
                 }
             }
             catch (Exception e)
@@ -37,6 +41,59 @@ namespace FeedAPI.Controllers
             }
 
             return new JsonResult("Assets not found.");
+        }
+
+
+        /// <summary>
+        /// Get specific asset.
+        /// </summary>
+        /// <param name="id">Requested asset id.</param>
+        /// <returns>Requested Asset.</returns>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAssetAsync(int id)
+        {
+            try
+            {
+                Asset asset = await this.assetService.GetAssetAsync(id);
+                if (asset != null)
+                {
+                    return this.Ok(asset);
+                }
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
+
+            return new JsonResult($"Asset with id={id} not found.");
+        }
+
+        /// <summary>
+        /// Add new asset.
+        /// </summary>
+        /// <param name="asset">Asset to create.</param>
+        /// <returns>Created asset.</returns>
+        [HttpPut]
+        public async Task<IActionResult> AddAssetAsync(Asset asset)
+        {
+            try
+            {
+                Asset result = await this.assetService.AddAssetAsync(asset);
+                if (result != null)
+                {
+                    return this.Ok(asset);
+                }
+            }
+            catch (ArgumentException e)
+            {
+                return new JsonResult(e.Message);
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
+
+            return new JsonResult($"Asset cannot be added.");
         }
     }
 }

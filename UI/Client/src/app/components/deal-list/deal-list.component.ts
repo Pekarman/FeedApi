@@ -22,7 +22,6 @@ export class DealListComponent implements OnInit {
   refreshDealsList(){
     this.dealService.getAllDeals().subscribe(data => {
       this.DealsList = data;
-      debugger;
     });
   }  
   

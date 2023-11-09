@@ -16,16 +16,20 @@ namespace Common.EntityFramework.Models
         [Column("dealId")]
         public int DealId { get; set; }
 
-        [Column("imageSrc")]
-        public string ImageSrc { get; set; }
+        [Column("imageName")]
+        public string ImageName { get; set; }
+
+        [Column("imageData")]
+        public byte[] ImageData { get; set; }
 
         public Asset() { }
 
-        public Asset(int id, int dealId, string imageSrc)
+        public Asset(int id, int dealId, string imageName, byte[] imageData)
         {
             Id = id;
             DealId = dealId;
-            ImageSrc = imageSrc;
+            ImageName = imageName;
+            ImageData = imageData;
         }
     }
 }

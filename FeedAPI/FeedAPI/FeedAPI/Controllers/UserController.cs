@@ -110,9 +110,13 @@ namespace FeedAPI.Controllers
         public class ChangePassword
         {
             public string username { get; set; }
+
             public string oldPassword { get; set; }
+
             public string newPassword { get; set; }
+
             public bool isPassword { get; set; }
+
         }
 
         // Change user password or secret phrase

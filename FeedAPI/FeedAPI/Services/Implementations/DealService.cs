@@ -19,6 +19,11 @@ namespace Services.Implementations
             {
                 await Task.Run(() => {
                     deals = db.Deals.ToList();
+                    deals.ForEach(deal =>
+                    {
+                        deal.Assets = db.Assets.Where(i => i.DealId == deal.Id).ToList();
+                    });
+
                     return deals;
                 });
             }
@@ -34,6 +39,7 @@ namespace Services.Implementations
                 await Task.Run(() => {
                     deal = db.Deals.Where(u => u.Id == id).FirstOrDefault();
 
+                    deal.Assets = db.Assets.Where(i => i.DealId == deal.Id).ToList();
                     return deal;
                 });
             }

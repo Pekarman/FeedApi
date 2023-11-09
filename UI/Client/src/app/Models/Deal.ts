@@ -1,3 +1,5 @@
+import { Asset } from "./Asset";
+
 export class Deal{
     id: number;
     productName: string;
@@ -9,6 +11,7 @@ export class Deal{
     partNumber: string;
     isChecked: boolean;
     userOwnerId: number;
+    assets : Asset[];
 
     constructor(
         _id: number,
@@ -21,6 +24,7 @@ export class Deal{
         _partNumber: string,
         _isChecked: boolean,
         _userOwnerId: number,
+        _assets: Asset[]
         )        {
         this.id = _id;
         this.productName = _productName;
@@ -32,5 +36,6 @@ export class Deal{
         this.partNumber = _partNumber;
         this.isChecked = _isChecked;
         this.userOwnerId = _userOwnerId;
+        this.assets = _assets;
     }
 }

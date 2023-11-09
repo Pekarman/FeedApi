@@ -10,5 +10,9 @@ namespace Services.Interfaces
     public interface IAssetService
     {
         public Task<List<Asset>> GetAllAssets();
+
+        public Task<Asset> GetAssetAsync(int id);
+
+        public Task<Asset> AddAssetAsync(Asset asset);
     }
 }
