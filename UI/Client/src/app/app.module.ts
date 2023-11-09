@@ -26,6 +26,7 @@ import { DeleteUserComponent } from './components/userSettings/delete-user/delet
 import { LabeledInputComponent } from './components/common/labeled-input/labeled-input.component';
 import { OkCancelComponent } from './components/common/ok-cancel/ok-cancel.component';
 import { UsersButtonComponent } from './components/common/users-button/users-button.component';
+import { ProfilePageComponent } from './components/profilePage/profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { UsersButtonComponent } from './components/common/users-button/users-but
     LabeledInputComponent,
     OkCancelComponent,
     UsersButtonComponent,
+    ProfilePageComponent,
   ],
   imports: [
     BrowserModule,

@@ -15,6 +15,7 @@ import {
   UserPhraseChangeComponent
 } from "src/app/components/userSettings/user-phrase-change/user-phrase-change.component";
 import {DeleteUserComponent} from "src/app/components/userSettings/delete-user/delete-user.component";
+import {ProfilePageComponent} from "src/app/components/profilePage/profile-page/profile-page.component";
 
 const routes: Routes = [
   {path: 'article', component:ArticleComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'userSettings/changePassword', component:UserPasswordChangeComponent},
   {path: 'userSettings/changePhrase', component:UserPhraseChangeComponent},
   {path: 'userSettings/deleteUser', component:DeleteUserComponent},
+  {path: 'profilePage', component:ProfilePageComponent},
 
 ];
 

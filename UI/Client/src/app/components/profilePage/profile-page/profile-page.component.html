@@ -1,0 +1,52 @@
+<div id="header">
+  <app-header></app-header>
+</div>
+<div class="content">
+  <div class="button-container">
+    <button class="button" (click)="commonInfo()">Common Info</button>
+    <button class="button" (click)="additionalInfo()">Additional Info</button>
+    <!--        <button class="button" (click)="handleClick('bluad')">Button 3</button>-->
+    <!--        <button class="button" (click)="handleClick('Zalupa')">Button 4</button>-->
+  </div>
+</div>
+<div class="block" *ngIf="flagForCommonInfo">
+  <div class="textContainer">
+    <p>FirstName:</p>
+    <p>{{firstName}}</p>
+    <p>LastName:</p>
+    <p>{{lastName}}</p>
+    <p>Email:</p>
+    <p> {{userEmail}}</p>
+    <p>UserName:</p>
+    <p>{{userName}}</p>
+    <p>UserPhone:</p>
+    <p>{{userPhone}}</p>
+    <p>UserType:</p>
+    <p>{{typeName}}</p>
+  </div>
+</div>
+<div class="block" *ngIf="flagForAdditionalInfo">
+  <div class="textContainer">
+    <p>CompanyName:</p>
+    <p>{{companyName}}</p>
+    <p>PassportNumber:</p>
+    <p> {{passportNumber}}</p>
+    <p>PayerRegNumber:</p>
+    <p> {{payerRegNumber}}</p>
+    <p>BankAccount:</p>
+    <p>{{bankAccount}}</p>
+    <p>BankCode:</p>
+    <p> {{bankCode}}</p>
+    <p>Balance:</p>
+    <p>{{balance}}</p>
+    <p>IsActive:</p>
+    <p> {{isActive}}</p>
+    <p>UserLocale:</p>
+    <p> {{userLocale}}</p>
+  </div>
+</div>
+<div class="block" *ngIf="!flagForAdditionalInfo && !flagForCommonInfo">
+
+</div>
+
+
