@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openProfilePage() {
-    this.router.navigate(['/userProfile']);
+    this.router.navigate(['/profilePage']);
   }
 
   openSettingsPage() {
@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
     this.authService.logout(this.session.id).subscribe((response: any) => {
       console.log(response);
       this.sessionService.clearSession();
-      
+
       this.isLoggedIn = false;
     });
   }
