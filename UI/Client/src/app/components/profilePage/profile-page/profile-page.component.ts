@@ -1,6 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {SessionService} from "src/app/services/session.service";
+// profile-page.component.ts
+import { Component, OnInit } from '@angular/core';
+import { SessionService } from "src/app/services/session.service";
+
+enum InformationType {
+  CommonInfo = 1,
+  AdditionalInfo = 2,
+  YourDeals = 3,
+}
 
 @Component({
   selector: 'app-profile-page',
@@ -8,62 +14,20 @@ import {SessionService} from "src/app/services/session.service";
   styleUrls: ['./profile-page.component.scss']
 })
 export class ProfilePageComponent implements OnInit {
-  flagForCommonInfo: boolean = false;
-  flagForAdditionalInfo: boolean = false;
-  user!: any;
-  firstName: string = '';
-  lastName: string = '';
-  userName: string = '';
-  userEmail: string = '';
-  userPhone: string = '';
-  userType!: any;
-  companyName: string = '';
-  passportNumber: string = '';
-  payerRegNumber: string = '';
-  bankAccount: string = '';
-  bankCode: string = '';
-  balance: string = '';
-  isActive: string = '';
-  userLocale: string = '';
-  typeName: string = '';
+  localePath: string = "Pages/ProfilePage/";
 
+  InformationType = InformationType;
+  toggleInformationType: InformationType | null = null;
+  user: any;
 
-  constructor(private router: Router, private sessionService: SessionService) {
-  }
+  constructor(private sessionService: SessionService) {}
 
-  // goBack() {
-  //   this.router.navigate(['/'])
-  // }
-
-  commonInfo() {
-    this.flagForCommonInfo = !this.flagForCommonInfo;
-    this.flagForAdditionalInfo = false;
-    this.firstName = this.user.firstName;
-    this.lastName = this.user.lastName;
-    this.userEmail = this.user.email;
-    this.userName = this.user.username;
-    this.userPhone = this.user.userPhone;
-    this.typeName = this.user.userType.typeName
-    console.log(this.user)
-
-  }
-
-  additionalInfo() {
-    this.flagForAdditionalInfo = !this.flagForAdditionalInfo;
-    this.flagForCommonInfo = false;
-    this.companyName = this.user.companyName;
-    this.passportNumber = this.user.passportNumber;
-    this.payerRegNumber = this.user.payerRegNumber;
-    this.bankAccount = this.user.bankAccount;
-    this.bankCode = this.user.bankCode;
-    this.balance = this.user.balance;
-    this.isActive = this.user.isActive;
-    this.userLocale = this.user.locale;
-
+  showOrHideInformation(type: InformationType): void {
+    this.toggleInformationType = type;
   }
 
   ngOnInit(): void {
-    this.user = this.sessionService.getSession().user
+    this.user = this.sessionService.getSession().user;
+    this.toggleInformationType = this.InformationType.CommonInfo;
   }
-
 }

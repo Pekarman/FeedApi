@@ -73,6 +73,26 @@
           "Ok": "Подтвердить",
           "Cancel": "Отменить"
         }
+      },
+      "ProfilePage": {
+        "CommonInfo": "Общая информация",
+        "AdditionalInfo": "Дополнительная информация",
+        "YourDeals": "Сделки",
+        "FirstName": "Имя",
+        "LastName": "Фамилия",
+        "Email": "Емаил",
+        "UserName": "Имя пользователя",
+        "UserPhone": "Телефон",
+        "UserType": "Тип пользователя",
+        "CompanyName": "Имя компании",
+        "PassportNumber": "Номер паспорта",
+        "PayerRegNumber": "Регистрационный номер плательщика",
+        "BankAccount": "Банковский счет",
+        "BankCode": "Код банка",
+        "Balance": "Баланс",
+        "IsActive": "Активен",
+        "UserLocale": "Язык"
+
       }
     },
     "Errors" : {

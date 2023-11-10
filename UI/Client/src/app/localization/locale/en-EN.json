@@ -73,7 +73,27 @@
           "Ok": "Ok",
           "Cancel": "Cancel"
         }
-      }
+      },
+          "ProfilePage": {
+            "CommonInfo": "Common Info",
+            "AdditionalInfo": "Additional Info",
+            "YourDeals": "Your Deals",
+            "FirstName": "FirstName",
+            "LastName": "LastName",
+            "Email": "Email",
+            "UserName": "User Name",
+            "UserPhone": "Phone",
+            "UserType": "UserType",
+            "CompanyName": "CompanyName",
+            "PassportNumber": "PassportNumber",
+            "PayerRegNumber": "PayerRegNumber",
+            "BankAccount": "BankAccount",
+            "BankCode": "BankCode",
+            "Balance": "Balance",
+            "IsActive": "IsActive",
+            "UserLocale": "UserLocale"
+
+          }
 
     },
     "Errors" : {
