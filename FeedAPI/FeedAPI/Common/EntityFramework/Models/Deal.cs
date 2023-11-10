@@ -38,8 +38,8 @@ namespace Common.EntityFramework.Models
         [Column("isChecked")]
         public bool IsChecked { get; set; }
 
-        [Column("userOwnerId")]
-        public int UserOwnerId { get; set; }
+        [Column("userId")]
+        public int UserId { get; set; }
 
         public List<Asset> Assets { get; set; }
 
@@ -56,7 +56,7 @@ namespace Common.EntityFramework.Models
             string partNumber,
             bool isChecked,
             int userOwnerId,
-            List<Asset> asset
+            List<Asset> assets
             )
         {
             Id = id;
@@ -68,8 +68,8 @@ namespace Common.EntityFramework.Models
             UoM = uom;
             PartNumber = partNumber;
             IsChecked = isChecked;
-            UserOwnerId = userOwnerId;
-            Assets = asset;
+            UserId = userOwnerId;
+            Assets = assets;
         }
     }
 }

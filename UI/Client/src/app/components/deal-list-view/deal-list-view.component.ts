@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NavigationExtras, Router } from '@angular/router';
 import { Deal } from 'src/app/Models/Deal';
 
 @Component({
@@ -13,16 +14,19 @@ export class DealListViewComponent implements OnInit {
 
   base64Image!: any;
 
-  constructor(private domSanitizer: DomSanitizer) { }
+  constructor(private domSanitizer: DomSanitizer, private router: Router) { }
 
   ngOnInit(): void {
     this.renderImage();
   }
 
+  onClick() {
+    this.router.navigate([`deal/${this.deal.id}`]);
+  }
+
   renderImage() {
     var asset = this.deal.assets.find(item => item.imageData !== "");
     if (asset == undefined) return;
-    var res = "data:image/jpeg;base64, " + asset.imageData;
-    this.base64Image = this.domSanitizer.bypassSecurityTrustUrl(res);
+    this.base64Image = this.domSanitizer.bypassSecurityTrustUrl("data:image/jpeg;base64, " + asset.imageData);
   }
 }

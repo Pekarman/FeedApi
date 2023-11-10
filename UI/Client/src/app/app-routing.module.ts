@@ -16,6 +16,7 @@ import {
 } from "src/app/components/userSettings/user-phrase-change/user-phrase-change.component";
 import {DeleteUserComponent} from "src/app/components/userSettings/delete-user/delete-user.component";
 import {ProfilePageComponent} from "src/app/components/profilePage/profile-page/profile-page.component";
+import { DealComponent } from './components/deal/deal.component';
 
 const routes: Routes = [
   {path: 'article', component:ArticleComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'login', component:LoginComponent},
   {path: 'register', component:RegisterComponent},
   {path: '', component:DashboardComponent},
+  {path: 'deal/:id', component:DealComponent},
   {path: 'userSettings', component:UserSettingsComponent},
   {path: 'userSettings/changeEmail', component:UserEmailChangeComponent},
   {path: 'userSettings/changePassword', component:UserPasswordChangeComponent},

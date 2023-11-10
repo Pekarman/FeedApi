@@ -22,7 +22,6 @@ export class DealService {
   }
 
   getDeal(id: number): Observable<Deal>{
-    const options = id ? { params: new HttpParams().set('id', id) } : {};
-    return this.http.get<Deal>(this.APIUrl + 'Api/Deal', options);
+    return this.http.get<Deal>(this.APIUrl + `Api/Deal/${id}`);
   }
 }

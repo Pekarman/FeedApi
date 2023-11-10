@@ -19,25 +19,14 @@ namespace Services.Implementations
             using (ApplicationContext db = new ApplicationContext())
             {
                 await Task.Run(() => {
-                    users = db.Users.Join(
-                        db.UserTypes,
-                        o => o.UserTypeId, i => i.Id,
-                        (i, o) => new User(
-                            i.Id,
-                            i.FirstName,
-                            i.LastName,
-                            i.Username,
-                            i.UserTypeId,
-                            o.TypeName,
-                            i.Email,
-                            i.Phone,
-                            i.PassportNumber,
-                            i.BankAccount,
-                            i.BankCode,
-                            i.CompanyName,
-                            i.Balance,
-                            i.Locale,
-                            i.IsActive)).ToList();
+                    users = db.Users.ToList();
+
+                    users.ForEach(user =>
+                    {
+                        //user.Deals = db.Deals.Where(d => d.UserId == user.Id).ToList();
+
+                        user.UserType = db.UserTypes.Where(t => t.Id == user.UserTypeId).FirstOrDefault();
+                    });
 
                     return users;
                 });
@@ -53,26 +42,11 @@ namespace Services.Implementations
             using (ApplicationContext db = new ApplicationContext())
             {
                 await Task.Run(() => {
-                    user = db.Users.Where(u => u.Id == id).Join(
-                        db.UserTypes,
-                        o => o.UserTypeId,
-                        i => i.Id,
-                        (i, o) => new User(
-                            i.Id,
-                            i.FirstName,
-                            i.LastName,
-                            i.Username,
-                            i.UserTypeId,
-                            o.TypeName,
-                            i.Email,
-                            i.Phone,
-                            i.PassportNumber,
-                            i.BankAccount,
-                            i.BankCode,
-                            i.CompanyName,
-                            i.Balance,
-                            i.Locale,
-                            i.IsActive)).FirstOrDefault();
+                    user = db.Users.Where(u => u.Id == id).FirstOrDefault();
+
+                    //user.Deals = db.Deals.Where(d => d.UserId == user.Id).ToList();
+
+                    user.UserType = db.UserTypes.Where(t => t.Id == user.UserTypeId).FirstOrDefault();
 
                     return user;
                 });

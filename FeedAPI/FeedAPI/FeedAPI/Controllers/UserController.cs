@@ -147,7 +147,7 @@ namespace FeedAPI.Controllers
         }
 
         // Delete user
-        [HttpPost]
+        [HttpDelete]
         public async Task<IActionResult> DeleteUserAsync(DeleteUser user) 
         {
             try

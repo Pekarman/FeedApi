@@ -16,6 +16,9 @@ namespace Common.EntityFramework.Models
         [Column("dealId")]
         public int DealId { get; set; }
 
+        [Column("userId")]
+        public int? UserId { get; set; }
+
         [Column("imageName")]
         public string ImageName { get; set; }
 
@@ -24,10 +27,11 @@ namespace Common.EntityFramework.Models
 
         public Asset() { }
 
-        public Asset(int id, int dealId, string imageName, byte[] imageData)
+        public Asset(int id, int dealId, int? userId, string imageName, byte[] imageData)
         {
             Id = id;
             DealId = dealId;
+            UserId = userId;
             ImageName = imageName;
             ImageData = imageData;
         }

@@ -59,6 +59,8 @@ namespace Common.EntityFramework.Models
         [Column("locale")]
         public string? Locale { get; set; }
 
+        public List<Deal> Deals { get; set; }
+
         public User() { }
 
         public User(int id, string username, int usertypeid)
@@ -93,6 +95,7 @@ namespace Common.EntityFramework.Models
             string companyName,
             double? balance,
             string locale,
+            List<Deal> deals,
             bool isActive = false
             )
         {
@@ -111,6 +114,7 @@ namespace Common.EntityFramework.Models
             Balance = balance;
             Locale = locale;
             IsActive = isActive;
+            Deals = deals;
         }
 
         public enum UserTypes

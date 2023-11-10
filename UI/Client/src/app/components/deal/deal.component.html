@@ -1,0 +1,32 @@
+<div id="header">
+    <app-header></app-header>
+  </div>
+  <div class="content">
+    <div class="desktop row">
+        <div class="col-3">
+            <img [src]="base64Image" alt="alt">
+            <!-- <app-deal-list></app-deal-list> -->
+        </div>
+        <div class="col-9">
+            <div class="col-12">
+                <!-- <a [href]="article['link']"> -->
+                    <h3>{{deal.productName}}</h3>
+                <!-- </a> -->
+            </div>
+            <div class="col-12">
+                <p class="desc">{{deal.shortDesc}}</p>
+            </div>
+            <div class="col-12">
+                <p class="desc">{{deal.longDesc}}</p>
+            </div>
+            <!-- <div class="row">
+                <div class="col-6">
+                    <p class="publishDate">{{article.publishDate}}</p>
+                </div>
+                <div class="col-6">
+                    <p class="source">{{article.source}}</p>
+                </div>
+            </div> -->
+        </div>
+    </div>
+  </div>

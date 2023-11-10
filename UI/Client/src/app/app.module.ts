@@ -29,6 +29,7 @@ import { UsersButtonComponent } from './components/common/users-button/users-but
 import { ProfilePageComponent } from './components/profilePage/profile-page/profile-page.component';
 import { DealListViewComponent } from './components/deal-list-view/deal-list-view.component';
 import { DealListComponent } from './components/deal-list/deal-list.component';
+import { DealComponent } from './components/deal/deal.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { DealListComponent } from './components/deal-list/deal-list.component';
     ProfilePageComponent,
     DealListViewComponent,
     DealListComponent,
+    DealComponent,
   ],
   imports: [
     BrowserModule,

@@ -22,14 +22,12 @@
 <div class="desktop row">
     <div class="col-3">
         <img [src]="base64Image" alt="alt">
-        <!-- <img [src]="deal.asset?.imageName" alt="alt"> -->
-        <!-- <img [src]="article['imageLink']" target="_blank" /> -->
     </div>
     <div class="col-9">
         <div class="col-12">
-            <!-- <a [href]="article['link']"> -->
+            <a  (click)="onClick()">
                 <h3>{{deal.productName}}</h3>
-            <!-- </a> -->
+            </a>
         </div>
         <div class="col-12">
             <p class="desc">{{deal.shortDesc}}</p>
