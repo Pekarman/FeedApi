@@ -47,6 +47,24 @@ namespace Services.Implementations
             return deal;
         }
 
+        public async Task<List<Deal>> GetOwnerDealsAsync(int userId)
+        {
+            List<Deal> deals = new List<Deal>();
+
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                await Task.Run(() => {
+                    deals = db.Deals.Where(u => u.UserId == userId).ToList();
+
+                    deals.ForEach(deal => deal.Assets = db.Assets.Where(i => i.DealId == deal.Id).ToList());
+
+                    return deals;
+                });
+            }
+
+            return deals;
+        }
+
         public async Task<Deal> AddDealAsync(Deal deal)
         {
             using (ApplicationContext db = new ApplicationContext())

@@ -69,6 +69,30 @@ namespace FeedAPI.Controllers
         }
 
         /// <summary>
+        /// Get specific deal owned by user.
+        /// </summary>
+        /// <param name="userId">Requested deal id.</param>
+        /// <returns>Requested deal.</returns>
+        [HttpPost]
+        public async Task<IActionResult> GetOwnerDealsAsync(int userId)
+        {
+            try
+            {
+                List<Deal> deals = await this.dealService.GetOwnerDealsAsync(userId);
+                if (deals != null)
+                {
+                    return this.Ok(deals);
+                }
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
+
+            return new JsonResult($"Deal with owner id={userId} not found.");
+        }
+
+        /// <summary>
         /// Add new deal.
         /// </summary>
         /// <param name="deal">Deal to create.</param>
