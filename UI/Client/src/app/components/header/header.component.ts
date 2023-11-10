@@ -44,6 +44,7 @@ export class HeaderComponent implements OnInit {
 
   openProfilePage() {
     this.router.navigate(['/profilePage']);
+
   }
 
   openSettingsPage() {

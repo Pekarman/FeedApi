@@ -22,19 +22,13 @@
                     <span (click)="onAvatarClick()"
                           class="dropdown--profile dropdown-avatar"></span>
                   </div>
-                  <div *ngIf="isDropdownVisible && isLoggedIn"
-                        class="option opt-1"
-                        (click)="openProfilePage()">
+                  <div *ngIf="isDropdownVisible && isLoggedIn" class="option opt-1" (click)="openProfilePage()">
                     <span class="">{{ 'Pages/Header/dropdown/profile' | translate }}</span>
                   </div>
-                  <div *ngIf="isDropdownVisible && isLoggedIn"
-                  class="option opt-2"
-                  (click)="openSettingsPage()">
+                  <div *ngIf="isDropdownVisible && isLoggedIn" class="option opt-2" (click)="openSettingsPage()">
                     <span class="">{{ 'Pages/Header/dropdown/settings' | translate }}</span>
                   </div>
-                  <div *ngIf="isDropdownVisible && isLoggedIn"
-                  class="option opt-3"
-                  (click)="logout()">
+                  <div *ngIf="isDropdownVisible && isLoggedIn" class="option opt-3" (click)="logout()">
                     <span class="">{{ 'Pages/Header/dropdown/logout' | translate }}</span>
                   </div>
                 </div>
