@@ -6,7 +6,7 @@
   display: flex;
   width: 100%;
   justify-content: left;
-  max-width: 80vh;
+  max-width: 210vh;
 }
 
 .button {
@@ -37,7 +37,14 @@
   background-color: lightgray;
   margin-bottom: 30px;
 }
-
+.blockForDeals{
+  margin-top: 20px;
+  margin-left: 40px;
+  height: 500px;
+  width: 90%;
+  background-color: lightgray;
+  margin-bottom: 30px;
+}
 .text {
   font-size: 18px;
   color: #333;
@@ -57,7 +64,17 @@
   grid-template-columns: repeat(2, max-content);
   gap: 10px;
 }
+.textContainerForDeals{
+  margin: 20px 0 0 30px;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: 10px;
+  width: 100%;
+}
 .textContainer p {
   margin-right: 200px;
+  margin-top: 20px;
+}
+app-deal-list{
   margin-top: 20px;
 }

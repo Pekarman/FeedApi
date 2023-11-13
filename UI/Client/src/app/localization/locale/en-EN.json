@@ -91,7 +91,8 @@
             "BankCode": "BankCode",
             "Balance": "Balance",
             "IsActive": "IsActive",
-            "UserLocale": "UserLocale"
+            "UserLocale": "UserLocale",
+            "TrackedDeals": "Tracked Deals"
 
           }
 
