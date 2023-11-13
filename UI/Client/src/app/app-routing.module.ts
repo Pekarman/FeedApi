@@ -17,6 +17,7 @@ import {
 import {DeleteUserComponent} from "src/app/components/userSettings/delete-user/delete-user.component";
 import {ProfilePageComponent} from "src/app/components/profilePage/profile-page/profile-page.component";
 import { DealComponent } from './components/deal/deal.component';
+import {IsLogedInGuard} from "src/app/guards/is-loged-in.guard";
 
 const routes: Routes = [
   {path: 'article', component:ArticleComponent},
@@ -25,12 +26,12 @@ const routes: Routes = [
   {path: 'register', component:RegisterComponent},
   {path: '', component:DashboardComponent},
   {path: 'deal/:id', component:DealComponent},
-  {path: 'userSettings', component:UserSettingsComponent},
-  {path: 'userSettings/changeEmail', component:UserEmailChangeComponent},
-  {path: 'userSettings/changePassword', component:UserPasswordChangeComponent},
-  {path: 'userSettings/changePhrase', component:UserPhraseChangeComponent},
-  {path: 'userSettings/deleteUser', component:DeleteUserComponent},
-  {path: 'profilePage', component:ProfilePageComponent},
+  {path: 'userSettings', component:UserSettingsComponent, canActivate: [IsLogedInGuard]},
+  {path: 'userSettings/changeEmail', component:UserEmailChangeComponent, canActivate: [IsLogedInGuard]},
+  {path: 'userSettings/changePassword', component:UserPasswordChangeComponent, canActivate: [IsLogedInGuard]},
+  {path: 'userSettings/changePhrase', component:UserPhraseChangeComponent, canActivate: [IsLogedInGuard]},
+  {path: 'userSettings/deleteUser', component:DeleteUserComponent, canActivate: [IsLogedInGuard]},
+  {path: 'profilePage', component:ProfilePageComponent, canActivate: [IsLogedInGuard]},
   { path: '**',
     redirectTo: '',
     pathMatch: 'full'
