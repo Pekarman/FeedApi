@@ -6,6 +6,7 @@ enum InformationType {
   CommonInfo = 1,
   AdditionalInfo = 2,
   YourDeals = 3,
+  TrackedDeals = 4
 }
 
 @Component({
