@@ -13,16 +13,16 @@ namespace Common.EntityFramework.Models
         [Column("id")]
         public int Id { get; set; }
 
-        [Column("userId")]
+        [Column("userid")]
         public int UserId { get; set; }
 
         [Column("locale")]
         public string Locale { get; set; }
 
-        [Column("loginTimeStamp")]
+        [Column("logintimestamp")]
         public DateTime LoginTimeStamp { get; set; }
 
-        [Column("lastChangeTimeStamp")]
+        [Column("lastchangetimestamp")]
         public DateTime LastChangeTimeStamp { get; set; }
 
         public User user { get; set; }

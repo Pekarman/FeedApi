@@ -14,31 +14,31 @@ namespace Common.EntityFramework.Models
         [Column("id")]
         public int Id { get; set; }
 
-        [Column("ProductName")]
+        [Column("productname")]
         public string ProductName { get; set; }
 
-        [Column("shortDesc")]
+        [Column("shortdesc")]
         public string ShortDesc { get; set; }
 
-        [Column("longDesc")]
+        [Column("longdesc")]
         public string LongDesc { get; set; }
 
-        [Column("categoryId")]
+        [Column("categoryid")]
         public int CategoryId { get; set; }
 
-        [Column("subcategoryId")]
+        [Column("subcategoryid")]
         public int SubcategoryId { get; set; }
 
         [Column("uom")]
         public string UoM { get; set; }
 
-        [Column("partNumber")]
+        [Column("partnumber")]
         public string PartNumber { get; set; }
 
-        [Column("isChecked")]
+        [Column("ischecked")]
         public bool IsChecked { get; set; }
 
-        [Column("userId")]
+        [Column("userid")]
         public int UserId { get; set; }
 
         public List<Asset> Assets { get; set; }
