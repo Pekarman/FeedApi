@@ -40,7 +40,8 @@ namespace Services.Implementations
 
             using (ApplicationContext db = new ApplicationContext())
             {
-                int id = db.UserSessions.ToList().Count + 1;
+                int id;
+                if (db.UserSessions.Count() == 0) id = 1; else id = db.UserSessions.Max(b => b.Id + 1);
                 DateTime time = DateTime.Now;
                 session = new UserSession(id, userId, locale, time, time);
 

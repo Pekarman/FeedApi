@@ -7,6 +7,8 @@ namespace Common.EntityFramework
     {
         public DbSet<Deal> Deals { get; set; } = null!;
 
+        public DbSet<Bet> Bets { get; set; } = null!;
+
         public DbSet<Asset> Assets { get; set; } = null!;
 
         public DbSet<User> Users { get; set; } = null!;

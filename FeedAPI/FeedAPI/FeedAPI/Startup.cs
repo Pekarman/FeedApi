@@ -36,6 +36,7 @@ namespace FeedAPI
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IDealService, DealService>();
             services.AddTransient<IAssetService, AssetService>();
+            services.AddTransient<IBetService, BetService>();
 
             services.AddDistributedMemoryCache(); // добавляем IDistributedMemoryCache
             services.AddSession(options =>

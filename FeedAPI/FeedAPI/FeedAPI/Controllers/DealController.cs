@@ -105,7 +105,7 @@ namespace FeedAPI.Controllers
                 Deal result = await this.dealService.AddDealAsync(deal);
                 if (result != null)
                 {
-                    return this.Ok(deal);
+                    return this.Ok(result);
                 }
             }
             catch (ArgumentException e)
@@ -120,5 +120,32 @@ namespace FeedAPI.Controllers
             return new JsonResult($"Deal cannot be added.");
         }
 
+        /// <summary>
+        /// Changes the deal.
+        /// </summary>
+        /// <param name="changeDeal">Deal to change.</param>
+        /// <returns>Changed deal.</returns>
+        [HttpPost("changeDeal")]
+        public async Task<IActionResult> ChangeDealAsync(Deal changeDeal)
+        {
+            try
+            {
+                Deal result = await this.dealService.ChangeDealAsync(changeDeal);
+                if (result != null)
+                {
+                    return this.Ok(result);
+                }
+            }
+            catch (ArgumentException e)
+            {
+                return new JsonResult(e.Message);
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
+
+            return new JsonResult($"Deal cannot be changed.");
+        }
     }
 }

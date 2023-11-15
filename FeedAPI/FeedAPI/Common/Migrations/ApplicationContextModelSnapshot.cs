@@ -50,7 +50,7 @@ namespace Common.Migrations
                     b.ToTable("assets");
                 });
 
-            modelBuilder.Entity("Common.EntityFramework.Models.Deal", b =>
+            modelBuilder.Entity("Common.EntityFramework.Models.Bet", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -59,11 +59,51 @@ namespace Common.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
+                    b.Property<decimal>("CurrentBet")
+                        .HasColumnType("numeric")
+                        .HasColumnName("currentbet");
+
+                    b.Property<int>("DealId")
+                        .HasColumnType("integer")
+                        .HasColumnName("dealid");
+
+                    b.Property<DateTime?>("TimeStamp")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("timestamp");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer")
+                        .HasColumnName("userid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DealId");
+
+                    b.ToTable("bets");
+                });
+
+            modelBuilder.Entity("Common.EntityFramework.Models.Deal", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("Id"));
+
+                    b.Property<bool?>("CanBuyNow")
+                        .HasColumnType("boolean")
+                        .HasColumnName("canbuynow");
+
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("integer")
                         .HasColumnName("categoryid");
 
-                    b.Property<bool>("IsChecked")
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("endtime");
+
+                    b.Property<bool?>("IsChecked")
                         .HasColumnType("boolean")
                         .HasColumnName("ischecked");
 
@@ -79,11 +119,23 @@ namespace Common.Migrations
                         .HasColumnType("text")
                         .HasColumnName("productname");
 
+                    b.Property<double?>("Quantity")
+                        .HasColumnType("double precision")
+                        .HasColumnName("quantity");
+
                     b.Property<string>("ShortDesc")
                         .HasColumnType("text")
                         .HasColumnName("shortdesc");
 
-                    b.Property<int>("SubcategoryId")
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("starttime");
+
+                    b.Property<int?>("StatusId")
+                        .HasColumnType("integer")
+                        .HasColumnName("statusid");
+
+                    b.Property<int?>("SubcategoryId")
                         .HasColumnType("integer")
                         .HasColumnName("subcategoryid");
 
@@ -91,9 +143,13 @@ namespace Common.Migrations
                         .HasColumnType("text")
                         .HasColumnName("uom");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("integer")
                         .HasColumnName("userid");
+
+                    b.Property<double?>("pricebuynow")
+                        .HasColumnType("double precision")
+                        .HasColumnName("pricebuynow");
 
                     b.HasKey("Id");
 
@@ -259,13 +315,20 @@ namespace Common.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Common.EntityFramework.Models.Bet", b =>
+                {
+                    b.HasOne("Common.EntityFramework.Models.Deal", null)
+                        .WithMany("Bets")
+                        .HasForeignKey("DealId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Common.EntityFramework.Models.Deal", b =>
                 {
                     b.HasOne("Common.EntityFramework.Models.User", null)
                         .WithMany("Deals")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Common.EntityFramework.Models.User", b =>
@@ -293,6 +356,8 @@ namespace Common.Migrations
             modelBuilder.Entity("Common.EntityFramework.Models.Deal", b =>
                 {
                     b.Navigation("Assets");
+
+                    b.Navigation("Bets");
                 });
 
             modelBuilder.Entity("Common.EntityFramework.Models.User", b =>
