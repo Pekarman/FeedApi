@@ -6,8 +6,6 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-#nullable disable
-
 namespace Common.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
@@ -17,31 +15,29 @@ namespace Common.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
+                .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
-
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("Common.EntityFramework.Models.Asset", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("DealId")
-                        .HasColumnType("integer")
-                        .HasColumnName("dealid");
+                        .HasColumnName("dealid")
+                        .HasColumnType("integer");
 
                     b.Property<byte[]>("ImageData")
-                        .HasColumnType("bytea")
-                        .HasColumnName("imagedata");
+                        .HasColumnName("imagedata")
+                        .HasColumnType("bytea");
 
                     b.Property<string>("ImageName")
-                        .HasColumnType("text")
-                        .HasColumnName("imagename");
+                        .HasColumnName("imagename")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -54,26 +50,25 @@ namespace Common.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<decimal>("CurrentBet")
-                        .HasColumnType("numeric")
-                        .HasColumnName("currentbet");
+                        .HasColumnName("currentbet")
+                        .HasColumnType("numeric");
 
                     b.Property<int>("DealId")
-                        .HasColumnType("integer")
-                        .HasColumnName("dealid");
+                        .HasColumnName("dealid")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("TimeStamp")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("timestamp");
+                        .HasColumnName("timestamp")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("integer")
-                        .HasColumnName("userid");
+                        .HasColumnName("userid")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -86,70 +81,69 @@ namespace Common.Migrations
                 {
                     b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("Id"));
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool?>("CanBuyNow")
-                        .HasColumnType("boolean")
-                        .HasColumnName("canbuynow");
+                        .HasColumnName("canbuynow")
+                        .HasColumnType("boolean");
 
                     b.Property<int?>("CategoryId")
-                        .HasColumnType("integer")
-                        .HasColumnName("categoryid");
+                        .HasColumnName("categoryid")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("EndTime")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("endtime");
+                        .HasColumnName("endtime")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool?>("IsChecked")
-                        .HasColumnType("boolean")
-                        .HasColumnName("ischecked");
+                        .HasColumnName("ischecked")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("LongDesc")
-                        .HasColumnType("text")
-                        .HasColumnName("longdesc");
+                        .HasColumnName("longdesc")
+                        .HasColumnType("text");
 
                     b.Property<string>("PartNumber")
-                        .HasColumnType("text")
-                        .HasColumnName("partnumber");
+                        .HasColumnName("partnumber")
+                        .HasColumnType("text");
 
                     b.Property<string>("ProductName")
-                        .HasColumnType("text")
-                        .HasColumnName("productname");
+                        .HasColumnName("productname")
+                        .HasColumnType("text");
 
                     b.Property<double?>("Quantity")
-                        .HasColumnType("double precision")
-                        .HasColumnName("quantity");
+                        .HasColumnName("quantity")
+                        .HasColumnType("double precision");
 
                     b.Property<string>("ShortDesc")
-                        .HasColumnType("text")
-                        .HasColumnName("shortdesc");
+                        .HasColumnName("shortdesc")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("StartTime")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("starttime");
+                        .HasColumnName("starttime")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int?>("StatusId")
-                        .HasColumnType("integer")
-                        .HasColumnName("statusid");
+                        .HasColumnName("statusid")
+                        .HasColumnType("integer");
 
                     b.Property<int?>("SubcategoryId")
-                        .HasColumnType("integer")
-                        .HasColumnName("subcategoryid");
+                        .HasColumnName("subcategoryid")
+                        .HasColumnType("integer");
 
                     b.Property<string>("UoM")
-                        .HasColumnType("text")
-                        .HasColumnName("uom");
+                        .HasColumnName("uom")
+                        .HasColumnType("text");
 
                     b.Property<int?>("UserId")
-                        .HasColumnType("integer")
-                        .HasColumnName("userid");
+                        .HasColumnName("userid")
+                        .HasColumnType("integer");
 
                     b.Property<double?>("pricebuynow")
-                        .HasColumnType("double precision")
-                        .HasColumnName("pricebuynow");
+                        .HasColumnName("pricebuynow")
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
 
@@ -162,22 +156,21 @@ namespace Common.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("PassHash")
-                        .HasColumnType("text")
-                        .HasColumnName("passhash");
+                        .HasColumnName("passhash")
+                        .HasColumnType("text");
 
                     b.Property<string>("SecretPhraseHash")
-                        .HasColumnType("text")
-                        .HasColumnName("secretphrasehash");
+                        .HasColumnName("secretphrasehash")
+                        .HasColumnType("text");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("integer")
-                        .HasColumnName("userid");
+                        .HasColumnName("userid")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -188,66 +181,65 @@ namespace Common.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<double?>("Balance")
-                        .HasColumnType("double precision")
-                        .HasColumnName("balance");
+                        .HasColumnName("balance")
+                        .HasColumnType("double precision");
 
                     b.Property<string>("BankAccount")
-                        .HasColumnType("text")
-                        .HasColumnName("bankaccount");
+                        .HasColumnName("bankaccount")
+                        .HasColumnType("text");
 
                     b.Property<string>("BankCode")
-                        .HasColumnType("text")
-                        .HasColumnName("bankcode");
+                        .HasColumnName("bankcode")
+                        .HasColumnType("text");
 
                     b.Property<string>("CompanyName")
-                        .HasColumnType("text")
-                        .HasColumnName("companyname");
+                        .HasColumnName("companyname")
+                        .HasColumnType("text");
 
                     b.Property<string>("Email")
-                        .HasColumnType("text")
-                        .HasColumnName("email");
+                        .HasColumnName("email")
+                        .HasColumnType("text");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("text")
-                        .HasColumnName("firstname");
+                        .HasColumnName("firstname")
+                        .HasColumnType("text");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("boolean")
-                        .HasColumnName("isactive");
+                        .HasColumnName("isactive")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("text")
-                        .HasColumnName("lastname");
+                        .HasColumnName("lastname")
+                        .HasColumnType("text");
 
                     b.Property<string>("Locale")
-                        .HasColumnType("text")
-                        .HasColumnName("locale");
+                        .HasColumnName("locale")
+                        .HasColumnType("text");
 
                     b.Property<string>("PassportNumber")
-                        .HasColumnType("text")
-                        .HasColumnName("passportnumber");
+                        .HasColumnName("passportnumber")
+                        .HasColumnType("text");
 
                     b.Property<string>("PayerRegNumber")
-                        .HasColumnType("text")
-                        .HasColumnName("payerregnumber");
+                        .HasColumnName("payerregnumber")
+                        .HasColumnType("text");
 
                     b.Property<string>("Phone")
-                        .HasColumnType("text")
-                        .HasColumnName("phone");
+                        .HasColumnName("phone")
+                        .HasColumnType("text");
 
                     b.Property<int>("UserTypeId")
-                        .HasColumnType("integer")
-                        .HasColumnName("usertypeid");
+                        .HasColumnName("usertypeid")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Username")
-                        .HasColumnType("text")
-                        .HasColumnName("username");
+                        .HasColumnName("username")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -260,26 +252,25 @@ namespace Common.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<DateTime>("LastChangeTimeStamp")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("lastchangetimestamp");
+                        .HasColumnName("lastchangetimestamp")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Locale")
-                        .HasColumnType("text")
-                        .HasColumnName("locale");
+                        .HasColumnName("locale")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("LoginTimeStamp")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("logintimestamp");
+                        .HasColumnName("logintimestamp")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("integer")
-                        .HasColumnName("userid");
+                        .HasColumnName("userid")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -292,14 +283,13 @@ namespace Common.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("integer")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("TypeName")
-                        .HasColumnType("text")
-                        .HasColumnName("typename");
+                        .HasColumnName("typename")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -338,8 +328,6 @@ namespace Common.Migrations
                         .HasForeignKey("UserTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("UserType");
                 });
 
             modelBuilder.Entity("Common.EntityFramework.Models.UserSession", b =>
@@ -349,20 +337,6 @@ namespace Common.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("user");
-                });
-
-            modelBuilder.Entity("Common.EntityFramework.Models.Deal", b =>
-                {
-                    b.Navigation("Assets");
-
-                    b.Navigation("Bets");
-                });
-
-            modelBuilder.Entity("Common.EntityFramework.Models.User", b =>
-                {
-                    b.Navigation("Deals");
                 });
 #pragma warning restore 612, 618
         }
