@@ -8,9 +8,12 @@ export class Deal{
     categoryId: number;
     subcategoryId: number;
     uom: string;
+    quantity:number;
     partNumber: string;
+    priceBuyNow:number;
+    canBuyNow: boolean;
     isChecked: boolean;
-    userOwnerId: number;
+    userId: number;
     assets : Asset[];
 
     constructor(
@@ -21,9 +24,12 @@ export class Deal{
         _categoryId: number,
         _subcategoryId: number,
         _uom: string,
+        _quantity: number,
         _partNumber: string,
+        _priceBuyNow:number,
+        _canBuyNow: boolean,
         _isChecked: boolean,
-        _userOwnerId: number,
+        _userId: number,
         _assets: Asset[]
         )        {
         this.id = _id;
@@ -33,9 +39,12 @@ export class Deal{
         this.categoryId = _categoryId;
         this.subcategoryId = _subcategoryId;
         this.uom = _uom;
+        this.quantity = _quantity;
         this.partNumber = _partNumber;
+        this.priceBuyNow = _priceBuyNow;
+        this.canBuyNow = _canBuyNow;
         this.isChecked = _isChecked;
-        this.userOwnerId = _userOwnerId;
+        this.userId = _userId;
         this.assets = _assets;
     }
 }

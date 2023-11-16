@@ -1,0 +1,76 @@
+
+<div id="header">
+  <app-header></app-header>
+</div>
+<div>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+  <div class="imageContainer">
+    <div class="imageBlock">
+      <!-- Здесь может быть блок для загрузки изображения -->
+    </div>
+  </div>
+ <div class="prodName">
+   <label>Prod Name</label>
+   <input formControlName="prodName"/>
+ </div>
+  <div class="descriptionBlock">
+    <div class="textAreaContainer">
+      <label>Short Description</label>
+      <textarea formControlName="shortDescription"></textarea>
+    </div>
+    <div class="textAreaContainer">
+      <label>Long Description</label>
+      <textarea formControlName="longDescription"></textarea>
+    </div>
+  </div>
+  <div class="dataInputContainer">
+    <div class="selectContent">
+      <label>Category</label>
+      <select formControlName="category">
+        <option *ngFor="let option of allValues; let i = index" [value]="i">{{option}}</option>
+      </select>
+    </div>
+
+  </div>
+  <div class="allInputs">
+    <div class="labelInputs">
+      <label>Part Number</label>
+      <input formControlName="partNumber"/>
+    </div>
+    <div class="labelInputs">
+      <label>Uom</label>
+      <input formControlName="uom"/>
+    </div>
+    <div class="labelInputs">
+      <label>Quantity</label>
+      <input type="number" formControlName="quantity"/>
+    </div>
+  </div>
+  <div class="canBuyNow">
+    <label>Can buy now</label>
+    <input type="checkbox" class="checkbox" formControlName="canBuyNow" (change)="togglePriceBuyNow()"/>
+    <div *ngIf="priceBuyNow">
+      <label>Price buy Now</label>
+      <input class="label" formControlName="priceBuyNow" type="number" />
+    </div>
+  </div>
+  <div class="auctionBlock">
+    <h3>Auction</h3>
+    <div class="inputGroup">
+      <label>Start Time</label>
+      <input type="date" formControlName="startTime"/>
+    </div>
+    <div class="inputGroup">
+      <label>End Time</label>
+      <input type="date" formControlName="endTime"/>
+    </div>
+  </div>
+  <div class="buttonBlock">
+    <button>Cancel</button>
+    <button type="submit">Ok</button>
+  </div>
+  </form>
+</div>
+
+
+
