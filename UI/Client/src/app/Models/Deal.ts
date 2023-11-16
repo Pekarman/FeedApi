@@ -13,7 +13,7 @@ export class Deal{
     pricebuynow: number;
     canBuyNow: boolean;
     isChecked: boolean;
-    userOwnerId: number;
+    userId: number;
     assets : Asset[];
 
     constructor(
@@ -29,7 +29,7 @@ export class Deal{
         _priceBuyNow: number,
         _canBuyNow: boolean,
         _isChecked: boolean,
-        _userOwnerId: number,
+        _userId: number,
         _assets: Asset[]
         )        {
         this.id = _id;
@@ -44,7 +44,7 @@ export class Deal{
         this.pricebuynow = _priceBuyNow;
         this.canBuyNow = _canBuyNow;
         this.isChecked = _isChecked;
-        this.userOwnerId = _userOwnerId;
+        this.userId = _userId;
         this.assets = _assets;
     }
 }
