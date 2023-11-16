@@ -8,7 +8,10 @@ export class Deal{
     categoryId: number;
     subcategoryId: number;
     uom: string;
+    quantity: number;
     partNumber: string;
+    pricebuynow: number;
+    canBuyNow: boolean;
     isChecked: boolean;
     userOwnerId: number;
     assets : Asset[];
@@ -21,7 +24,10 @@ export class Deal{
         _categoryId: number,
         _subcategoryId: number,
         _uom: string,
+        _quantity: number,
         _partNumber: string,
+        _priceBuyNow: number,
+        _canBuyNow: boolean,
         _isChecked: boolean,
         _userOwnerId: number,
         _assets: Asset[]
@@ -33,7 +39,10 @@ export class Deal{
         this.categoryId = _categoryId;
         this.subcategoryId = _subcategoryId;
         this.uom = _uom;
+        this.quantity = _quantity;
         this.partNumber = _partNumber;
+        this.pricebuynow = _priceBuyNow;
+        this.canBuyNow = _canBuyNow;
         this.isChecked = _isChecked;
         this.userOwnerId = _userOwnerId;
         this.assets = _assets;
