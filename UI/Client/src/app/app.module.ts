@@ -31,6 +31,7 @@ import { DealListViewComponent } from './components/deal-list-view/deal-list-vie
 import { DealListComponent } from './components/deal-list/deal-list.component';
 import { DealComponent } from './components/deal/deal.component';
 import { BettingComponent } from './components/betting/betting.component';
+import { AddDealsComponent } from './components/addDeals/add-deals/add-deals.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { BettingComponent } from './components/betting/betting.component';
     DealListComponent,
     DealComponent,
     BettingComponent,
+    AddDealsComponent
   ],
   imports: [
     BrowserModule,
