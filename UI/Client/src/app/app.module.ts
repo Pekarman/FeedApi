@@ -30,6 +30,7 @@ import { ProfilePageComponent } from './components/profilePage/profile-page/prof
 import { DealListViewComponent } from './components/deal-list-view/deal-list-view.component';
 import { DealListComponent } from './components/deal-list/deal-list.component';
 import { DealComponent } from './components/deal/deal.component';
+import { BettingComponent } from './components/betting/betting.component';
 import { AddDealsComponent } from './components/addDeals/add-deals/add-deals.component';
 
 @NgModule({
@@ -54,7 +55,8 @@ import { AddDealsComponent } from './components/addDeals/add-deals/add-deals.com
     DealListViewComponent,
     DealListComponent,
     DealComponent,
-    AddDealsComponent,
+    BettingComponent,
+    AddDealsComponent
   ],
   imports: [
     BrowserModule,

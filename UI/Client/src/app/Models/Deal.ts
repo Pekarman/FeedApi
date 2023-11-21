@@ -8,9 +8,9 @@ export class Deal{
     categoryId: number;
     subcategoryId: number;
     uom: string;
-    quantity:number;
+    quantity: number;
     partNumber: string;
-    priceBuyNow:number;
+    pricebuynow: number;
     canBuyNow: boolean;
     isChecked: boolean;
     userId: number;
@@ -26,7 +26,7 @@ export class Deal{
         _uom: string,
         _quantity: number,
         _partNumber: string,
-        _priceBuyNow:number,
+        _priceBuyNow: number,
         _canBuyNow: boolean,
         _isChecked: boolean,
         _userId: number,
@@ -41,7 +41,7 @@ export class Deal{
         this.uom = _uom;
         this.quantity = _quantity;
         this.partNumber = _partNumber;
-        this.priceBuyNow = _priceBuyNow;
+        this.pricebuynow = _priceBuyNow;
         this.canBuyNow = _canBuyNow;
         this.isChecked = _isChecked;
         this.userId = _userId;

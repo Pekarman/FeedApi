@@ -1,0 +1,15 @@
+#header {
+    min-height: 10vh;
+    background-color: lightgray;
+}
+
+div {
+    &.content {
+        margin-top: 20px;
+        margin-left: 20px
+    }
+
+    &#bet-container {
+        // min-width: 200px;
+    }
+ }
