@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Deal } from 'src/app/Models/Deal';
+import { IDeal } from 'src/app/Models/IDeal';
 
 @Component({
   selector: 'app-betting',
@@ -8,7 +8,7 @@ import { Deal } from 'src/app/Models/Deal';
 })
 export class BettingComponent implements OnInit {
 
-  @Input() deal!: Deal;
+  @Input() deal!: IDeal;
 
   constructor() { }
 

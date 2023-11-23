@@ -33,7 +33,7 @@ const routes: Routes = [
   {path: 'userSettings/changePhrase', component: UserPhraseChangeComponent, canActivate: [IsLogedInGuard]},
   {path: 'userSettings/deleteUser', component: DeleteUserComponent, canActivate: [IsLogedInGuard]},
   {path: 'profilePage', component: ProfilePageComponent, canActivate: [IsLogedInGuard]},
-  {path: 'addDeals', component: AddDealsComponent},
+  {path: 'addDeal', component: AddDealsComponent},
   {
     path: '**',
     redirectTo: '',

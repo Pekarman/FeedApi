@@ -15,13 +15,13 @@ namespace Common.EntityFramework.Models
         public int? Id { get; set; }
 
         [Column("productname")]
-        public string ProductName { get; set; }
+        public string? ProductName { get; set; }
 
         [Column("shortdesc")]
-        public string ShortDesc { get; set; }
+        public string? ShortDesc { get; set; }
 
         [Column("longdesc")]
-        public string LongDesc { get; set; }
+        public string? LongDesc { get; set; }
 
         [Column("statusid")]
         public int? StatusId { get; set; }
@@ -29,17 +29,14 @@ namespace Common.EntityFramework.Models
         [Column("categoryid")]
         public int? CategoryId { get; set; }
 
-        [Column("subcategoryid")]
-        public int? SubcategoryId { get; set; }
-
         [Column("uom")]
-        public string UoM { get; set; }
+        public string? UoM { get; set; }
 
         [Column("quantity")]
         public double? Quantity { get; set; }
 
         [Column("partnumber")]
-        public string PartNumber { get; set; }
+        public string? PartNumber { get; set; }
 
         [Column("ischecked")]
         public bool? IsChecked { get; set; }
@@ -54,10 +51,10 @@ namespace Common.EntityFramework.Models
         public int? UserId { get; set; }
 
         [Column("starttime")]
-        public DateTime StartTime { get; set; }
+        public DateTime? StartTime { get; set; }
 
         [Column("endtime")]
-        public DateTime EndTime { get; set; }
+        public DateTime? EndTime { get; set; }
 
         public List<Bet> Bets { get; set; }
 

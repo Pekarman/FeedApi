@@ -1,4 +1,4 @@
-export enum EnumForAddDeals {
+export enum CategoryEnum {
   KeyBoards = 0,
   LapTop = 1,
   VrGlasses = 2,

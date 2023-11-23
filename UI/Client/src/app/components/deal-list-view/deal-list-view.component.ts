@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationExtras, Router } from '@angular/router';
-import { Deal } from 'src/app/Models/Deal';
+import { Asset } from 'src/app/Models/Asset';
+import { IDeal } from 'src/app/Models/IDeal';
 
 @Component({
   selector: 'app-deal-list-view',
@@ -10,7 +11,7 @@ import { Deal } from 'src/app/Models/Deal';
 })
 export class DealListViewComponent implements OnInit {
 
-  @Input() deal!: Deal;
+  @Input() deal!: IDeal;
 
   base64Image!: any;
 
@@ -25,7 +26,7 @@ export class DealListViewComponent implements OnInit {
   }
 
   renderImage() {
-    var asset = this.deal.assets.find(item => item.imageData !== "");
+    var asset = this.deal.assets.find((item: Asset) => item.imageData !== "");
     if (asset == undefined) return;
     this.base64Image = this.domSanitizer.bypassSecurityTrustUrl("data:image/jpeg;base64, " + asset.imageData);
   }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Deal } from 'src/app/Models/Deal';
+import { IDeal } from 'src/app/Models/IDeal';
 import { DealService } from 'src/app/services/deal.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class DealListComponent implements OnInit {
 
   @Input() searchValue = '';
 
-  DealsList : Deal[] = [];
+  DealsList : IDeal[] = [];
 
   constructor(private readonly dealService: DealService) { }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { Deal } from 'src/app/Models/Deal';
+import { IDeal } from 'src/app/Models/IDeal';
 import { DealService } from 'src/app/services/deal.service';
 
 @Component({
@@ -30,7 +30,7 @@ export class DealComponent implements OnInit {
     });
   }
   
-  renderImages(deal: Deal) {
+  renderImages(deal: IDeal) {
     deal.assets.forEach((asset: any) => {      
       if (asset == undefined || asset.imageData == "") return;
       this.base64Image = this.domSanitizer.bypassSecurityTrustUrl("data:image/jpeg;base64, " + asset.imageData);
