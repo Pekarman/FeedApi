@@ -3,7 +3,7 @@ import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/form
 import {AuthService} from "src/app/services/auth.service";
 import {SessionService} from "src/app/services/session.service";
 import {UserService} from "src/app/services/user.service";
-import {ChangePassword} from "src/app/Models/ChangePassword";
+import {IChangePassword} from "src/app/Models/IChangePassword";
 import {Router} from "@angular/router";
 
 @Component({
@@ -41,7 +41,12 @@ export class UserPasswordChangeComponent implements OnInit {
 
 
     onSubmit(form: FormGroup) {
-      var data = new ChangePassword(this.myForm.controls.oldPassword.value, this.myForm.controls.newPassword.value, this.locale.user.username, true);
+      var data: IChangePassword = {
+        oldPassword: form.controls.oldPassword.value,
+        newPassword: form.controls.newPassword.value,
+        username: this.locale.user.username,
+        isPassword: true
+      }
 
       this.userService.changePassword(data).subscribe(response => {
         if (response.value) {

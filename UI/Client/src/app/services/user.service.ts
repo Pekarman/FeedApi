@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { ApiConfig } from '../configs/apiconfig';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserRegister } from '../Models/UserRegister';
-import {ChangePassword} from "src/app/Models/ChangePassword";
-import {ChangeEmail} from "src/app/Models/ChangeEmail";
-import {DeleteUser} from "src/app/Models/DeleteUser";
-import {ChangePhrase} from "src/app/Models/ChangePhrase";
+import { IUserRegister } from '../Models/IUserRegister';
+import {IChangePassword} from "src/app/Models/IChangePassword";
+import {IChangeEmail} from "src/app/Models/IChangeEmail";
+import {IDeleteUser} from "src/app/Models/IDeleteUser";
+import {IChangePhrase} from "src/app/Models/IChangePhrase";
 
 
 @Injectable({
@@ -15,19 +15,19 @@ import {ChangePhrase} from "src/app/Models/ChangePhrase";
 export class UserService {
   readonly APIUrl=new ApiConfig().ApiUrl;
   constructor(private http:HttpClient) { }
-  createUser(user: UserRegister):Observable<UserRegister>{
-    return this.http.put<UserRegister>(this.APIUrl + 'Api/User',user);
+  createUser(user: IUserRegister):Observable<IUserRegister>{
+    return this.http.put<IUserRegister>(this.APIUrl + 'Api/User',user);
   }
-  changePassword(user: ChangePassword):Observable<any>{
+  changePassword(user: IChangePassword):Observable<any>{
     return this.http.patch<any>(this.APIUrl + 'Api/User',user);
   }
-  changeEmail(data:ChangeEmail):Observable<any>{
+  changeEmail(data:IChangeEmail):Observable<any>{
     return this.http.patch<any>(this.APIUrl + 'Api/User',data);
   }
-  deleteUser(data:DeleteUser):Observable<any>{
+  deleteUser(data:IDeleteUser):Observable<any>{
     return this.http.post<any>(this.APIUrl + 'Api/user', data)
   }
-  changePhrase(data:ChangePhrase):Observable<any>{
+  changePhrase(data:IChangePhrase):Observable<any>{
     return this.http.patch<any>(this.APIUrl + 'Api/User',data);
   }
 

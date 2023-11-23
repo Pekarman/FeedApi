@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UserRegister} from 'src/app/Models/UserRegister';
+import {IUserRegister} from 'src/app/Models/IUserRegister';
 import {AuthService} from 'src/app/services/auth.service';
 import {SessionService} from 'src/app/services/session.service';
 import {UserService} from 'src/app/services/user.service';
@@ -81,14 +81,14 @@ export class RegisterComponent implements OnInit {
 
     if (!this.myForm.valid) return;
 
-    var user = new UserRegister(
-      this.myForm.controls.firstName.value,
-      this.myForm.controls.lastName.value,
-      this.myForm.controls.userName.value,
-      this.myForm.controls.email.value,
-      this.myForm.controls.password.value,
-      this.myForm.controls.phrase.value
-    );
+    const user: IUserRegister = {
+      firstName: this.myForm.controls.firstName.value,
+      lastName: this.myForm.controls.lastName.value,
+      username: this.myForm.controls.userName.value,
+      email: this.myForm.controls.email.value,
+      password: this.myForm.controls.password.value,
+      phrase: this.myForm.controls.phrase.value
+    }
 
     this.userService.createUser(user)
       .subscribe((response: any) => {

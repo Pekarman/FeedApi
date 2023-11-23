@@ -4,7 +4,7 @@ import {AuthService} from "src/app/services/auth.service";
 import {SessionService} from "src/app/services/session.service";
 import {UserService} from "src/app/services/user.service";
 import {Router} from "@angular/router";
-import {DeleteUser} from "src/app/Models/DeleteUser";
+import {IDeleteUser} from "src/app/Models/IDeleteUser";
 
 @Component({
   selector: 'app-delete-user',
@@ -12,7 +12,7 @@ import {DeleteUser} from "src/app/Models/DeleteUser";
   styleUrls: ['./delete-user.component.scss']
 })
 export class DeleteUserComponent implements OnInit {
-localePath:string = 'Pages/UserSettings/DeleteUsers/'
+  localePath:string = 'Pages/UserSettings/DeleteUsers/'
   locale:any = '';
   myForm = new FormGroup({
     password: new FormControl('', [Validators.required]),
@@ -24,10 +24,14 @@ localePath:string = 'Pages/UserSettings/DeleteUsers/'
   invalidPhraseError: boolean = false;
   constructor(private userService: UserService, private sessionService: SessionService, private router: Router) { }
   onSubmit(form: FormGroup) {
-    const data = new DeleteUser(this.locale?.user?.username, this.myForm.controls.password.value)
-   this.userService.deleteUser(data).subscribe(response => {
-     console.log(response)
-   })
+    const data: IDeleteUser = {
+      username: this.locale?.user?.username,
+      password: form.controls.password.value
+    }
+
+    this.userService.deleteUser(data).subscribe(response => {
+      console.log(response)
+    })
   }
   validateForm(form: FormGroup) {
     this.invalidEmailError = !form.controls.email.valid;

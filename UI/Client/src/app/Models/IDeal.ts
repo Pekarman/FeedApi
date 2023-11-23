@@ -1,4 +1,4 @@
-import { Asset } from "./Asset";
+import { IAsset } from "./IAsset";
 
 export interface IDeal{
     id: number;
@@ -16,5 +16,5 @@ export interface IDeal{
     isChecked: boolean;
     statusId: number;
     userId: number;
-    assets : Asset[];
+    assets : IAsset[];
 }

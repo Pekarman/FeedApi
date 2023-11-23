@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "src/app/services/auth.service";
 import {SessionService} from "src/app/services/session.service";
-import {ChangePassword} from "src/app/Models/ChangePassword";
 import {UserService} from "src/app/services/user.service";
 import {Router} from "@angular/router";
-import {ChangeEmail} from "src/app/Models/ChangeEmail";
+import {IChangeEmail} from "src/app/Models/IChangeEmail";
 
 @Component({
   selector: 'app-user-email-change',
@@ -30,9 +28,11 @@ export class UserEmailChangeComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    alert(1)
-    const data = new ChangeEmail(this.myForm.controls.password.value, this.myForm.controls.email.value, this.locale?.user?.username);
-    debugger
+    const data: IChangeEmail = {
+      password: form.controls.password.value,
+      email: form.controls.email.value,
+      username: this.locale?.user?.username
+    }
     this.userService.changeEmail(data).subscribe(response => {
       debugger
       if (response.value) {
@@ -47,7 +47,6 @@ export class UserEmailChangeComponent implements OnInit {
       this.responseError = '';
     }, 3000)
 
-
   }
 
   validateForm(form: FormGroup) {
@@ -59,8 +58,4 @@ export class UserEmailChangeComponent implements OnInit {
   ngOnInit(): void {
     this.locale = this.sessionService.getSession();
   }
-
-  protected readonly FormControl = FormControl;
-
-
 }
