@@ -113,8 +113,9 @@
 margin-left: 13px;
 }
 .auctionBlock{
-  height: 200px;
+
   width: 250px;
+  max-height: 530px;
   margin-top: 50px;
   margin-left: 100px;
   border: 1px solid black;
@@ -123,6 +124,11 @@ margin-left: 13px;
 .inputGroup{
   text-align: center;
   padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.inputGroup .endTimeInput{
+  width: 230px;
 }
 
 .auctionBlock h3{
