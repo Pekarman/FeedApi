@@ -36,6 +36,13 @@ export class LocalizationService {
     keys.forEach(key => {
       item = item[key];
     });
+
+    if (args?.length > 0) {
+      args.forEach((arg: string) => {
+        var replaceItem = this.translate(arg, null);
+        item = (item as string).replace(/{(\d+)}/g, replaceItem);
+      });
+    } 
     
     return item;
   }

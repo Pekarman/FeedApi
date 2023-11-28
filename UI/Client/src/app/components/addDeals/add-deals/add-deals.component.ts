@@ -35,8 +35,9 @@ export class AddDealsComponent implements OnInit {
   allValues = Object.values(CategoryEnum).filter(el => el !== Number(el));
   visibilityPriceBuyNow: boolean = false;
 
-  localePath:string ='Pages/AddDeals/'
-  localePathError:string ='Pages/AddDeals/AddDealsErrors/'
+  localePath: string ='Pages/AddDeals/'
+  ValidationRequiredError: string ='Errors/ValidationErrors/FieldIsRequiredError'
+
   constructor(
     private readonly dealService: DealService,
     private readonly sessionServise: SessionService
@@ -55,7 +56,8 @@ export class AddDealsComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-debugger
+    debugger
+    if (form.invalid) return;
     let durationTime = form.controls.startTime.value;
 
     let [hours, minutes] = durationTime.split(':').map((time: any) => Number(time));

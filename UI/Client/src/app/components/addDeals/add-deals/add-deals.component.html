@@ -10,105 +10,105 @@
     </div>
   </div>
  <div class="prodName">
-   <label>{{ localePath + 'ProdName' | translate : localePath }}</label>
+   <label>{{ localePath + 'ProdName' | translate }}</label>
    <input formControlName="prodName" type="text"required>
    <div *ngIf="getControl('prodName').errors && getControl('prodName').touched" style="color: red">
-     <p>{{ localePathError + 'ProdNameError' | translate : localePathError }}</p>
+     <p>{{ ValidationRequiredError | translate : localePath + 'ProdName' }}</p>
    </div>
  </div>
   <div class="descriptionBlock">
     <div class="textAreaContainer">
-      <label>{{ localePath + 'ShortDescription' | translate : localePath }}</label>
+      <label>{{ localePath + 'ShortDescription' | translate }}</label>
       <textarea formControlName="shortDescription"></textarea>
       <div *ngIf="getControl('shortDescription').errors && getControl('shortDescription').touched" style="color: red">
-        <p >{{ localePathError + 'ShortDescriptionError' | translate : localePathError }}</p>
+        <p >{{ ValidationRequiredError | translate : localePath + 'ShortDescription' }}</p>
       </div>
     </div>
     <div class="textAreaContainer">
-      <label>{{ localePath + 'LongDescription' | translate : localePath }}</label>
+      <label>{{ localePath + 'LongDescription' | translate }}</label>
       <textarea formControlName="longDescription"></textarea>
       <div *ngIf="getControl('longDescription').errors && getControl('longDescription').touched" style="color: red">
-        <p >{{ localePathError + 'LongDescription' | translate : localePathError }}</p>
+        <p >{{ ValidationRequiredError | translate : localePath + 'LongDescription' }}</p>
       </div>
     </div>
   </div>
   <div class="dataInputContainer">
     <div class="selectContent">
-      <label>{{ localePath + 'Category' | translate : localePath }}</label>
+      <label>{{ localePath + 'Category' | translate }}</label>
       <select formControlName="category">
         <option *ngFor="let option of allValues; let i = index" [value]="i">{{option}}</option>
       </select>
       <div *ngIf="getControl('category').value !== '0' && getControl('category').value !== '1' && getControl('category').value !== '2' && getControl('category').value !== '3' && getControl('category').touched" style="color: red;">
-        <p>{{ localePathError + 'CategoryError' | translate : localePathError }}</p>
+        <p>{{ ValidationRequiredError | translate : localePath + 'Category' }}</p>
       </div>
     </div>
 
   </div>
   <div class="allInputs">
     <div class="labelInputs">
-      <label>{{localePath + 'PartNumber' | translate : localePath }}</label>
+      <label>{{localePath + 'PartNumber' | translate }}</label>
       <input formControlName="partNumber"/>
       <div *ngIf="getControl('partNumber').errors && getControl('partNumber').touched" style="color: red">
-        <p >{{ localePathError + 'PartNumber' | translate : localePathError }}</p>
+        <p >{{ ValidationRequiredError | translate : localePath + 'PartNumber' }}</p>
       </div>
     </div>
     <div class="labelInputs">
-      <label>{{localePath + 'Uom' | translate : localePath }}</label>
+      <label>{{localePath + 'Uom' | translate }}</label>
       <input formControlName="uom"/>
       <div *ngIf="getControl('uom').errors && getControl('uom').touched" style="color: red">
-        <p >{{ localePathError + 'UomError' | translate : localePathError }}</p>
+        <p >{{ ValidationRequiredError | translate : localePath + 'Uom' }}</p>
       </div>
     </div>
     <div class="labelInputs">
-      <label>{{localePath + 'Quantity' | translate : localePath }}</label>
+      <label>{{localePath + 'Quantity' | translate }}</label>
       <input type="number" formControlName="quantity"/>
       <div *ngIf="getControl('quantity').errors && getControl('quantity').touched" style="color: red">
-        <p >{{ localePathError + 'QuantityError' | translate : localePathError }}</p>
+        <p >{{ ValidationRequiredError | translate : localePath + 'Quantity' }}</p>
       </div>
     </div>
   </div>
   <div class="canBuyNow">
-    <label>{{localePath + 'CanBuyNow' | translate : localePath }}</label>
+    <label>{{localePath + 'CanBuyNow' | translate }}</label>
     <input type="checkbox" class="checkbox" formControlName="canBuyNow" (change)="togglePriceBuyNow()"/>
     <div *ngIf="visibilityPriceBuyNow">
-      <label>{{localePath + 'PriceBuyNow' | translate : localePath }}</label>
+      <label>{{localePath + 'PriceBuyNow' | translate }}</label>
       <input class="label" formControlName="priceBuyNow" type="number" />
       <div *ngIf=" visibilityPriceBuyNow && getControl('priceBuyNow').errors && getControl('priceBuyNow').touched" style="color: red">
-        <p >{{ localePathError + 'PriceBuyNowError' | translate : localePathError }}</p>
+        <p >{{ ValidationRequiredError | translate : localePath + 'PriceBuyNow' }}</p>
       </div>
     </div>
   </div>
   <div class="auctionBlock">
-    <h3>{{localePath + 'Auction' | translate : localePath }}</h3>
+    <h3>{{localePath + 'Auction' | translate }}</h3>
     <div class="inputGroup">
-      <label>{{localePath + 'StartTime' | translate : localePath }}</label>
+      <label>{{localePath + 'StartTime' | translate }}</label>
       <input type="time" formControlName="startTime"/>
       <div *ngIf="getControl('startTime').errors && getControl('startTime').touched" style="color: red">
-        <p >{{ localePathError + 'StartTimeError' | translate : localePathError }}</p>
+        <p >{{ ValidationRequiredError | translate : localePath + 'StartTime' }}</p>
       </div>
       <input type="date" formControlName="startDate"/>
       <div *ngIf="getControl('startDate').errors && getControl('startDate').touched" style="color: red">
-        <p >{{ localePathError + 'StartDateError' | translate : localePathError }}</p>
+        <p >{{ ValidationRequiredError | translate : localePath + 'StartTime' }}</p>
       </div>
     </div>
     <div class="inputGroup">
-      <label>{{localePath + 'AuctionDuration' | translate : localePath }}</label>
+      <label>{{localePath + 'AuctionDuration' | translate }}</label>
       <input class="endTimeInput" type="number" formControlName="duration">
       <div *ngIf="getControl('duration').errors && getControl('duration').touched" style="color: red">
-        <p >{{ localePathError + 'AuctionDurationError' | translate : localePathError }}</p>
+        <p >{{ ValidationRequiredError | translate : localePath + 'AuctionDuration' }}</p>
       </div>
     </div>
     <div class="inputGroup">
-      <label>{{localePath + 'MinimalBet' | translate : localePath }}</label>
+      <label>{{localePath + 'MinimalBet' | translate }}</label>
       <input class="endTimeInput" type="number" formControlName="minimalBet">
       <div *ngIf="getControl('minimalBet').errors && getControl('minimalBet').touched" style="color: red">
-        <p >{{ localePathError + 'MinimalBetError' | translate : localePathError }}</p>
+        <p >{{ ValidationRequiredError | translate : localePath + 'MinimalBet' }}</p>
       </div>
     </div>
   </div>
   <div class="buttonBlock">
-    <button>{{localePath + 'Cancel' | translate : localePath }}</button>
-    <button type="submit">{{localePath + 'Ok' | translate : localePath }}</button>
+    <button>{{localePath + 'Cancel' | translate }}</button>
+    <button type="submit">{{localePath + 'Ok' | translate }}</button>
   </div>
   </form>
 </div>

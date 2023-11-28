@@ -33,14 +33,14 @@
             }
         },
         "Logout" : "Logout",
-      "UserSettings" : {
-        "Title": "User settings",
-        "ChangeEmail": "Change email",
-        "ChangePassword": "Change password",
-        "ChangePhrase": "Change Phrase",
-        "DeleteUser": "Delete user",
-        "Ok": "Ok",
-        "Cancel": "Cancel",
+        "UserSettings" : {
+          "Title": "User settings",
+          "ChangeEmail": "Change email",
+          "ChangePassword": "Change password",
+          "ChangePhrase": "Change Phrase",
+          "DeleteUser": "Delete user",
+          "Ok": "Ok",
+          "Cancel": "Cancel",
 
         "ChangeEmailSettings" : {
           "Title" : "Email settings",
@@ -110,23 +110,7 @@
             "AuctionDuration": "Auction Duration(minutes)",
             "MinimalBet": "MinimalBet",
             "Ok": "Ok",
-            "Cancel": "Cancel",
-            "AddDealsErrors": {
-              "ProdNameError": "The Product Name field must be filled in",
-              "ShortDescriptionError": "The Short description field must be filled in",
-              "LongDescription": "The Long description field must be filled in",
-              "CategoryError": "The Category field must be filled in",
-              "PartNumber": "The Part Number field must be filled in",
-              "UomError": "The Uom field must be filled in",
-              "QuantityError": "The Quantity field must be filled in",
-              "CanBuyNowError": "The Can Buy Now field must be filled in",
-              "PriceBuyNowError": "The Price Buy Now field must be filled in",
-              "AuctionError": "The Auction field must be filled in",
-              "StartTimeError": "The Start Time field must be filled in",
-              "StartDateError": "The Start Date field must be filled in",
-              "AuctionDurationError": "The Auction Duration field must be filled in",
-              "MinimalBetError": "The MinimalBet field must be filled in"
-            }
+            "Cancel": "Cancel"
           }
 
     },
@@ -134,7 +118,10 @@
         "invalidEmailError" : "Invalid email format.",
         "invalidPasswordError" : "Password should consist of small/big letters, numbers and special symbols.",
         "passwordMatchesError" : "Password doesn't match.",
-        "phraseMatchesError" : "Secret phrase doesn't match."
+        "phraseMatchesError" : "Secret phrase doesn't match.",
+        "ValidationErrors": {
+          "FieldIsRequiredError" : "{0} is required."
+        }
     },
   "GoBack": "Back"
 
