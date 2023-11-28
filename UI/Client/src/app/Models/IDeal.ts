@@ -1,4 +1,5 @@
 import { IAsset } from "./IAsset";
+import {IBet} from "src/app/Models/IBet";
 
 export interface IDeal{
     id: number;
@@ -16,5 +17,6 @@ export interface IDeal{
     isChecked: boolean;
     statusId: number;
     userId: number;
+    bets: IBet[];
     assets : IAsset[];
 }

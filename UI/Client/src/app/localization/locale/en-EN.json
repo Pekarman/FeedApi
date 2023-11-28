@@ -94,6 +94,39 @@
             "UserLocale": "UserLocale",
             "TrackedDeals": "Tracked Deals"
 
+          },
+          "AddDeals": {
+            "ProdName": "Product Name",
+            "ShortDescription": "Short Description",
+            "LongDescription": "Long Description",
+            "Category": "Categories",
+            "PartNumber": "Part Number",
+            "Uom": "Uom",
+            "Quantity": "Quantity",
+            "CanBuyNow": "Can Buy Now",
+            "PriceBuyNow": "Price Buy Now",
+            "Auction": "Auction",
+            "StartTime": "Start Time",
+            "AuctionDuration": "Auction Duration(minutes)",
+            "MinimalBet": "MinimalBet",
+            "Ok": "Ok",
+            "Cancel": "Cancel",
+            "AddDealsErrors": {
+              "ProdNameError": "The Product Name field must be filled in",
+              "ShortDescriptionError": "The Short description field must be filled in",
+              "LongDescription": "The Long description field must be filled in",
+              "CategoryError": "The Category field must be filled in",
+              "PartNumber": "The Part Number field must be filled in",
+              "UomError": "The Uom field must be filled in",
+              "QuantityError": "The Quantity field must be filled in",
+              "CanBuyNowError": "The Can Buy Now field must be filled in",
+              "PriceBuyNowError": "The Price Buy Now field must be filled in",
+              "AuctionError": "The Auction field must be filled in",
+              "StartTimeError": "The Start Time field must be filled in",
+              "StartDateError": "The Start Date field must be filled in",
+              "AuctionDurationError": "The Auction Duration field must be filled in",
+              "MinimalBetError": "The MinimalBet field must be filled in"
+            }
           }
 
     },
