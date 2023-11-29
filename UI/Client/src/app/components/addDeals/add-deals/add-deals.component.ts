@@ -69,7 +69,7 @@ export class AddDealsComponent implements OnInit {
           prodName: response.productName,
           shortDescription: response.shortDesc,
           longDescription: response.longDesc,
-          category: response.categoryId && this.allValues[0],
+          category: response.categoryId || this.allValues[0],
           partNumber: response.partNumber,
           uom: response.uoM,
           quantity: response.quantity || 1,
@@ -88,7 +88,6 @@ export class AddDealsComponent implements OnInit {
   }
 
   togglePriceBuyNow() {
-    console.log(this.myForm.controls.category.value)
     this.visibilityPriceBuyNow = !this.visibilityPriceBuyNow
   }
 
