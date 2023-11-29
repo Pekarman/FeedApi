@@ -5,7 +5,6 @@ import {DealService} from "src/app/services/deal.service";
 import {IDeal} from "src/app/Models/IDeal";
 import {SessionService} from 'src/app/services/session.service';
 import {ActivatedRoute, Router} from "@angular/router";
-import {debounce} from "rxjs/operators";
 
 @Component({
   selector: 'app-add-deals',
@@ -56,9 +55,6 @@ export class AddDealsComponent implements OnInit {
   }
 
   fillForm() {
-    this.myForm.patchValue({
-      category: this.allValues[0]
-    });
     const id = this.route.snapshot.params.id as unknown as number;
     this.dealService.getDeal(id).subscribe(response => {
       if (response) {
@@ -68,15 +64,12 @@ export class AddDealsComponent implements OnInit {
         let durationFromStringToEndTime = String(response.endTime).split('').slice(11, 16).join('')
         let startTime = new Date(`${stringFromStartTimeToStartDate}T${stringFromStartTime}`);
         let endTime = new Date(`${stringFromStartTimeToStartDate}T${durationFromStringToEndTime}`);
-
         let differenceInMinutes = Math.floor((endTime.getTime() - startTime.getTime()) / (1000 * 60));
-
-
         this.myForm.patchValue({
           prodName: response.productName,
           shortDescription: response.shortDesc,
           longDescription: response.longDesc,
-          category: response.categoryId,
+          category: response.categoryId && this.allValues[0],
           partNumber: response.partNumber,
           uom: response.uoM,
           quantity: response.quantity || 1,
@@ -85,8 +78,7 @@ export class AddDealsComponent implements OnInit {
           startTime: stringFromStartTime,
           startDate: stringFromStartTimeToStartDate,
           duration: String(differenceInMinutes),
-          minimalBet: response.bets
-
+          minimalBet: response.bets,
         })
         if (response.canBuyNow) {
           this.togglePriceBuyNow()
@@ -96,6 +88,7 @@ export class AddDealsComponent implements OnInit {
   }
 
   togglePriceBuyNow() {
+    console.log(this.myForm.controls.category.value)
     this.visibilityPriceBuyNow = !this.visibilityPriceBuyNow
   }
 
@@ -107,13 +100,11 @@ export class AddDealsComponent implements OnInit {
     let [hours, minutes] = durationTime.split(':').map((time: any) => Number(time));
     const durationMinutes = parseInt(form.controls.duration.value) || 0;
     minutes += durationMinutes;
-
     if (minutes > 59) {
       const additionalHours = Math.floor(minutes / 60);
       hours += additionalHours;
       minutes %= 60;
     }
-
     const endDateTime = new Date(form.controls.startDate.value)
       .setUTCHours(hours, minutes);
 
@@ -140,13 +131,12 @@ export class AddDealsComponent implements OnInit {
       bets: [],
       assets: []
     };
-
      this.dealFlag ? this.dealService.changeDeal(deal).subscribe(response => {
         this.router.navigate([`deal/${response.id}`])
     })
       :
       this.dealService.createDeal(deal).subscribe(response => {
-        debugger
+        this.router.navigate([`deal/${response.id}`])
       })
   }
 
