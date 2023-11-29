@@ -10,12 +10,15 @@ export class BettingComponent implements OnInit {
 
   @Input() deal!: IDeal;
 
+  localePath: string = "Pages/DealPage/Betting/";
+
   constructor() { }
 
-  ngOnInit(): void {
-    console.log(this.deal);
-    debugger;
-  }
+  ngOnInit(): void {}
 
   buyNowClick() {}
+
+  makeBet() {}
+
+  addToWatchList() {}
 }

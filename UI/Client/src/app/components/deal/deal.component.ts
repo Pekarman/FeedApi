@@ -11,7 +11,7 @@ import { DealService } from 'src/app/services/deal.service';
 })
 export class DealComponent implements OnInit {
 
-  deal!: any;
+  deal!: IDeal;
   base64Image!: any;
 
   constructor(

@@ -74,44 +74,54 @@
           "Cancel": "Cancel"
         }
       },
-          "ProfilePage": {
-            "CommonInfo": "Common Info",
-            "AdditionalInfo": "Additional Info",
-            "YourDeals": "Your Deals",
-            "FirstName": "FirstName",
-            "LastName": "LastName",
-            "Email": "Email",
-            "UserName": "User Name",
-            "UserPhone": "Phone",
-            "UserType": "UserType",
-            "CompanyName": "CompanyName",
-            "PassportNumber": "PassportNumber",
-            "PayerRegNumber": "PayerRegNumber",
-            "BankAccount": "BankAccount",
-            "BankCode": "BankCode",
-            "Balance": "Balance",
-            "IsActive": "IsActive",
-            "UserLocale": "UserLocale",
-            "TrackedDeals": "Tracked Deals"
+        "ProfilePage": {
+          "CommonInfo": "Common Info",
+          "AdditionalInfo": "Additional Info",
+          "YourDeals": "Your Deals",
+          "FirstName": "FirstName",
+          "LastName": "LastName",
+          "Email": "Email",
+          "UserName": "User Name",
+          "UserPhone": "Phone",
+          "UserType": "UserType",
+          "CompanyName": "CompanyName",
+          "PassportNumber": "PassportNumber",
+          "PayerRegNumber": "PayerRegNumber",
+          "BankAccount": "BankAccount",
+          "BankCode": "BankCode",
+          "Balance": "Balance",
+          "IsActive": "IsActive",
+          "UserLocale": "UserLocale",
+          "TrackedDeals": "Tracked Deals"
 
-          },
-          "AddDeals": {
-            "ProdName": "Product Name",
-            "ShortDescription": "Short Description",
-            "LongDescription": "Long Description",
-            "Category": "Categories",
-            "PartNumber": "Part Number",
-            "Uom": "Uom",
-            "Quantity": "Quantity",
-            "CanBuyNow": "Can Buy Now",
-            "PriceBuyNow": "Price Buy Now",
-            "Auction": "Auction",
-            "StartTime": "Start Time",
-            "AuctionDuration": "Auction Duration(minutes)",
-            "MinimalBet": "MinimalBet",
-            "Ok": "Ok",
-            "Cancel": "Cancel"
+        },
+        "AddDeals": {
+          "ProdName": "Product Name",
+          "ShortDescription": "Short Description",
+          "LongDescription": "Long Description",
+          "Category": "Categories",
+          "PartNumber": "Part Number",
+          "Uom": "Uom",
+          "Quantity": "Quantity",
+          "CanBuyNow": "Can Buy Now",
+          "PriceBuyNow": "Price Buy Now",
+          "Auction": "Auction",
+          "StartTime": "Start Time",
+          "AuctionDuration": "Auction Duration(minutes)",
+          "MinimalBet": "MinimalBet",
+          "Ok": "Ok",
+          "Cancel": "Cancel"
+        },
+        "DealPage": {
+          "Betting": {
+            "PriceBuyNow": "Price buy now",
+            "CurrentBet": "Current bet",
+            "BuyNow": "Buy now",
+            "MakeBet": "Make a bet",
+            "AddToWatchList": "Add to my watch list",
+            "RemoveFromWatchList": "Remove from my watch list"
           }
+        }
 
     },
     "Errors" : {

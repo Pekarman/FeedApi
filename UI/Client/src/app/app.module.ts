@@ -32,6 +32,7 @@ import { DealListComponent } from './components/deal-list/deal-list.component';
 import { DealComponent } from './components/deal/deal.component';
 import { BettingComponent } from './components/betting/betting.component';
 import { AddDealsComponent } from './components/addDeals/add-deals/add-deals.component';
+import { UploadImagesComponent } from './components/upload-images/upload-images.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { AddDealsComponent } from './components/addDeals/add-deals/add-deals.com
     DealListComponent,
     DealComponent,
     BettingComponent,
-    AddDealsComponent
+    AddDealsComponent,
+    UploadImagesComponent
   ],
   imports: [
     BrowserModule,
