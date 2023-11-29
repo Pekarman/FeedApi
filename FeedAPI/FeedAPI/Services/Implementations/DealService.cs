@@ -22,6 +22,8 @@ namespace Services.Implementations
                     deals.ForEach(deal =>
                     {
                         deal.Assets = db.Assets.Where(i => i.DealId == deal.Id).ToList();
+                        deal.Bets = db.Bets.Where(b => b.DealId == deal.Id).ToList();
+                        deal.WatchDeals = db.WatchDeals.Where(w => w.DealId == deal.Id).ToList();
                     });
 
                     return deals;
@@ -38,8 +40,9 @@ namespace Services.Implementations
             {
                 await Task.Run(() => {
                     deal = db.Deals.Where(u => u.Id == id).FirstOrDefault();
-                    deal.Assets = db.Assets.Where(i => i.DealId == id).ToList();
+                    deal.Assets = db.Assets.Where(i => i.DealId == deal.Id).ToList();
                     deal.Bets = db.Bets.Where(b => b.DealId == deal.Id).ToList();
+                    deal.WatchDeals = db.WatchDeals.Where(w => w.DealId == deal.Id).ToList();
 
                     return deal;
                 });
@@ -98,6 +101,37 @@ namespace Services.Implementations
 
                 var result = await db.Deals.FindAsync(deal.Id);
                 return result;
+            }
+        }
+
+        public async Task<WatchDeal> AddWatchDealAsync(WatchDeal watchDeal)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                int id;
+                if (db.WatchDeals.Count() == 0) id = 1; else id = db.WatchDeals.Max(item => (int)item.Id + 1);
+
+                watchDeal.Id = id;
+                await db.WatchDeals.AddAsync(watchDeal);
+                await db.SaveChangesAsync();
+
+                var result = await db.WatchDeals.FindAsync(id);
+                return result;
+            }
+        }
+
+        public async Task<bool> DeleteWatchDealAsync(int id)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var watchDeal = db.WatchDeals.Where(w =>  w.Id == id).FirstOrDefault();
+
+                if (watchDeal == null) return false;
+
+                db.WatchDeals.Remove(watchDeal);
+                await db.SaveChangesAsync();
+
+                return true;
             }
         }
     }

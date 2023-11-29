@@ -1,5 +1,3 @@
-import { IAsset } from "./IAsset";
-
 export interface IBet{
   id: number;
   dealId: number;

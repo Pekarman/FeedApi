@@ -17,7 +17,7 @@ import {
 import {DeleteUserComponent} from "src/app/components/userSettings/delete-user/delete-user.component";
 import {ProfilePageComponent} from "src/app/components/profilePage/profile-page/profile-page.component";
 import {DealComponent} from './components/deal/deal.component';
-import {IsLogedInGuard} from "src/app/guards/is-loged-in.guard";
+import {IsLoggedInGuard} from "src/app/guards/is-logged-in.guard";
 import {AddDealsComponent} from "src/app/components/addDeals/add-deals/add-deals.component";
 
 const routes: Routes = [
@@ -27,14 +27,14 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: '', component: DashboardComponent},
   {path: 'deal/:id', component: DealComponent},
-  {path: 'userSettings', component: UserSettingsComponent, canActivate: [IsLogedInGuard]},
-  {path: 'userSettings/changeEmail', component: UserEmailChangeComponent, canActivate: [IsLogedInGuard]},
-  {path: 'userSettings/changePassword', component: UserPasswordChangeComponent, canActivate: [IsLogedInGuard]},
-  {path: 'userSettings/changePhrase', component: UserPhraseChangeComponent, canActivate: [IsLogedInGuard]},
-  {path: 'userSettings/deleteUser', component: DeleteUserComponent, canActivate: [IsLogedInGuard]},
-  {path: 'profilePage', component: ProfilePageComponent, canActivate: [IsLogedInGuard]},
-  {path: 'addDeal', component: AddDealsComponent},
-  {path: 'changeDeal/:id', component: AddDealsComponent},
+  {path: 'userSettings', component: UserSettingsComponent, canActivate: [IsLoggedInGuard]},
+  {path: 'userSettings/changeEmail', component: UserEmailChangeComponent, canActivate: [IsLoggedInGuard]},
+  {path: 'userSettings/changePassword', component: UserPasswordChangeComponent, canActivate: [IsLoggedInGuard]},
+  {path: 'userSettings/changePhrase', component: UserPhraseChangeComponent, canActivate: [IsLoggedInGuard]},
+  {path: 'userSettings/deleteUser', component: DeleteUserComponent, canActivate: [IsLoggedInGuard]},
+  {path: 'profilePage', component: ProfilePageComponent, canActivate: [IsLoggedInGuard]},
+  {path: 'addDeal', component: AddDealsComponent, canActivate: [IsLoggedInGuard]},
+  {path: 'changeDeal/:id', component: AddDealsComponent, canActivate: [IsLoggedInGuard]},
   {
     path: '**',
     redirectTo: '',

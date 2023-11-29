@@ -45,10 +45,13 @@ namespace Common.EntityFramework.Models
         public bool? CanBuyNow { get; set; }
 
         [Column("pricebuynow")]
-        public double? pricebuynow { get; set; }
+        public double? PriceBuyNow { get; set; }
 
         [Column("userid")]
         public int? UserId { get; set; }
+
+        [Column("startbet")]
+        public double? StartBet { get; set; }
 
         [Column("starttime")]
         public DateTime? StartTime { get; set; }
@@ -59,5 +62,7 @@ namespace Common.EntityFramework.Models
         public List<Bet> Bets { get; set; }
 
         public List<Asset> Assets { get; set; }
+
+        public List<WatchDeal> WatchDeals { get; set; }
     }
 }

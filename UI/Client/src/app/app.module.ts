@@ -16,7 +16,6 @@ import { SessionService } from './services/session.service';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LocalizationModule } from './localization/localization.module';
-import { JsonPipe } from '@angular/common';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UserSettingsComponent } from './components/userSettings/user-settings/user-settings.component';
 import { UserEmailChangeComponent } from './components/userSettings/user-email-change/user-email-change.component';

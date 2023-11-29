@@ -5,6 +5,7 @@ import {DealService} from "src/app/services/deal.service";
 import {IDeal} from "src/app/Models/IDeal";
 import {SessionService} from 'src/app/services/session.service';
 import {ActivatedRoute, Router} from "@angular/router";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-deals',
@@ -25,7 +26,7 @@ export class AddDealsComponent implements OnInit {
     startTime: new FormControl('', [Validators.required, Validators.minLength(1)]),
     startDate: new FormControl('', [Validators.required, Validators.minLength(1)]),
     duration: new FormControl('', [Validators.required, Validators.minLength(1)]),
-    minimalBet: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    startBet: new FormControl('', [Validators.required, Validators.minLength(1)]),
 
   });
 
@@ -65,6 +66,7 @@ export class AddDealsComponent implements OnInit {
         let startTime = new Date(`${stringFromStartTimeToStartDate}T${stringFromStartTime}`);
         let endTime = new Date(`${stringFromStartTimeToStartDate}T${durationFromStringToEndTime}`);
         let differenceInMinutes = Math.floor((endTime.getTime() - startTime.getTime()) / (1000 * 60));
+
         this.myForm.patchValue({
           prodName: response.productName,
           shortDescription: response.shortDesc,
@@ -74,11 +76,11 @@ export class AddDealsComponent implements OnInit {
           uom: response.uoM,
           quantity: response.quantity || 1,
           canBuyNow: response.canBuyNow || false,
-          priceBuyNow: response.pricebuynow || 0,
+          priceBuyNow: response.priceBuyNow || 0,
           startTime: stringFromStartTime,
           startDate: stringFromStartTimeToStartDate,
           duration: String(differenceInMinutes),
-          minimalBet: response.bets,
+          startBet: response.startBet,
         })
         if (response.canBuyNow) {
           this.togglePriceBuyNow()
@@ -86,14 +88,16 @@ export class AddDealsComponent implements OnInit {
       }
     })
   }
-
-  togglePriceBuyNow() {
-    this.visibilityPriceBuyNow = !this.visibilityPriceBuyNow
+  
+  onSubmit(form: FormGroup) {
+    this.processDeal(form);
   }
 
   processDeal(form: FormGroup) {
-    debugger
-    if (form.invalid) return;
+    if (form.invalid) {
+      form.markAllAsTouched();
+      return;
+    }
 
     let durationTime = form.controls.startTime.value;
     let [hours, minutes] = durationTime.split(':').map((time: any) => Number(time));
@@ -120,29 +124,27 @@ export class AddDealsComponent implements OnInit {
       uoM: form.controls.uom.value,
       quantity: form.controls.quantity.value || 1,
       partNumber: form.controls.partNumber.value,
-      pricebuynow: form.controls.priceBuyNow.value || 0,
+      priceBuyNow: form.controls.priceBuyNow.value || 0,
       canBuyNow: form.controls.canBuyNow.value || false,
       startTime: new Date(startDateTime),
       endTime: new Date(endDateTime),
       isChecked: false,
       statusId: 0,
       userId: this.sessionServise.getSession().userId,
-      bets: [],
-      assets: []
+      startBet: form.controls.startBet.value,
+      bets: null,
+      assets: null,
+      watchDeals: null,
     };
-     this.dealFlag ? this.dealService.changeDeal(deal).subscribe(response => {
-        this.router.navigate([`deal/${response.id}`])
-    })
-      :
-      this.dealService.createDeal(deal).subscribe(response => {
-        this.router.navigate([`deal/${response.id}`])
-      })
+
+    var subscription: Observable<IDeal> = this.dealFlag? this.dealService.changeDeal(deal) : this.dealService.createDeal(deal);
+
+    subscription.subscribe(deal => {
+      this.router.navigate([`deal/${deal.id}`]);
+    });
   }
 
-  onSubmit(form: FormGroup) {
-    this.processDeal(form);
+  togglePriceBuyNow() {
+    this.visibilityPriceBuyNow = !this.visibilityPriceBuyNow
   }
-
-
-
 }
