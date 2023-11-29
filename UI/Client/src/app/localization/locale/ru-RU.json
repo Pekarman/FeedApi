@@ -1,135 +1,136 @@
 {
-    "Pages" : {
-        "Header" : {
-            "title" : "Сегодня",
-            "dropdown" : {
-                "profile" : "Профиль",
-                "settings" : "Настройки",
-                "logout" : "Выйти"
-            }
-        },
-        "RegisterPage" : {
-            "title": "Зарегистрироваться",
-            "alreadyRegister" : "Уже зарегистрированы?",
-            "login": "Войти",
-            "fieldsNames" : {
-                "firstName" : "Имя",
-                "lastName" : " Фамилия",
-                "username" : "Имя пользователя",
-                "email" : "Электронная почта",
-                "password" : "Пароль",
-                "password2" : "Повторите пароль",
-                "phrase" : "Секретная фраза",
-                "phrase2" : "Повторите секретную фразу"
-            }
-        },
-        "LoginPage" : {
-            "title": "Войти",
-            "fieldsNames" : {
-                "email" : "Электронная почта",
-                "password" : "Пароль",
-                "phrase" : "Секретная фраза",
-                "rememberMe" : "Запомнить меня",
-              "forgotPassword": "Забыли пароль?"
-            }
-        },
-        "Logout" : "Выйти",
-      "UserSettings" : {
-        "Title": "Пользовательские настройки",
-        "ChangeEmail": "Изменить емаил",
-        "ChangePassword": "Изменить пароль",
-        "ChangePhrase": "Изменить фразу",
-        "DeleteUser": "Удалить пользователя",
-        "Ok": "Подтвердить",
-        "Cancel": "Отменить",
+  "Pages": {
+    "Header": {
+      "title": "Сегодня",
+      "dropdown": {
+        "profile": "Профиль",
+        "settings": "Настройки",
+        "logout": "Выйти"
+      }
+    },
+    "RegisterPage": {
+      "title": "Зарегистрироваться",
+      "alreadyRegister": "Уже зарегистрированы?",
+      "login": "Войти",
+      "fieldsNames": {
+        "firstName": "Имя",
+        "lastName": " Фамилия",
+        "username": "Имя пользователя",
+        "email": "Электронная почта",
+        "password": "Пароль",
+        "password2": "Повторите пароль",
+        "phrase": "Секретная фраза",
+        "phrase2": "Повторите секретную фразу"
+      }
+    },
+    "LoginPage": {
+      "title": "Войти",
+      "fieldsNames": {
+        "email": "Электронная почта",
+        "password": "Пароль",
+        "phrase": "Секретная фраза",
+        "rememberMe": "Запомнить меня",
+        "forgotPassword": "Забыли пароль?"
+      }
+    },
+    "Logout": "Выйти",
+    "UserSettings": {
+      "Title": "Пользовательские настройки",
+      "ChangeEmail": "Изменить емаил",
+      "ChangePassword": "Изменить пароль",
+      "ChangePhrase": "Изменить фразу",
+      "DeleteUser": "Удалить пользователя",
+      "Ok": "Подтвердить",
+      "Cancel": "Отменить",
 
-        "ChangeEmailSettings" : {
-          "Title": "Настройка почты",
-          "ChangeEmail": "Изменить емаил",
-          "Password": "Введите пароль",
-          "Ok": "Подтвердить",
-          "Cancel": "Отменить"
-        },
-        "ChangePasswordSettings": {
-          "Title": "Настройка пароля",
-          "OldPassword": "Введите старый пароль",
-          "NewPassword": "Введите новый пароль",
-          "ReplayPassword": "Повторите пароль",
-          "Ok": "Подтвердить",
-          "Cancel": "Отмена"
-        },
-        "ChangeSecretPhrase":{
-          "Title": "Настройка фразы",
-          "OldPhrase": "Введите старую фразу",
-          "NewPhrase": "Введите новую фразу",
-          "ReplayPhrase": "Повторите фразу",
-          "Ok": "Подтвердить",
-          "Cancel": "Отменить"
-        },
-        "DeleteUsers": {
-          "Title": "Удалить пользователя",
-          "Password": "Введите пароль",
-          "Phrase" : "Введите фразу",
-          "Ok": "Подтвердить",
-          "Cancel": "Отменить"
-        }
-      },
-      "ProfilePage": {
-        "CommonInfo": "Общая информация",
-        "AdditionalInfo": "Дополнительная информация",
-        "YourDeals": "Сделки",
-        "FirstName": "Имя",
-        "LastName": "Фамилия",
-        "Email": "Емаил",
-        "UserName": "Имя пользователя",
-        "UserPhone": "Телефон",
-        "UserType": "Тип пользователя",
-        "CompanyName": "Имя компании",
-        "PassportNumber": "Номер паспорта",
-        "PayerRegNumber": "Регистрационный номер плательщика",
-        "BankAccount": "Банковский счет",
-        "BankCode": "Код банка",
-        "Balance": "Баланс",
-        "IsActive": "Активен",
-        "UserLocale": "Язык",
-        "TrackedDeals": "Отслеживаемые сделки"
-      },
-      "AddDeals": {
-        "ProdName": "Имя продукта",
-        "ShortDescription": "Краткое описание",
-        "LongDescription": "Полное описание",
-        "Category": "Категории",
-        "PartNumber": "Артикул товара",
-        "Uom": "Единица измерения",
-        "Quantity": "Количество",
-        "CanBuyNow": "Купить сейчас",
-        "PriceBuyNow": "Цена при покупке",
-        "Auction": "Аукцион",
-        "StartTime": "Дата начала аукциона",
-        "AuctionDuration": "Конец аукциона(минуты)",
-        "MinimalBet": "Минимальная ставка",
+      "ChangeEmailSettings": {
+        "Title": "Настройка почты",
+        "ChangeEmail": "Изменить емаил",
+        "Password": "Введите пароль",
         "Ok": "Подтвердить",
         "Cancel": "Отменить"
       },
-      "DealPage": {
-        "Betting": {
-          "PriceBuyNow": "Цена при покупке сейчас",
-          "CurrentBet": "Текущая ставка",
-          "BuyNow": "Купить сейчас",
-          "MakeBet": "Сделать ставку",
-          "AddToWatchList": "Добавить в отслеживаемые сделки",
-          "RemoveFromWatchList": "Удалить из отслеживаемых сделок"
-        }
+      "ChangePasswordSettings": {
+        "Title": "Настройка пароля",
+        "OldPassword": "Введите старый пароль",
+        "NewPassword": "Введите новый пароль",
+        "ReplayPassword": "Повторите пароль",
+        "Ok": "Подтвердить",
+        "Cancel": "Отмена"
+      },
+      "ChangeSecretPhrase": {
+        "Title": "Настройка фразы",
+        "OldPhrase": "Введите старую фразу",
+        "NewPhrase": "Введите новую фразу",
+        "ReplayPhrase": "Повторите фразу",
+        "Ok": "Подтвердить",
+        "Cancel": "Отменить"
+      },
+      "DeleteUsers": {
+        "Title": "Удалить пользователя",
+        "Password": "Введите пароль",
+        "Phrase": "Введите фразу",
+        "Ok": "Подтвердить",
+        "Cancel": "Отменить"
+      }
     },
-    "Errors" : {
-        "invalidEmailError" : "Неверный формат почты.",
-        "invalidPasswordError" : "Пароль должен содержать прописные/строчные буквы, цифры и специальные символы.",
-        "passwordMatchesError" : "Пароль не совпадает.",
-        "phraseMatchesError" : "Секретная фраза не совпадает.",
-        "ValidationErrors": {
-          "FieldIsRequiredError" : "{0} обязательно для заполнения."
-        }
+    "ProfilePage": {
+      "CommonInfo": "Общая информация",
+      "AdditionalInfo": "Дополнительная информация",
+      "YourDeals": "Сделки",
+      "FirstName": "Имя",
+      "LastName": "Фамилия",
+      "Email": "Емаил",
+      "UserName": "Имя пользователя",
+      "UserPhone": "Телефон",
+      "UserType": "Тип пользователя",
+      "CompanyName": "Имя компании",
+      "PassportNumber": "Номер паспорта",
+      "PayerRegNumber": "Регистрационный номер плательщика",
+      "BankAccount": "Банковский счет",
+      "BankCode": "Код банка",
+      "Balance": "Баланс",
+      "IsActive": "Активен",
+      "UserLocale": "Язык",
+      "TrackedDeals": "Отслеживаемые сделки"
     },
-  "GoBack": "Назад"
+    "AddDeals": {
+      "ProdName": "Имя продукта",
+      "ShortDescription": "Краткое описание",
+      "LongDescription": "Полное описание",
+      "Category": "Категории",
+      "PartNumber": "Артикул товара",
+      "Uom": "Единица измерения",
+      "Quantity": "Количество",
+      "CanBuyNow": "Купить сейчас",
+      "PriceBuyNow": "Цена при покупке",
+      "Auction": "Аукцион",
+      "StartTime": "Дата начала аукциона",
+      "AuctionDuration": "Конец аукциона(минуты)",
+      "MinimalBet": "Минимальная ставка",
+      "Ok": "Подтвердить",
+      "Cancel": "Отменить",
+      "Save": "Сохранить"
+    },
+    "DealPage": {
+      "Betting": {
+        "PriceBuyNow": "Цена при покупке сейчас",
+        "CurrentBet": "Текущая ставка",
+        "BuyNow": "Купить сейчас",
+        "MakeBet": "Сделать ставку",
+        "AddToWatchList": "Добавить в отслеживаемые сделки",
+        "RemoveFromWatchList": "Удалить из отслеживаемых сделок"
+      }
+    },
+    "Errors": {
+      "invalidEmailError": "Неверный формат почты.",
+      "invalidPasswordError": "Пароль должен содержать прописные/строчные буквы, цифры и специальные символы.",
+      "passwordMatchesError": "Пароль не совпадает.",
+      "phraseMatchesError": "Секретная фраза не совпадает.",
+      "ValidationErrors": {
+        "FieldIsRequiredError": "{0} обязательно для заполнения."
+      }
+    },
+    "GoBack": "Назад"
   }
 }

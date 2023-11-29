@@ -17,11 +17,14 @@ export class DealService {
     return this.http.put<IDeal>(this.APIUrl + 'Api/Deal', deal);
   }
 
-  getAllDeals(): Observable<IDeal[]>{    
+  getAllDeals(): Observable<IDeal[]>{
     return this.http.get<IDeal[]>(this.APIUrl + 'Api/Deal');
   }
 
   getDeal(id: number): Observable<IDeal>{
     return this.http.get<IDeal>(this.APIUrl + `Api/Deal/${id}`);
+  }
+  changeDeal(deals:IDeal): Observable<IDeal>{
+    return this.http.post<IDeal>(this.APIUrl + `Api/Deal/changeDeal`, deals);
   }
 }

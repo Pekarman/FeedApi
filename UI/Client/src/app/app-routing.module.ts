@@ -34,6 +34,7 @@ const routes: Routes = [
   {path: 'userSettings/deleteUser', component: DeleteUserComponent, canActivate: [IsLogedInGuard]},
   {path: 'profilePage', component: ProfilePageComponent, canActivate: [IsLogedInGuard]},
   {path: 'addDeal', component: AddDealsComponent},
+  {path: 'changeDeal/:id', component: AddDealsComponent},
   {
     path: '**',
     redirectTo: '',

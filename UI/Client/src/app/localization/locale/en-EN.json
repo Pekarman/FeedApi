@@ -1,39 +1,39 @@
 {
     "Pages" : {
-        "Header" : {
-            "title" : "Today",
-            "dropdown" : {
-                "profile" : "Profile",
-                "settings" : "Settings",
-                "logout" : "Logout"
+      "Header": {
+        "title": "Today",
+        "dropdown": {
+          "profile": "Profile",
+          "settings": "Settings",
+          "logout": "Logout"
         },
-        "RegisterPage" : {
-            "title": "Register",
-            "alreadyRegister" : "Already registered?",
-            "login": "Login",
-            "fieldsNames" : {
-                "firstName" : "First Name",
-                "lastName" : " Last Name",
-                "username" : "Username",
-                "email" : "Email",
-                "password" : "Password",
-                "password2" : "Repeat your passswod",
-                "phrase" : "Secret Phrase",
-                "phrase2" : "Repeat secret phrase"
-            }
+        "RegisterPage": {
+          "title": "Register",
+          "alreadyRegister": "Already registered?",
+          "login": "Login",
+          "fieldsNames": {
+            "firstName": "First Name",
+            "lastName": " Last Name",
+            "username": "Username",
+            "email": "Email",
+            "password": "Password",
+            "password2": "Repeat your passswod",
+            "phrase": "Secret Phrase",
+            "phrase2": "Repeat secret phrase"
+          }
         },
-        "LoginPage" : {
-            "title": "Log in",
-            "fieldsNames" : {
-                "email" : "Email",
-                "password" : "Password",
-                "phrase" : "Secret phrase",
-                "rememberMe" : "Remember Me",
-              "forgotPassword": "Forgot Password?"
-            }
+        "LoginPage": {
+          "title": "Log in",
+          "fieldsNames": {
+            "email": "Email",
+            "password": "Password",
+            "phrase": "Secret phrase",
+            "rememberMe": "Remember Me",
+            "forgotPassword": "Forgot Password?"
+          }
         },
-        "Logout" : "Logout",
-        "UserSettings" : {
+        "Logout": "Logout",
+        "UserSettings": {
           "Title": "User settings",
           "ChangeEmail": "Change email",
           "ChangePassword": "Change password",
@@ -42,38 +42,38 @@
           "Ok": "Ok",
           "Cancel": "Cancel",
 
-        "ChangeEmailSettings" : {
-          "Title" : "Email settings",
-          "ChangeEmail": "Change email",
-          "Password": "Enter your password",
-          "Ok": "Ok",
-          "Cancel": "Cancel"
-        },
+          "ChangeEmailSettings": {
+            "Title": "Email settings",
+            "ChangeEmail": "Change email",
+            "Password": "Enter your password",
+            "Ok": "Ok",
+            "Cancel": "Cancel"
+          },
 
-        "ChangePasswordSettings": {
-          "Title" : "Password settings",
-          "OldPassword": "Please enter old password",
-          "NewPassword": "Please enter new password",
-          "ReplayPassword": "Please repeat password",
-          "Ok": "Ok",
-          "Cancel": "Cancel"
+          "ChangePasswordSettings": {
+            "Title": "Password settings",
+            "OldPassword": "Please enter old password",
+            "NewPassword": "Please enter new password",
+            "ReplayPassword": "Please repeat password",
+            "Ok": "Ok",
+            "Cancel": "Cancel"
+          },
+          "ChangeSecretPhrase": {
+            "Title": "Phrase settings",
+            "OldPhrase": "Please enter your old phrase",
+            "NewPhrase": "Please enter your new phrase",
+            "ReplayPhrase": "Replay your new phrase",
+            "Ok": "Ok",
+            "Cancel": "Cancel"
+          },
+          "DeleteUsers": {
+            "Title": "Delete users",
+            "Password": "Please enter password",
+            "Phrase": "Please enter phrase",
+            "Ok": "Ok",
+            "Cancel": "Cancel"
+          }
         },
-        "ChangeSecretPhrase":{
-          "Title" : "Phrase settings",
-          "OldPhrase": "Please enter your old phrase",
-          "NewPhrase": "Please enter your new phrase",
-          "ReplayPhrase": "Replay your new phrase",
-          "Ok": "Ok",
-          "Cancel": "Cancel"
-        },
-        "DeleteUsers": {
-          "Title" : "Delete users",
-          "Password": "Please enter password",
-          "Phrase" : "Please enter phrase",
-          "Ok": "Ok",
-          "Cancel": "Cancel"
-        }
-      },
         "ProfilePage": {
           "CommonInfo": "Common Info",
           "AdditionalInfo": "Additional Info",
@@ -110,7 +110,8 @@
           "AuctionDuration": "Auction Duration(minutes)",
           "MinimalBet": "MinimalBet",
           "Ok": "Ok",
-          "Cancel": "Cancel"
+          "Cancel": "Cancel",
+          "Save": "Save"
         },
         "DealPage": {
           "Betting": {
@@ -121,19 +122,17 @@
             "AddToWatchList": "Add to my watch list",
             "RemoveFromWatchList": "Remove from my watch list"
           }
-        }
+        },
+        "Errors": {
+          "invalidEmailError": "Invalid email format.",
+          "invalidPasswordError": "Password should consist of small/big letters, numbers and special symbols.",
+          "passwordMatchesError": "Password doesn't match.",
+          "phraseMatchesError": "Secret phrase doesn't match.",
+          "ValidationErrors": {
+            "FieldIsRequiredError": "{0} is required."
+          }
+        },
+        "GoBack": "Back"
 
-    },
-    "Errors" : {
-        "invalidEmailError" : "Invalid email format.",
-        "invalidPasswordError" : "Password should consist of small/big letters, numbers and special symbols.",
-        "passwordMatchesError" : "Password doesn't match.",
-        "phraseMatchesError" : "Secret phrase doesn't match.",
-        "ValidationErrors": {
-          "FieldIsRequiredError" : "{0} is required."
-        }
-    },
-  "GoBack": "Back"
-
-}
+      }
 }

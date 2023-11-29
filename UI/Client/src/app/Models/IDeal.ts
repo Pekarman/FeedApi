@@ -7,7 +7,7 @@ export interface IDeal{
     shortDesc: string;
     longDesc: string;
     categoryId: number;
-    uom: string;
+    uoM: string;
     quantity: number;
     partNumber: string;
     pricebuynow: number;
