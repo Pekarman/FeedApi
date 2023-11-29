@@ -38,7 +38,7 @@
       <select formControlName="category">
         <option *ngFor="let option of allValues; let i = index" [value]="i">{{option}}</option>
       </select>
-      <div *ngIf="getControl('category').value !== '0' && getControl('category').value !== '1' && getControl('category').value !== '2' && getControl('category').value !== '3' && getControl('category').touched" style="color: red;">
+      <div *ngIf="getControl('category').value === allValues && getControl('category').touched">
         <p>{{ ValidationRequiredError | translate : localePath + 'Category' }}</p>
       </div>
     </div>
@@ -106,10 +106,14 @@
       </div>
     </div>
   </div>
-  <div class="buttonBlock">
+  <div class="buttonBlock" *ngIf="!dealFlag">
     <button>{{localePath + 'Cancel' | translate }}</button>
     <button type="submit">{{localePath + 'Ok' | translate }}</button>
   </div>
+    <div class="buttonBlock" *ngIf="dealFlag">
+      <button>{{localePath + 'Cancel' | translate }}</button>
+      <button type="submit" >{{localePath + 'Save' | translate }}</button>
+    </div>
   </form>
 </div>
 

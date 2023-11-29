@@ -4,6 +4,8 @@ import {CategoryEnum} from "src/app/enums/CategoryEnum";
 import {DealService} from "src/app/services/deal.service";
 import {IDeal} from "src/app/Models/IDeal";
 import {SessionService} from 'src/app/services/session.service';
+import {ActivatedRoute, Router} from "@angular/router";
+import {debounce} from "rxjs/operators";
 
 @Component({
   selector: 'app-add-deals',
@@ -28,6 +30,8 @@ export class AddDealsComponent implements OnInit {
 
   });
 
+  public dealFlag: boolean = false;
+
   public getControl(controlName: string): FormControl {
     return this.myForm.controls[controlName] as FormControl;
   }
@@ -35,35 +39,73 @@ export class AddDealsComponent implements OnInit {
   allValues = Object.values(CategoryEnum).filter(el => el !== Number(el));
   visibilityPriceBuyNow: boolean = false;
 
-  localePath: string ='Pages/AddDeals/'
-  ValidationRequiredError: string ='Errors/ValidationErrors/FieldIsRequiredError'
+  localePath: string = 'Pages/AddDeals/'
+  ValidationRequiredError: string = 'Errors/ValidationErrors/FieldIsRequiredError'
 
   constructor(
     private readonly dealService: DealService,
-    private readonly sessionServise: SessionService
+    private readonly sessionServise: SessionService,
+    private route: ActivatedRoute,
+    private router:Router
   ) {
 
   }
 
   ngOnInit(): void {
+    this.fillForm()
+  }
+
+  fillForm() {
     this.myForm.patchValue({
       category: this.allValues[0]
     });
+    const id = this.route.snapshot.params.id as unknown as number;
+    this.dealService.getDeal(id).subscribe(response => {
+      if (response) {
+        this.dealFlag = true;
+        let stringFromStartTime = String(response.startTime).split("").slice(11, 16).join('');
+        let stringFromStartTimeToStartDate = String(response.startTime).split("").slice(0, 10).join('')
+        let durationFromStringToEndTime = String(response.endTime).split('').slice(11, 16).join('')
+        let startTime = new Date(`${stringFromStartTimeToStartDate}T${stringFromStartTime}`);
+        let endTime = new Date(`${stringFromStartTimeToStartDate}T${durationFromStringToEndTime}`);
+
+        let differenceInMinutes = Math.floor((endTime.getTime() - startTime.getTime()) / (1000 * 60));
+
+
+        this.myForm.patchValue({
+          prodName: response.productName,
+          shortDescription: response.shortDesc,
+          longDescription: response.longDesc,
+          category: response.categoryId,
+          partNumber: response.partNumber,
+          uom: response.uoM,
+          quantity: response.quantity || 1,
+          canBuyNow: response.canBuyNow || false,
+          priceBuyNow: response.pricebuynow || 0,
+          startTime: stringFromStartTime,
+          startDate: stringFromStartTimeToStartDate,
+          duration: String(differenceInMinutes),
+          minimalBet: response.bets
+
+        })
+        if (response.canBuyNow) {
+          this.togglePriceBuyNow()
+        }
+      }
+    })
   }
 
   togglePriceBuyNow() {
     this.visibilityPriceBuyNow = !this.visibilityPriceBuyNow
   }
 
-  onSubmit(form: FormGroup) {
+  processDeal(form: FormGroup) {
     debugger
     if (form.invalid) return;
+
     let durationTime = form.controls.startTime.value;
-
     let [hours, minutes] = durationTime.split(':').map((time: any) => Number(time));
-
     const durationMinutes = parseInt(form.controls.duration.value) || 0;
-
     minutes += durationMinutes;
 
     if (minutes > 59) {
@@ -75,20 +117,17 @@ export class AddDealsComponent implements OnInit {
     const endDateTime = new Date(form.controls.startDate.value)
       .setUTCHours(hours, minutes);
 
-
-
     var startTime = (form.controls.startTime.value as string).split(':');
     var startDateTime = new Date(form.controls.startDate.value)
       .setUTCHours(Number(startTime[0]), Number(startTime[1]));
 
-
     const deal: IDeal = {
-      id: 0,
+      id: this.dealFlag ? Number(this.route.snapshot.params.id) : 0,
       productName: form.controls.prodName.value,
       shortDesc: form.controls.shortDescription.value,
       longDesc: form.controls.longDescription.value,
       categoryId: form.controls.category.value,
-      uom: form.controls.uom.value,
+      uoM: form.controls.uom.value,
       quantity: form.controls.quantity.value || 1,
       partNumber: form.controls.partNumber.value,
       pricebuynow: form.controls.priceBuyNow.value || 0,
@@ -102,9 +141,19 @@ export class AddDealsComponent implements OnInit {
       assets: []
     };
 
-    this.dealService.createDeal(deal).subscribe(response => {
-      debugger
-      console.log(response);
+     this.dealFlag ? this.dealService.changeDeal(deal).subscribe(response => {
+        this.router.navigate([`deal/${response.id}`])
     })
+      :
+      this.dealService.createDeal(deal).subscribe(response => {
+        debugger
+      })
   }
+
+  onSubmit(form: FormGroup) {
+    this.processDeal(form);
+  }
+
+
+
 }
