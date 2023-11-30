@@ -2,14 +2,64 @@
     min-height: 10vh;
     background-color: lightgray;
 }
+.imageBlock{
+  border: 1px solid black;
+  height: 250px;
+  width: 200px;
+  margin-left: 40px;
+  margin-top: 20px;
+}
+.buttonBlock{
+  margin-left: 500px;
+  margin-top: -70px;
+  margin-bottom: 20px;
+  width: 100px;
+  button{
+    width: 150px;
+    height: 50px;
+    background-color: #018dc9;
+    color: white;
+    border: none;
+  }
+}
+.prodNameBlock{
+  margin-top: 5px;
+  margin-bottom: 20px;
 
-div {
-    &.content {
-        margin-top: 20px;
-        margin-left: 20px
-    }
+}
+.shortDescBlock{
+  margin-bottom: 20px;
+  max-width: 1000px;
+}
+.quantityBlock{
+  margin-bottom: 20px;
+}
+.ownerBlock{
+  margin-bottom: 20px;
+}
+.statusBlock{
+  margin-left: 300px;
+  margin-top: -140px;
+  margin-bottom: 100px;
 
-    &#bet-container {
-        // min-width: 200px;
-    }
- }
+}
+.partNumberBlock{
+  margin-left: 300px;
+  margin-top: -87px;
+}
+
+.longDescBlock{
+  margin-left: -220px;
+  margin-top: 20px;
+}
+.container{
+  margin-top: 10px;
+  margin-left: 10px;
+  max-width: 600px;
+}
+
+h3{
+  color:black;
+}
+
+

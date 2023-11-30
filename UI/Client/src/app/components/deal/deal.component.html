@@ -1,19 +1,41 @@
 <div id="header">
-    <app-header></app-header>
+  <app-header></app-header>
 </div>
 <div class="content row col-12">
     <div class="desktop row col-9">
-        <div class="col-3">
+        <div class="imageBlock">
             <img [src]="base64Image" alt="alt">
         </div>
-        <div class="col-9">
-            <div class="col-12">
-                <h3>{{deal?.productName}}</h3>
+        <div class="container">
+            <div class="prodNameBlock">
+                <h3>Product Name:</h3>
+              <p>{{deal.productName}}</p>
             </div>
-            <div class="col-12">
+          <div class="buttonBlock" *ngIf="deal.userId === userSession.getSession()?.userId">
+            <button (click)="redirectToChangeDeal()">Change Deal</button>
+          </div>
+            <div class="shortDescBlock">
+              <h3>Short Description: </h3>
                 <p class="desc">{{deal?.shortDesc}}</p>
             </div>
-            <div class="col-12">
+          <div class="quantityBlock">
+            <h3>Quantity: </h3>
+            <p>{{deal.quantity + deal.uoM}}</p>
+          </div>
+          <div class="ownerBlock">
+            <h3>Owner: </h3>
+            <p>{{deal.userId}}</p>
+          </div>
+          <div class="statusBlock">
+            <h3>Status: </h3>
+            <p>{{deal.statusId}}</p>
+          </div>
+          <div class="partNumberBlock">
+            <h3>Part Number: </h3>
+            <p>{{deal.partNumber}}</p>
+          </div>
+            <div class="longDescBlock">
+              <h3>Long Description: </h3>
                 <p class="desc">{{deal?.longDesc}}</p>
             </div>
         </div>
@@ -22,3 +44,4 @@
         <app-betting [deal]="deal"></app-betting>
     </div>
 </div>
+
