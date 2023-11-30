@@ -23,9 +23,9 @@ namespace Services.Implementations
 
                     users.ForEach(user =>
                     {
-                        //user.Deals = db.Deals.Where(d => d.UserId == user.Id).ToList();
-
                         user.UserType = db.UserTypes.Where(t => t.Id == user.UserTypeId).FirstOrDefault();
+                        user.Deals = db.Deals.Where(d => d.UserId == user.Id).ToList();
+                        user.WatchDeals = db.WatchDeals.Where(w => w.UserId == user.Id).ToList();
                     });
 
                     return users;
@@ -44,9 +44,9 @@ namespace Services.Implementations
                 await Task.Run(() => {
                     user = db.Users.Where(u => u.Id == id).FirstOrDefault();
 
-                    //user.Deals = db.Deals.Where(d => d.UserId == user.Id).ToList();
-
                     user.UserType = db.UserTypes.Where(t => t.Id == user.UserTypeId).FirstOrDefault();
+                    user.Deals = db.Deals.Where(d => d.UserId == user.Id).ToList();
+                    user.WatchDeals = db.WatchDeals.Where(w => w.UserId == user.Id).ToList();
 
                     return user;
                 });

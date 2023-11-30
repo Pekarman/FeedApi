@@ -61,6 +61,8 @@ namespace Common.EntityFramework.Models
 
         public List<Deal> Deals { get; set; }
 
+        public List<WatchDeal> WatchDeals { get; set; }
+
         public User() { }
 
         public User(int id, string username, int usertypeid)

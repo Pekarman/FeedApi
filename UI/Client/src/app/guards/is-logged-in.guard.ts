@@ -6,7 +6,7 @@ import {SessionService} from "src/app/services/session.service";
 @Injectable({
   providedIn: 'root'
 })
-export class IsLogedInGuard implements CanActivate {
+export class IsLoggedInGuard implements CanActivate {
   constructor(private session: SessionService, private route: Router) {
   }
   canActivate(

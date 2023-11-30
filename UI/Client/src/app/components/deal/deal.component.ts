@@ -11,7 +11,7 @@ import { DealService } from 'src/app/services/deal.service';
 })
 export class DealComponent implements OnInit {
 
-  deal!: any;
+  deal!: IDeal;
   base64Image!: any;
 
   constructor(
@@ -31,7 +31,7 @@ export class DealComponent implements OnInit {
   }
   
   renderImages(deal: IDeal) {
-    deal.assets.forEach((asset: any) => {      
+    deal.assets?.forEach((asset: any) => {      
       if (asset == undefined || asset.imageData == "") return;
       this.base64Image = this.domSanitizer.bypassSecurityTrustUrl("data:image/jpeg;base64, " + asset.imageData);
     });

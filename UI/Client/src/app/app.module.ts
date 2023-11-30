@@ -16,7 +16,6 @@ import { SessionService } from './services/session.service';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LocalizationModule } from './localization/localization.module';
-import { JsonPipe } from '@angular/common';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UserSettingsComponent } from './components/userSettings/user-settings/user-settings.component';
 import { UserEmailChangeComponent } from './components/userSettings/user-email-change/user-email-change.component';
@@ -32,6 +31,7 @@ import { DealListComponent } from './components/deal-list/deal-list.component';
 import { DealComponent } from './components/deal/deal.component';
 import { BettingComponent } from './components/betting/betting.component';
 import { AddDealsComponent } from './components/addDeals/add-deals/add-deals.component';
+import { UploadImagesComponent } from './components/upload-images/upload-images.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +56,8 @@ import { AddDealsComponent } from './components/addDeals/add-deals/add-deals.com
     DealListComponent,
     DealComponent,
     BettingComponent,
-    AddDealsComponent
+    AddDealsComponent,
+    UploadImagesComponent
   ],
   imports: [
     BrowserModule,

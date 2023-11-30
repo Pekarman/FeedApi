@@ -1,5 +1,6 @@
 import { IAsset } from "./IAsset";
-import {IBet} from "src/app/Models/IBet";
+import { IBet } from "./IBet";
+import { IWatchDeal } from "./IWatchDeal";
 
 export interface IDeal{
     id: number;
@@ -10,13 +11,15 @@ export interface IDeal{
     uoM: string;
     quantity: number;
     partNumber: string;
-    pricebuynow: number;
+    priceBuyNow: number;
     canBuyNow: boolean;
     startTime: Date;
     endTime: Date;
     isChecked: boolean;
     statusId: number;
     userId: number;
-    bets: IBet[];
-    assets : IAsset[];
+    startBet: number;
+    bets: IBet[] | null;
+    watchDeals: IWatchDeal[] | null;
+    assets : IAsset[] | null;
 }

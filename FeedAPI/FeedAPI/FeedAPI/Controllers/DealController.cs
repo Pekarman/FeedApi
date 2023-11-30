@@ -147,5 +147,61 @@ namespace FeedAPI.Controllers
 
             return new JsonResult($"Deal cannot be changed.");
         }
+
+        /// <summary>
+        /// Changes the deal.
+        /// </summary>
+        /// <param name="watchDeal">WatchDeal to change.</param>
+        /// <returns>Changed deal.</returns>
+        [HttpPost("addWatchDeal")]
+        public async Task<IActionResult> ChangeDealAsync(WatchDeal watchDeal)
+        {
+            try
+            {
+                WatchDeal result = await this.dealService.AddWatchDealAsync(watchDeal);
+                if (result != null)
+                {
+                    return this.Ok(result);
+                }
+            }
+            catch (ArgumentException e)
+            {
+                return new JsonResult(e.Message);
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
+
+            return new JsonResult($"WatchDeal cannot be added.");
+        }
+
+        /// <summary>
+        /// Deletes WatchDeal.
+        /// </summary>
+        /// <param name="watchDeal">WatchDeal to delete.</param>
+        /// <returns>true if success</returns>
+        [HttpPost("deleteWatchDeal")]
+        public async Task<IActionResult> DeleteWatchDealAsync(WatchDeal watchDeal)
+        {
+            try
+            {
+                bool result = await this.dealService.DeleteWatchDealAsync((int)watchDeal.Id);
+                if (result)
+                {
+                    return this.Ok(result);
+                }
+            }
+            catch (ArgumentException e)
+            {
+                return new JsonResult(e.Message);
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
+
+            return new JsonResult($"WatchDeal cannot be deleted.");
+        }
     }
 }

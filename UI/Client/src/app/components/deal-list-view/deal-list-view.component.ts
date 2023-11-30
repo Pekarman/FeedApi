@@ -26,7 +26,7 @@ export class DealListViewComponent implements OnInit {
   }
 
   renderImage() {
-    var asset = this.deal.assets.find((item: IAsset) => item.imageData !== "");
+    var asset = this.deal.assets?.find((item: IAsset) => item.imageData !== "");
     if (asset == undefined) return;
     this.base64Image = this.domSanitizer.bypassSecurityTrustUrl("data:image/jpeg;base64, " + asset.imageData);
   }

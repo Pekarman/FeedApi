@@ -99,10 +99,10 @@
       </div>
     </div>
     <div class="inputGroup">
-      <label>{{localePath + 'MinimalBet' | translate }}</label>
-      <input class="endTimeInput" type="number" formControlName="minimalBet">
-      <div *ngIf="getControl('minimalBet').errors && getControl('minimalBet').touched" style="color: red">
-        <p >{{ ValidationRequiredError | translate : localePath + 'MinimalBet' }}</p>
+      <label>{{localePath + 'StartBet' | translate }}</label>
+      <input class="endTimeInput" type="number" formControlName="startBet">
+      <div *ngIf="getControl('startBet').errors && getControl('startBet').touched" style="color: red">
+        <p >{{ ValidationRequiredError | translate : localePath + 'StartBet' }}</p>
       </div>
     </div>
   </div>

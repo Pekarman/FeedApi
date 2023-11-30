@@ -13,6 +13,8 @@ namespace Common.EntityFramework
 
         public DbSet<User> Users { get; set; } = null!;
 
+        public DbSet<WatchDeal> WatchDeals { get; set; } = null!;
+
         public DbSet<UserType> UserTypes { get; set; } = null!;
 
         public DbSet<PassData> PassData { get; set; } = null!;
