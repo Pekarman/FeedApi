@@ -45,14 +45,14 @@
     <p>{{ user.locale }}</p>
   </div>
 </div>
-<div class="blockForDeals" *ngIf="toggleInformationType === InformationType.YourDeals">
+<div class="block" *ngIf="toggleInformationType === InformationType.YourDeals">
      <div class="textContainerForDeals">
-       <app-deal-list></app-deal-list>
+       <app-deal-list [filter]="getUserIdFilter()"></app-deal-list>
      </div>
 </div>
-<div class="blockForDeals" *ngIf="toggleInformationType === InformationType.TrackedDeals">
+<div class="block" *ngIf="toggleInformationType === InformationType.TrackedDeals">
   <div class="textContainerForDeals">
-    <app-deal-list></app-deal-list>
+    <app-deal-list [filter]="getWatchUserIdFilter()"></app-deal-list>
   </div>
 </div>
 

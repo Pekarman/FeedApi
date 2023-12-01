@@ -73,12 +73,12 @@ namespace FeedAPI.Controllers
         /// </summary>
         /// <param name="userId">Requested deal id.</param>
         /// <returns>Requested deal.</returns>
-        [HttpPost]
-        public async Task<IActionResult> GetOwnerDealsAsync(int userId)
+        [HttpPost("getDealByFilter")]
+        public async Task<IActionResult> GetDealsByFilterAsync(DealFilter filter)
         {
             try
             {
-                List<Deal> deals = await this.dealService.GetOwnerDealsAsync(userId);
+                List<Deal> deals = await this.dealService.GetOwnerDealsAsync(filter);
                 if (deals != null)
                 {
                     return this.Ok(deals);
@@ -89,7 +89,7 @@ namespace FeedAPI.Controllers
                 return new JsonResult(e.Message);
             }
 
-            return new JsonResult($"Deal with owner id={userId} not found.");
+            return new JsonResult($"Deal with filter {filter} not found.");
         }
 
         /// <summary>

@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IDeal } from '../Models/IDeal';
 import { IWatchDeal } from '../Models/IWatchDeal';
+import { IDealListFilter } from '../components/deal-list/IDealListFilter';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,10 @@ export class DealService {
 
   getDeal(id: number): Observable<IDeal>{
     return this.http.get<IDeal>(this.APIUrl + `Api/Deal/${id}`);
+  }
+
+  getDealsByFilter(deal: IDealListFilter): Observable<IDeal[]>{
+    return this.http.post<IDeal[]>(this.APIUrl + `Api/Deal/getDealByFilter`, deal);
   }
 
   changeDeal(deal:IDeal): Observable<IDeal>{

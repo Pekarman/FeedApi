@@ -7,9 +7,12 @@ import { LocalizationService } from '../localization/localization.service';
 export class SessionService {
   private sessionKey = 'session';
 
+  userId!: number;
+
   constructor(private localizationService: LocalizationService) { }
 
   setSession(session: any): void {
+    this.userId = session.userId;
     this.localizationService.locale = session.locale;
     localStorage.setItem(this.sessionKey, JSON.stringify(session));
   }

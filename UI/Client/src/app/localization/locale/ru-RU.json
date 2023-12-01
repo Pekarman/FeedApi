@@ -36,7 +36,7 @@
     "Logout": "Выйти",
     "UserSettings": {
       "Title": "Пользовательские настройки",
-      "ChangeEmail": "Изменить емаил",
+      "ChangeEmail": "Изменить email",
       "ChangePassword": "Изменить пароль",
       "ChangePhrase": "Изменить фразу",
       "DeleteUser": "Удалить пользователя",
@@ -45,7 +45,7 @@
 
       "ChangeEmailSettings": {
         "Title": "Настройка почты",
-        "ChangeEmail": "Изменить емаил",
+        "ChangeEmail": "Изменить email",
         "Password": "Введите пароль",
         "Ok": "Подтвердить",
         "Cancel": "Отменить"
@@ -77,10 +77,10 @@
     "ProfilePage": {
       "CommonInfo": "Общая информация",
       "AdditionalInfo": "Дополнительная информация",
-      "YourDeals": "Сделки",
+      "YourDeals": "Мои сделки",
       "FirstName": "Имя",
       "LastName": "Фамилия",
-      "Email": "Емаил",
+      "Email": "Email",
       "UserName": "Имя пользователя",
       "UserPhone": "Телефон",
       "UserType": "Тип пользователя",

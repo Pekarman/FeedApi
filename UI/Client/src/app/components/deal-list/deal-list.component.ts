@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IDeal } from 'src/app/Models/IDeal';
 import { DealService } from 'src/app/services/deal.service';
+import { IDealListFilter } from './IDealListFilter';
 
 @Component({
   selector: 'app-deal-list',
@@ -10,6 +11,7 @@ import { DealService } from 'src/app/services/deal.service';
 export class DealListComponent implements OnInit {
 
   @Input() searchValue = '';
+  @Input() filter!: IDealListFilter;
 
   DealsList : IDeal[] = [];
 
@@ -20,6 +22,14 @@ export class DealListComponent implements OnInit {
   }
   
   refreshDealsList(){
+
+    if(this.filter) {
+      this.dealService.getDealsByFilter(this.filter).subscribe(data => {
+        this.DealsList = data;
+      });
+      return;
+    }      
+
     this.dealService.getAllDeals().subscribe(data => {
       this.DealsList = data;
     });

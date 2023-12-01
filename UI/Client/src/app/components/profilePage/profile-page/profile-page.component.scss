@@ -1,4 +1,6 @@
-
+#header {
+  min-height: 10vh;
+}
 
 .button-container {
   margin-left: 30px;
@@ -33,45 +35,41 @@
   margin-top: 20px;
   margin-left: 40px;
   height: 500px;
-  width: 640px;
-  background-color: lightgray;
-  margin-bottom: 30px;
-}
-.blockForDeals{
-  margin-top: 20px;
-  margin-left: 40px;
-  height: 500px;
   width: 90%;
   background-color: lightgray;
   margin-bottom: 30px;
 }
+
 .text {
   font-size: 18px;
   color: #333;
 }
 
 
-
 .content{
   margin-top: 15px;
 }
+
 .textContainer{
   margin: 20px 0 0 30px;
   display: grid;
   grid-template-columns: repeat(2, max-content);
   gap: 10px;
 }
+
 .textContainerForDeals{
-  margin: 20px 0 0 30px;
+  margin: 20px 0 0 0;
   display: grid;
   grid-template-columns: repeat(2, max-content);
   gap: 10px;
   width: 100%;
 }
+
 .textContainer p {
   margin-right: 200px;
   margin-top: 20px;
 }
+
 app-deal-list{
   margin-top: 20px;
 }

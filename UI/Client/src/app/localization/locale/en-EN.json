@@ -78,7 +78,7 @@
     "ProfilePage": {
       "CommonInfo": "Common Info",
       "AdditionalInfo": "Additional Info",
-      "YourDeals": "Your Deals",
+      "YourDeals": "My deals",
       "FirstName": "FirstName",
       "LastName": "LastName",
       "Email": "Email",
@@ -93,7 +93,7 @@
       "Balance": "Balance",
       "IsActive": "IsActive",
       "UserLocale": "UserLocale",
-      "TrackedDeals": "Tracked Deals"
+      "TrackedDeals": "Tracked deals"
 
     },
     "AddDeals": {
