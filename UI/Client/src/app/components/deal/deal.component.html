@@ -1,11 +1,13 @@
 <div id="header">
   <app-header></app-header>
 </div>
+
 <div class="content row col-12">
     <div class="desktop row col-9">
         <div class="imageBlock">
             <img [src]="base64Image" alt="alt">
         </div>
+
         <div class="container">
             <div class="prodNameBlock">
                 <h3>Product Name:</h3>
@@ -22,26 +24,28 @@
             <h3>Quantity: </h3>
             <p>{{deal.quantity + deal.uoM}}</p>
           </div>
-          <div class="ownerBlock">
-            <h3>Owner: </h3>
-            <p>{{deal.userId}}</p>
-          </div>
           <div class="statusBlock">
             <h3>Status: </h3>
             <p>{{deal.statusId}}</p>
+          </div>
+          <div class="grab">
+          <div class="ownerBlock">
+            <h3>Owner: </h3>
+            <p>{{deal.userId}}</p>
           </div>
           <div class="partNumberBlock">
             <h3>Part Number: </h3>
             <p>{{deal.partNumber}}</p>
           </div>
+          </div>
             <div class="longDescBlock">
               <h3>Long Description: </h3>
                 <p class="desc">{{deal?.longDesc}}</p>
             </div>
-        </div>
+      </div>
     </div>
-    <div id="bet-container" class="col-3">
-        <app-betting [deal]="deal"></app-betting>
-    </div>
+  <div id="bet-container" class="col-3">
+    <app-betting [deal]="deal"></app-betting>
+  </div>
 </div>
 

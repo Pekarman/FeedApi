@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {IDeal} from 'src/app/Models/IDeal';
 import {DealService} from 'src/app/services/deal.service';
 import {SessionService} from "src/app/services/session.service";
+import {DealStatusEnum} from "src/app/enums/DealStatus";
 
 @Component({
   selector: 'app-deal',
@@ -42,4 +43,6 @@ export class DealComponent implements OnInit {
       this.base64Image = this.domSanitizer.bypassSecurityTrustUrl("data:image/jpeg;base64, " + asset.imageData);
     });
   }
+
+  protected readonly DealStatusEnum = DealStatusEnum;
 }
