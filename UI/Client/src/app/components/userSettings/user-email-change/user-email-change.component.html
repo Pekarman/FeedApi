@@ -2,7 +2,11 @@
 <form  [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
   <h1>{{localePath + 'Title' | translate}}</h1>
   <app-labeled-input label="{{localePath + 'Password' | translate}}"     [control]="myForm.get('password')" fieldName="password"></app-labeled-input>
-  <app-labeled-input label="{{localePath + 'ChangeEmail' | translate}}"  [control]="myForm.get('email')" fieldName="email"></app-labeled-input>
+  <app-labeled-input label="{{localePath + 'ChangeEmail' | translate}}" 
+                    [control]="myForm.get('email')"
+                    fieldName="email"
+                    [isPasswordField]="false">
+  </app-labeled-input>
   <app-ok-cancel okText="{{localePath + 'Ok' | translate}}" cancelText="{{localePath + 'Cancel' | translate}}"></app-ok-cancel>
 </form>
 </div>

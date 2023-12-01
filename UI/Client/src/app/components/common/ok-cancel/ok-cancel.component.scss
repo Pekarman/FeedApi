@@ -11,10 +11,17 @@
   }
 
 }
-.btn{
-  width: 300px;
-  left: 700px;
+div.login-form__submit{
+
+  button {    
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 1px;
+    width: 40%;
+    height: 60px;
+  }
 }
+
 .ok-cancel-block{
-  margin-top: 40px;
+  margin-top: 20px;
 }

@@ -13,6 +13,7 @@ export class LabeledInputComponent implements OnInit {
   @Input() label: string = '';
   @Input() ngModel: any = '';
   @Input() control!: any;
+  @Input() isPasswordField: boolean = true;
 
 
   isShowPassword: boolean = true;
@@ -33,10 +34,7 @@ export class LabeledInputComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.control.valueChanges.subscribe((item: any) => {
-    //   var a = item;
-    //   debugger;
-    // });
+    
   }
 
 }
