@@ -8,11 +8,13 @@ export class SessionService {
   private sessionKey = 'session';
 
   userId!: number;
+  user!: any;
 
   constructor(private localizationService: LocalizationService) { }
 
   setSession(session: any): void {
     this.userId = session.userId;
+    this.user = session.user;
     this.localizationService.locale = session.locale;
     localStorage.setItem(this.sessionKey, JSON.stringify(session));
   }
