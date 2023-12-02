@@ -1,7 +1,7 @@
 <div class="login-form__input">
   <div class="form-Item">
     <label for="phrase">{{label}}</label>
-    <input [formControl]="control"  [type]="showPassword ? text : password" autocomplete="off" class="form-control form-control-lg"
+    <input [formControl]="control"  [type]="showPassword ? 'text' : 'password'" autocomplete="off" class="form-control form-control-lg"
            placeholder="" required>
     <span *ngIf="isPasswordField" class="eyeicon" (click)="togglePassword()">
       <ng-container *ngIf="showPassword; else hidePassword">
