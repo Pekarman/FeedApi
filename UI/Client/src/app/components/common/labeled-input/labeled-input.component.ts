@@ -11,30 +11,19 @@ import {SessionService} from "src/app/services/session.service";
 })
 export class LabeledInputComponent implements OnInit {
   @Input() label: string = '';
-  @Input() ngModel: any = '';
   @Input() control!: any;
   @Input() isPasswordField: boolean = true;
 
-
-  isShowPassword: boolean = true;
-  text: string = 'text';
-  password: string = 'password';
-
-  togglePassword() {
-    this.isShowPassword = !this.isShowPassword;
-  }
-  inputValue: string = '';
-
-  clearInput() {
-    this.inputValue = '';
-  }
+  showPassword: boolean = true;
 
   constructor() {
   }
 
-
   ngOnInit(): void {
-    
+    this.showPassword = !this.isPasswordField;
   }
 
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
 }

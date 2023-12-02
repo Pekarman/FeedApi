@@ -28,13 +28,14 @@ export class UserEmailChangeComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
+    this.validateForm(form);
+    if (!form.valid) return;
     const data: IChangeEmail = {
       password: form.controls.password.value,
       email: form.controls.email.value,
       username: this.locale?.user?.username
     }
     this.userService.changeEmail(data).subscribe(response => {
-      debugger
       if (response.value) {
         this.router.navigate(['/userSettings'], {
           state: {response: response}
