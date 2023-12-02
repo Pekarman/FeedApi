@@ -12,8 +12,10 @@ import {IDeleteUser} from "src/app/Models/IDeleteUser";
   styleUrls: ['./delete-user.component.scss']
 })
 export class DeleteUserComponent implements OnInit {
-  localePath:string = 'Pages/UserSettings/DeleteUsers/'
   locale:any = '';
+  localePath:string = 'Pages/UserSettings/DeleteUsers/'
+  responseError: string = '';
+
   myForm = new FormGroup({
     password: new FormControl('', [Validators.required]),
     phrase: new FormControl('', [Validators.required])
@@ -22,26 +24,36 @@ export class DeleteUserComponent implements OnInit {
   invalidEmailError: boolean = false;
   invalidPasswordError: boolean = false;
   invalidPhraseError: boolean = false;
+
   constructor(private userService: UserService, private sessionService: SessionService, private router: Router) { }
+  
+  ngOnInit(): void {
+    this.locale = this.sessionService.getSession();
+  }
   onSubmit(form: FormGroup) {
+    this.validateForm(form);
+    if (!form.valid) return;
     const data: IDeleteUser = {
       username: this.locale?.user?.username,
       password: form.controls.password.value
     }
 
     this.userService.deleteUser(data).subscribe(response => {
+      
+      if (response.value) {
+        this.router.navigate(['/userSettings'], {
+          state: {response: response}
+        });
+      } else {
+        this.responseError = response;
+      }
       console.log(response)
     })
   }
+
   validateForm(form: FormGroup) {
     this.invalidEmailError = !form.controls.email.valid;
     this.invalidPasswordError = !form.controls.password.valid;
     this.invalidPhraseError = !form.controls.phrase.valid;
   }
-
-
-  ngOnInit(): void {
-    this.locale = this.sessionService.getSession();
-  }
-
 }

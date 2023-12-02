@@ -19,6 +19,8 @@ namespace Services.Interfaces
 
         public Task<User> ChangeUserAsync(User user);
 
+        public Task<bool> ChangeEmailAsync(string username, string password, string email);
+
         public Task<bool> ChangePasswordAsync(string username, string oldPassword, string newPassword);
 
         public Task<bool> ChangeSecretPhraseAsync(string username, string oldPhrase, string newPhrase);

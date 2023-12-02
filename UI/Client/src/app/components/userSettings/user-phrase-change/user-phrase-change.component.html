@@ -14,6 +14,10 @@
                         [control]="myForm.get('replNewPhrase')"
                         fieldName="replNewPhrase"
                         ></app-labeled-input>
+                        <div *ngIf="phraseMatchesError" class="alert alert-error fade in mb-25"
+                            style="display:block;">
+                          <p>{{ 'Errors/phraseMatchesError' | translate }}</p>
+                        </div>
       <app-ok-cancel okText="{{localePath + 'Ok' | translate}}"
                     cancelText="{{localePath + 'Cancel' | translate}}"
                     ></app-ok-cancel>

@@ -11,9 +11,13 @@
                         fieldName="email"
                         [isPasswordField]="false"
                         ></app-labeled-input>
+                        <div *ngIf="invalidEmailError" class="alert alert-error fade in mb-25"
+                            style="display:block;">
+                          <p>{{'Errors/invalidEmailError' | translate}}</p>
+                        </div>
       <app-ok-cancel okText="{{localePath + 'Ok' | translate}}"
                     cancelText="{{localePath + 'Cancel' | translate}}"
-                    ></app-ok-cancel>        
+                    ></app-ok-cancel>
     </form>
   </div>
 </div>

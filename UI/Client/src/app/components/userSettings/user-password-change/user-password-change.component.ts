@@ -16,58 +16,55 @@ export class UserPasswordChangeComponent implements OnInit {
   localePath: string = "Pages/UserSettings/ChangePasswordSettings/"
   responseError: string = ''
 
-  constructor(private userService: UserService, private sessionService: SessionService, private router: Router) {
-
-  }
-
-  invalidEmailError: boolean = false;
   invalidPasswordError: boolean = false;
-  invalidPhraseError: boolean = false;
+  passwordMatchesError: boolean = false;
 
 
   myForm = new FormGroup({
     oldPassword: new FormControl('', [Validators.required, Validators.pattern('')]),
-    newPassword: new FormControl('', [Validators.required, Validators.pattern('')]),
+    newPassword: new FormControl('', [Validators.required, Validators.pattern('^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$')]),
     replNewPassword: new FormControl('', [Validators.required, Validators.pattern('')]),
   });
 
 
-  validateForm(form: FormGroup) {
-    this.invalidEmailError = !form.controls.email.valid;
-    this.invalidPasswordError = !form.controls.password.valid;
-    this.invalidPhraseError = !form.controls.phrase.valid;
-  }
-
-
-
-    onSubmit(form: FormGroup) {
-      var data: IChangePassword = {
-        oldPassword: form.controls.oldPassword.value,
-        newPassword: form.controls.newPassword.value,
-        username: this.locale.user.username,
-        isPassword: true
-      }
-
-      this.userService.changePassword(data).subscribe(response => {
-        if (response.value) {
-          this.router.navigate(['/userSettings'], {
-            state: { response: response } // Передача данных через state
-          });
-        } else {
-          this.responseError = response;
-        }
-      });
-      setTimeout(()=>{
-        this.responseError = '';
-      },3000)
-    }
-
-
-
+  constructor(
+    private userService: UserService,
+    private sessionService: SessionService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.locale = this.sessionService.getSession();
   }
+  
+  validateForm(form: FormGroup) {
+    this.invalidPasswordError = !form.controls.newPassword.valid;
+    this.passwordMatchesError = form.controls.newPassword.value !== form.controls.replNewPassword.value;
+  }
 
-  protected readonly FormControl = FormControl;
+  onSubmit(form: FormGroup) {
+
+    this.validateForm(form);
+    if (form.status == "INVALID") return;
+
+    var data: IChangePassword = {
+      oldPassword: form.controls.oldPassword.value,
+      newPassword: form.controls.newPassword.value,
+      username: this.locale.user.username,
+      isPassword: true
+    }
+
+    this.userService.changePassword(data).subscribe(response => {
+      if (response.value) {
+        this.router.navigate(['/userSettings'], {
+          state: { response: response }
+        });
+      } else {
+        this.responseError = response;
+      }
+    });
+    setTimeout(()=>{
+      this.responseError = '';
+    },3000)
+  }
 }

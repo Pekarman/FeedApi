@@ -150,6 +150,28 @@ namespace Services.Implementations
             }
         }
 
+        public async Task<bool> ChangeEmailAsync(string username, string password, string email)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                User user = db.Users.Where(u => u.Username == username).FirstOrDefault();
+                if (user == null) throw new ArgumentException($"User with name {username} is not exists.");
+
+                PassData passData = db.PassData.Where(p => p.UserId == user.Id).FirstOrDefault();
+                bool isMatch = BCrypt.Net.BCrypt.EnhancedVerify(password, passData.PassHash);
+
+                if (!isMatch) throw new ArgumentException("Password is incorrect.");
+
+                user.Email = email;
+
+                db.Users.Update(user);
+                await db.SaveChangesAsync();
+
+                return true;
+            }
+        }
+
+
         public async Task<bool> DeleteUserAsync(string username, string password)
         {
             using (ApplicationContext db = new ApplicationContext())

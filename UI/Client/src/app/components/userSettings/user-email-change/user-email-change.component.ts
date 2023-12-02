@@ -21,15 +21,13 @@ export class UserEmailChangeComponent implements OnInit {
   });
 
   invalidEmailError: boolean = false;
-  invalidPasswordError: boolean = false;
-  invalidPhraseError: boolean = false;
 
   constructor(private userService: UserService, private sessionService: SessionService, private router: Router) {
   }
 
   onSubmit(form: FormGroup) {
     this.validateForm(form);
-    if (!form.valid) return;
+    if (form.status == "INVALID") return;
     const data: IChangeEmail = {
       password: form.controls.password.value,
       email: form.controls.email.value,
@@ -52,8 +50,6 @@ export class UserEmailChangeComponent implements OnInit {
 
   validateForm(form: FormGroup) {
     this.invalidEmailError = !form.controls.email.valid;
-    this.invalidPasswordError = !form.controls.password.valid;
-    this.invalidPhraseError = !form.controls.phrase.valid;
   }
 
   ngOnInit(): void {

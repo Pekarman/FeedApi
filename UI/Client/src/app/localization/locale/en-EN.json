@@ -50,7 +50,6 @@
         "Ok": "Ok",
         "Cancel": "Cancel"
       },
-
       "ChangePasswordSettings": {
         "Title": "Password settings",
         "OldPassword": "Please enter old password",
