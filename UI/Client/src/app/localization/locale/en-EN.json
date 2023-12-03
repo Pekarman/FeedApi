@@ -133,5 +133,6 @@
       "FieldIsRequiredError": "{0} is required."
     }
   },
-  "GoBack": "Back"
+  "GoBack": "Back",
+  "Change": "Change"
 }

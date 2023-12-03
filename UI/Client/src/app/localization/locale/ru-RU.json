@@ -14,7 +14,7 @@
       "login": "Войти",
       "fieldsNames": {
         "firstName": "Имя",
-        "lastName": " Фамилия",
+        "lastName": "Фамилия",
         "username": "Имя пользователя",
         "email": "Электронная почта",
         "password": "Пароль",
@@ -48,7 +48,7 @@
         "ChangeEmail": "Изменить email",
         "Password": "Введите пароль",
         "Ok": "Подтвердить",
-        "Cancel": "Отменить"
+        "Cancel": "Отмена"
       },
       "ChangePasswordSettings": {
         "Title": "Настройка пароля",
@@ -64,7 +64,7 @@
         "NewPhrase": "Введите новую фразу",
         "ReplayPhrase": "Повторите фразу",
         "Ok": "Подтвердить",
-        "Cancel": "Отменить"
+        "Cancel": "Отмена"
       },
       "DeleteUsers": {
         "Title": "Удалить пользователя",
@@ -109,7 +109,7 @@
       "AuctionDuration": "Конец аукциона(минуты)",
       "StartBet": "Начальная ставка",
       "Ok": "Подтвердить",
-      "Cancel": "Отменить",
+      "Cancel": "Отмена",
       "Save": "Сохранить"
     },
     "DealPage": {
@@ -132,5 +132,6 @@
       "FieldIsRequiredError": "{0} обязательно для заполнения."
     }
   },
-  "GoBack": "Назад"
+  "GoBack": "Назад",
+  "Change": "Изменить"
 }

@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
     phrase: new FormControl('', [Validators.required, Validators.pattern('')]),
-    rememberMe: new FormControl('', [Validators.required]),
   });
 
   invalidEmailError: boolean = false;
@@ -26,6 +25,7 @@ export class LoginComponent implements OnInit {
 
   dataError: boolean = false;
   loginError: boolean = false;
+  errorText: string = "";
 
   isShowOrHideValueInputPassword: boolean = false;
   isShowOrHideValueInputPhrase: boolean = false;
@@ -45,11 +45,20 @@ export class LoginComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
     this.validateForm(form);
+    if (form.status == "INVALID") return;
     this.authService.login(form.controls.email.value, form.controls.password.value, form.controls.phrase.value)
       .subscribe((response: any) => {
-        this.sessionService.setSession(response);
-        this.router.navigate(['/']);
+        if (response.user) {
+          this.sessionService.setSession(response);
+          this.router.navigate(['/']);
+        } else {
+          this.loginError = true;
+          this.errorText = response;
+        }        
       });
+      setTimeout(() => {
+        this.loginError = false;
+      }, 5000);
   }
 
   togglePasswordVisibility() {

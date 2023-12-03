@@ -13,7 +13,7 @@ import {IChangeEmail} from "src/app/Models/IChangeEmail";
 export class UserEmailChangeComponent implements OnInit {
   locale: any;
   localePath: string = "Pages/UserSettings/ChangeEmailSettings/";
-  responseError: string = '';
+  responseErrorText: string = '';
 
   myForm = new FormGroup({
     password: new FormControl('', [Validators.required]),
@@ -21,6 +21,7 @@ export class UserEmailChangeComponent implements OnInit {
   });
 
   invalidEmailError: boolean = false;
+  responseError: boolean = false;
 
   constructor(private userService: UserService, private sessionService: SessionService, private router: Router) {
   }
@@ -39,12 +40,12 @@ export class UserEmailChangeComponent implements OnInit {
           state: {response: response}
         });
       } else {
-        this.responseError = response;
+        this.responseErrorText = response;
       }
     });
     setTimeout(() => {
-      this.responseError = '';
-    }, 3000)
+      this.responseError = false;
+    }, 5000)
 
   }
 

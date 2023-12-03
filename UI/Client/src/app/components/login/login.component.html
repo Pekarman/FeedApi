@@ -35,18 +35,13 @@
                    style="display:block;">
                 <p>{{  'Errors/phraseMatchesError' | translate : localePath }}</p>
               </div>
-              <div class="login-form__input">
-                <div class="checkbox">
-                  <input type="checkbox" data-val="true" id="rememberMe" name="rememberMe" formControlName="rememberMe"
-                         required>
-                  <label for="rememberMe">{{ localePath + 'fieldsNames/rememberMe' | translate : localePath }}</label>
-                </div>
-              </div>
-              <label id="error-message"></label>
               <div class="login-form__submit">
-                <button type="submit" class="btn btn-lg btn-block btn-primary"
-                        [disabled]="invalidEmailError || invalidPasswordError || invalidPhraseError">{{ localePath + 'title' | translate : localePath }}
+                <button type="submit" class="btn btn-lg btn-block btn-primary">{{ localePath + 'title' | translate : localePath }}
                 </button>
+              </div>
+              <div id="loginError" *ngIf="loginError" class="alert alert-error fade in mb-25"
+                   style="display:block;">
+                <p>{{ errorText }}</p>
               </div>
               <div class="login-form__forgot">
                 <a class="link" id="forgot-password"

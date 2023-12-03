@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationExtras, Router } from '@angular/router';
 import { IAsset } from 'src/app/Models/IAsset';
 import { IDeal } from 'src/app/Models/IDeal';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-deal-list-view',
@@ -12,12 +13,24 @@ import { IDeal } from 'src/app/Models/IDeal';
 export class DealListViewComponent implements OnInit {
 
   @Input() deal!: IDeal;
+  userId!: any;
 
   base64Image!: any;
 
-  constructor(private domSanitizer: DomSanitizer, private router: Router) { }
+  showChangeButton: boolean = false;
+
+  getChangeDealPath(): string {
+    return `changeDeal/${this.deal.id}`;
+  }
+
+  constructor(
+    private sessionService: SessionService,
+    private domSanitizer: DomSanitizer,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
+    this.showChangeButton = this.deal.userId == this.sessionService.getSession().userId;
     this.renderImage();
   }
 

@@ -1,9 +1,9 @@
-﻿using Common.EntityFramework.Models;
-using Microsoft.AspNetCore.Mvc;
-using Services.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Common.EntityFramework.Models;
+using Microsoft.AspNetCore.Mvc;
+using Services.Interfaces;
 
 namespace FeedAPI.Controllers
 {
@@ -142,7 +142,7 @@ namespace FeedAPI.Controllers
 
                 if (result)
                 {
-                    return this.Ok(new JsonResult("Password was changed."));
+                    return this.Ok(new JsonResult("Email was changed."));
                 }
             }
             catch (ArgumentException e)
@@ -154,12 +154,12 @@ namespace FeedAPI.Controllers
                 return new JsonResult(e.Message);
             }
 
-            return new JsonResult("Password cannot be changed.");
+            return new JsonResult("Email cannot be changed.");
         }
 
         // Delete user
         [HttpDelete("deleteUser")]
-        public async Task<IActionResult> DeleteUserAsync(DeleteUser user) 
+        public async Task<IActionResult> DeleteUserAsync(DeleteUser user)
         {
             try
             {
