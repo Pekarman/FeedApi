@@ -32,7 +32,7 @@ export class DealComponent implements OnInit {
   changeStatus(){
     const id = this.route.snapshot.params.id as unknown as number;
     this.dealService.updateStatusActive(id).subscribe(response => {
-      console.log(response)
+      this.deal = response;
     })
   }
 
@@ -50,10 +50,7 @@ export class DealComponent implements OnInit {
     });
 
   }
-  click(){
-    console.log(this.DealStatusEnum.Draft === this.deal.statusId)
-    console.log(this.statusEnum)
-  }
+
   redirectToChangeDeal() {
     this.router.navigate([`changeDeal/${this.deal.id}`])
   }
