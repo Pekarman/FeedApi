@@ -22,5 +22,7 @@ namespace Services.Interfaces
         public Task<WatchDeal> AddWatchDealAsync(WatchDeal watchDeal);
 
         public Task<bool> DeleteWatchDealAsync(int id);
+
+        public Task<Deal> MoveToActiveStatusAsync(int dealId);
     }
 }

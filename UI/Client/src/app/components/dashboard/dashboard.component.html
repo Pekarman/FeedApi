@@ -1,6 +1,16 @@
 <div id="header">
-  <app-header (textGhanged) = "changeSearchValue($event)"></app-header>
+  <app-header></app-header>
 </div>
-<div class="content">
-  <app-deal-list></app-deal-list>
+<div class="content row">
+  <div class="filters">
+  </div>
+  <div class="result">    
+    <div class="row searchBar">
+      <div class="col-9">
+        <input type="text" [(ngModel)]="searchValue"/>
+      </div>
+      <app-users-button label="{{'Find' | translate}}"></app-users-button>
+    </div>
+    <app-deal-list [searchValue]="searchValue"></app-deal-list>
+  </div>
 </div>

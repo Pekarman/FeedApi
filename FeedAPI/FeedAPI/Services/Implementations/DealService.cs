@@ -2,6 +2,7 @@
 using Common.EntityFramework.Models;
 using Common.Extensions;
 using Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -147,6 +148,22 @@ namespace Services.Implementations
                 await db.SaveChangesAsync();
 
                 return true;
+            }
+        }
+
+        public async Task<Deal> MoveToActiveStatusAsync(int dealId)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                Deal deal = db.Deals.Where(w => w.Id == dealId).FirstOrDefault();
+
+                if (deal == null) throw new ArgumentNullException($"Deal with dealId={dealId} is not exists");
+
+                deal.StatusId = 1;
+
+                await db.SaveChangesAsync();
+
+                return deal;
             }
         }
     }
