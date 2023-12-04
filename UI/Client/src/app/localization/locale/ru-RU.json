@@ -113,6 +113,14 @@
       "Save": "Сохранить"
     },
     "DealPage": {
+      "ProdName": "Имя продукта",
+      "ShortDescription": "Короткое описание",
+      "LongDescription": "Длинное описание",
+      "PartNumber": "Артикул товара",
+      "Quantity": "Количество",
+      "Status": "Статус",
+      "Owner": "Владелец",
+      "ChangeDeal": "Изменить дил",
       "Betting": {
         "PriceBuyNow": "Цена при покупке сейчас",
         "CurrentBet": "Текущая ставка",

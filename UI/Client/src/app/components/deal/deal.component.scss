@@ -3,9 +3,11 @@
   min-height: 10vh;
   background-color: lightgray;
 }
-.imageBlock{
-  margin: 50px 0  0 40px;
+
+.imageBlock {
+  margin: 50px 0 0 40px;
 }
+
 .container {
   margin-left: 30%;
   margin-top: -50px;
@@ -15,7 +17,8 @@
   flex-wrap: wrap;
 
 }
-.grab{
+
+.grab {
   display: flex;
   margin-left: -49%;
   margin-top: 80px;
@@ -27,11 +30,12 @@
   width: 100px;
 
   button {
-    width: 150px;
+    width: 120px;
     height: 50px;
     background-color: #018dc9;
     color: white;
     border: none;
+    margin-bottom: 10px;
   }
 }
 
@@ -43,7 +47,7 @@
 }
 
 .shortDescBlock {
-  margin-top: 20px;
+  //margin-top: 20px;
   margin-bottom: 20px;
   flex-shrink: 2;
 
@@ -60,13 +64,13 @@
 }
 
 .ownerBlock {
+  min-width: 240px;
   margin-bottom: 20px;
   margin-left: 40px;
   flex-shrink: 1;
 }
 
 .partNumberBlock {
-  margin-left: 180px;
   flex-shrink: 1;
 }
 
@@ -75,9 +79,10 @@
   flex-shrink: 1;
 }
 
-#bet-container{
+#bet-container {
   margin-top: 60px;
 }
+
 h3 {
   color: black;
 }

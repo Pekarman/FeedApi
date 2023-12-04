@@ -115,6 +115,15 @@
       "Save": "Save"
     },
     "DealPage": {
+      "ProdName": "Product Name",
+      "ShortDescription": "Short Description",
+      "LongDescription": "Long Description",
+      "PartNumber": "Part Number",
+      "Uom": "Uom",
+      "Quantity": "Quantity",
+      "Status": "Status",
+      "Owner": "Owner",
+      "ChangeDeal": "Изменить дил",
       "Betting": {
         "PriceBuyNow": "Price buy now",
         "CurrentBet": "Current bet",

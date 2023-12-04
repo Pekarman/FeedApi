@@ -6,6 +6,7 @@ import {DealService} from 'src/app/services/deal.service';
 import {SessionService} from "src/app/services/session.service";
 import {DealStatusEnum} from "src/app/enums/DealStatus";
 
+
 @Component({
   selector: 'app-deal',
   templateUrl: './deal.component.html',
@@ -15,7 +16,9 @@ export class DealComponent implements OnInit {
 
   deal!: IDeal;
   base64Image!: any;
-
+  localePath: string = 'Pages/DealPage/'
+  statusEnum = Object.values(DealStatusEnum).filter(el => el !== Number(el));
+  countStatus: string | DealStatusEnum = '';
   constructor(
     private domSanitizer: DomSanitizer,
     private route: ActivatedRoute,
@@ -23,20 +26,38 @@ export class DealComponent implements OnInit {
     private router: Router,
     public userSession: SessionService
   ) {
+
+  }
+
+  changeStatus(){
+    const id = this.route.snapshot.params.id as unknown as number;
+    this.dealService.updateStatusActive(id).subscribe(response => {
+      console.log(response)
+    })
   }
 
   ngOnInit(): void {
     var id = this.route.snapshot.params.id as unknown as number;
-
     this.dealService.getDeal(id).subscribe(deal => {
-
       this.deal = deal;
       this.renderImages(deal);
+
+      this.statusEnum.forEach((el, index) => {
+        if (this.deal.statusId === index){
+          this.countStatus = el;
+        }
+      });
     });
+
   }
-  redirectToChangeDeal(){
+  click(){
+    console.log(this.DealStatusEnum.Draft === this.deal.statusId)
+    console.log(this.statusEnum)
+  }
+  redirectToChangeDeal() {
     this.router.navigate([`changeDeal/${this.deal.id}`])
   }
+
   renderImages(deal: IDeal) {
     deal.assets?.forEach((asset: any) => {
       if (asset == undefined || asset.imageData == "") return;
@@ -45,4 +66,5 @@ export class DealComponent implements OnInit {
   }
 
   protected readonly DealStatusEnum = DealStatusEnum;
+  protected readonly status = status;
 }
