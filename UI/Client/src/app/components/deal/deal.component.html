@@ -1,24 +1,53 @@
 <div id="header">
-    <app-header></app-header>
+  <app-header></app-header>
 </div>
+
 <div class="content row col-12">
     <div class="desktop row col-9">
-        <div class="col-3">
+        <div class="imageBlock">
             <img [src]="base64Image" alt="alt">
         </div>
-        <div class="col-9">
-            <div class="col-12">
-                <h3>{{deal?.productName}}</h3>
+
+        <div class="container">
+            <div class="prodNameBlock">
+                <h3>{{localePath + 'ProdName' | translate}}</h3>
+              <p>{{deal?.productName}}</p>
             </div>
-            <div class="col-12">
+          <div class="buttonBlock">
+            <button *ngIf="deal?.userId === userSession.getSession()?.userId" (click)="redirectToChangeDeal()">{{localePath + 'ChangeDeal' | translate}}</button>
+            <button *ngIf="countStatus === 'Draft'" (click)="changeStatus()">Изменить статус</button>
+          </div>
+
+            <div class="shortDescBlock">
+              <h3>{{localePath + 'ShortDescription' | translate}}</h3>
                 <p class="desc">{{deal?.shortDesc}}</p>
             </div>
-            <div class="col-12">
+          <div class="quantityBlock">
+            <h3>{{localePath + 'Quantity' | translate}} </h3>
+            <p>{{deal?.quantity + deal.uoM}}</p>
+          </div>
+          <div class="statusBlock" >
+            <h3>{{localePath + 'Status' | translate}}</h3>
+            <p>{{countStatus}}</p>
+          </div>
+          <div class="grab">
+          <div class="ownerBlock">
+            <h3>{{localePath + 'Owner' | translate}}</h3>
+            <p>{{deal.userId}}</p>
+          </div>
+          <div class="partNumberBlock">
+            <h3>{{localePath + 'PartNumber' | translate}}</h3>
+            <p>{{deal.partNumber}}</p>
+          </div>
+          </div>
+            <div class="longDescBlock">
+              <h3>{{localePath + 'LongDescription' | translate}}</h3>
                 <p class="desc">{{deal?.longDesc}}</p>
             </div>
-        </div>
+      </div>
     </div>
-    <div id="bet-container" class="col-3">
-        <app-betting [deal]="deal"></app-betting>
-    </div>
+  <div id="bet-container" class="col-3">
+    <app-betting [deal]="deal"></app-betting>
+  </div>
 </div>
+

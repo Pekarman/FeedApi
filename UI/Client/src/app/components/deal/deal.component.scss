@@ -1,15 +1,89 @@
+
 #header {
-    min-height: 10vh;
-    background-color: lightgray;
+  min-height: 10vh;
+  background-color: lightgray;
 }
 
-div {
-    &.content {
-        margin-top: 20px;
-        margin-left: 20px
-    }
+.imageBlock {
+  margin: 50px 0 0 40px;
+}
 
-    &#bet-container {
-        // min-width: 200px;
-    }
- }
+.container {
+  margin-left: 30%;
+  margin-top: -50px;
+  max-width: 700px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+}
+
+.grab {
+  display: flex;
+  margin-left: -49%;
+  margin-top: 80px;
+}
+
+.buttonBlock {
+  margin-top: 10px;
+  margin-left: 250px;
+  width: 100px;
+
+  button {
+    width: 120px;
+    height: 50px;
+    background-color: #018dc9;
+    color: white;
+    border: none;
+    margin-bottom: 10px;
+  }
+}
+
+.prodNameBlock {
+  margin-top: 5px;
+  margin-bottom: 20px;
+  flex-shrink: 1;
+
+}
+
+.shortDescBlock {
+  margin-bottom: 20px;
+  flex-shrink: 2;
+
+}
+
+.quantityBlock {
+  margin-bottom: 20px;
+  flex-shrink: 1;
+}
+
+.statusBlock {
+  margin-left: 40px;
+  flex-shrink: 1;
+}
+
+.ownerBlock {
+  min-width: 240px;
+  margin-bottom: 20px;
+  margin-left: 40px;
+  flex-shrink: 1;
+}
+
+.partNumberBlock {
+  flex-shrink: 1;
+}
+
+.longDescBlock {
+  margin-top: 20px;
+  flex-shrink: 1;
+}
+
+#bet-container {
+  margin-top: 60px;
+}
+
+h3 {
+  color: black;
+}
+
+

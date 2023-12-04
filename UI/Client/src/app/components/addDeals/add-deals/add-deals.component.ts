@@ -6,6 +6,7 @@ import {IDeal} from "src/app/Models/IDeal";
 import {SessionService} from 'src/app/services/session.service';
 import {ActivatedRoute, Router} from "@angular/router";
 import { Observable } from 'rxjs';
+import {DealStatusEnum} from "src/app/enums/DealStatus";
 
 @Component({
   selector: 'app-add-deals',
@@ -46,7 +47,7 @@ export class AddDealsComponent implements OnInit {
     private readonly dealService: DealService,
     private readonly sessionServise: SessionService,
     private route: ActivatedRoute,
-    private router:Router
+    private router:Router,
   ) {
 
   }
@@ -88,7 +89,7 @@ export class AddDealsComponent implements OnInit {
       }
     })
   }
-  
+
   onSubmit(form: FormGroup) {
     this.processDeal(form);
   }
