@@ -205,11 +205,11 @@ namespace FeedAPI.Controllers
         }
 
         /// <summary>
-        /// Changes the deal.
+        /// Changes the deal status to active.
         /// </summary>
-        /// <param name="watchDeal">WatchDeal to change.</param>
+        /// <param name="dealId">Deal Id to change.</param>
         /// <returns>Changed deal.</returns>
-        [HttpPost("moveToActiveStatus")]
+        [HttpGet("moveToActiveStatus/{dealId}")]
         public async Task<IActionResult> MoveToActiveStatusAsync(int dealId)
         {
             try

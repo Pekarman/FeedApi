@@ -45,6 +45,6 @@ export class DealService {
   }
 
   updateStatusActive(dealId: number): Observable<IDeal> {
-    return this.http.post<IDeal>(this.APIUrl + `Api/Deal/moveToActiveStatus`, dealId)
+    return this.http.get<IDeal>(this.APIUrl + `Api/Deal/moveToActiveStatus/${dealId}`)
   }
 }

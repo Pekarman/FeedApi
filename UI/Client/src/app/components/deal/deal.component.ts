@@ -32,7 +32,9 @@ export class DealComponent implements OnInit {
   changeStatus(){
     const id = this.route.snapshot.params.id as unknown as number;
     this.dealService.updateStatusActive(id).subscribe(response => {
-      this.deal = response;
+      if (response.id) {
+        this.deal.statusId = response.statusId;
+      }      
     })
   }
 
