@@ -11,19 +11,20 @@ import { IDealListFilter } from '../components/deal-list/IDealListFilter';
 })
 export class DealService {
 
-  readonly APIUrl=new ApiConfig().ApiUrl;
+  readonly APIUrl = new ApiConfig().ApiUrl;
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  createDeal(deal: IDeal): Observable<IDeal>{
+  createDeal(deal: IDeal): Observable<IDeal> {
     return this.http.put<IDeal>(this.APIUrl + 'Api/Deal', deal);
   }
 
-  getAllDeals(): Observable<IDeal[]>{
+  getAllDeals(): Observable<IDeal[]> {
     return this.http.get<IDeal[]>(this.APIUrl + 'Api/Deal');
   }
 
-  getDeal(id: number): Observable<IDeal>{
+  getDeal(id: number): Observable<IDeal> {
     return this.http.get<IDeal>(this.APIUrl + `Api/Deal/${id}`);
   }
 
@@ -35,11 +36,15 @@ export class DealService {
     return this.http.post<IDeal>(this.APIUrl + `Api/Deal/changeDeal`, deal);
   }
 
-  addWatchDeal(watchDeal: IWatchDeal): Observable<IWatchDeal>{
+  addWatchDeal(watchDeal: IWatchDeal): Observable<IWatchDeal> {
     return this.http.post<IWatchDeal>(this.APIUrl + `Api/Deal/addWatchDeal`, watchDeal)
   }
 
-  deleteWatchDeal(watchDeal: IWatchDeal):Observable<boolean>{
+  deleteWatchDeal(watchDeal: IWatchDeal): Observable<boolean> {
     return this.http.post<boolean>(this.APIUrl + `Api/Deal/deleteWatchDeal`, watchDeal)
+  }
+
+  updateStatusActive(dealId: number): Observable<IDeal> {
+    return this.http.post<IDeal>(this.APIUrl + `Api/Deal/moveToActiveStatus`, dealId)
   }
 }
