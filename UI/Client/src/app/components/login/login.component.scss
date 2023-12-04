@@ -3,26 +3,13 @@
     width: 100% !important;
 }
 
-.login-form__input input {
-  position: relative;
-}
-.login-form__input .eyeicon  {
-  position: absolute;
-  top: 65%;
-  right: 20px;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
 img{
   width: 20px;
   height: 20px;
 }
+
 hr {
     height: .5rem;
-}
-
-.login-form__input {
-    margin-bottom: 2rem;
 }
 
 input[type=checkbox]:checked+label:before {

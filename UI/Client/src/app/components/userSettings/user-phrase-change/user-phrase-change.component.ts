@@ -5,6 +5,7 @@ import {SessionService} from "src/app/services/session.service";
 import {IChangePassword} from "src/app/Models/IChangePassword";
 import {IChangePhrase} from "src/app/Models/IChangePhrase";
 import {UserService} from "src/app/services/user.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-phrase-change',
@@ -12,39 +13,45 @@ import {UserService} from "src/app/services/user.service";
   styleUrls: ['./user-phrase-change.component.scss']
 })
 export class UserPhraseChangeComponent implements OnInit {
-localePath:string = 'Pages/UserSettings/ChangeSecretPhrase/'
+  localePath:string = 'Pages/UserSettings/ChangeSecretPhrase/'
+  responseError: string = ''
+
   myForm = new FormGroup({
-    oldPhrase: new FormControl('', [Validators.required, Validators.pattern('')]),
+    oldPhrase: new FormControl('', [Validators.required]),
     newPhrase: new FormControl('', [Validators.required]),
     replNewPhrase: new FormControl('', [Validators.required]),
 
   });
 
-  invalidEmailError: boolean = false;
-  invalidPasswordError: boolean = false;
-  invalidPhraseError: boolean = false;
-  constructor( private userService: UserService) { }
+  phraseMatchesError: boolean = false;
+
+  constructor( private userService: UserService, private router: Router) { }
+
+  ngOnInit(): void { }
+
   onSubmit(form: FormGroup) {
+    this.validateForm(form);
+    if (!form.valid) return;
     const data: IChangePhrase = {
       oldPhrase: this.myForm.controls.oldPhrase.value,
       newPhrase: this.myForm.controls.newPhrase.value,
       replNewPhrase: this.myForm.controls.replNewPhrase.value
     }
     this.userService.changePhrase(data).subscribe(response => {
-      debugger
-      console.log(response)
+      if (response.value) {
+        this.router.navigate(['/userSettings'], {
+          state: { response: response }
+        });
+      } else {
+        this.responseError = response;
+      }
     })
-
+    setTimeout(()=>{
+      this.responseError = '';
+    },3000)
   }
-
 
   validateForm(form: FormGroup) {
-    this.invalidEmailError = !form.controls.email.valid;
-    this.invalidPasswordError = !form.controls.password.valid;
-    this.invalidPhraseError = !form.controls.phrase.valid;
+    this.phraseMatchesError = form.controls.newPhrase.value != form.controls.replNewPhrase.value;
   }
-
-  ngOnInit(): void {
-  }
-
 }

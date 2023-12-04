@@ -50,7 +50,6 @@
         "Ok": "Ok",
         "Cancel": "Cancel"
       },
-
       "ChangePasswordSettings": {
         "Title": "Password settings",
         "OldPassword": "Please enter old password",
@@ -78,7 +77,7 @@
     "ProfilePage": {
       "CommonInfo": "Common Info",
       "AdditionalInfo": "Additional Info",
-      "YourDeals": "Your Deals",
+      "YourDeals": "My deals",
       "FirstName": "FirstName",
       "LastName": "LastName",
       "Email": "Email",
@@ -93,7 +92,7 @@
       "Balance": "Balance",
       "IsActive": "IsActive",
       "UserLocale": "UserLocale",
-      "TrackedDeals": "Tracked Deals"
+      "TrackedDeals": "Tracked deals"
 
     },
     "AddDeals": {
@@ -143,5 +142,7 @@
       "FieldIsRequiredError": "{0} is required."
     }
   },
-  "GoBack": "Back"
+  "GoBack": "Back",
+  "Change": "Change",
+  "Find": "Find"
 }

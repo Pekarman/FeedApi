@@ -1,11 +1,9 @@
-﻿using Common.EntityFramework;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Common.EntityFramework.Models;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FeedAPI.Controllers
 {
@@ -107,18 +105,6 @@ namespace FeedAPI.Controllers
             return new JsonResult($"User cannot be added.");
         }
 
-        public class ChangePassword
-        {
-            public string username { get; set; }
-
-            public string oldPassword { get; set; }
-
-            public string newPassword { get; set; }
-
-            public bool isPassword { get; set; }
-
-        }
-
         // Change user password or secret phrase
         [HttpPatch]
         public async Task<IActionResult> ChangePasswordAsync(ChangePassword changePassword)
@@ -146,9 +132,34 @@ namespace FeedAPI.Controllers
             return new JsonResult("Password cannot be changed.");
         }
 
+        // Change email
+        [HttpPatch("changeEmail")]
+        public async Task<IActionResult> ChangeEmailAsync(ChangeEmail changeEmail)
+        {
+            try
+            {
+                bool result = await this.userService.ChangeEmailAsync(changeEmail.username, changeEmail.password, changeEmail.email);
+
+                if (result)
+                {
+                    return this.Ok(new JsonResult("Email was changed."));
+                }
+            }
+            catch (ArgumentException e)
+            {
+                return new JsonResult(e.Message);
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
+
+            return new JsonResult("Email cannot be changed.");
+        }
+
         // Delete user
-        [HttpDelete]
-        public async Task<IActionResult> DeleteUserAsync(DeleteUser user) 
+        [HttpDelete("deleteUser")]
+        public async Task<IActionResult> DeleteUserAsync(DeleteUser user)
         {
             try
             {
@@ -184,13 +195,33 @@ namespace FeedAPI.Controllers
 
             public string phrase { get; set; }
         }
+
+        public class ChangePassword
+        {
+            public string username { get; set; }
+
+            public string oldPassword { get; set; }
+
+            public string newPassword { get; set; }
+
+            public bool isPassword { get; set; }
+
+        }
+
+        public class ChangeEmail
+        {
+            public string password { get; set; }
+
+            public string email { get; set; }
+
+            public string username { get; set; }
+        }
+
         public class DeleteUser
         {
             public string username { get; set; }
 
             public string password { get; set; }
-
         }
     }
-    
 }

@@ -1,6 +1,8 @@
 // profile-page.component.ts
 import { Component, OnInit } from '@angular/core';
+import { IDeal } from 'src/app/Models/IDeal';
 import { SessionService } from "src/app/services/session.service";
+import { IDealListFilter } from '../../deal-list/IDealListFilter';
 
 enum InformationType {
   CommonInfo = 1,
@@ -21,6 +23,14 @@ export class ProfilePageComponent implements OnInit {
   toggleInformationType: InformationType | null = null;
   user: any;
 
+  getUserIdFilter(): IDealListFilter {
+    return {userId: this.user.id, categoryId: -1, watchUserId: -1};
+  }
+  
+  getWatchUserIdFilter(): IDealListFilter {
+    return {userId: -1, categoryId: -1, watchUserId: 1};
+  }
+  
   constructor(private sessionService: SessionService) {}
 
   showOrHideInformation(type: InformationType): void {

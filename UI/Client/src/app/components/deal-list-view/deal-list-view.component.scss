@@ -1,4 +1,9 @@
 div {
+    &.row {
+        justify-content: space-between;
+    }
+
+
     a {
         cursor: pointer;
     }

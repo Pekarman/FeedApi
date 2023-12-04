@@ -1,9 +1,10 @@
-import {Injectable} from '@angular/core';
-import {ApiConfig} from '../configs/apiconfig';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {IDeal} from '../Models/IDeal';
-import {IWatchDeal} from '../Models/IWatchDeal';
+import { Injectable } from '@angular/core';
+import { ApiConfig } from '../configs/apiconfig';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { IDeal } from '../Models/IDeal';
+import { IWatchDeal } from '../Models/IWatchDeal';
+import { IDealListFilter } from '../components/deal-list/IDealListFilter';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,11 @@ export class DealService {
     return this.http.get<IDeal>(this.APIUrl + `Api/Deal/${id}`);
   }
 
-  changeDeal(deal: IDeal): Observable<IDeal> {
+  getDealsByFilter(deal: IDealListFilter): Observable<IDeal[]>{
+    return this.http.post<IDeal[]>(this.APIUrl + `Api/Deal/getDealByFilter`, deal);
+  }
+
+  changeDeal(deal:IDeal): Observable<IDeal>{
     return this.http.post<IDeal>(this.APIUrl + `Api/Deal/changeDeal`, deal);
   }
 

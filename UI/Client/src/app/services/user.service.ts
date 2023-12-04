@@ -21,14 +21,13 @@ export class UserService {
   changePassword(user: IChangePassword):Observable<any>{
     return this.http.patch<any>(this.APIUrl + 'Api/User',user);
   }
-  changeEmail(data:IChangeEmail):Observable<any>{
-    return this.http.patch<any>(this.APIUrl + 'Api/User',data);
-  }
-  deleteUser(data:IDeleteUser):Observable<any>{
-    return this.http.post<any>(this.APIUrl + 'Api/user', data)
-  }
   changePhrase(data:IChangePhrase):Observable<any>{
     return this.http.patch<any>(this.APIUrl + 'Api/User',data);
   }
-
+  changeEmail(data:IChangeEmail):Observable<any>{
+    return this.http.patch<any>(this.APIUrl + 'Api/User/changeEmail',data);
+  }
+  deleteUser(data:IDeleteUser):Observable<any>{
+    return this.http.post<any>(this.APIUrl + 'Api/User/deleteUser', data)
+  }
 }

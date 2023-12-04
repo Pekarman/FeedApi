@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./users-button.component.scss']
 })
 export class UsersButtonComponent implements OnInit {
-  @Input()label:string = '';
-  @Input()background: string = ''
+  @Input() label: string = '';
+  @Input() background: string = ''
   @Input() path: string = '';
 
   constructor(private router: Router) { }
@@ -19,5 +19,4 @@ export class UsersButtonComponent implements OnInit {
   onClick() {    
     this.router.navigate([this.path]);
   }
-
 }

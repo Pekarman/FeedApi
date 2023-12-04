@@ -3,10 +3,17 @@
         <img [src]="base64Image" alt="alt">
     </div>
     <div class="col-9">
-        <div class="col-12">
-            <a  (click)="onClick()">
-                <h3>{{deal.productName}}</h3>
-            </a>
+        <div class="row col-12">
+            <div class="col-6">
+                <a  (click)="onClick()">
+                    <h3>{{deal.productName}}</h3>
+                </a>
+            </div>
+            <div class="col-3" *ngIf="showChangeButton">
+                <app-users-button id="changeDeal" label="{{'Change' | translate}}"
+                [path]="getChangeDealPath()"
+                ></app-users-button>
+            </div>
         </div>
         <div class="col-12">
             <p class="desc">{{deal.shortDesc}}</p>

@@ -23,19 +23,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.session = this.sessionService.getSession();
-
-    if (this.session == "Password or secret phrase is incorrect.") {
-      return;
-    }
     this.isLoggedIn = this.session !== null;
-  }
-
-  searchValue = "";
-
-  @Output() textGhanged = new EventEmitter<string>();
-
-  onTextChange(){
-    this.textGhanged.emit(this.searchValue);
   }
 
   onAvatarClick() {
@@ -53,7 +41,6 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout(this.session.id).subscribe((response: any) => {
-      console.log(response);
       this.sessionService.clearSession();
 
       this.isLoggedIn = false;

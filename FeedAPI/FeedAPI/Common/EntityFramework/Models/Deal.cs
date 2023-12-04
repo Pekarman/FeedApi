@@ -50,6 +50,9 @@ namespace Common.EntityFramework.Models
         [Column("userid")]
         public int? UserId { get; set; }
 
+        [NotMapped]
+        public string? UserFullName { get; set; }
+
         [Column("startbet")]
         public double? StartBet { get; set; }
 

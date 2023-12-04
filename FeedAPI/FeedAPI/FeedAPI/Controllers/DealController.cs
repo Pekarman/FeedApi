@@ -73,12 +73,12 @@ namespace FeedAPI.Controllers
         /// </summary>
         /// <param name="userId">Requested deal id.</param>
         /// <returns>Requested deal.</returns>
-        [HttpPost]
-        public async Task<IActionResult> GetOwnerDealsAsync(int userId)
+        [HttpPost("getDealByFilter")]
+        public async Task<IActionResult> GetDealsByFilterAsync(DealFilter filter)
         {
             try
             {
-                List<Deal> deals = await this.dealService.GetOwnerDealsAsync(userId);
+                List<Deal> deals = await this.dealService.GetOwnerDealsAsync(filter);
                 if (deals != null)
                 {
                     return this.Ok(deals);
@@ -89,7 +89,7 @@ namespace FeedAPI.Controllers
                 return new JsonResult(e.Message);
             }
 
-            return new JsonResult($"Deal with owner id={userId} not found.");
+            return new JsonResult($"Deal with filter {filter} not found.");
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace FeedAPI.Controllers
         /// <param name="watchDeal">WatchDeal to change.</param>
         /// <returns>Changed deal.</returns>
         [HttpPost("addWatchDeal")]
-        public async Task<IActionResult> ChangeDealAsync(WatchDeal watchDeal)
+        public async Task<IActionResult> AddWatchDealAsync(WatchDeal watchDeal)
         {
             try
             {
@@ -203,5 +203,34 @@ namespace FeedAPI.Controllers
 
             return new JsonResult($"WatchDeal cannot be deleted.");
         }
+
+        /// <summary>
+        /// Changes the deal.
+        /// </summary>
+        /// <param name="watchDeal">WatchDeal to change.</param>
+        /// <returns>Changed deal.</returns>
+        [HttpPost("moveToActiveStatus")]
+        public async Task<IActionResult> MoveToActiveStatusAsync(int dealId)
+        {
+            try
+            {
+                Deal result = await this.dealService.MoveToActiveStatusAsync(dealId);
+                if (result != null)
+                {
+                    return this.Ok(result);
+                }
+            }
+            catch (ArgumentException e)
+            {
+                return new JsonResult(e.Message);
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
+
+            return new JsonResult($"Deal cannot be moved to Active status.");
+        }
+
     }
 }

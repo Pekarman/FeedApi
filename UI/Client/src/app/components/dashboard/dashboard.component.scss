@@ -2,3 +2,34 @@
     min-height: 10vh;
     background-color: lightgray;
 }
+
+.content {
+    margin-top: 15px;
+}
+
+div {
+    &.row {
+        &.searchBar {
+            margin-bottom: 20px;
+            input {
+                width: 95%;
+                height: 90%;
+                margin-left: 20px;
+            }
+            app-users-button {
+                width: 20%;
+            }
+            app-deal-list {
+                padding-top: 20px;
+            }
+        }
+
+        .filters {
+            width: 15%;
+        }
+
+        .result {
+            width: 85%;
+        }
+    }
+}

@@ -2,6 +2,7 @@
 using Common.EntityFramework.Models;
 using Common.Extensions;
 using Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -21,6 +22,8 @@ namespace Services.Implementations
                     deals = db.Deals.ToList();
                     deals.ForEach(deal =>
                     {
+                        var user = db.Users.Where(u => u.Id == deal.UserId).FirstOrDefault();
+                        deal.UserFullName = user.FirstName + " " + user.LastName;
                         deal.Assets = db.Assets.Where(i => i.DealId == deal.Id).ToList();
                         deal.Bets = db.Bets.Where(b => b.DealId == deal.Id).ToList();
                         deal.WatchDeals = db.WatchDeals.Where(w => w.DealId == deal.Id).ToList();
@@ -40,6 +43,9 @@ namespace Services.Implementations
             {
                 await Task.Run(() => {
                     deal = db.Deals.Where(u => u.Id == id).FirstOrDefault();
+
+                    var user = db.Users.Where(u => u.Id == deal.UserId).FirstOrDefault();
+                    deal.UserFullName = user.FirstName + " " + user.LastName;
                     deal.Assets = db.Assets.Where(i => i.DealId == deal.Id).ToList();
                     deal.Bets = db.Bets.Where(b => b.DealId == deal.Id).ToList();
                     deal.WatchDeals = db.WatchDeals.Where(w => w.DealId == deal.Id).ToList();
@@ -51,15 +57,25 @@ namespace Services.Implementations
             return deal;
         }
 
-        public async Task<List<Deal>> GetOwnerDealsAsync(int userId)
+        public async Task<List<Deal>> GetOwnerDealsAsync(DealFilter filter)
         {
             List<Deal> deals = new List<Deal>();
 
             using (ApplicationContext db = new ApplicationContext())
             {
                 await Task.Run(() => {
-                    deals = db.Deals.Where(u => u.UserId == userId).ToList();
+                    if (filter.userId != -1) deals.AddRange(db.Deals.Where(u => u.UserId == filter.userId).ToList());
+                    if (filter.categoryId != -1) deals.AddRange(db.Deals.Where(u => u.CategoryId == filter.categoryId).ToList());
 
+                    if (filter.watchUserId != -1)
+                    {
+                        var watchDeals = db.WatchDeals.Where(w => w.UserId == filter.watchUserId).ToList();
+                        foreach (var watchDeal in watchDeals)
+                        {
+                            deals.Add(db.Deals.Where(d => d.Id == watchDeal.DealId).FirstOrDefault());
+                        }
+                    }
+                    
                     deals.ForEach(deal => deal.Assets = db.Assets.Where(i => i.DealId == deal.Id).ToList());
 
                     return deals;
@@ -132,6 +148,22 @@ namespace Services.Implementations
                 await db.SaveChangesAsync();
 
                 return true;
+            }
+        }
+
+        public async Task<Deal> MoveToActiveStatusAsync(int dealId)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                Deal deal = db.Deals.Where(w => w.Id == dealId).FirstOrDefault();
+
+                if (deal == null) throw new ArgumentNullException($"Deal with dealId={dealId} is not exists");
+
+                deal.StatusId = 1;
+
+                await db.SaveChangesAsync();
+
+                return deal;
             }
         }
     }
