@@ -138,7 +138,7 @@ namespace Services.Implementations
                 PassData passData = db.PassData.Where(p => p.UserId == user.Id).FirstOrDefault();
                 bool isMatch = BCrypt.Net.BCrypt.EnhancedVerify(oldPhrase, passData.SecretPhraseHash);
 
-                if (!isMatch) throw new ArgumentException("Old password is incorrect.");
+                if (!isMatch) throw new ArgumentException("Old phrase is incorrect.");
 
                 var newPassHash = BCrypt.Net.BCrypt.EnhancedHashPassword(newPhrase, 11);
                 passData.SecretPhraseHash = newPassHash;

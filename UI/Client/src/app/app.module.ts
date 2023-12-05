@@ -17,21 +17,15 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LocalizationModule } from './localization/localization.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { UserSettingsComponent } from './components/userSettings/user-settings/user-settings.component';
-import { UserEmailChangeComponent } from './components/userSettings/user-email-change/user-email-change.component';
-import { UserPasswordChangeComponent } from './components/userSettings/user-password-change/user-password-change.component';
-import { UserPhraseChangeComponent } from './components/userSettings/user-phrase-change/user-phrase-change.component';
-import { DeleteUserComponent } from './components/userSettings/delete-user/delete-user.component';
-import { LabeledInputComponent } from './components/common/labeled-input/labeled-input.component';
-import { OkCancelComponent } from './components/common/ok-cancel/ok-cancel.component';
-import { UsersButtonComponent } from './components/common/users-button/users-button.component';
 import { ProfilePageComponent } from './components/profilePage/profile-page/profile-page.component';
 import { DealListViewComponent } from './components/deal-list-view/deal-list-view.component';
 import { DealListComponent } from './components/deal-list/deal-list.component';
 import { DealComponent } from './components/deal/deal.component';
 import { BettingComponent } from './components/betting/betting.component';
 import { AddDealsComponent } from './components/addDeals/add-deals/add-deals.component';
-import { UploadImagesComponent } from './components/upload-images/upload-images.component';
+import { ImagesModule } from './modules/images/images.module';
+import { UserSettingsModule } from './modules/user-settings/user-settings.module';
+import { CommonComponentsModule } from './components/common/common-components.module';
 
 @NgModule({
   declarations: [
@@ -43,21 +37,12 @@ import { UploadImagesComponent } from './components/upload-images/upload-images.
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    UserSettingsComponent,
-    UserEmailChangeComponent,
-    UserPasswordChangeComponent,
-    UserPhraseChangeComponent,
-    DeleteUserComponent,
-    LabeledInputComponent,
-    OkCancelComponent,
-    UsersButtonComponent,
     ProfilePageComponent,
     DealListViewComponent,
     DealListComponent,
     DealComponent,
     BettingComponent,
-    AddDealsComponent,
-    UploadImagesComponent
+    AddDealsComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +50,10 @@ import { UploadImagesComponent } from './components/upload-images/upload-images.
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    LocalizationModule
+    LocalizationModule,
+    ImagesModule,
+    UserSettingsModule,
+    CommonComponentsModule
   ],
   providers: [
     ArticleHttpService,

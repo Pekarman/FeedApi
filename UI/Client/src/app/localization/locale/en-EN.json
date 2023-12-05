@@ -138,6 +138,8 @@
     "invalidPasswordError": "Password should consist of small/big letters, numbers and special symbols.",
     "passwordMatchesError": "Password doesn't match.",
     "phraseMatchesError": "Secret phrase doesn't match.",
+    "newPasswordMatchesOldError": "New password cannot be equal to new one.",
+    "newPhraseMatchesOldError": "New phrase cannot be equal to new one.",
     "ValidationErrors": {
       "FieldIsRequiredError": "{0} is required."
     }

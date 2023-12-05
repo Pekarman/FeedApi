@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "src/app/services/auth.service";
 import {SessionService} from "src/app/services/session.service";
 import {IChangePassword} from "src/app/Models/IChangePassword";
-import {IChangePhrase} from "src/app/Models/IChangePhrase";
 import {UserService} from "src/app/services/user.service";
 import { Router } from '@angular/router';
 
@@ -24,18 +22,24 @@ export class UserPhraseChangeComponent implements OnInit {
   });
 
   phraseMatchesError: boolean = false;
+  newPhraseMatchesOldError: boolean = false;
 
-  constructor( private userService: UserService, private router: Router) { }
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private sessionService: SessionService,
+  ) { }
 
   ngOnInit(): void { }
 
   onSubmit(form: FormGroup) {
     this.validateForm(form);
-    if (!form.valid) return;
-    const data: IChangePhrase = {
-      oldPhrase: this.myForm.controls.oldPhrase.value,
-      newPhrase: this.myForm.controls.newPhrase.value,
-      replNewPhrase: this.myForm.controls.replNewPhrase.value
+    if (this.phraseMatchesError || this.newPhraseMatchesOldError) return;
+    const data: IChangePassword = {
+      oldPassword: this.myForm.controls.oldPhrase.value,
+      newPassword: this.myForm.controls.newPhrase.value,
+      username: this.sessionService.getSession().user.username,
+      isPassword: false,
     }
     this.userService.changePhrase(data).subscribe(response => {
       if (response.value) {
@@ -53,5 +57,6 @@ export class UserPhraseChangeComponent implements OnInit {
 
   validateForm(form: FormGroup) {
     this.phraseMatchesError = form.controls.newPhrase.value != form.controls.replNewPhrase.value;
+    this.newPhraseMatchesOldError = form.controls.newPhrase.value == form.controls.oldPhrase.value;
   }
 }

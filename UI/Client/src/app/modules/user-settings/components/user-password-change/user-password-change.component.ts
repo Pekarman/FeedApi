@@ -12,12 +12,12 @@ import {Router} from "@angular/router";
   styleUrls: ['./user-password-change.component.scss']
 })
 export class UserPasswordChangeComponent implements OnInit {
-  locale: any;
   localePath: string = "Pages/UserSettings/ChangePasswordSettings/"
   responseError: string = ''
 
   invalidPasswordError: boolean = false;
   passwordMatchesError: boolean = false;
+  newPasswordMatchesOldError: boolean = false;
 
 
   myForm = new FormGroup({
@@ -34,14 +34,8 @@ export class UserPasswordChangeComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.locale = this.sessionService.getSession();
   }
   
-  validateForm(form: FormGroup) {
-    this.invalidPasswordError = !form.controls.newPassword.valid;
-    this.passwordMatchesError = form.controls.newPassword.value !== form.controls.replNewPassword.value;
-  }
-
   onSubmit(form: FormGroup) {
 
     this.validateForm(form);
@@ -50,7 +44,7 @@ export class UserPasswordChangeComponent implements OnInit {
     var data: IChangePassword = {
       oldPassword: form.controls.oldPassword.value,
       newPassword: form.controls.newPassword.value,
-      username: this.locale.user.username,
+      username: this.sessionService.getSession().user.username,
       isPassword: true
     }
 
@@ -65,6 +59,13 @@ export class UserPasswordChangeComponent implements OnInit {
     });
     setTimeout(()=>{
       this.responseError = '';
-    },3000)
+    },3000)    
   }
+  
+  validateForm(form: FormGroup) {
+    this.invalidPasswordError = !form.controls.newPassword.valid;
+    this.passwordMatchesError = form.controls.newPassword.value !== form.controls.replNewPassword.value;
+    this.newPasswordMatchesOldError = form.controls.newPassword.value == form.controls.oldPassword.value;
+  }
+
 }

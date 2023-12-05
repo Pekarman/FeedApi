@@ -136,6 +136,8 @@
     "invalidPasswordError": "Пароль должен содержать прописные/строчные буквы, цифры и специальные символы.",
     "passwordMatchesError": "Пароль не совпадает.",
     "phraseMatchesError": "Секретная фраза не совпадает.",
+    "newPasswordMatchesOldError": "Новый пароль не может быть идентичен старому.",
+    "newPhraseMatchesOldError": "Новая секретная фраза не может быть идентична старой.",
     "ValidationErrors": {
       "FieldIsRequiredError": "{0} обязательно для заполнения."
     }

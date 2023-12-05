@@ -10,6 +10,10 @@
                         [control]="myForm.get('newPhrase')"
                         fieldName="newPhrase"
                         ></app-labeled-input>
+                        <div *ngIf="newPhraseMatchesOldError" class="alert alert-error fade in mb-25"
+                            style="display:block;">
+                          <p>{{ 'Errors/newPhraseMatchesOldError' | translate }}</p>
+                        </div>
       <app-labeled-input label="{{localePath + 'ReplayPhrase' | translate}}"
                         [control]="myForm.get('replNewPhrase')"
                         fieldName="replNewPhrase"

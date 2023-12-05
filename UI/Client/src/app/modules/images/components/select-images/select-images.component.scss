@@ -1,0 +1,28 @@
+$imageHeight: 150px;
+
+div {
+    &.imageBlock {
+        min-height: $imageHeight;
+    }
+
+    &.prev, &.next {
+        width: 30%;
+        min-height: $imageHeight;
+        background-color: black;
+        opacity: 0.1;
+        z-index: 1;
+        position: absolute;
+        
+        &:hover {
+            opacity: 0.25;
+        }
+    }
+
+    &.next {
+        right: 0px;
+    }
+
+    &.prev {
+        left: 0px;
+    }
+}
