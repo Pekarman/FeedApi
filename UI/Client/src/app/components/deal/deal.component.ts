@@ -19,6 +19,7 @@ export class DealComponent implements OnInit {
   localePath: string = 'Pages/DealPage/'
   statusEnum = Object.values(DealStatusEnum).filter(el => el !== Number(el));
   countStatus: string | DealStatusEnum = '';
+
   constructor(
     private domSanitizer: DomSanitizer,
     private route: ActivatedRoute,
@@ -29,12 +30,13 @@ export class DealComponent implements OnInit {
 
   }
 
-  changeStatus(){
+  changeStatus() {
     const id = this.route.snapshot.params.id as unknown as number;
     this.dealService.updateStatusActive(id).subscribe(response => {
       if (response.id) {
-        this.deal.statusId = response.statusId;
-      }      
+        this.statusEnum.forEach((el, index) => response.statusId === index ? this.countStatus = el : null)
+      }
+
     })
   }
 
@@ -45,7 +47,7 @@ export class DealComponent implements OnInit {
       this.renderImages(deal);
 
       this.statusEnum.forEach((el, index) => {
-        if (this.deal.statusId === index){
+        if (this.deal.statusId === index) {
           this.countStatus = el;
         }
       });

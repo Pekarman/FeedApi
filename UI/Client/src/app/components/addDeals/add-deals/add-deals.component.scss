@@ -1,138 +1,166 @@
-/* styles.css */
 
 #header {
   min-height: 10vh;
   background-color: lightgray;
 }
 
-.imageContainer {
-  position: relative;
-  margin-right: 900px;
-  margin-top: -200px;
-  margin-left: 100px;
-}
-
 .imageBlock {
-  border: 1px solid #222222;
-  width: 200px;
+  width: 20%;
   height: 200px;
-  background-color: #333333;
-  margin-top: 250px;
-  margin-bottom: 50px;
+  background-color: black;
+  color: white;
+  margin: 0 0 10px 0;
 }
 
+.container {
+  width: 100%;
+  margin-left: 5%;
+  margin-top: 30px;
+
+}
+
+.row-1 {
+  width: 70%;
+  margin-left: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.prodNameBlock {
+  width: 60%;
+
+  input {
+    width: 100%;
+  }
+}
+
+.categoryBlock {
+  margin-right: 15%;
+  width: 20%;
+
+  select {
+    width: 100%;
+  }
+}
+
+.shortDescBlock {
+  margin: 20px 10% 20px 0;
+  width: 70%;
+
+  textarea {
+    width: 100%;
+  }
+}
+
+.longDescriptionBlock {
+  margin-top: -25px;
+  margin-bottom: 50px;
+
+  textarea {
+    width: 95%;
+    height: 70px;
+  }
+}
+
+.partNumberBlock {
+  margin-left: 40px;
+}
+
+.allInputs {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+
+.partNumberBlock {
+  margin-left: 38%;
+
+}
+
+.quantityBlock {
+  margin: 20px 70px 0 0;
+}
+
+.canBuyNowBlock {
+  border: 1px solid black;
+  width: 100%;
+
+  label {
+    text-align: center;
+  }
+
+  .checkbox {
+    margin-left: 50%;
+  }
+
+  .label {
+    margin-left: 10%;
+  }
+}
+
+.auctionAndCanBuyNowBlock {
+  display: flex;
+  width: 20%;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: -36% 0 0 77%;
+
+}
+
+.auctionBlock {
+  border: 1px solid black;
+  width: 100%;
+  margin-top: 20px;
+
+  h3 {
+    text-align: center;
+  }
+
+  label {
+    text-align: center;
+  }
+}
+
+.startTimeBlock {
+  margin-left: 20px;
+  width: 100%;
+}
+
+.StartBetBlock {
+  margin-bottom: 10px;
+}
+
+.AuctionDurationBlock {
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+.StartBetBlock {
+  margin-top: 10px;
+  margin-left: 30px;
+}
 
 .buttonBlock {
-  display: flex;
-  justify-content: flex-end;
-  margin-left: 1000px;
+  width: 35%;
+  margin-left: 98%;
+
 }
 
 .buttonBlock button {
-  width: 150px;
-  height: 40px;
-  background-color: #6c6969;
-  color: #fff;
+  width: 40%;
+  margin-left: 20px;
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.buttonBlock button:hover {
-  background-color: #3f3d3d;
-  color: white;
-}
-.prodName{
-  margin-top: -80px;
-  margin-right: 150px;
-  margin-left: 440px;
-}
-.prodName input{
-  width: 350px;
   height: 40px;
 }
-.prodName input:hover{
-  background-color: #ababab;
-  width: 350px;
-  height: 40px;
-}
-.descriptionBlock{
-  margin-top: 70px;
-  margin-left: 100px;
-}
-.textAreaContainer{
-  margin-bottom: 5px;
-}
-.descriptionBlock textarea{
-  width: 590px;
-  height: 60px;
-}
-.descriptionBlock textarea:hover{
-  width: 590px;
-  height: 60px;
-  background-color: #ababab;
-}
-.dataInputContainer{
-  margin-top: 30px;
-  margin-left: 100px;
-}
-.selectContent{
-  margin-bottom: 20px;
-}
-.dataInputContainer select{
-  width: 210px;
-  height: 30px;
-  text-align: center;
-}
-.allInputs{
-  margin-left: 100px;
-}
-.labelInputs{
-  margin-bottom: 10px;
-}
-.allInputs input{
-  width: 250px;
-  height: 40px;
-}
-.canBuyNow{
-  margin-top: 50px;
-  margin-left: 100px;
-  margin-right: 1000px;
-  border: 1px solid black;
-}
-.canBuyNow label{
-  text-align: center;
-}
-.canBuyNow .checkbox{
-  margin-left: 110px;
-}
-.canBuyNow .label{
-margin-left: 13px;
-}
-.auctionBlock{
 
-  width: 250px;
-  max-height: 530px;
-  margin-top: 50px;
-  margin-left: 100px;
-  border: 1px solid black;
-
-}
-.inputGroup{
-  text-align: center;
-  padding-top: 20px;
-  padding-bottom: 10px;
+.okButton {
+  background-color: #018dc9;
 }
 
-.inputGroup .endTimeInput{
-  width: 230px;
-}
-
-.auctionBlock h3{
-  text-align: center;
-  margin-bottom: -10px;
-  margin-top: 5px;
+.cancelButton {
+  background-color: #c9cfd2;
 }
