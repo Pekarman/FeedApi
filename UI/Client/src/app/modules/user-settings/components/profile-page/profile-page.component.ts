@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IDeal } from 'src/app/Models/IDeal';
 import { SessionService } from "src/app/services/session.service";
-import { IDealListFilter } from '../../deal-list/IDealListFilter';
+import { IDealListFilter } from '../../../common/components/deal-list/IDealListFilter';
 
 enum InformationType {
   CommonInfo = 1,

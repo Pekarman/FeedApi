@@ -4,7 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IDeal } from '../Models/IDeal';
 import { IWatchDeal } from '../Models/IWatchDeal';
-import { IDealListFilter } from '../components/deal-list/IDealListFilter';
+import { IDealListFilter } from '../modules/common/components/deal-list/IDealListFilter';
 
 @Injectable({
   providedIn: 'root'

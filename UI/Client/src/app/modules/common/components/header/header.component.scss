@@ -57,7 +57,6 @@ div.row {
 }
 
 div.header__user div {
-  // min-width: 10hh;
   align-self: flex-end;
   cursor: pointer;
     & a, span {
@@ -140,5 +139,5 @@ a {
     background-size: 3rem 3rem;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url(..\..\images\svg\user.svg);
+    background-image: url(..\..\..\..\images\svg\user.svg);
 }

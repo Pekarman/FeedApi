@@ -8,12 +8,14 @@ import { DeleteUserComponent } from './components/delete-user/delete-user.compon
 import { LocalizationModule } from 'src/app/localization/localization.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonComponentsModule } from 'src/app/components/common/common-components.module';
+import { CommonComponentsModule } from 'src/app/modules/common/common-components.module';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 
 
 
 @NgModule({
   declarations: [
+    ProfilePageComponent,
     UserSettingsComponent,
     UserEmailChangeComponent,
     UserPasswordChangeComponent,
@@ -29,6 +31,7 @@ import { CommonComponentsModule } from 'src/app/components/common/common-compone
     CommonComponentsModule
   ],
   exports: [
+    ProfilePageComponent,
     UserSettingsComponent,
     UserEmailChangeComponent,
     UserPasswordChangeComponent,

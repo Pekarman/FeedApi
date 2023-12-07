@@ -1,19 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LabeledInputComponent } from './labeled-input/labeled-input.component';
-import { OkCancelComponent } from './ok-cancel/ok-cancel.component';
-import { UsersButtonComponent } from './users-button/users-button.component';
+import { CommonComponentsModule } from '../common/common-components.module';
 import { LocalizationModule } from 'src/app/localization/localization.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 
 @NgModule({
   declarations: [
-    LabeledInputComponent,
-    OkCancelComponent,
-    UsersButtonComponent
+    DashboardComponent
   ],
   imports: [
     CommonModule,
@@ -21,11 +18,10 @@ import { BrowserModule } from '@angular/platform-browser';
     FormsModule,
     ReactiveFormsModule,
     LocalizationModule,
+    CommonComponentsModule
   ],
   exports: [
-    LabeledInputComponent,
-    OkCancelComponent,
-    UsersButtonComponent
+    DashboardComponent
   ]
 })
-export class CommonComponentsModule { }
+export class DashboardModule { }
