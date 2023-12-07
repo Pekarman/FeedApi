@@ -13,13 +13,13 @@ namespace Common.EntityFramework.Models
         [Column("id")]
         public int Id { get; set; }
 
-        [Column("userId")]
+        [Column("userid")]
         public int UserId { get; set; }
 
-        [Column("passHash")]
+        [Column("passhash")]
         public string PassHash { get; set; }
 
-        [Column("secretPhraseHash")]
+        [Column("secretphrasehash")]
         public string SecretPhraseHash { get; set; }
 
         public PassData(int id, string passHash, string secretPhraseHash)

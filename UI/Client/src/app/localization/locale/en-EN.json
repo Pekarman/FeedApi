@@ -1,0 +1,150 @@
+{
+  "Pages" : {
+    "Header": {
+      "title": "Today",
+      "dropdown": {
+        "profile": "Profile",
+        "settings": "Settings",
+        "logout": "Logout"
+      }
+    },
+    "RegisterPage": {
+      "title": "Register",
+      "alreadyRegister": "Already registered?",
+      "login": "Login",
+      "fieldsNames": {
+        "firstName": "First Name",
+        "lastName": " Last Name",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "password2": "Repeat your passswod",
+        "phrase": "Secret Phrase",
+        "phrase2": "Repeat secret phrase"
+      }
+    },
+    "LoginPage": {
+      "title": "Log in",
+      "fieldsNames": {
+        "email": "Email",
+        "password": "Password",
+        "phrase": "Secret phrase",
+        "rememberMe": "Remember Me",
+        "forgotPassword": "Forgot Password?"
+      }
+    },
+    "Logout": "Logout",
+    "UserSettings": {
+      "Title": "User settings",
+      "ChangeEmail": "Change email",
+      "ChangePassword": "Change password",
+      "ChangePhrase": "Change Phrase",
+      "DeleteUser": "Delete user",
+      "Ok": "Ok",
+      "Cancel": "Cancel",
+
+      "ChangeEmailSettings": {
+        "Title": "Email settings",
+        "ChangeEmail": "Change email",
+        "Password": "Enter your password",
+        "Ok": "Ok",
+        "Cancel": "Cancel"
+      },
+      "ChangePasswordSettings": {
+        "Title": "Password settings",
+        "OldPassword": "Please enter old password",
+        "NewPassword": "Please enter new password",
+        "ReplayPassword": "Please repeat password",
+        "Ok": "Ok",
+        "Cancel": "Cancel"
+      },
+      "ChangeSecretPhrase": {
+        "Title": "Phrase settings",
+        "OldPhrase": "Please enter your old phrase",
+        "NewPhrase": "Please enter your new phrase",
+        "ReplayPhrase": "Replay your new phrase",
+        "Ok": "Ok",
+        "Cancel": "Cancel"
+      },
+      "DeleteUsers": {
+        "Title": "Delete users",
+        "Password": "Please enter password",
+        "Phrase": "Please enter phrase",
+        "Ok": "Ok",
+        "Cancel": "Cancel"
+      }
+    },
+    "ProfilePage": {
+      "CommonInfo": "Common Info",
+      "AdditionalInfo": "Additional Info",
+      "YourDeals": "My deals",
+      "FirstName": "FirstName",
+      "LastName": "LastName",
+      "Email": "Email",
+      "UserName": "User Name",
+      "UserPhone": "Phone",
+      "UserType": "UserType",
+      "CompanyName": "CompanyName",
+      "PassportNumber": "PassportNumber",
+      "PayerRegNumber": "PayerRegNumber",
+      "BankAccount": "BankAccount",
+      "BankCode": "BankCode",
+      "Balance": "Balance",
+      "IsActive": "IsActive",
+      "UserLocale": "UserLocale",
+      "TrackedDeals": "Tracked deals"
+
+    },
+    "AddDeals": {
+      "ProdName": "Product Name",
+      "ShortDescription": "Short Description",
+      "LongDescription": "Full Description",
+      "Category": "Categories",
+      "PartNumber": "Part Number",
+      "Uom": "Uom",
+      "Quantity": "Quantity",
+      "CanBuyNow": "Can Buy Now",
+      "PriceBuyNow": "Price Buy Now",
+      "Auction": "Auction",
+      "StartTime": "Start Time",
+      "AuctionDuration": "Auction Duration(minutes)",
+      "StartBet": "Start Bet",
+      "Ok": "Ok",
+      "Cancel": "Cancel",
+      "Save": "Save"
+    },
+    "DealPage": {
+      "ProdName": "Product Name",
+      "ShortDescription": "Short Description",
+      "LongDescription": "Long Description",
+      "PartNumber": "Part Number",
+      "Uom": "Uom",
+      "Quantity": "Quantity",
+      "Status": "Status",
+      "Owner": "Owner",
+      "ChangeDeal": "Change",
+      "Betting": {
+        "PriceBuyNow": "Price buy now",
+        "CurrentBet": "Current bet",
+        "BuyNow": "Buy now",
+        "MakeBet": "Make a bet",
+        "AddToWatchList": "Add to my watch list",
+        "RemoveFromWatchList": "Remove from my watch list"
+      }
+    }
+  },
+  "Errors": {
+    "invalidEmailError": "Invalid email format.",
+    "invalidPasswordError": "Password should consist of small/big letters, numbers and special symbols.",
+    "passwordMatchesError": "Password doesn't match.",
+    "phraseMatchesError": "Secret phrase doesn't match.",
+    "newPasswordMatchesOldError": "New password cannot be equal to new one.",
+    "newPhraseMatchesOldError": "New phrase cannot be equal to new one.",
+    "ValidationErrors": {
+      "FieldIsRequiredError": "{0} is required."
+    }
+  },
+  "GoBack": "Back",
+  "Change": "Change",
+  "Find": "Find"
+}

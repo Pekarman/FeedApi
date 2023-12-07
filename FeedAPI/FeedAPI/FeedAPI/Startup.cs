@@ -33,6 +33,10 @@ namespace FeedAPI
             services.AddTransient<IItemsApiClient, ItemsApi>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUserSessionService, UserSessionService>();
+            services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IDealService, DealService>();
+            services.AddTransient<IAssetService, AssetService>();
+            services.AddTransient<IBetService, BetService>();
 
             services.AddDistributedMemoryCache(); // добавляем IDistributedMemoryCache
             services.AddSession(options =>
@@ -69,7 +73,11 @@ namespace FeedAPI
 
             app.UseAuthorization();
 
-            app.UseCors(builder => builder.AllowAnyOrigin());
+            app.UseCors(builder => {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+            });
 
             app.UseSession();   // adding sessions management middleware
 

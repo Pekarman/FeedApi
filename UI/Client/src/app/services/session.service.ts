@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { LocalizationService } from '../localization/localization.service';
 
 @Injectable({
   providedIn: 'root'
@@ -6,9 +7,10 @@ import { Injectable } from '@angular/core';
 export class SessionService {
   private sessionKey = 'session';
 
-  constructor() { }
+  constructor(private localizationService: LocalizationService) { }
 
   setSession(session: any): void {
+    this.localizationService.locale = session.locale;
     localStorage.setItem(this.sessionKey, JSON.stringify(session));
   }
 

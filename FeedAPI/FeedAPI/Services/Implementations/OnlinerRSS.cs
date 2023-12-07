@@ -17,7 +17,7 @@ namespace FeedAPI.Services
         /// <inheritdoc/>
         public async Task<IEnumerable<Item>> GetArticlesAsync()
         {
-            List<string> sources = new ()
+            List<string> sources = new List<string>()
             {
                 OnlinerConfig.PeopleSource,
                 OnlinerConfig.MoneySource,

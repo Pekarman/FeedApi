@@ -1,0 +1,9 @@
+div.imageBlock {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    
+    width: 100%;
+    padding: 5%;
+}

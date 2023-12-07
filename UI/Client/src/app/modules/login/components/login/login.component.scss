@@ -1,0 +1,78 @@
+.container {
+    padding-top: 3rem;
+    width: 100% !important;
+}
+
+img{
+  width: 20px;
+  height: 20px;
+}
+
+hr {
+    height: .5rem;
+}
+
+input[type=checkbox], input[type=checkbox]:not(:checked), input[type=radio]:checked, input[type=radio]:not(:checked) {
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    opacity: 0;
+    border: 0;
+    visibility: visible;
+    white-space: nowrap;
+
+    &+label{
+        position: relative;
+        padding-left: 3rem;
+        cursor: pointer;
+        line-height: 1.4;
+        display: inline-block;
+
+        &::before{
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            border: .1rem solid #ccc;
+            background: #fff;
+        }
+    }
+}
+
+.checkbox label, .radio label {
+    font-weight: 400;
+    font-family: Roboto,arial,sans-serif;
+    vertical-align: top;
+    min-height: 2.2rem;
+    text-transform: none;
+}
+
+.label, .label-lg, label {
+    font-size: 1.4rem;
+}
+
+.login-form {
+    &__submit {
+        padding-top: .5rem;
+        padding-bottom: 1rem;
+    }
+
+    &__forgot {
+        padding-bottom: .5rem;
+        text-align: center;
+        padding-top: 1.5rem;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .container-responsive {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}

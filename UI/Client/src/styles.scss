@@ -163,6 +163,13 @@ label, .label, .label-lg {
         height: 5rem;
     }
 }
+//.fa-eye{
+//  position: absolute;
+//  top: 28%;
+//  right: 4%;
+//  cursor: pointer;
+//  color: lightgray;
+//}
 
 input {
     padding: .5rem 1rem;
@@ -181,6 +188,9 @@ input {
     white-space: nowrap;
     overflow: hidden;
 
+
+
+
     &-primary {
         background-color: #018dc9;
         border: .1rem solid transparent;
@@ -198,6 +208,20 @@ input {
         height: 5rem;
     }
 }
+.btn-primary:disabled {
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+  border-color: #ccc;
+
+}
+.btn-primary:disabled {
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+  border-color: #ccc;
+
+}
 
 .link {
     font-size: 1.4rem;
@@ -214,11 +238,14 @@ input {
     margin: auto;
     align-items: center;
     border-radius: 0;
+    margin-top: 1rem;
     margin-bottom: 1rem;
-    border: .2rem solid transparent;
 
     &-error {
-        background: #ff7400;
-        color: #222;
+        color: #bf0f0f;
+        font-size:larger;
+        color: #bf0f0f;
+        font-size:larger;
+        color: #ff0000;
     }
 }

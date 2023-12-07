@@ -19,22 +19,14 @@ namespace Services.Implementations
             using (ApplicationContext db = new ApplicationContext())
             {
                 await Task.Run(() => {
-                    users = db.Users.Join(
-                        db.UserTypes,
-                        o => o.UserTypeId, i => i.Id,
-                        (i, o) => new User(
-                            i.Id,
-                            i.Username,
-                            i.UserTypeId,
-                            o.TypeName,
-                            i.Email,
-                            i.Phone,
-                            i.PassportNumber,
-                            i.BankAccount,
-                            i.BankCode,
-                            i.CompanyName,
-                            i.Balance,
-                            i.IsActive)).ToList();
+                    users = db.Users.ToList();
+
+                    users.ForEach(user =>
+                    {
+                        user.UserType = db.UserTypes.Where(t => t.Id == user.UserTypeId).FirstOrDefault();
+                        user.Deals = db.Deals.Where(d => d.UserId == user.Id).ToList();
+                        user.WatchDeals = db.WatchDeals.Where(w => w.UserId == user.Id).ToList();
+                    });
 
                     return users;
                 });
@@ -50,23 +42,11 @@ namespace Services.Implementations
             using (ApplicationContext db = new ApplicationContext())
             {
                 await Task.Run(() => {
-                    user = db.Users.Where(u => u.Id == id).Join(
-                        db.UserTypes,
-                        o => o.UserTypeId,
-                        i => i.Id,
-                        (i, o) => new User(
-                            i.Id,
-                            i.Username,
-                            i.UserTypeId,
-                            o.TypeName,
-                            i.Email,
-                            i.Phone,
-                            i.PassportNumber,
-                            i.BankAccount,
-                            i.BankCode,
-                            i.CompanyName,
-                            i.Balance,
-                            i.IsActive)).FirstOrDefault();
+                    user = db.Users.Where(u => u.Id == id).FirstOrDefault();
+
+                    user.UserType = db.UserTypes.Where(t => t.Id == user.UserTypeId).FirstOrDefault();
+                    user.Deals = db.Deals.Where(d => d.UserId == user.Id).ToList();
+                    user.WatchDeals = db.WatchDeals.Where(w => w.UserId == user.Id).ToList();
 
                     return user;
                 });
@@ -75,18 +55,20 @@ namespace Services.Implementations
             return user;
         }
 
-        public async Task<User> AddUserAsync(string username, string password, string secretPhrase, int usertypeid = 2)
+        public async Task<User> AddUserAsync(string firstName, string lastName, string username, string email, string password, string secretPhrase, int usertypeid = 2)
         {
             User user;
 
             using (ApplicationContext db = new ApplicationContext())
             {
                 bool isExistUsername = db.Users.Where(u => u.Username == username).Any();
-
                 if (isExistUsername) throw new ArgumentException($"User with name {username} already exists.");
 
+                bool isExistEmail = db.Users.Where(u => u.Email == email).Any();
+                if (isExistEmail) throw new ArgumentException($"User with email {email} already exists.");
+
                 int id = db.Users.Count() + 1;
-                user = new User(id, username, usertypeid);
+                user = new User(id, firstName, lastName, username, email, usertypeid);
 
                 var passHash = BCrypt.Net.BCrypt.EnhancedHashPassword(password, 11);
                 var secretPhraseHash = BCrypt.Net.BCrypt.EnhancedHashPassword(secretPhrase, 11);
@@ -156,7 +138,7 @@ namespace Services.Implementations
                 PassData passData = db.PassData.Where(p => p.UserId == user.Id).FirstOrDefault();
                 bool isMatch = BCrypt.Net.BCrypt.EnhancedVerify(oldPhrase, passData.SecretPhraseHash);
 
-                if (!isMatch) throw new ArgumentException("Old password is incorrect.");
+                if (!isMatch) throw new ArgumentException("Old phrase is incorrect.");
 
                 var newPassHash = BCrypt.Net.BCrypt.EnhancedHashPassword(newPhrase, 11);
                 passData.SecretPhraseHash = newPassHash;
@@ -167,6 +149,28 @@ namespace Services.Implementations
                 return true;
             }
         }
+
+        public async Task<bool> ChangeEmailAsync(string username, string password, string email)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                User user = db.Users.Where(u => u.Username == username).FirstOrDefault();
+                if (user == null) throw new ArgumentException($"User with name {username} is not exists.");
+
+                PassData passData = db.PassData.Where(p => p.UserId == user.Id).FirstOrDefault();
+                bool isMatch = BCrypt.Net.BCrypt.EnhancedVerify(password, passData.PassHash);
+
+                if (!isMatch) throw new ArgumentException("Password is incorrect.");
+
+                user.Email = email;
+
+                db.Users.Update(user);
+                await db.SaveChangesAsync();
+
+                return true;
+            }
+        }
+
 
         public async Task<bool> DeleteUserAsync(string username, string password)
         {

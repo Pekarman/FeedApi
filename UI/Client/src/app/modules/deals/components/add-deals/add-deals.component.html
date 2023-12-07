@@ -1,0 +1,136 @@
+<div id="header">
+  <app-header></app-header>
+</div>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+  <div class="row">
+    <div class="row-0 col-9">
+      <div class="container">
+        <div class="row">
+          <div class="imageBlock">
+            Здесь может быть блок для загрузки изображения
+          </div>
+          <div class="row-1">
+            <div class="prodNameBlock">
+              <div class="prodNameDescription">
+                <label>{{ localePath + 'ProdName' | translate }}</label>
+                <input formControlName="prodName" type="text" required>
+                <div *ngIf="getControl('prodName').errors && getControl('prodName').touched" style="color: red">
+                  <p>{{ ValidationRequiredError | translate : localePath + 'ProdName' }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="categoryBlock">
+              <div class="categoryDescription">
+                <label>{{ localePath + 'Category' | translate }}</label>
+                <select formControlName="category">
+                  <option *ngFor="let option of allValues; let i = index" [value]="i">{{option}}</option>
+                </select>
+                <div *ngIf="getControl('category').value === allValues && getControl('category').touched">
+                  <p>{{ ValidationRequiredError | translate : localePath + 'Category' }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="shortDescBlock">
+              <div class="shortDescription">
+                <label>{{ localePath + 'ShortDescription' | translate }}</label>
+                <textarea formControlName="shortDescription"></textarea>
+                <div *ngIf="getControl('shortDescription').errors && getControl('shortDescription').touched"
+                     style="color: red">
+                  <p>{{ ValidationRequiredError | translate : localePath + 'ShortDescription' }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="allInputs">
+              <div class="uomBlock">
+                <label>{{localePath + 'Uom' | translate }}</label>
+                <input formControlName="uom"/>
+                <div *ngIf="getControl('uom').errors && getControl('uom').touched" style="color: red">
+                  <p>{{ ValidationRequiredError | translate : localePath + 'Uom' }}</p>
+                </div>
+              </div>
+              <div class="partNumberBlock">
+                <label>{{localePath + 'PartNumber' | translate }}</label>
+                <input formControlName="partNumber"/>
+                <div *ngIf="getControl('partNumber').errors && getControl('partNumber').touched" style="color: red">
+                  <p>{{ ValidationRequiredError | translate : localePath + 'PartNumber' }}</p>
+                </div>
+              </div>
+              <div class="quantityBlock">
+                <label>{{localePath + 'Quantity' | translate }}</label>
+                <input type="number" formControlName="quantity"/>
+                <div *ngIf="getControl('quantity').errors && getControl('quantity').touched" style="color: red">
+                  <p>{{ ValidationRequiredError | translate : localePath + 'Quantity' }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row-2">
+            <div class="longDescriptionBlock">
+              <label>{{ localePath + 'LongDescription' | translate }}</label>
+              <textarea formControlName="longDescription"></textarea>
+              <div *ngIf="getControl('longDescription').errors && getControl('longDescription').touched"
+                   style="color: red">
+                <p>{{ ValidationRequiredError | translate : localePath + 'LongDescription' }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="buttonBlock">
+        <div class="buttonBlock1" *ngIf="!dealFlag">
+          <button class="cancelButton">{{localePath + 'Cancel' | translate }}</button>
+          <button class="okButton" type="submit">{{localePath + 'Ok' | translate }}</button>
+        </div>
+        <div class="buttonBlock2" *ngIf="dealFlag">
+          <button class="cancelButton">{{localePath + 'Cancel' | translate }}</button>
+          <button class="okButton" type="submit">{{localePath + 'Save' | translate }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="auctionAndCanBuyNowBlock">
+    <div class="canBuyNowBlock">
+      <label>{{localePath + 'CanBuyNow' | translate }}</label>
+      <input type="checkbox" class="checkbox" formControlName="canBuyNow" (change)="togglePriceBuyNow()"/>
+      <div *ngIf="visibilityPriceBuyNow">
+        <label>{{localePath + 'PriceBuyNow' | translate }}</label>
+        <input class="label" formControlName="priceBuyNow" type="number"/>
+        <div *ngIf=" visibilityPriceBuyNow && getControl('priceBuyNow').errors && getControl('priceBuyNow').touched"
+             style="color: red">
+          <p>{{ ValidationRequiredError | translate : localePath + 'PriceBuyNow' }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="auctionBlock col-3">
+      <h3>{{localePath + 'Auction' | translate }}</h3>
+      <div class="startTimeBlock">
+        <label>{{localePath + 'StartTime' | translate }}</label>
+        <input type="time" formControlName="startTime"/>
+        <div *ngIf="getControl('startTime').errors && getControl('startTime').touched" style="color: red">
+          <p>{{ ValidationRequiredError | translate : localePath + 'StartTime' }}</p>
+        </div>
+        <input type="date" formControlName="startDate"/>
+        <div *ngIf="getControl('startDate').errors && getControl('startDate').touched" style="color: red">
+          <p>{{ ValidationRequiredError | translate : localePath + 'StartTime' }}</p>
+        </div>
+      </div>
+      <div class="AuctionDurationBlock">
+        <label>{{localePath + 'AuctionDuration' | translate }}</label>
+        <input type="number" formControlName="duration" class="inputForAuction">
+        <div *ngIf="getControl('duration').errors && getControl('duration').touched" style="color: red">
+          <p>{{ ValidationRequiredError | translate : localePath + 'AuctionDuration' }}</p>
+        </div>
+      </div>
+      <div class="StartBetBlock">
+        <label>{{localePath + 'StartBet' | translate }}</label>
+        <input class="inputForAuction" type="number" formControlName="startBet">
+        <div *ngIf="getControl('startBet').errors && getControl('startBet').touched" style="color: red">
+          <p>{{ ValidationRequiredError | translate : localePath + 'StartBet' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+

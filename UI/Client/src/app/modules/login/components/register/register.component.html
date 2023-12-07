@@ -1,0 +1,127 @@
+<div class="wrapper-inner ">
+  <div class="container container-xs container-responsive">
+    <div class="tile tile-no-style">
+      <!-- <div class="tile-header tile-header--logo">
+          <a href="https://www.iaai.com" class="logo">Homepage</a>
+      </div> -->
+      <div class="tile-header tile-header--login">
+        <div>
+          <h1 class="heading-3">{{ localePath + 'title' | translate : localePath }}</h1>
+          <hr class="hr-highlight hr-highlight-condensed">
+        </div>
+      </div>
+      <section>
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+          <div class="tile-body">
+            <div class="login-form">
+              <div class="login-form__input">
+                <label for="firstName">{{ localePath + 'fieldsNames/firstName' | translate : localePath }}</label>
+                <input type="text" id="firstName" autocomplete="off" class="form-control form-control-lg" placeholder=""
+                       name="firstName" formControlName="firstName" required>
+              </div>
+              <div class="login-form__input">
+                <label for="lastName">{{ localePath + 'fieldsNames/lastName' | translate : localePath }}</label>
+                <input type="text" id="lastName" autocomplete="off" class="form-control form-control-lg" placeholder=""
+                       name="lastName" formControlName="lastName" required>
+              </div>
+              <div class="login-form__input">
+                <label for="userName">{{ localePath + 'fieldsNames/username' | translate : localePath }}</label>
+                <input type="text" id="userName" autocomplete="off" class="form-control form-control-lg" placeholder=""
+                       name="userName" formControlName="userName" required>
+              </div>
+              <div class="login-form__input">
+                <label for="email">{{ localePath + 'fieldsNames/email' | translate : localePath }}</label>
+                <input type="text" id="email" autocomplete="off" class="form-control form-control-lg"
+                       placeholder="example@gmail.com" name="email" formControlName="email" required>
+              </div>
+              <div id="invalidEmailError" *ngIf="invalidEmailError" class="alert alert-error fade in mb-25"
+                   style="display:block;">
+                <p>{{ 'Errors/invalidEmailError' | translate : localePath }}</p>
+              </div>
+              <div class="login-form__input">
+                <label for="password">{{ localePath + 'fieldsNames/password' | translate : localePath }}</label>
+                <input [type]="isShowOrHidePassword ? text : password" id="password" autocomplete="off" class="form-control form-control-lg"
+                       placeholder="" name="password" formControlName="password" required>
+                <span class="eyeicon" (click)="togglePhrasesVisibility('Password')">
+                                     <ng-container *ngIf="isShowOrHidePassword; else hidePassword">
+                                               <img class="icon"
+                                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7OrlYiF4Vh3828FGw-C4FQL14iso7mksYzw&usqp=CAU"/>
+                                        </ng-container>
+                                             <ng-template #hidePassword>
+                     <img class="icon" src="https://seekicon.com/free-icon-download/eye_1.png"/>
+                                     </ng-template>
+                                      </span>
+              </div>
+              <div id="invalidPasswordError" *ngIf="invalidPasswordError" class="alert alert-error fade in mb-25"
+                   style="display:block;">
+                <p>{{ 'Errors/invalidPasswordError' | translate : localePath }}</p>
+              </div>
+              <div class="login-form__input">
+                <label for="password2">{{ localePath + 'fieldsNames/password2' | translate : localePath }}</label>
+                <input [type]="isShowOrHideReplPassword ? text : password" id="password2" autocomplete="off" class="form-control form-control-lg"
+                       placeholder="" name="password2" formControlName="password2" required>
+                <span class="eyeicon" (click)="togglePhrasesVisibility('ReplPassword')">
+                                     <ng-container *ngIf="isShowOrHideReplPassword; else hidePassword">
+                                               <img class="icon"
+                                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7OrlYiF4Vh3828FGw-C4FQL14iso7mksYzw&usqp=CAU"/>
+                                        </ng-container>
+                                             <ng-template #hidePassword>
+                                             <img class="icon" src="https://seekicon.com/free-icon-download/eye_1.png"/>
+                                          </ng-template>
+                                      </span>
+
+              </div>
+              <div id="passwordMatchesError" *ngIf="passwordMatchesError" class="alert alert-error fade in mb-25"
+                   style="display:block;">
+                <p>{{ 'Errors/passwordMatchesError' | translate : localePath }}</p>
+              </div>
+              <div class="login-form__input">
+                <label for="phrase">{{ localePath + 'fieldsNames/phrase' | translate : localePath }}</label>
+                <input [type]="isShowOrHideSecretPhrase ? text : password" id="phrase" autocomplete="off" class="form-control form-control-lg"
+                       placeholder="" name="phrase" formControlName="phrase" required>
+                <span class="eyeicon" (click)="togglePhrasesVisibility('SecretPhrase')">
+                                     <ng-container *ngIf="isShowOrHideSecretPhrase; else hidePassword">
+                                               <img class="icon"
+                                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7OrlYiF4Vh3828FGw-C4FQL14iso7mksYzw&usqp=CAU"/>
+                                        </ng-container>
+                                             <ng-template #hidePassword>
+                                             <img class="icon" src="https://seekicon.com/free-icon-download/eye_1.png"/>
+                                          </ng-template>
+                                      </span>
+              </div>
+              <div class="login-form__input">
+                <label for="phrase2">{{ localePath + 'fieldsNames/phrase2' | translate : localePath }}</label>
+                <input [type]="isShowOrHideReplSecretPhrase ? text : password" id="phrase2" autocomplete="off" class="form-control form-control-lg"
+                       placeholder="" name="phrase2" formControlName="phrase2" required>
+                <span class="eyeicon" (click)="togglePhrasesVisibility('ReplSecretPhrase')">
+                                     <ng-container *ngIf="isShowOrHideReplSecretPhrase; else hidePassword">
+                                               <img class="icon"
+                                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7OrlYiF4Vh3828FGw-C4FQL14iso7mksYzw&usqp=CAU"/>
+                                        </ng-container>
+                                             <ng-template #hidePassword>
+                                             <img class="icon" src="https://seekicon.com/free-icon-download/eye_1.png"/>
+                                          </ng-template>
+                                      </span>
+              </div>
+              <div id="phraseMatchesError" *ngIf="phraseMatchesError" class="alert alert-error fade in mb-25"
+                   style="display:block;">
+                <p>{{ 'Errors/phraseMatchesError' | translate : localePath }}</p>
+              </div>
+              <div id="invalidResponseError" *ngIf="invalidResponseError" class="alert alert-warning fade in mb-25"
+                   style="display:block;">
+                <p>{{ errorText }}</p>
+              </div>
+              <div class="login-form__submit">
+                <button type="submit"
+                        class="btn btn-lg btn-block btn-primary">{{ localePath + 'title' | translate : localePath }}</button>
+              </div>
+              <p class="text-center mt-20">{{ localePath + 'alreadyRegister' | translate : localePath }}
+                <a href="/login">{{ localePath + 'login' | translate : localePath }}</a>
+              </p>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</div>

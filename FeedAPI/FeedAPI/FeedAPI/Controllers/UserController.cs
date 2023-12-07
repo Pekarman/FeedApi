@@ -1,11 +1,9 @@
-﻿using Common.EntityFramework;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Common.EntityFramework.Models;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FeedAPI.Controllers
 {
@@ -85,11 +83,11 @@ namespace FeedAPI.Controllers
 
         // Add new user
         [HttpPut]
-        public async Task<IActionResult> AddUserAsync(string username, string password, string secretPhrase)
+        public async Task<IActionResult> AddUserAsync(UserRegister regUser)
         {
             try
             {
-                User user = await this.userService.AddUserAsync(username, password, secretPhrase);
+                User user = await this.userService.AddUserAsync(regUser.firstName, regUser.lastName, regUser.username, regUser.email, regUser.password, regUser.phrase);
                 if (user != null)
                 {
                     return this.Ok(user);
@@ -109,17 +107,17 @@ namespace FeedAPI.Controllers
 
         // Change user password or secret phrase
         [HttpPatch]
-        public async Task<IActionResult> ChangePasswordAsync(string username, string oldPassword, string newPassword, bool isPassword)
+        public async Task<IActionResult> ChangePasswordAsync(ChangePassword changePassword)
         {
             try
             {
-                bool result = isPassword
-                    ? await this.userService.ChangePasswordAsync(username, oldPassword, newPassword)
-                    : await this.userService.ChangeSecretPhraseAsync(username, oldPassword, newPassword);
+                bool result = changePassword.isPassword
+                    ? await this.userService.ChangePasswordAsync(changePassword.username, changePassword.oldPassword, changePassword.newPassword)
+                    : await this.userService.ChangeSecretPhraseAsync(changePassword.username, changePassword.oldPassword, changePassword.newPassword);
 
                 if (result)
                 {
-                    return this.Ok("Password was changed.");
+                    return this.Ok(new JsonResult($"{(changePassword.isPassword ? "Password" : "Secret phrase")} was changed."));
                 }
             }
             catch (ArgumentException e)
@@ -131,19 +129,44 @@ namespace FeedAPI.Controllers
                 return new JsonResult(e.Message);
             }
 
-            return new JsonResult("Password cannot be changed.");
+            return new JsonResult($"{(changePassword.isPassword ? "Password" : "Secret phrase")} cannot be changed.");
         }
 
-        // Delete user
-        [HttpDelete]
-        public async Task<IActionResult> DeleteUserAsync(string username, string password)
+        // Change email
+        [HttpPatch("changeEmail")]
+        public async Task<IActionResult> ChangeEmailAsync(ChangeEmail changeEmail)
         {
             try
             {
-                bool result = await this.userService.DeleteUserAsync(username, password);
+                bool result = await this.userService.ChangeEmailAsync(changeEmail.username, changeEmail.password, changeEmail.email);
+
                 if (result)
                 {
-                    return this.Ok($"User with name {username} was deleted.");
+                    return this.Ok(new JsonResult("Email was changed."));
+                }
+            }
+            catch (ArgumentException e)
+            {
+                return new JsonResult(e.Message);
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
+
+            return new JsonResult("Email cannot be changed.");
+        }
+
+        // Delete user
+        [HttpDelete("deleteUser")]
+        public async Task<IActionResult> DeleteUserAsync(DeleteUser user)
+        {
+            try
+            {
+                bool result = await this.userService.DeleteUserAsync(user.username, user.password);
+                if (result)
+                {
+                    return this.Ok($"User with name {user?.username} was deleted.");
                 }
             }
             catch (ArgumentException e)
@@ -156,6 +179,49 @@ namespace FeedAPI.Controllers
             }
 
             return new JsonResult($"User cannot be deleted.");
+        }
+
+        public class UserRegister
+        {
+            public string firstName { get; set; }
+
+            public string lastName { get; set; }
+
+            public string username { get; set; }
+
+            public string email { get; set; }
+
+            public string password { get; set; }
+
+            public string phrase { get; set; }
+        }
+
+        public class ChangePassword
+        {
+            public string username { get; set; }
+
+            public string oldPassword { get; set; }
+
+            public string newPassword { get; set; }
+
+            public bool isPassword { get; set; }
+
+        }
+
+        public class ChangeEmail
+        {
+            public string password { get; set; }
+
+            public string email { get; set; }
+
+            public string username { get; set; }
+        }
+
+        public class DeleteUser
+        {
+            public string username { get; set; }
+
+            public string password { get; set; }
         }
     }
 }

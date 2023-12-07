@@ -13,8 +13,14 @@ namespace Common.EntityFramework.Models
         [Column("id")]
         public int Id { get; set; }
 
+        [Column("firstname")]
+        public string FirstName { get; set; }
+
+        [Column("lastname")]
+        public string LastName { get; set; }
+
         [Column("username")]
-        public string? Username { get; set; }
+        public string Username { get; set; }
 
         [Column("usertypeid")]
         public int UserTypeId { get; set; }
@@ -22,33 +28,40 @@ namespace Common.EntityFramework.Models
         public UserType UserType { get; set; }
 
         [Column("email")]
-        public string? Email { get; set; }
+        public string Email { get; set; }
 
         [Column("phone")]
-        public string? Phone { get; set; }
+        public string Phone { get; set; }
 
-        [Column("passportNumber")]
-        public string? PassportNumber { get; set; }
+        [Column("passportnumber")]
+        public string PassportNumber { get; set; }
 
         #region Fields only for organizations
-        [Column("payerRegNumber")]
-        public string? PayerRegNumber { get; set; }
+        [Column("payerregnumber")]
+        public string PayerRegNumber { get; set; }
 
-        [Column("bankAccount")]
-        public string? BankAccount { get; set; }
+        [Column("bankaccount")]
+        public string BankAccount { get; set; }
 
-        [Column("bankCode")]
-        public string? BankCode { get; set; }
+        [Column("bankcode")]
+        public string BankCode { get; set; }
 
-        [Column("companyName")]
-        public string? CompanyName { get; set; }
+        [Column("companyname")]
+        public string CompanyName { get; set; }
         #endregion
 
         [Column("balance")]
         public double? Balance { get; set; }
 
-        [Column("isActive")]
+        [Column("isactive")]
         public bool IsActive { get; set; }
+
+        [Column("locale")]
+        public string Locale { get; set; }
+
+        public List<Deal> Deals { get; set; }
+
+        public List<WatchDeal> WatchDeals { get; set; }
 
         public User() { }
 
@@ -59,16 +72,20 @@ namespace Common.EntityFramework.Models
             UserTypeId = usertypeid;
         }
 
-        public User(int id, string username, int usertypeid, string usertypename)
+        public User(int id, string firstName, string lastName, string username, string email, int usertypeid)
         {
             Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
             Username = username;
             UserTypeId = usertypeid;
-            UserType = new UserType(usertypeid, usertypename);
         }
 
         public User(
             int id,
+            string firstName,
+            string lastName,
             string username,
             int usertypeid,
             string usertypename,
@@ -79,10 +96,14 @@ namespace Common.EntityFramework.Models
             string bankCode,
             string companyName,
             double? balance,
+            string locale,
+            List<Deal> deals,
             bool isActive = false
             )
         {
             Id = id;
+            FirstName = firstName;
+            LastName = lastName;
             Username = username;
             UserTypeId = usertypeid;
             UserType = new UserType(usertypeid, usertypename);
@@ -93,7 +114,9 @@ namespace Common.EntityFramework.Models
             BankAccount = bankAccount;
             CompanyName = companyName;
             Balance = balance;
+            Locale = locale;
             IsActive = isActive;
+            Deals = deals;
         }
 
         public enum UserTypes

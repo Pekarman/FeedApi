@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ArticleHttpService } from './services/article.http.service';
 import { SharedService } from './services/shared.service';
+import { LocalizationService } from './localization/localization.service';
 
 @Component({
   selector: 'app-root',
@@ -10,24 +11,11 @@ import { SharedService } from './services/shared.service';
 })
 export class AppComponent {  
 
-  constructor(private service: SharedService){}
-
-  searchValue: string = "";
-
-  changeSearchValue(value : string){
-    this.searchValue = value;
-    console.log(value);
-  }
+  constructor(
+    private localizationService: LocalizationService
+    ){}
 
   ngOnInit(): void {
-    this.refreshArticleList();
-  }
-
-  
-  refreshArticleList() {
-    var result = this.service.getAll().subscribe((result) => {
-      console.log(result);
-    });
-    
+    this.localizationService.initiate('ru-RU');
   }
 }

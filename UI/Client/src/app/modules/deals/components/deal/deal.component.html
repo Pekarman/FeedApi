@@ -1,0 +1,76 @@
+<div id="header">
+  <app-header></app-header>
+</div>
+<div class="row">
+  <div class="row-0 col-9">
+    <div class="container">
+      <div class="row">
+        <div class="imageBlock">
+          <img [src]="base64Image" alt="alt">
+        </div>
+        <div class="row-1">
+          <div class="prodNameBlock">
+            <div class="prodNameDescription">
+              <h3>{{localePath + 'ProdName' | translate}}</h3>
+              <hr>
+              <p>{{deal?.productName}}</p>
+            </div>
+          </div>
+          <div class="buttonBlock">
+            <button *ngIf="deal?.userId === userSession.getSession()?.userId"
+                    (click)="redirectToChangeDeal()">{{localePath + 'ChangeDeal' | translate}}</button>
+            <button *ngIf="countStatus === 'Draft'" (click)="changeStatus()">Изменить статус</button>
+          </div>
+          <div class="shortDescBlock">
+            <div class="shortDescription">
+              <h3>{{localePath + 'ShortDescription' | translate}}</h3>
+              <hr>
+              <p class="desc">{{deal?.shortDesc}}</p>
+            </div>
+          </div>
+          <div class="quantityBlock">
+            <div class="quantityDescription">
+              <h3>{{localePath + 'Quantity' | translate}} </h3>
+              <hr>
+              <p>{{deal?.quantity + ' ' + deal.uoM}}</p>
+            </div>
+          </div>
+          <div class="statusBlock">
+            <div class="statusDescription">
+              <h3>{{localePath + 'Status' | translate}}</h3>
+              <hr>
+              <p>{{countStatus}}</p>
+            </div>
+          </div>
+          <div class="ownerAndPartNumberBlock">
+            <div class="ownerBlock">
+              <div class="ownerDescription">
+                <h3>{{localePath + 'Owner' | translate}}</h3>
+                <hr>
+                <p>{{deal.userId}}</p>
+              </div>
+            </div>
+            <div class="partNumberBlock">
+              <div class="partNumberDescription">
+                <h3>{{localePath + 'PartNumber' | translate}}</h3>
+                <hr>
+                <p>{{deal.partNumber}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row-2">
+      <div class="longDescBlock">
+        <h3>{{localePath + 'LongDescription' | translate}}</h3>
+        <hr>
+        <p class="desc">{{deal?.longDesc}}</p>
+      </div>
+    </div>
+  </div>
+  <div id="bet-container" class="col-3">
+    <app-betting [deal]="deal"></app-betting>
+  </div>
+</div>
+

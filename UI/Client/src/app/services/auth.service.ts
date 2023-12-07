@@ -1,23 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SessionService } from './session.service';
+import { ApiConfig } from '../configs/apiconfig';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  readonly ApiUrl=new ApiConfig().ApiUrl;
+  
   constructor(private http: HttpClient, private sessionService: SessionService) { }
 
-  login(username: string, password: string): void {
-    this.http.post('/api/login', { username, password }).subscribe((response) => {
-      this.sessionService.setSession(response);
-    });
+  login(email: string, password: string, phrase: string): Observable<any> {
+    return this.http.post(this.ApiUrl + 'api/Auth', { email, password, phrase });
   }
-
-  logout(): void {
-    this.http.post('/api/logout', {}).subscribe(() => {
-      this.sessionService.clearSession();
-    });
+  
+  logout(sessionId: number): Observable<any> {
+    return this.http.delete(this.ApiUrl +'api/Auth/' + sessionId);
   }
 }

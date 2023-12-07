@@ -1,0 +1,12 @@
+div {
+    &.row {
+        padding: 10px;
+    }
+    &.betting-container {
+        background-color: lightgray;
+    }
+
+    button {
+        margin: 5px;
+    }
+}

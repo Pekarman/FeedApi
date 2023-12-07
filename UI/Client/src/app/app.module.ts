@@ -7,34 +7,38 @@ import { ArticleHttpService } from './services/article.http.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ArticleComponent } from './components/article/article.component';
-import { ArticleList } from './components/article-list/article-list.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { AuthService } from './services/auth.service';
 import { SessionService } from './services/session.service';
-import { LoginComponent } from './components/login/login.component';
+import { LocalizationModule } from './localization/localization.module';
+import { ImagesModule } from './modules/images/images.module';
+import { UserSettingsModule } from './modules/user-settings/user-settings.module';
+import { CommonComponentsModule } from './modules/common/common-components.module';
+import { DealsModule } from './modules/deals/deals.module';
+import { LoginModule } from './modules/login/login.module';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ArticleComponent,
-    ArticleList,
-    HeaderComponent,
-    FooterComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LocalizationModule,
+    LoginModule,
+    ImagesModule,
+    DealsModule,
+    DashboardModule,
+    UserSettingsModule,
+    CommonComponentsModule
   ],
   providers: [
     ArticleHttpService,
     AuthService,
-    SessionService
+    SessionService,
   ],
   bootstrap: [AppComponent]
 })

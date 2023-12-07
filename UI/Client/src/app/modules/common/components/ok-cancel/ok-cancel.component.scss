@@ -1,0 +1,23 @@
+.login-form {
+  &__submit {
+    padding-top: .5rem;
+    padding-bottom: 1rem;
+  }
+
+  &__forgot {
+    padding-bottom: .5rem;
+    text-align: center;
+    padding-top: 1.5rem;
+  }
+
+}
+div.login-form__submit{
+
+  button {
+    height: 60px;
+  }
+}
+
+.ok-cancel-block{
+  margin-top: 20px;
+}

@@ -1,16 +1,19 @@
 ﻿using Common.EntityFramework.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.EntityFramework
 {
     public class ApplicationContext : DbContext
     {
+        public DbSet<Deal> Deals { get; set; } = null!;
+
+        public DbSet<Bet> Bets { get; set; } = null!;
+
+        public DbSet<Asset> Assets { get; set; } = null!;
+
         public DbSet<User> Users { get; set; } = null!;
+
+        public DbSet<WatchDeal> WatchDeals { get; set; } = null!;
 
         public DbSet<UserType> UserTypes { get; set; } = null!;
 
@@ -20,7 +23,7 @@ namespace Common.EntityFramework
 
         public ApplicationContext()
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
