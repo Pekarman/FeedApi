@@ -7,57 +7,19 @@ import { ArticleHttpService } from './services/article.http.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ArticleComponent } from './components/article/article.component';
-import { ArticleList } from './components/article-list/article-list.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { AuthService } from './services/auth.service';
 import { SessionService } from './services/session.service';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
 import { LocalizationModule } from './localization/localization.module';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { UserSettingsComponent } from './components/userSettings/user-settings/user-settings.component';
-import { UserEmailChangeComponent } from './components/userSettings/user-email-change/user-email-change.component';
-import { UserPasswordChangeComponent } from './components/userSettings/user-password-change/user-password-change.component';
-import { UserPhraseChangeComponent } from './components/userSettings/user-phrase-change/user-phrase-change.component';
-import { DeleteUserComponent } from './components/userSettings/delete-user/delete-user.component';
-import { LabeledInputComponent } from './components/common/labeled-input/labeled-input.component';
-import { OkCancelComponent } from './components/common/ok-cancel/ok-cancel.component';
-import { UsersButtonComponent } from './components/common/users-button/users-button.component';
-import { ProfilePageComponent } from './components/profilePage/profile-page/profile-page.component';
-import { DealListViewComponent } from './components/deal-list-view/deal-list-view.component';
-import { DealListComponent } from './components/deal-list/deal-list.component';
-import { DealComponent } from './components/deal/deal.component';
-import { BettingComponent } from './components/betting/betting.component';
-import { AddDealsComponent } from './components/addDeals/add-deals/add-deals.component';
-import { UploadImagesComponent } from './components/upload-images/upload-images.component';
+import { ImagesModule } from './modules/images/images.module';
+import { UserSettingsModule } from './modules/user-settings/user-settings.module';
+import { CommonComponentsModule } from './modules/common/common-components.module';
+import { DealsModule } from './modules/deals/deals.module';
+import { LoginModule } from './modules/login/login.module';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ArticleComponent,
-    ArticleList,
-    HeaderComponent,
-    FooterComponent,
-    LoginComponent,
-    RegisterComponent,
-    DashboardComponent,
-    UserSettingsComponent,
-    UserEmailChangeComponent,
-    UserPasswordChangeComponent,
-    UserPhraseChangeComponent,
-    DeleteUserComponent,
-    LabeledInputComponent,
-    OkCancelComponent,
-    UsersButtonComponent,
-    ProfilePageComponent,
-    DealListViewComponent,
-    DealListComponent,
-    DealComponent,
-    BettingComponent,
-    AddDealsComponent,
-    UploadImagesComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +27,13 @@ import { UploadImagesComponent } from './components/upload-images/upload-images.
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    LocalizationModule
+    LocalizationModule,
+    LoginModule,
+    ImagesModule,
+    DealsModule,
+    DashboardModule,
+    UserSettingsModule,
+    CommonComponentsModule
   ],
   providers: [
     ArticleHttpService,

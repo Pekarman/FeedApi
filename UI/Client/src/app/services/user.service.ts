@@ -6,7 +6,6 @@ import { IUserRegister } from '../Models/IUserRegister';
 import {IChangePassword} from "src/app/Models/IChangePassword";
 import {IChangeEmail} from "src/app/Models/IChangeEmail";
 import {IDeleteUser} from "src/app/Models/IDeleteUser";
-import {IChangePhrase} from "src/app/Models/IChangePhrase";
 
 
 @Injectable({
@@ -21,7 +20,7 @@ export class UserService {
   changePassword(user: IChangePassword):Observable<any>{
     return this.http.patch<any>(this.APIUrl + 'Api/User',user);
   }
-  changePhrase(data:IChangePhrase):Observable<any>{
+  changePhrase(data:IChangePassword):Observable<any>{
     return this.http.patch<any>(this.APIUrl + 'Api/User',data);
   }
   changeEmail(data:IChangeEmail):Observable<any>{

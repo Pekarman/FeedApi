@@ -117,7 +117,7 @@ namespace FeedAPI.Controllers
 
                 if (result)
                 {
-                    return this.Ok(new JsonResult("Password was changed."));
+                    return this.Ok(new JsonResult($"{(changePassword.isPassword ? "Password" : "Secret phrase")} was changed."));
                 }
             }
             catch (ArgumentException e)
@@ -129,7 +129,7 @@ namespace FeedAPI.Controllers
                 return new JsonResult(e.Message);
             }
 
-            return new JsonResult("Password cannot be changed.");
+            return new JsonResult($"{(changePassword.isPassword ? "Password" : "Secret phrase")} cannot be changed.");
         }
 
         // Change email

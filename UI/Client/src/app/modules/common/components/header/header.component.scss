@@ -1,0 +1,143 @@
+#searchBox {
+    float: right;
+    background-color: black;
+
+    color:rgb(21, 94, 21);
+}
+
+.header__user {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.avatarBlock {  
+  right: 0px;
+  position: absolute;
+}
+
+.container {
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  min-width: 100%;
+  min-height: 10vh;
+  background-color: lightgray;
+}
+.option {
+  background-color: lightblue;
+  position: absolute;  
+  left: -70px;
+  min-width: 200px;
+  min-height: 40px;
+  padding-left: 40px;
+  z-index: 1;
+
+  span {
+    position: absolute;
+    top: 10px;
+  }
+
+  &.opt-1 {
+    top: 70px;
+  }  
+
+  &.opt-2 {
+    top: 120px;
+  }  
+
+  &.opt-3 {
+    top: 170px;
+  }
+}
+
+div.row {
+  margin-top: 35px;
+  margin-bottom: 25px;
+}
+
+div.header__user div {
+  align-self: flex-end;
+  cursor: pointer;
+    & a, span {
+      flex: 1;
+    }
+}
+.dropdown--profile {
+  position: relative;
+  top: 10px;
+  width: 100px;
+}
+
+.profile {
+  align-items: flex-end;
+  flex: 1;
+  float: right;
+  min-width: 100%;
+}
+
+.flex-1 {
+  flex:1;
+  display: flex;
+  position: relative;
+}
+
+a {
+    color: rgb(5, 61, 5);
+    text-decoration: none;
+}
+
+@media only screen and (min-width: 1200px) {
+  .header.header-desktop .profile {
+    height: 80px;
+    margin-left: auto;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .header.header-desktop .profile {
+    background-color: #ffffff;
+    height: auto;
+    padding: 0;
+    order: 2;
+    margin-left: auto;
+  }
+}
+
+.profile {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  height: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .dropdown--profile .dropdown-avatar {
+      width: 4rem;
+      height: 4rem;
+      background-size: 2.5rem 2.5rem;
+  }
+}
+
+.dropdown--profile.dropdown-avatar {
+    position: relative;
+    top: 10px;
+    display: inline-block;
+    height: 3.5rem;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: 3rem 3rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(..\..\..\..\images\svg\user.svg);
+}

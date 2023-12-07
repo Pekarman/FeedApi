@@ -1,0 +1,10 @@
+<div class="container row" *ngFor="let asset of assets; index as i">
+    <div class="imagesBlock horizontal-gradient" *ngIf="isImageSelected(i)">
+        <div class="prev" (click)="goToPreviousImage()"></div>
+        <div class="middle" (click)="imageClick()"></div>
+        <div class="next" (click)="goToNextImage()"></div>
+        <div class="imageBlock">
+            <app-show-images [asset]="asset"></app-show-images>
+        </div>
+    </div>
+</div>
