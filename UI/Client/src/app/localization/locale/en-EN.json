@@ -98,7 +98,7 @@
     "AddDeals": {
       "ProdName": "Product Name",
       "ShortDescription": "Short Description",
-      "LongDescription": "Long Description",
+      "LongDescription": "Full Description",
       "Category": "Categories",
       "PartNumber": "Part Number",
       "Uom": "Uom",
@@ -122,7 +122,7 @@
       "Quantity": "Quantity",
       "Status": "Status",
       "Owner": "Owner",
-      "ChangeDeal": "Изменить дил",
+      "ChangeDeal": "Change",
       "Betting": {
         "PriceBuyNow": "Price buy now",
         "CurrentBet": "Current bet",
