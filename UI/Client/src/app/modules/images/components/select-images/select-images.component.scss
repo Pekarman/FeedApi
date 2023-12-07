@@ -1,25 +1,31 @@
 $imageHeight: 150px;
-
+.horizontal-gradient {
+    background: linear-gradient(to right, darkgray, lightgray);
+  }
 div {
     &.imageBlock {
         min-height: $imageHeight;
     }
 
-    &.prev, &.next {
-        width: 30%;
+    &.prev, &.middle, &.next {
+        width: 33%;
         min-height: $imageHeight;
-        background-color: black;
         opacity: 0.1;
         z-index: 1;
         position: absolute;
         
         &:hover {
-            opacity: 0.25;
+            background-color: black;
+            opacity: 0.05;
         }
     }
 
     &.next {
         right: 0px;
+    }
+
+    &.middle {
+        left: 33%
     }
 
     &.prev {

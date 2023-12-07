@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IAsset } from 'src/app/Models/IAsset';
 
 @Component({
@@ -9,11 +10,12 @@ import { IAsset } from 'src/app/Models/IAsset';
 export class SelectImagesComponent implements OnInit {
 
   @Input() assets!: IAsset[] | null;
+  @Input() dealId!: number;
 
   selectedId: number = 0;
   imagesCount: number = 0;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.imagesCount = this.assets?.length as number;
@@ -31,5 +33,9 @@ export class SelectImagesComponent implements OnInit {
   goToPreviousImage() {
     this.selectedId--;
     if (this.selectedId == -1) this.selectedId = this.imagesCount - 1;
+  }
+
+  imageClick() {
+    this.router.navigate([`deal/${this.dealId}`]);
   }
 }
