@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BettingComponent } from 'src/app/modules/deals/components/betting/betting.component';
 import { LocalizationModule } from 'src/app/localization/localization.module';
 import { AddDealsComponent } from './components/add-deals/add-deals.component';
+import { ImagesModule } from '../images/images.module';
 
 
 
@@ -21,6 +22,7 @@ import { AddDealsComponent } from './components/add-deals/add-deals.component';
     ReactiveFormsModule,
     LocalizationModule,
     CommonComponentsModule,
+    ImagesModule
   ],
   exports: [
     DealComponent,
