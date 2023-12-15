@@ -12,7 +12,7 @@ namespace Common.EntityFramework
         public static string GetRDSConnectionString()
         {
             string dbname = "ebdb";
-            string hostname = "awseb-e-sxt2twcpws-stack-awsebrdsdatabase-bq5zyilifgvq.cjehbnpyfkwm.us-east-1.rds.amazonaws.com";
+            string hostname = "awseb-e-sxt2twcpws-stack-awsebrdsdatabase-vi6icubv1fgl.cjehbnpyfkwm.us-east-1.rds.amazonaws.com";
             string port = "5432";
             string username = "postgres";
             string password = "postgres";
