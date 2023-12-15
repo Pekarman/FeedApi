@@ -28,7 +28,12 @@ namespace Common.EntityFramework
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=postgres");
+            // only for local development
+            //optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=postgres");
+
+            string connectionString = Helpers.GetRDSConnectionString();
+            optionsBuilder.UseNpgsql(connectionString);
+        
         }
     }
 }
