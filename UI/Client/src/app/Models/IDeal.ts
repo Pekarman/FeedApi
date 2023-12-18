@@ -18,6 +18,7 @@ export interface IDeal{
     isChecked: boolean;
     statusId: number;
     userId: number;
+    userFullName: string;
     startBet: number;
     bets: IBet[] | null;
     watchDeals: IWatchDeal[] | null;

@@ -132,6 +132,7 @@ export class AddDealsComponent implements OnInit {
       isChecked: false,
       statusId: 0,
       userId: this.sessionServise.getSession().userId,
+      userFullName: "",
       startBet: form.controls.startBet.value,
       bets: null,
       assets: null,
