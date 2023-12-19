@@ -10,18 +10,17 @@
 div {
     &.row {
         &.searchBar {
+            width: 90%;
             margin-bottom: 20px;
+            margin-left: 2%;
+
             input {
-                width: 95%;
-                height: 90%;
-                margin-left: 5%;
+                height: 50px;
+                width: 90%;
             }
             app-users-button {
-                width: 15%;
-                margin-left: 5%;
-            }
-            app-deal-list {
-                padding-top: 20px;
+                height: 50px;
+                width: 10%;
             }
         }
 
