@@ -133,6 +133,14 @@
       }
     }
   },
+  "Language": {
+    "Eng": "Language: English",
+    "Rus": "Language: Russian",
+    "DropDownValue": {
+      "English": "English",
+      "Russian": "Russian"
+    }
+  },
   "Errors": {
     "invalidEmailError": "Invalid email format.",
     "invalidPasswordError": "Password should consist of small/big letters, numbers and special symbols.",

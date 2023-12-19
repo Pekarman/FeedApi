@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { SessionService } from 'src/app/services/session.service';
+import {ApplicationRef, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Output, EventEmitter} from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthService} from 'src/app/services/auth.service';
+import {SessionService} from 'src/app/services/session.service';
+import {LocalizationService} from "src/app/localization/localization.service";
+
 
 @Component({
   selector: 'app-header',
@@ -11,15 +13,23 @@ import { SessionService } from 'src/app/services/session.service';
 })
 export class HeaderComponent implements OnInit {
 
+  i = 0;
   session: any;
-
   isLoggedIn: boolean = false;
   isDropdownVisible: boolean = false;
+  isChangeLanguage: boolean = false;
+
 
   constructor(
     private sessionService: SessionService,
     private authService: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private localizationService: LocalizationService,
+    private cdr: ChangeDetectorRef
+  ) {
+
+  }
+
 
   ngOnInit(): void {
     this.session = this.sessionService.getSession();
@@ -39,6 +49,15 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/userSettings']);
   }
 
+  isShowDropDown() {
+    this.isChangeLanguage = !this.isChangeLanguage;
+  }
+
+  changeLanguage(lang: string) {
+    this.localizationService.initiate(lang)
+    this.cdr.markForCheck()
+  }
+
   logout() {
     this.authService.logout(this.session.id).subscribe((response: any) => {
       this.sessionService.clearSession();
@@ -46,4 +65,6 @@ export class HeaderComponent implements OnInit {
       this.isLoggedIn = false;
     });
   }
+
+  protected readonly String = String;
 }

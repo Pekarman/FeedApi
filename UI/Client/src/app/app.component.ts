@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { ArticleHttpService } from './services/article.http.service';
-import { SharedService } from './services/shared.service';
-import { LocalizationService } from './localization/localization.service';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {ArticleHttpService} from './services/article.http.service';
+import {SharedService} from './services/shared.service';
+import {LocalizationService} from './localization/localization.service';
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -9,13 +10,17 @@ import { LocalizationService } from './localization/localization.service';
   styleUrls: ['./app.component.scss'],
   providers: [ArticleHttpService]
 })
-export class AppComponent {  
+export class AppComponent implements OnInit {
 
   constructor(
     private localizationService: LocalizationService
-    ){}
+  ) {
+  }
 
   ngOnInit(): void {
-    this.localizationService.initiate('ru-RU');
+    const savedLanguage = localStorage.getItem('selectedLanguage');
+    this.localizationService.initiate(savedLanguage as string);
+
   }
+
 }
