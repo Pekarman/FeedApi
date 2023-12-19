@@ -9,8 +9,8 @@ import { IAsset } from 'src/app/Models/IAsset';
 })
 export class SelectImagesComponent implements OnInit {
 
-  @Input() assets!: IAsset[] | null;
-  @Input() dealId!: number;
+  @Input() assets?: IAsset[] | null;
+  @Input() dealId?: number;
 
   selectedId: number = 0;
   imagesCount: number = 0;

@@ -1,5 +1,4 @@
-import {ApplicationRef, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {Output, EventEmitter} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from 'src/app/services/auth.service';
 import {SessionService} from 'src/app/services/session.service';
@@ -12,20 +11,17 @@ import {LocalizationService} from "src/app/localization/localization.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  i = 0;
+  
   session: any;
   isLoggedIn: boolean = false;
   isDropdownVisible: boolean = false;
-  isChangeLanguage: boolean = false;
-
+  isLanguageDropdownVisible: boolean = false;
 
   constructor(
     private sessionService: SessionService,
     private authService: AuthService,
     private router: Router,
-    private localizationService: LocalizationService,
-    private cdr: ChangeDetectorRef
+    private localizationService: LocalizationService
   ) {
 
   }
@@ -38,6 +34,7 @@ export class HeaderComponent implements OnInit {
 
   onAvatarClick() {
     this.isDropdownVisible = !this.isDropdownVisible;
+    this.isLanguageDropdownVisible = false;
   }
 
   openProfilePage() {
@@ -49,13 +46,15 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/userSettings']);
   }
 
-  isShowDropDown() {
-    this.isChangeLanguage = !this.isChangeLanguage;
+  onLanguageClick() {
+    this.isLanguageDropdownVisible = !this.isLanguageDropdownVisible;
+    this.isDropdownVisible = false;
   }
 
   changeLanguage(lang: string) {
-    this.localizationService.initiate(lang)
-    this.cdr.markForCheck()
+    this.localizationService.initiate(lang);
+    this.isLanguageDropdownVisible = false;
+    window.location.reload();
   }
 
   logout() {

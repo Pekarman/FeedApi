@@ -1,8 +1,6 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ArticleHttpService} from './services/article.http.service';
-import {SharedService} from './services/shared.service';
 import {LocalizationService} from './localization/localization.service';
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -20,7 +18,5 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     const savedLanguage = localStorage.getItem('selectedLanguage');
     this.localizationService.initiate(savedLanguage as string);
-
   }
-
 }

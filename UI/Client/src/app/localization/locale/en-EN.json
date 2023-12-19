@@ -123,6 +123,14 @@
       "Status": "Status",
       "Owner": "Owner",
       "ChangeDeal": "Change",
+      "MoveToActive": "Activate",
+      "Statuses": {
+        "Draft": "Draft",
+        "Active": "Active",
+        "Auction": "Auction",
+        "Sold": "Sold",
+        "Delivery": "Delivery"
+      },
       "Betting": {
         "PriceBuyNow": "Price buy now",
         "CurrentBet": "Current bet",
@@ -134,12 +142,8 @@
     }
   },
   "Language": {
-    "Eng": "Language: English",
-    "Rus": "Language: Russian",
-    "DropDownValue": {
-      "English": "English",
-      "Russian": "Russian"
-    }
+    "Language": "Language",
+    "Title": "English"
   },
   "Errors": {
     "invalidEmailError": "Invalid email format.",

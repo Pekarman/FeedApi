@@ -1,9 +1,6 @@
-import {ApplicationRef, EventEmitter, Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import localeRu from './locale/ru-RU.json';
 import localeEn from './locale/en-EN.json';
-
-
-
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +14,7 @@ export class LocalizationService {
 
   locale!: any;
 
-  constructor( ) {
-
-  }
+  constructor() {}
 
   initiate(locale: string) {
     switch (locale) {
@@ -37,7 +32,6 @@ export class LocalizationService {
       }
     }
     localStorage.setItem('selectedLanguage', locale);
-
   }
 
 
@@ -59,6 +53,4 @@ export class LocalizationService {
 
     return item;
   }
-
-
 }
