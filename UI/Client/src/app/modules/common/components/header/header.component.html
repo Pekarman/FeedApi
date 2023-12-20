@@ -39,8 +39,8 @@
             </div>
           </div>
           <div class="flex-1" *ngIf="isLoggedIn" class="flex-1">
-            <h3 (click)="onAvatarClick()"
-                class="dropdown--profile flex-1">{{ session?.user?.firstName + ' ' + session?.user?.lastName }}</h3>
+            <h3 (click)="onAvatarClick() "
+                class="dropdown--profile flex-1 userName">{{ session?.user?.firstName + ' ' + session?.user?.lastName }}</h3>
             <div *ngIf="isDropdownVisible && isLoggedIn" class="option opt-1" (click)="openProfilePage()">
               <span class="">{{ 'Pages/Header/dropdown/profile' | translate }}</span>
             </div>
