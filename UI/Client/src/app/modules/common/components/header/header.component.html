@@ -19,7 +19,8 @@
           </div>
 
           <div class="langBlock" (click)="onLanguageClick()">
-            <span class="langItem">{{ ('Language/Language' | translate) + " : " + ('Language/Title' | translate)}}</span>
+            <span class="langItem">{{ ('Language/Language' | translate) }}</span>
+            <span class="langItem title">{{ " : " + ('Language/Title' | translate)}}</span>
             <div *ngIf="isLanguageDropdownVisible">
               <div class=" drop-option drop-0 " (click)="changeLanguage('en-EN')">
                 <span>English</span>
