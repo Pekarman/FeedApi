@@ -1,5 +1,7 @@
 ﻿using Common.EntityFramework.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace Common.EntityFramework
 {
@@ -23,20 +25,17 @@ namespace Common.EntityFramework
 
         public ApplicationContext()
         {
-            //Database.EnsureCreated();
+            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //only for local development
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
 
-            //optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=postgres");
-
-
-            // Only for AWS deploy
-            string connectionString = Helpers.GetRDSConnectionString();
-            optionsBuilder.UseNpgsql(connectionString);
-
+            optionsBuilder.UseNpgsql(config.GetConnectionString("DefaultConnection"));
         }
     }
 }

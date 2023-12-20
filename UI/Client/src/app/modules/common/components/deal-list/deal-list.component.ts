@@ -35,8 +35,14 @@ export class DealListComponent implements OnInit {
     });
   }  
   
-  isMatch(regex: string, source: string): boolean{
-    if(source.toLowerCase().indexOf(regex.toLowerCase()) > -1) return true;
-    else return false;
+  isMatch(regex: string, deal: IDeal): boolean{
+    var productName = deal.productName;
+    var shortDesc = deal.shortDesc;
+    var longDesc = deal.longDesc;
+    return this.isRegexMatch(regex, productName) || this.isRegexMatch(regex, shortDesc) || this.isRegexMatch(regex, longDesc)
+  }
+
+  isRegexMatch(regex: string, source: string): boolean {
+    return source.toLowerCase().indexOf(regex.toLowerCase()) > -1;
   }
 }

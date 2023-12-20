@@ -6,9 +6,7 @@
   </div>
   <div class="result">    
     <div class="row searchBar">
-      <div class="col-9">
-        <input type="text" [(ngModel)]="searchValue"/>
-      </div>
+      <input type="text" [(ngModel)]="searchValue"/>
       <app-users-button label="{{'Find' | translate}}"></app-users-button>
     </div>
     <app-deal-list [searchValue]="searchValue"></app-deal-list>

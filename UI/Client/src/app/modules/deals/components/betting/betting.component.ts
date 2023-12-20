@@ -20,7 +20,7 @@ export class BettingComponent implements OnInit {
   }
 
   getUserWatchDeal() {
-    return this.deal.watchDeals?.find(w => w.userId == this.sessionService.getSession().userId) as IWatchDeal;
+    return this.deal?.watchDeals?.find(w => w.userId == this.sessionService.getSession().userId) as IWatchDeal;
   }
 
   constructor(

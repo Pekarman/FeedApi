@@ -5,7 +5,6 @@ import { LocalizationService } from './localization.service';
   name: 'translate'
 })
 export class TranslatePipe implements PipeTransform {
-
   
   constructor(private localizationService: LocalizationService) { }
 
@@ -13,5 +12,4 @@ export class TranslatePipe implements PipeTransform {
     var result = this.localizationService.translate(value, args);
     return result;
   }
-
 }

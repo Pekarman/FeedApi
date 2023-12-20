@@ -115,13 +115,21 @@
     },
     "DealPage": {
       "ProdName": "Имя продукта",
-      "ShortDescription": "Короткое описание",
+      "ShortDescription": "Краткое описание",
       "LongDescription": "Полное описание",
       "PartNumber": "Артикул товара",
       "Quantity": "Количество",
       "Status": "Статус",
       "Owner": "Владелец",
       "ChangeDeal": "Изменить",
+      "MoveToActive": "Активировать",
+      "Statuses": {
+        "Draft": "Неактивный",
+        "Active": "Активный",
+        "Auction": "Аукцион",
+        "Sold": "Продано",
+        "Delivery": "Доставка"
+      },
       "Betting": {
         "PriceBuyNow": "Цена при покупке сейчас",
         "CurrentBet": "Текущая ставка",
@@ -133,12 +141,8 @@
     }
   },
   "Language": {
-    "Eng": "Язык: Английский",
-    "Rus": "Язык: Русский",
-    "DropDownValue": {
-      "English": "Английский",
-      "Russian": "Русский"
-    }
+    "Language": "Язык",
+    "Title": "Русский"
   },
   "Errors": {
     "invalidEmailError": "Неверный формат почты.",

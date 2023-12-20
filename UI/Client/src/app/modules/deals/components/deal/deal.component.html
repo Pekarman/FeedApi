@@ -6,7 +6,7 @@
     <div class="container">
       <div class="row">
         <div class="imageBlock">
-          <app-select-images [dealId]="deal.id" [assets]="deal.assets"></app-select-images>
+          <app-select-images [dealId]="deal?.id" [assets]="deal?.assets"></app-select-images>
         </div>
         <div class="row-1">
           <div class="prodNameBlock">
@@ -19,7 +19,7 @@
           <div class="buttonBlock">
             <button *ngIf="deal?.userId === userSession.getSession()?.userId"
                     (click)="redirectToChangeDeal()">{{localePath + 'ChangeDeal' | translate}}</button>
-            <button *ngIf="countStatus === 'Draft'" (click)="changeStatus()">Изменить статус</button>
+            <button *ngIf="countStatus === 'Draft'" (click)="changeStatus()">{{localePath + 'MoveToActive' | translate}}</button>
           </div>
           <div class="shortDescBlock">
             <div class="shortDescription">
@@ -32,14 +32,14 @@
             <div class="quantityDescription">
               <h3>{{localePath + 'Quantity' | translate}} </h3>
               <hr>
-              <p>{{deal?.quantity + ' ' + deal.uoM}}</p>
+              <p>{{deal?.quantity + ' ' + deal?.uoM}}</p>
             </div>
           </div>
           <div class="statusBlock">
             <div class="statusDescription">
               <h3>{{localePath + 'Status' | translate}}</h3>
               <hr>
-              <p>{{countStatus}}</p>
+              <p>{{localePath + 'Statuses/' + countStatus | translate}}</p>
             </div>
           </div>
           <div class="ownerAndPartNumberBlock">
@@ -47,14 +47,14 @@
               <div class="ownerDescription">
                 <h3>{{localePath + 'Owner' | translate}}</h3>
                 <hr>
-                <p>{{deal.userFullName}}</p>
+                <p>{{deal?.userFullName}}</p>
               </div>
             </div>
             <div class="partNumberBlock">
               <div class="partNumberDescription">
                 <h3>{{localePath + 'PartNumber' | translate}}</h3>
                 <hr>
-                <p>{{deal.partNumber}}</p>
+                <p>{{deal?.partNumber}}</p>
               </div>
             </div>
           </div>
