@@ -106,10 +106,73 @@
   display: flex;
   width: 20%;
   flex-direction: column;
-  justify-content: space-between;
-  margin: -36% 0 0 77%;
-
+  margin: -29% 0 0 77%;
+  order: 2;
 }
+
+.buttonBlock {
+  width: 35%;
+  margin: 7% 0 10% 67%;
+  order: 3;
+}
+
+.buttonBlock button {
+  width: 40%;
+  margin-left: 20px;
+  border: none;
+  height: 40px;
+}
+
+@media only screen and (max-width: 768px) {
+  .auctionAndCanBuyNowBlock {
+    order: 3;
+    margin: 0 0 0 10%;
+    width: 60%;
+  }
+  .buttonBlock {
+    width: 70%;
+    margin-left: 50px;
+  }
+  .row{
+    flex-direction: column;
+  }
+  .imageBlock{
+    width: 50%;
+    margin-left: 40%;
+  }
+  .row-1{
+    flex-direction: column;
+    margin-left: -3%;
+  }
+  .prodNameBlock{
+    width: 150%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  .categoryBlock{
+    width: 100%;
+  }
+  .shortDescBlock{
+    width: 180%;
+  }
+ .allInputs{
+   flex-direction: column;
+ }
+  .uomBlock{
+    margin-bottom: 20px;
+  }
+  .partNumberBlock{
+    margin-left: -0.5%;
+  }
+  .quantityBlock{
+    margin-bottom: 30px;
+  }
+  .longDescriptionBlock{
+    margin-left: -3%;
+    width: 130%;
+  }
+}
+
 
 .auctionBlock {
   border: 1px solid black;
@@ -144,18 +207,6 @@
   margin-left: 30px;
 }
 
-.buttonBlock {
-  width: 35%;
-  margin-left: 98%;
-
-}
-
-.buttonBlock button {
-  width: 40%;
-  margin-left: 20px;
-  border: none;
-  height: 40px;
-}
 
 .okButton {
   background-color: #018dc9;

@@ -76,16 +76,6 @@
           </div>
         </div>
       </div>
-      <div class="buttonBlock">
-        <div class="buttonBlock1" *ngIf="!dealFlag">
-          <button class="cancelButton">{{localePath + 'Cancel' | translate }}</button>
-          <button class="okButton" type="submit">{{localePath + 'Ok' | translate }}</button>
-        </div>
-        <div class="buttonBlock2" *ngIf="dealFlag">
-          <button class="cancelButton">{{localePath + 'Cancel' | translate }}</button>
-          <button class="okButton" type="submit">{{localePath + 'Save' | translate }}</button>
-        </div>
-      </div>
     </div>
   </div>
   <div class="auctionAndCanBuyNowBlock">
@@ -130,7 +120,18 @@
       </div>
     </div>
   </div>
+  <div class="buttonBlock">
+    <div class="buttonBlock1" *ngIf="!dealFlag">
+      <button class="cancelButton">{{localePath + 'Cancel' | translate }}</button>
+      <button class="okButton" type="submit">{{localePath + 'Ok' | translate }}</button>
+    </div>
+    <div class="buttonBlock2" *ngIf="dealFlag">
+      <button class="cancelButton">{{localePath + 'Cancel' | translate }}</button>
+      <button class="okButton" type="submit">{{localePath + 'Save' | translate }}</button>
+    </div>
+  </div>
 </form>
+
 
 
 

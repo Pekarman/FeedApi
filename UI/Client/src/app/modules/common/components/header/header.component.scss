@@ -80,6 +80,7 @@ div.header__user div {
   flex:1;
   display: flex;
   position: relative;
+
 }
 
 a {
@@ -158,7 +159,7 @@ a {
   padding-left: 40px;
   z-index: 1;
   margin-top: -30px;
-
+  border: 1px solid darkgrey;
 
   span {
     position: absolute;
@@ -168,6 +169,7 @@ a {
 
   &.drop-0 {
     top: 70px;
+    ;
   }
 
   &.drop-1 {
@@ -178,3 +180,32 @@ a {
     top: 170px;
   }
 }
+@media only screen and (max-width: 768px){
+  .userName{
+    display: none;
+  }
+  .row {
+    flex-direction: row;
+  }
+  .headerTitle{
+    margin-top: 20px;
+  }
+
+  .option {
+    left: -200px;
+    top: 0;
+  }
+
+  .flex-1 {
+    width: 100%;
+  }
+   .drop-option{
+     position: absolute;
+     top: 100px;
+   }
+
+}
+
+
+
+
