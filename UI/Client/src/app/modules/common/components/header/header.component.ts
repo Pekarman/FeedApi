@@ -56,7 +56,9 @@ export class HeaderComponent implements OnInit {
     this.isLanguageDropdownVisible = false;
     window.location.reload();
   }
-
+  addDeals(){
+    this.router.navigate(['addDeal'])
+  }
   logout() {
     this.authService.logout(this.session.id).subscribe((response: any) => {
       this.sessionService.clearSession();

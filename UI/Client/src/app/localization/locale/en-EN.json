@@ -2,6 +2,7 @@
   "Pages" : {
     "Header": {
       "title": "Today",
+      "AddDealsButton": "Add deal",
       "dropdown": {
         "profile": "Profile",
         "settings": "Settings",

@@ -80,6 +80,7 @@ div.header__user div {
   flex:1;
   display: flex;
   position: relative;
+
 }
 
 a {
@@ -156,6 +157,7 @@ a {
   padding-left: 40px;
   z-index: 1;
   margin-top: -30px;
+  border: 1px solid darkgrey;
 
   span {
     position: absolute;
@@ -175,3 +177,45 @@ a {
     top: 170px;
   }
 }
+@media only screen and (max-width: 768px){
+  .userName{
+    display: none;
+  }
+  .row {
+    flex-direction: row;
+  }
+  .headerTitle{
+    margin-top: 20px;
+  }
+
+  .langItem.title {
+    display: none;
+  }
+
+  .option {
+    left: -200px;
+    top: 0;
+  }
+
+  .flex-1 {
+    width: 100%;
+  }
+   .drop-option{
+     position: absolute;
+     top: 100px;
+   }
+
+}
+
+.addDeals{
+  min-width: 10%;
+  max-height: 40px;
+  button{
+    margin-left: 60%;
+    border: none;
+    background-color: #018dc9;
+    color: white;
+  }
+}
+
+
