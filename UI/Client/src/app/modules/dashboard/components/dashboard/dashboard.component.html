@@ -4,11 +4,12 @@
 <div class="content row">
   <div class="filters">
   </div>
-  <div class="result">    
+  <div class="result">
     <div class="row searchBar">
       <input type="text" [(ngModel)]="searchValue"/>
       <app-users-button label="{{'Find' | translate}}"></app-users-button>
     </div>
-    <app-deal-list [searchValue]="searchValue"></app-deal-list>
+<!--    <app-deal-list [searchValue]="searchValue"></app-deal-list>-->
+    <app-category-grid></app-category-grid>
   </div>
 </div>

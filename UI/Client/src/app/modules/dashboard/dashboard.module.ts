@@ -5,12 +5,16 @@ import { LocalizationModule } from 'src/app/localization/localization.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CategoryGridComponent } from './components/category-grid/category-grid.component';
+import { CategoryGridViewComponent } from './components/category-grid-view/category-grid-view.component';
 
 
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    CategoryGridComponent,
+    CategoryGridViewComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +25,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     CommonComponentsModule
   ],
   exports: [
-    DashboardComponent
+    DashboardComponent,
+    CategoryGridComponent,
+    CategoryGridViewComponent
   ]
 })
 export class DashboardModule { }
