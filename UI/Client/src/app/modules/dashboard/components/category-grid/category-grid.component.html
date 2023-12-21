@@ -1,5 +1,7 @@
-<div class="container">
-  <div class="content">
-    <app-category-grid-view></app-category-grid-view>
+<div class="wrapper">
+  <div class="grid-container" >
+    <div class="block" *ngFor="let category of arrayOfCategoryEnum">
+      <div class="category">{{category}}</div>
+    </div>
   </div>
 </div>
