@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="grid-container" >
     <div class="block" *ngFor="let category of arrayOfCategoryEnum">
-      <div class="category">{{category}}</div>
+      <div (click)="categoryClick(category.toString())" class="category">{{category}}</div>
     </div>
   </div>
 </div>

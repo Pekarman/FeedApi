@@ -1,12 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="flex-1">
+    <div class="flex-1 titleBlock">
       <a href="../../../index.html">
         <h2>{{ 'Pages/Header/title' | translate }}</h2>
       </a>
-    </div>
-    <div class="flex-1 addDeals">
-       <button (click)="addDeals()">{{'Pages/Header/AddDealsButton' | translate}}</button>
     </div>
     <div class="flex-1">
       <div class="profile">
@@ -30,7 +27,7 @@
               </div>
             </div>
           </div>
-          <div class="flex-1" *ngIf="isLoggedIn" class="flex-1">
+          <div class="flex-1" *ngIf="isLoggedIn" >
             <div class="select flex-1">
               <div class="avatarBlock">
                     <span (click)="onAvatarClick()"
@@ -39,9 +36,9 @@
               </div>
             </div>
           </div>
-          <div class="flex-1" *ngIf="isLoggedIn" class="flex-1">
+          <div class="loginName flex-1" *ngIf="isLoggedIn" class="flex-1">
             <h3 (click)="onAvatarClick() "
-                class="dropdown--profile flex-1 userName">{{ session?.user?.firstName + ' ' + session?.user?.lastName }}</h3>
+                class="movedToLeft dropdown--profile flex-1 userName">{{ session?.user?.firstName + ' ' + session?.user?.lastName }}</h3>
             <div *ngIf="isDropdownVisible && isLoggedIn" class="option opt-1" (click)="openProfilePage()">
               <span class="">{{ 'Pages/Header/dropdown/profile' | translate }}</span>
             </div>

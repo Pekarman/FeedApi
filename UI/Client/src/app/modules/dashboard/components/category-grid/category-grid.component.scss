@@ -1,6 +1,7 @@
 .wrapper {
   height: 100%;
   width: 100%;
+  margin-left: 18px;
 }
 
 .grid-container {
@@ -26,6 +27,7 @@
   padding-top: calc(200px / 2.3);
   font-weight: 700;
   font-size: small;
+  cursor:pointer;
 }
 
 @media only screen and (max-width: 900px) {
@@ -38,7 +40,7 @@
   }
 }
 
-@media only screen and (max-width: 768px) {  
+@media only screen and (max-width: 768px) {
   .grid-container {
     flex-direction: column;
   }

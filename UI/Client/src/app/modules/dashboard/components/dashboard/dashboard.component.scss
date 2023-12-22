@@ -1,10 +1,22 @@
 #header {
     min-height: 10vh;
     background-color: lightgray;
+
 }
 
 .content {
     margin-top: 15px;
+    margin-left: 7px;
+}
+
+.filterBlock{
+  border: 2px solid lightgray;
+  height: 30%;
+  width: 110%;
+}
+.filters{
+
+
 }
 
 div {
@@ -12,11 +24,13 @@ div {
         &.searchBar {
             width: 90%;
             margin-bottom: 20px;
-            margin-left: 2%;
+            //margin-left: 2%;
 
             input {
                 height: 50px;
-                width: 90%;
+                width: 70%;
+                margin-right: 9px;
+              margin-left: 30px;
             }
             app-users-button {
                 height: 50px;
@@ -32,4 +46,14 @@ div {
             width: 85%;
         }
     }
+}
+
+@media only screen and (max-width: 768px){
+  .content{
+    width: 100%;
+  }
+  input {
+    width: 5%;
+    margin-left: 19px;
+  }
 }
