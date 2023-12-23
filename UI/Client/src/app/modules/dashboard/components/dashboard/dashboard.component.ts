@@ -8,7 +8,7 @@ import {SessionService} from 'src/app/services/session.service';
   encapsulation: ViewEncapsulation.Emulated
 })
 export class DashboardComponent implements OnInit {
-
+   category: Array<string> = ['goods', 'category', 'huinya', 'supplies', 'wallpaper']
   session!: any;
   searchValue: string = "";
 

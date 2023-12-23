@@ -13,10 +13,14 @@
   border: 2px solid lightgray;
   height: 30%;
   width: 110%;
+  cursor: pointer;
 }
-.filters{
-
-
+.subcategories{
+  border: 2px solid lightgray;
+  height: 40px;
+  margin: 3px ;
+  padding-left: 35%;
+  padding-top: 5px;
 }
 
 div {
@@ -55,5 +59,16 @@ div {
   input {
     width: 5%;
     margin-left: 19px;
+  }
+  .filterBlock{
+    width: 130%;
+    cursor: pointer;
+  }
+  .filters{
+    height: 30%;
+  }
+  .subcategories{
+    font-size: xx-small;
+    padding-left: -200px;
   }
 }

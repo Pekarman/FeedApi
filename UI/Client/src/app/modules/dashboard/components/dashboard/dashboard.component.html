@@ -2,9 +2,9 @@
   <app-header></app-header>
 </div>
 <div class="content row">
-  <div class="filters">
-    <div class="filterBlock">
-
+  <div class="filters" >
+    <div class="filterBlock"  >
+      <div class="subcategories" *ngFor="let subcategories of category; let i = index">{{subcategories}}</div>
     </div>
   </div>
   <div class="result">
@@ -12,7 +12,7 @@
       <input type="text" [(ngModel)]="searchValue"/>
       <app-users-button label="{{'Find' | translate}}"></app-users-button>
     </div>
-<!--    <app-deal-list [searchValue]="searchValue"></app-deal-list>-->
+    <!--    <app-deal-list [searchValue]="searchValue"></app-deal-list>-->
     <app-category-grid></app-category-grid>
   </div>
 </div>
