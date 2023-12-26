@@ -1,83 +1,110 @@
 #header {
-    min-height: 10vh;
-    background-color: lightgray;
+  min-height: 10vh;
+  background-color: lightgray;
 
 }
 
 .content {
-    margin-top: 15px;
-    margin-left: 7px;
+  margin-top: 15px;
+  margin-left: 7px;
+
 }
 
-.filterBlock{
+.filterBlock {
   border: 2px solid lightgray;
-  height: 30%;
-  width: 110%;
+  width: 100%;
   cursor: pointer;
 }
-.subcategories{
+
+.openFilter {
+  border: 2px solid lightgray;
+  height: 20%;
+  width: 370%;
+
+}
+
+.subcategories {
   border: 2px solid lightgray;
   height: 40px;
-  margin: 3px ;
-  padding-left: 35%;
-  padding-top: 5px;
+  margin: 3px;
+
 }
 
 div {
-    &.row {
-      justify-content: space-between;
-        &.searchBar {
-            width: 90%;
-            margin-bottom: 20px;
+  &.row {
+    justify-content: space-between;
 
-            input {
-                height: 50px;
-                width: 72%;
-              margin-left: 30px;
-            }
-            app-users-button {
-                height: 50px;
-                width: 10%;
-            }
-            .addDealsButton {
-              width: 10%;
-              background-color: #018dc9;
-              color: #fff;
-              border: none;
-            }
-            
-        }
+    &.searchBar {
+      width: 90%;
+      margin-bottom: 20px;
 
-        .filters {
-            width: 15%;
-        }
+      input {
+        height: 50px;
+        width: 72%;
+        margin-left: 30px;
+      }
 
-        .result {
-            width: 85%;
-        }
+      app-users-button {
+        height: 50px;
+        width: 10%;
+      }
+
+      .addDealsButton {
+        width: 10%;
+        background-color: #018dc9;
+        color: #fff;
+        border: none;
+      }
+
     }
+
+    .filters {
+      width: 5%;
+
+    }
+
+    .result {
+      width: 95%;
+    }
+    .resultOpen{
+      width: 85%;
+
+    }
+  }
 }
 
-@media only screen and (max-width: 768px){
-  .content{
+@media only screen and (max-width: 768px) {
+  .content {
     width: 100%;
   }
   input {
     width: 5%;
   }
-  .filterBlock{
-    width: 130%;
+  .result{
+    padding-left: 25px;
+  }
+
+  .filterBlock {
+    width: 500%;
     cursor: pointer;
+    border: 2px solid lightgray;
+
   }
-  .filters{
-    height: 30%;
-    display: none;
+  .filterBlockOpen {
+    width: 80%;
+    height: 60%;
+    cursor: pointer;
+    border: 2px solid lightgray;
+    position: fixed;
+    z-index: 1;
+    background-color: white;
   }
-  .subcategories{
-    font-size: xx-small;
-    padding-left: -200px;
+  .filters {
+    height: 100%;
   }
-  
+  .subcategories {
+  }
+
   input.input {
     width: 100% !important;
   }
@@ -90,5 +117,8 @@ div {
 
   .addDealsButton {
     width: 40% !important;
+  }
 }
-}
+
+
+

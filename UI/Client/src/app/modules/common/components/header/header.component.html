@@ -8,12 +8,7 @@
     <div class="flex-1">
       <div class="profile">
         <div class="header__user flex-1" id="loginRow">
-          <div *ngIf="!isLoggedIn" class="flex-1">
-            <a href="/register" class="flex-1">{{ 'Pages/RegisterPage/title' | translate }}</a>
-          </div>
-          <div *ngIf="!isLoggedIn" class="flex-1">
-            <a href="/login" class="flex-1">{{ 'Pages/LoginPage/title' | translate }}</a>
-          </div>
+
 
           <div class="langBlock" (click)="onLanguageClick()">
             <span class="langItem">{{ ('Language/Language' | translate) }}</span>
@@ -27,6 +22,15 @@
               </div>
             </div>
           </div>
+
+          <div *ngIf="!isLoggedIn" class="flex-1 login">
+            <a href="/login" class="">{{ 'Pages/LoginPage/title' | translate }}</a>
+          </div>
+          <div *ngIf="!isLoggedIn" class="flex-1 register">
+            <a href="/register" class="">{{ 'Pages/RegisterPage/title' | translate }}</a>
+          </div>
+
+
           <div class="flex-1" *ngIf="isLoggedIn" >
             <div class="select flex-1">
               <div class="avatarBlock">

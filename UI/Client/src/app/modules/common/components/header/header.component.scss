@@ -1,14 +1,14 @@
 #searchBox {
-    float: right;
-    background-color: black;
+  float: right;
+  background-color: black;
 
-    color:rgb(21, 94, 21);
+  color: rgb(21, 94, 21);
 }
 
 .header__user {
   display: flex;
   align-items: center;
-  margin: 0;
+  margin-left: 100px;
 }
 
 .avatarBlock {
@@ -24,6 +24,7 @@
   min-height: 10vh;
   background-color: lightgray;
 }
+
 .option {
   background-color: lightblue;
   position: absolute;
@@ -59,10 +60,12 @@ div.row {
 div.header__user div {
   align-self: flex-end;
   cursor: pointer;
-    & a, span {
-      flex: 1;
-    }
+
+  & a, span {
+    flex: 1;
+  }
 }
+
 .dropdown--profile {
   position: relative;
   top: 10px;
@@ -77,18 +80,20 @@ div.header__user div {
 }
 
 .flex-1 {
-  flex:1;
+  flex: 1;
   display: flex;
   position: relative;
 
 }
-.titleLeft{
+
+.titleLeft {
   margin-left: 30px;
   margin-top: 10px;
 }
+
 a {
-    color: rgb(5, 61, 5);
-    text-decoration: none;
+  color: rgb(5, 61, 5);
+  text-decoration: none;
 }
 
 @media only screen and (min-width: 1200px) {
@@ -125,28 +130,28 @@ a {
 
 @media (min-width: 768px) {
   .dropdown--profile .dropdown-avatar {
-      width: 4rem;
-      height: 4rem;
-      background-size: 2.5rem 2.5rem;
+    width: 4rem;
+    height: 4rem;
+    background-size: 2.5rem 2.5rem;
   }
 }
 
 .dropdown--profile.dropdown-avatar {
-    position: relative;
-    top: 10px;
-    display: inline-block;
-    height: 3.5rem;
-    font-size: 1.4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-size: 3rem 3rem;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url(..\..\..\..\images\svg\user.svg);
+  position: relative;
+  top: 10px;
+  display: inline-block;
+  height: 3.5rem;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: 3rem 3rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(..\..\..\..\images\svg\user.svg);
 }
 
-.langItem{
+.langItem {
   font-weight: bolder;
   font-size: 16px;
 }
@@ -180,18 +185,19 @@ a {
     top: 170px;
   }
 }
-@media only screen and (max-width: 768px){
-  .avatarBlock span{
+
+@media only screen and (max-width: 768px) {
+  .avatarBlock span {
     display: block;
     margin-left: 90%;
   }
-  .userName{
+  .userName {
     display: none;
   }
   .row {
     flex-direction: row;
   }
-  .headerTitle{
+  .headerTitle {
     margin-top: 20px;
   }
 
@@ -207,45 +213,62 @@ a {
   .flex-1 {
     width: 100%;
   }
-   .drop-option{
-     position: absolute;
-     top: 100px;
-   }
+  .drop-option {
+    position: absolute;
+    top: 100px;
+  }
 
 }
-@media only screen and (min-width: 380px){
-  .avatarBlock span{
+
+@media only screen and (min-width: 380px) {
+  .avatarBlock span {
     display: block;
     margin-left: 90%;
   }
-  .movedToLeft{
+  .movedToLeft {
     margin-left: 1000px;
     width: 100%;
   }
 }
 
-.addDeals{
+.addDeals {
   min-width: 10%;
   max-height: 40px;
-  button{
+
+  button {
     margin-left: 60%;
     border: none;
     background-color: #018dc9;
     color: white;
   }
 }
-.langBlock{
-  margin-left: 40%;
+
+.langBlock {
+  margin-left: 30%;
 }
-.avatarBlock{
-margin-right: 85%;
+
+.avatarBlock {
+  margin-right: 85%;
 }
-.titleBlock{
+
+.titleBlock {
   margin-left: 5%;
 }
 
 
-.movedToLeft{
+.movedToLeft {
   margin-left: -10px;
 }
 
+.register {
+
+  a {
+    margin-left: -25%;
+  }
+}
+
+.login {
+  a {
+    margin-left: 25%;
+  }
+}

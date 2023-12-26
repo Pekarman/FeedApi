@@ -3,11 +3,13 @@
 </div>
 <div class="content row">
   <div class="filters" >
-    <div class="filterBlock"  >
-      <div class="subcategories" *ngFor="let subcategories of category; let i = index">{{subcategories}}</div>
+    <div class="filterBlock" [ngClass]="{openFilter: isChildOpen}" >
+      <div class="subcategories" [ngClass]="{filterBlockOpen : isChildOpen}">
+        <app-burger-menu  (isOpenChange)="onChildOpenChange($event)"></app-burger-menu>
+      </div>
     </div>
   </div>
-  <div class="result">
+  <div class="result" [ngClass]="{resultOpen: isChildOpen}">
     <div class="row searchBar">
       <input class="input" type="text" [(ngModel)]="searchValue"/>
       <app-users-button label="{{'Find' | translate}}"></app-users-button>
