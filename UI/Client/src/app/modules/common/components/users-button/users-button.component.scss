@@ -10,15 +10,8 @@ button {
   border-radius: 2px;
 }
 
-.addDealsButton {
-  margin-left: 20px;
-  background-color: #018dc9;
-  color: #fff;
-  border: none;
-}
-
 .searchButton {
-  margin-left: 20px;
+  margin-bottom: 20px;
   background-color: #018dc9;
   color: #fff;
   border: none;
@@ -38,13 +31,13 @@ button {
     font-size: xx-small;
     margin-left: 10px;
   }
-  .searchButton {
-    width: 100%;
-    font-size: xx-small;
+  // .searchButton {
+  //   width: 100%;
+  //   font-size: xx-small;
 
-  }
-  .button-block {
-    width: 100%;
-    margin-left: -30px;
-  }
+  // }
+  // .button-block {
+  //   width: 100%;
+  //   margin-left: -30px;
+  // }
 }

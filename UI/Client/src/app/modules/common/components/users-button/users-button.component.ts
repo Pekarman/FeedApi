@@ -15,9 +15,6 @@ export class UsersButtonComponent implements OnInit {
 
   ngOnInit(): void {
   }
-addDeals(){
-    this.router.navigate(['addDeal'])
-}
   onClick() {
     this.router.navigate([this.path]);
   }

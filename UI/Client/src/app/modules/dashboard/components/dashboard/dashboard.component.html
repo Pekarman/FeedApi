@@ -9,8 +9,9 @@
   </div>
   <div class="result">
     <div class="row searchBar">
-      <input type="text" [(ngModel)]="searchValue"/>
+      <input class="input" type="text" [(ngModel)]="searchValue"/>
       <app-users-button label="{{'Find' | translate}}"></app-users-button>
+      <app-users-button (click)="addDeals()" label="{{'Pages/Header/AddDealsButton' | translate}}"></app-users-button>
     </div>
     <!--    <app-deal-list [searchValue]="searchValue"></app-deal-list>-->
     <app-category-grid></app-category-grid>
