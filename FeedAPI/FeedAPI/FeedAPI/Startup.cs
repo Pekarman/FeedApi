@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using FeedAPI.Services;
+using FeedAPI.SignalR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -46,7 +47,23 @@ namespace FeedAPI
                 options.Cookie.IsEssential = true;
             });
 
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                {
+                    string originUrl = this.Configuration.GetValue(typeof(string), "OriginUrl") as string;
+                    builder
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials()
+                        .WithOrigins(new[] { originUrl });
+                });
+            });
+
+            services.AddSignalR(options =>
+            {
+                options.EnableDetailedErrors = true;
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -73,11 +90,7 @@ namespace FeedAPI
 
             app.UseAuthorization();
 
-            app.UseCors(builder => {
-                builder.AllowAnyOrigin();
-                builder.AllowAnyHeader();
-                builder.AllowAnyMethod();
-            });
+            app.UseCors("CorsPolicy");
 
             app.UseSession();   // adding sessions management middleware
 
@@ -85,10 +98,12 @@ namespace FeedAPI
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("It's Api cors response");
+                    await context.Response.WriteAsync("It's CORS response");
                 });
 
                 endpoints.MapControllers();
+
+                endpoints.MapHub<BroadcastHub>("/notify");
             });
         }
     }

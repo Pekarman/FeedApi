@@ -1,6 +1,8 @@
 ﻿using Common.EntityFramework.Models;
+using FeedAPI.SignalR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -13,12 +15,15 @@ namespace FeedAPI.Controllers
     [ApiController]
     public class DealController : ControllerBase
     {
+        private readonly IHubContext<BroadcastHub, IHubClient> hubContext;
         private readonly IDealService dealService;
 
         public DealController(
-            IDealService dealService)
+            IDealService dealService,
+            IHubContext<BroadcastHub, IHubClient> hubContext)
         {
             this.dealService = dealService;
+            this.hubContext = hubContext;
         }
 
         /// <summary>
@@ -146,6 +151,35 @@ namespace FeedAPI.Controllers
             }
 
             return new JsonResult($"Deal cannot be changed.");
+        }
+
+        /// <summary>
+        /// Makes bet.
+        /// </summary>
+        /// <param name="bet">Bet to make.</param>
+        /// <returns>Made bet.</returns>
+        [HttpPost("makeBet")]
+        public async Task<IActionResult> MakeBetAsync(Bet bet)
+        {
+            try
+            {
+                Bet result = await this.dealService.MakeBetAsync(bet);
+                if (result != null)
+                {
+                    await this.hubContext.Clients.All.BetMade(result);
+                    return this.Ok(result);
+                }
+            }
+            catch (ArgumentException e)
+            {
+                return new JsonResult(e.Message);
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
+
+            return new JsonResult($"Bet cannot be added.");
         }
 
         /// <summary>

@@ -90,7 +90,8 @@
   }
 }
 
-#bet-container {
+.bettingBlock {
+  min-width: 350px;
   margin-top: 60px;
 }
 
@@ -102,4 +103,15 @@ p{
   font-size: small;
   color: black;
   font-weight: bold;
+}
+
+
+@media only screen and (max-width: 1400px) {  
+  .contentBlock {
+    width: 100%;
+  }
+
+  .bettingBlock {
+    margin-left: 30px;
+  }
 }

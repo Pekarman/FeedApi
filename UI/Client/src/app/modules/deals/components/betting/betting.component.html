@@ -1,4 +1,7 @@
 <div class="betting-container">
+    <div class="betting-header row col-12">
+        <h2>{{ localePath + 'Auction' | translate }}</h2>
+    </div>
     <div class="row" *ngIf="deal?.canBuyNow">
         <div class="col-6">
             <p>{{ localePath + 'PriceBuyNow' | translate }}</p>
@@ -7,15 +10,34 @@
         <div class="col-6">
             <button class="btn btn-lg btn-block btn-primary" (click)="buyNowClick()">{{ localePath + 'BuyNow' | translate }}</button>
         </div>
-    </div>    
+    </div>
     <div class="row">
         <div class="col-6">
-            <p>{{ localePath + 'CurrentBet' | translate }}</p>
+            <p>{{ localePath + 'StartBet' | translate }}</p>
             <p>{{ deal?.startBet }} BYN</p>
         </div>
         <div class="col-6">
-            <button class="btn btn-lg btn-block btn-primary" (click)="makeBet()">{{ localePath + 'MakeBet' | translate }}</button>
+            <p>{{ localePath + 'CurrentBet' | translate }}</p>
+            <p>{{ getCurrentBet() }} BYN</p>
         </div>
+    </div>
+    <div class="row makeBetBlock">
+        <form class="row" [formGroup]="myForm" (ngSubmit)="makeBet(myForm)">
+            <div class="col-6 padding-top-0">
+                <app-labeled-input
+                    label="{{ localePath + 'YourBet' | translate }}"
+                    [control]="myForm.get('bet')"
+                    [isPasswordField]="false">
+                </app-labeled-input>
+            </div>
+            <div class="col-6">
+                <button type="submit" class="btn btn-lg btn-block btn-primary make-bet">{{ localePath + 'MakeBet' | translate }}</button>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="responseError" class="alert alert-error fade in mb-25"
+        style="display:block;">
+      <p>{{ 'Errors/MinBetError' | translate }}</p>
     </div>
     <div class="row">
         <div class="col-12" *ngIf="!IsWatchedByUser()">

@@ -4,9 +4,29 @@ div {
     }
     &.betting-container {
         background-color: lightgray;
+        width: 95%;
+    }
+    &.betting-header {
+        height: 60px;
+        margin-left: 0px;
+        background-color: darkgray;
+        font-weight: bolder;
+
+        h2 {
+            margin-top: 10px;
+            text-align: center;
+        }
+    }
+
+    &.makeBetBlock {
+        justify-content: center;
     }
 
     button {
-        margin: 5px;
+        margin-right: 5px;
+
+        &.make-bet {
+            margin-top: 23px;
+        }
     }
 }
