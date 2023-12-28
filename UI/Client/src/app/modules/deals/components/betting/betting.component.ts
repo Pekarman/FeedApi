@@ -7,6 +7,7 @@ import * as signalR from "@microsoft/signalr"
 import { ApiConfig } from 'src/app/configs/apiconfig';
 import { IBet } from 'src/app/Models/IBet';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-betting',
@@ -25,6 +26,8 @@ export class BettingComponent implements OnInit {
     bet: new FormControl(0, [Validators.required])
   });
 
+  winnerFullName: string = "";
+
   responseError: boolean = false;
 
   IsWatchedByUser() {
@@ -36,15 +39,26 @@ export class BettingComponent implements OnInit {
   }
 
   getCurrentBet() {
-    let maxBet = this.deal?.startBet;
+    let winnerId = 0;
+    let currentBet = this.deal?.startBet;
     this.deal?.bets?.forEach(bet => {
-      if (bet.currentBet > maxBet) maxBet = bet.currentBet;
+      if (bet.currentBet > currentBet) {
+        currentBet = bet.currentBet;
+        winnerId = bet.userId;
+      }
     });
-    return maxBet;
+    if (winnerId !== 0) {
+      let winner = this.userService.getUserById(winnerId);
+      winner.subscribe(user => {
+        this.winnerFullName = `${user.firstName} ${user.lastName}`;
+      })
+    }    
+    return currentBet;
   }
 
   constructor(
     private readonly sessionService: SessionService,
+    private readonly userService: UserService,
     private readonly dealService: DealService
     ) {}
 
@@ -61,7 +75,7 @@ export class BettingComponent implements OnInit {
     this.myForm.controls.bet.setValidators(Validators.min(this.getCurrentBet() + 1));
 
     this.myForm.controls.bet.valueChanges.subscribe(() => {
-      this.responseError = !this.myForm.controls.bet.valid;
+      this.responseError = this.myForm.controls.bet.value <= this.getCurrentBet();
     });
   }
 
@@ -89,7 +103,9 @@ export class BettingComponent implements OnInit {
   }
 
   makeBet(form: FormGroup) {
-    if (!form.valid) {
+    form.controls.bet.markAsTouched();
+    if (this.myForm.controls.bet.value <= this.getCurrentBet()) {
+      this.responseError = true;
       return;
     }
     var data: IBet = {
@@ -108,7 +124,7 @@ export class BettingComponent implements OnInit {
   updateBets(bet: IBet) {
     if(this.deal.bets?.findIndex(b => b.id == bet.id) !== -1 || this.deal.id !== bet.dealId) return;
     this.deal.bets?.push(bet);
-    console.log(this.deal);
+    this.myForm.controls.bet.setValidators(Validators.min(this.getCurrentBet() + 1));
   }
 
   buyNowClick() {}

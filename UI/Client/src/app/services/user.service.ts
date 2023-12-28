@@ -6,6 +6,7 @@ import { IUserRegister } from '../Models/IUserRegister';
 import {IChangePassword} from "src/app/Models/IChangePassword";
 import {IChangeEmail} from "src/app/Models/IChangeEmail";
 import {IDeleteUser} from "src/app/Models/IDeleteUser";
+import { IUser } from '../Models/IUser';
 
 
 @Injectable({
@@ -14,6 +15,11 @@ import {IDeleteUser} from "src/app/Models/IDeleteUser";
 export class UserService {
   readonly APIUrl=new ApiConfig().ApiUrl;
   constructor(private http:HttpClient) { }
+ 
+  getUserById(id: number):Observable<IUser>{
+    return this.http.get<IUser>(this.APIUrl + `Api/User/${id}`);
+  }
+   
   createUser(user: IUserRegister):Observable<IUserRegister>{
     return this.http.put<IUserRegister>(this.APIUrl + 'Api/User',user);
   }

@@ -13,8 +13,18 @@
     </div>
     <div class="row">
         <div class="col-6">
+            <p>{{ localePath + 'AuctionStart' | translate }}</p>
+            <p>{{ deal?.startTime | date:'long' }}</p>
+        </div>
+        <div class="col-6">
             <p>{{ localePath + 'StartBet' | translate }}</p>
             <p>{{ deal?.startBet }} BYN</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <p>{{ localePath + 'CurrentWinner' | translate }}</p>
+            <p>{{ winnerFullName }}</p>
         </div>
         <div class="col-6">
             <p>{{ localePath + 'CurrentBet' | translate }}</p>
@@ -35,7 +45,7 @@
             </div>
         </form>
     </div>
-    <div *ngIf="responseError" class="alert alert-error fade in mb-25"
+    <div *ngIf="responseError" class="alert alert-error fade in"
         style="display:block;">
       <p>{{ 'Errors/MinBetError' | translate }}</p>
     </div>
