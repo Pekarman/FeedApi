@@ -17,3 +17,7 @@ img{
   transform: translateY(-50%);
   cursor: pointer;
 }
+
+:host-context(.padding-top-0) .form-Item {
+  padding-top: 0px;
+}

@@ -133,8 +133,13 @@
         "Delivery": "Delivery"
       },
       "Betting": {
+        "Auction": "Auction",
+        "AuctionStart": "Auction start",
+        "CurrentWinner": "Current winner",
         "PriceBuyNow": "Price buy now",
+        "StartBet": "Start bet",
         "CurrentBet": "Current bet",
+        "YourBet": "Your bet",
         "BuyNow": "Buy now",
         "MakeBet": "Make a bet",
         "AddToWatchList": "Add to my watch list",
@@ -153,6 +158,7 @@
     "phraseMatchesError": "Secret phrase doesn't match.",
     "newPasswordMatchesOldError": "New password cannot be equal to new one.",
     "newPhraseMatchesOldError": "New phrase cannot be equal to new one.",
+    "MinBetError": "Your bet should be more than actual bet.",
     "ValidationErrors": {
       "FieldIsRequiredError": "{0} is required."
     }

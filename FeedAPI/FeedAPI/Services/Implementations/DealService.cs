@@ -120,6 +120,25 @@ namespace Services.Implementations
             }
         }
 
+        public async Task<Bet> MakeBetAsync(Bet bet)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                int id;
+                if (db.Bets.Count() == 0) id = 1; else id = db.Bets.Max(item => (int)item.Id + 1);
+                bet.Id = id;
+
+                var sameBets = db.Bets.Where(b => b.UserId == bet.UserId && b.DealId == bet.DealId);
+                db.Bets.RemoveRange(sameBets);
+
+                await db.Bets.AddAsync(bet);
+                await db.SaveChangesAsync();
+
+                var result = await db.Bets.FindAsync(id);
+                return result;
+            }
+        }
+
         public async Task<WatchDeal> AddWatchDealAsync(WatchDeal watchDeal)
         {
             using (ApplicationContext db = new ApplicationContext())

@@ -131,8 +131,13 @@
         "Delivery": "Доставка"
       },
       "Betting": {
+        "Auction": "Аукцион",
+        "AuctionStart": "Начало аукциона",
+        "CurrentWinner": "Текущий победитель",
         "PriceBuyNow": "Цена при покупке сейчас",
+        "StartBet": "Начальная ставка",
         "CurrentBet": "Текущая ставка",
+        "YourBet": "Ваша ставка",
         "BuyNow": "Купить сейчас",
         "MakeBet": "Сделать ставку",
         "AddToWatchList": "Добавить в отслеживаемые сделки",
@@ -151,6 +156,7 @@
     "phraseMatchesError": "Секретная фраза не совпадает.",
     "newPasswordMatchesOldError": "Новый пароль не может быть идентичен старому.",
     "newPhraseMatchesOldError": "Новая секретная фраза не может быть идентична старой.",
+    "MinBetError": "Ваша ставка должна быть больше актуальной.",
     "ValidationErrors": {
       "FieldIsRequiredError": "{0} обязательно для заполнения."
     }
