@@ -4,8 +4,8 @@
     <div class="bar"></div>
     <div class="bar"></div>
   </div>
-  <div *ngIf="isOpen" class="menu-label">Меню</div>
+  <div *ngIf="isOpen" class="menu-label">{{'Categories/Menu' | translate}}</div>
 </div>
 <ul *ngIf="isOpen" class="menu">
-  <li *ngFor="let value of arrayForCategories"><a href="#">{{value}}</a></li>
+  <li *ngFor="let value of arrayForCategories"><a href="#" (click)="burgerMenuClick(value.toString())">{{'Categories/' + value | translate}}</a></li>
 </ul>

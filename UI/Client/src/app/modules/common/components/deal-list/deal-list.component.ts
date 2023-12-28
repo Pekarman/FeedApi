@@ -20,21 +20,20 @@ export class DealListComponent implements OnInit {
   ngOnInit(): void {
     this.refreshDealsList();
   }
-  
-  refreshDealsList(){
 
+  refreshDealsList(){
     if(this.filter) {
       this.dealService.getDealsByFilter(this.filter).subscribe(data => {
         this.DealsList = data;
       });
       return;
-    }      
+    }
 
     this.dealService.getAllDeals().subscribe(data => {
       this.DealsList = data;
     });
-  }  
-  
+  }
+
   isMatch(regex: string, deal: IDeal): boolean{
     var productName = deal.productName;
     var shortDesc = deal.shortDesc;

@@ -1,16 +1,17 @@
 .button-block {
   display: flex;
   margin-right: 100%;
-  min-width: 350%;
+  min-width: 100%;
 }
 
 button {
   height: 50px;
-  width: 39%;
+  width: 100%;
   border-radius: 2px;
 }
 
 .searchButton {
+
   margin-bottom: 20px;
   background-color: #018dc9;
   color: #fff;
@@ -31,6 +32,7 @@ button {
     font-size: xx-small;
     margin-left: 10px;
   }
+
   // .searchButton {
   //   width: 100%;
   //   font-size: xx-small;
