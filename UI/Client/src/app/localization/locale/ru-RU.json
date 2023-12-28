@@ -1,7 +1,7 @@
 {
   "Pages": {
     "Header": {
-      "title": "Сегодня",
+      "title": "Главная",
       "AddDealsButton": "Добавить сделку",
       "dropdown": {
         "profile": "Профиль",
@@ -157,5 +157,32 @@
   },
   "GoBack": "Назад",
   "Change": "Изменить",
-  "Find": "Поиск"
+  "Find": "Поиск",
+
+  "Categories": {
+    "NotFound": "В этой категории нет товаров.",
+    "Menu": "Меню",
+    "Goods": "Товары",
+    "Products": "Продукты",
+    "Services": "Услуги",
+    "Other": "Прочее" ,
+    "Electronic": "Электроника",
+    "VideoAndAudioEquipments": "Видео- и аудиотехника",
+    "VideoEquipments": "Видеотехника",
+    "AudioEquipments": "Аудиотехника",
+    "HomeTheaters": "Домашние кинотеатры",
+    "HeadphonesAndHeadsets": "Наушники и гарнитуры",
+    "Projectors": "Проекторы",
+    "SmartSpeakers": "Умные колонки",
+    "TVs": "Телевизоры",
+    "Radios": "Радио",
+    "ComputersAndComputersTechnology": "Компьютеры и комплектующие",
+    "Computers": "Компьютеры",
+    "Laptops": "Ноутбуки",
+    "SystemUnits": "Системные блоки",
+    "Monitors": "Мониторы",
+    "VideoCards": "Видеокарты",
+    "LaptopBatteries": "Батареи для ноутбуков",
+    "Keyboards": "Клавиатуры"
+  }
 }

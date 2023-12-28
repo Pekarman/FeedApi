@@ -11,6 +11,7 @@ import { UsersButtonComponent } from './components/users-button/users-button.com
 import { DealListViewComponent } from 'src/app/modules/common/components/deal-list-view/deal-list-view.component';
 import { DealListComponent } from 'src/app/modules/common/components/deal-list/deal-list.component';
 import { ImagesModule } from '../images/images.module';
+import { BurgerMenuComponent } from './components/burger-menu/burger-menu.component';
 
 
 
@@ -23,6 +24,7 @@ import { ImagesModule } from '../images/images.module';
     FooterComponent,
     DealListViewComponent,
     DealListComponent,
+    BurgerMenuComponent,
   ],
   imports: [
     CommonModule,
@@ -37,9 +39,10 @@ import { ImagesModule } from '../images/images.module';
     OkCancelComponent,
     UsersButtonComponent,
     HeaderComponent,
-    FooterComponent, 
+    FooterComponent,
     DealListViewComponent,
     DealListComponent,
+    BurgerMenuComponent,
   ]
 })
 export class CommonComponentsModule { }

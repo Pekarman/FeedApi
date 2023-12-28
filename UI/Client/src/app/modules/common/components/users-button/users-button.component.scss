@@ -1,7 +1,45 @@
 .button-block {
-  padding-bottom: 1rem;  
+  display: flex;
+  margin-right: 100%;
+  min-width: 100%;
 }
 
 button {
   height: 50px;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.searchButton {
+
+  margin-bottom: 20px;
+  background-color: #018dc9;
+  color: #fff;
+  border: none;
+}
+
+.addDealsButton:hover {
+  background-color: #0168c9;
+}
+
+.searchButton:hover {
+  background-color: #0168c9;
+}
+
+@media only screen and (max-width: 768px) {
+  .addDealsButton {
+    width: 60%;
+    font-size: xx-small;
+    margin-left: 10px;
+  }
+
+  // .searchButton {
+  //   width: 100%;
+  //   font-size: xx-small;
+
+  // }
+  // .button-block {
+  //   width: 100%;
+  //   margin-left: -30px;
+  // }
 }

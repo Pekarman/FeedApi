@@ -11,4 +11,6 @@ export class CategoryGridViewComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+
 }
