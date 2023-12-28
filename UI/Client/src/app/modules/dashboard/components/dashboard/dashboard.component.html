@@ -3,13 +3,26 @@
 </div>
 <div class="content row">
   <div class="filters">
-  </div>
-  <div class="result">
-    <div class="row searchBar">
-      <input type="text" [(ngModel)]="searchValue"/>
-      <app-users-button label="{{'Find' | translate}}"></app-users-button>
+    <div class="filterBlock" [ngClass]="{openFilter: isChildOpen}">
+      <div class="subcategories" [ngClass]="{filterBlockOpen : isChildOpen}">
+        <app-burger-menu (isOpenChange)="onBurgerMenuOpenChange($event)"
+                         (isClickGoods)="goodsClick($event.isGoods, $event.category)"></app-burger-menu>
+      </div>
     </div>
-<!--    <app-deal-list [searchValue]="searchValue"></app-deal-list>-->
-    <app-category-grid></app-category-grid>
+  </div>
+  <div class="result" [ngClass]="{resultOpen: isChildOpen}">
+    <div class="row searchBar">
+      <input class="input" type="text" [(ngModel)]="searchValue"/>
+      <app-users-button label="{{'Find' | translate}}"></app-users-button>
+      <app-users-button (click)="addDeals()" label="{{'Pages/Header/AddDealsButton' | translate}}"></app-users-button>
+    </div>
+    <div *ngIf="!isGridVisible">
+      <app-deal-list  [filter]="filter" [searchValue]="searchValue"></app-deal-list>
+    </div>
+    <div *ngIf="isGridVisible">
+      <app-category-grid (filterApply)="getFilter($event)" [categories]="categoryTree" ></app-category-grid>
+    </div>
+
+
   </div>
 </div>

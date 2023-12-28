@@ -2,4 +2,9 @@
     <div class="item col-12" *ngIf="isMatch(searchValue, deal)">
         <app-deal-list-view [deal]="deal"></app-deal-list-view>
     </div>
+
 </div>
+<div class="ifNotGoods" *ngIf="DealsList.length === 0">
+  <h2>{{'Categories/NotFound' | translate}}</h2>
+</div>
+
