@@ -3,6 +3,10 @@ div {
         justify-content: space-between;
     }
 
+    &.noImages {
+        border: 2px solid darkgray;
+        height: 170px;
+    }
 
     a {
         cursor: pointer;
@@ -11,6 +15,10 @@ div {
     img {
         width: 90%;
     }
+}
+
+:host {
+    height: 170px;
 }
 
 .usersButton{

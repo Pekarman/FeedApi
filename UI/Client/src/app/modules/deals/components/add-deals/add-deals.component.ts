@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {CategoryEnum} from "src/app/enums/CategoryEnum";
+import {CategoryEnum} from 'src/app/enums/CategoryEnum'
 import {DealService} from "src/app/services/deal.service";
 import {IDeal} from "src/app/Models/IDeal";
 import {SessionService} from 'src/app/services/session.service';
 import {ActivatedRoute, Router} from "@angular/router";
 import { Observable } from 'rxjs';
-import {DealStatusEnum} from "src/app/enums/DealStatus";
 
 @Component({
   selector: 'app-add-deals',

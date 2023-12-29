@@ -26,11 +26,8 @@ export class DashboardComponent implements OnInit {
 
   chooseCategory(category: string) {
     this.categoryTree = CategoryTree[category];
-  }
-
-  goodsClick(isGridVisible: boolean, category: string) {
-    this.isGridVisible = isGridVisible;
-    this.categoryTree = this.categoryTree[category];
+    this.isGridVisible = false;
+    setTimeout(() => this.isGridVisible = true, 1);
   }
 
   changeSearchValue(value: string) {

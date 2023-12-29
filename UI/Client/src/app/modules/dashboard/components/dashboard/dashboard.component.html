@@ -6,7 +6,7 @@
     <div class="filterBlock" [ngClass]="{openFilter: isChildOpen}">
       <div class="subcategories" [ngClass]="{filterBlockOpen : isChildOpen}">
         <app-burger-menu (isOpenChange)="onBurgerMenuOpenChange($event)"
-                         (isClickGoods)="goodsClick($event.isGoods, $event.category)"></app-burger-menu>
+                         (isClickGoods)="chooseCategory($event.category)"></app-burger-menu>
       </div>
     </div>
   </div>

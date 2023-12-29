@@ -5,18 +5,23 @@
   color: rgb(21, 94, 21);
 }
 
+div a h2 {
+  margin-top: 25px;;
+  margin-bottom: 25px;
+}
+
 .header__user {
   display: flex;
   align-items: center;
-  margin-left: 100px;
 }
 
 .avatarBlock {
-  right: 0px;
-  position: absolute;
+  margin-right: 20px;
+  margin-bottom: 5px;
+  justify-content: flex-end;
 }
 
-.container {
+:host {
   position: absolute;
   bottom: 5px;
   width: 100%;
@@ -25,10 +30,17 @@
   background-color: lightgray;
 }
 
+.headerBlock {
+  height: 100%;
+  div.row {
+    margin-top: 70px;
+    margin-bottom: 0px;
+  }
+}
+
 .option {
   background-color: lightblue;
   position: absolute;
-  left: -70px;
   min-width: 200px;
   min-height: 40px;
   padding-left: 40px;
@@ -69,7 +81,7 @@ div.header__user div {
 .dropdown--profile {
   position: relative;
   top: 10px;
-  width: 100px;
+  width: 50px;
 }
 
 .profile {
@@ -189,7 +201,6 @@ a {
 @media only screen and (max-width: 768px) {
   .avatarBlock span {
     display: block;
-    margin-left: 90%;
   }
   .userName {
     display: none;
@@ -224,8 +235,6 @@ a {
 
   .avatarBlock span {
     display: block;
-    margin-left: 70%;
-
   }
   .movedToLeft {
     margin-left: 1000px;
@@ -249,12 +258,8 @@ a {
   margin-left: 30%;
 }
 
-.avatarBlock {
-  margin-right: 85%;
-}
-
 .titleBlock {
-  margin-left: 5%;
+  margin-left: 20px;
 }
 
 
@@ -267,6 +272,10 @@ a {
   a {
     margin-left: -25%;
   }
+}
+
+#loginRow {
+  margin-bottom: 15px;
 }
 
 .login {

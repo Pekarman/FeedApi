@@ -13,12 +13,10 @@ export class SelectImagesComponent implements OnInit {
   @Input() dealId?: number;
 
   selectedId: number = 0;
-  imagesCount: number = 0;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.imagesCount = this.assets?.length as number;
   }
 
   isImageSelected(id: number): boolean {
@@ -27,12 +25,12 @@ export class SelectImagesComponent implements OnInit {
 
   goToNextImage() {
     this.selectedId++;
-    if (this.selectedId == this.imagesCount) this.selectedId = 0;
+    if (this.selectedId == this.assets!.length) this.selectedId = 0;
   }
 
   goToPreviousImage() {
     this.selectedId--;
-    if (this.selectedId == -1) this.selectedId = this.imagesCount - 1;
+    if (this.selectedId == -1) this.selectedId = this.assets!.length - 1;
   }
 
   imageClick() {

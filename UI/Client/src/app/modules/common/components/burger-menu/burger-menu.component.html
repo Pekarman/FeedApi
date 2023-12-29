@@ -1,5 +1,5 @@
-<div class="menu-wrapper">
-  <div class="burger-menu" [class.open]="isOpen" (click)="toggleMenu()">
+<div class="menu-wrapper" (click)="toggleMenu()">
+  <div class="burger-menu" [class.open]="isOpen">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
@@ -7,5 +7,5 @@
   <div *ngIf="isOpen" class="menu-label">{{'Categories/Menu' | translate}}</div>
 </div>
 <ul *ngIf="isOpen" class="menu">
-  <li *ngFor="let value of arrayForCategories"><a href="#" (click)="burgerMenuClick(value.toString())">{{'Categories/' + value | translate}}</a></li>
+  <li *ngFor="let value of arrayForCategories" (click)="burgerMenuClick(value.toString())"><a href="#">{{'Categories/' + value | translate}}</a></li>
 </ul>

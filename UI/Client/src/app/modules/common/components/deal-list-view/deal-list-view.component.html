@@ -1,6 +1,6 @@
 <div class="desktop row">
     <div class="col-3">
-        <app-select-images [dealId]="deal.id" [assets]="deal.assets"></app-select-images>
+        <app-select-images *ngIf="deal.assets!.length !== 0" [dealId]="deal.id" [assets]="deal.assets"></app-select-images>
     </div>
     <div class="col-9">
         <div class="row col-12">

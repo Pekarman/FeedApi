@@ -23,7 +23,9 @@ export class BurgerMenuComponent implements OnInit {
 
 
   burgerMenuClick(value: string) {
-      this.isGridVisible = !this.isGridVisible;
+      this.arrayForCategories = ['Goods', 'Products', 'Services'];
+      this.isGridVisible = false;
+      this.isGridVisible = true;
       this.isClickGoods.emit({isGoods: this.isGridVisible, category: value});
   }
 

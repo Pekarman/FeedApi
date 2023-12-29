@@ -28,6 +28,10 @@
   font-weight: 700;
   font-size: small;
   cursor:pointer;
+
+  &:hover {
+    border: 2px solid darkgray;
+  }
 }
 
 @media only screen and (max-width: 900px) {

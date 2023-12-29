@@ -26,6 +26,7 @@ export class BettingComponent implements OnInit {
     bet: new FormControl(0, [Validators.required])
   });
 
+  currentBet: number = 0;
   winnerFullName: string = "";
 
   responseError: boolean = false;
@@ -39,11 +40,12 @@ export class BettingComponent implements OnInit {
   }
 
   getCurrentBet() {
+    if (this.deal == null) return 0;
     let winnerId = 0;
-    let currentBet = this.deal?.startBet;
+    this.currentBet = this.deal?.startBet;
     this.deal?.bets?.forEach(bet => {
-      if (bet.currentBet > currentBet) {
-        currentBet = bet.currentBet;
+      if (bet.currentBet > this.currentBet && this.deal.id == bet.dealId) {
+        this.currentBet = bet.currentBet;
         winnerId = bet.userId;
       }
     });
@@ -53,7 +55,7 @@ export class BettingComponent implements OnInit {
         this.winnerFullName = `${user.firstName} ${user.lastName}`;
       })
     }    
-    return currentBet;
+    return this.currentBet;
   }
 
   constructor(
@@ -65,17 +67,18 @@ export class BettingComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.fillForm();
+      this.runBroadcast();
     }, 500);
-
-    this.runBroadcast();
   }
 
   fillForm() {
-    this.myForm.controls.bet.setValue(this.getCurrentBet());
-    this.myForm.controls.bet.setValidators(Validators.min(this.getCurrentBet() + 1));
+    if (this.deal == undefined) return;
+    this.currentBet = this.getCurrentBet();
+    this.myForm.controls.bet.setValue(this.currentBet);
+    this.myForm.controls.bet.setValidators(Validators.min(this.currentBet + 1));
 
     this.myForm.controls.bet.valueChanges.subscribe(() => {
-      this.responseError = this.myForm.controls.bet.value <= this.getCurrentBet();
+      this.responseError = this.myForm.controls.bet.value <= this.currentBet;
     });
   }
 
@@ -104,7 +107,7 @@ export class BettingComponent implements OnInit {
 
   makeBet(form: FormGroup) {
     form.controls.bet.markAsTouched();
-    if (this.myForm.controls.bet.value <= this.getCurrentBet()) {
+    if (this.myForm.controls.bet.value <= this.currentBet) {
       this.responseError = true;
       return;
     }
@@ -124,7 +127,10 @@ export class BettingComponent implements OnInit {
   updateBets(bet: IBet) {
     if(this.deal.bets?.findIndex(b => b.id == bet.id) !== -1 || this.deal.id !== bet.dealId) return;
     this.deal.bets?.push(bet);
-    this.myForm.controls.bet.setValidators(Validators.min(this.getCurrentBet() + 1));
+    this.currentBet = this.getCurrentBet();
+    this.myForm.controls.bet.setValue(this.currentBet);
+    this.myForm.controls.bet.clearValidators();
+    this.myForm.controls.bet.setValidators(Validators.min(this.currentBet + 1));
   }
 
   buyNowClick() {}

@@ -1,7 +1,6 @@
 #header {
-  min-height: 10vh;
+  min-height: 80px;
   background-color: lightgray;
-
 }
 
 .content {
@@ -19,11 +18,9 @@
 
 .openFilter {
   border: 2px solid lightgray;
-  min-height: 5%;
-  width: 370%;
- 
+  height: 200px;
+  width: 370%; 
 }
-
 
 .subcategories {
   border: 2px solid lightgray;

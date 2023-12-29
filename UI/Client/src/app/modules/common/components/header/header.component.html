@@ -1,4 +1,4 @@
-<div class="container">
+<div class="headerBlock">
   <div class="row">
     <div class="flex-1 titleBlock">
       <a href="../../../index.html">
@@ -8,8 +8,6 @@
     <div class="flex-1">
       <div class="profile">
         <div class="header__user flex-1" id="loginRow">
-
-
           <div class="langBlock" (click)="onLanguageClick()">
             <span class="langItem">{{ ('Language/Language' | translate) }}</span>
             <span class="langItem title">{{ " : " + ('Language/Title' | translate)}}</span>
@@ -30,28 +28,27 @@
             <a href="/register" class="">{{ 'Pages/RegisterPage/title' | translate }}</a>
           </div>
 
-
-          <div class="flex-1" *ngIf="isLoggedIn" >
-            <div class="select flex-1">
+          <div class="flex-1" *ngIf="isLoggedIn" (click)="onAvatarClick()">
+            <div class="select flex-1 avatarBlock">
               <div class="avatarBlock">
-                    <span (click)="onAvatarClick()"
-                          class="dropdown--profile dropdown-avatar">
-                    </span>
+                <span class="dropdown--profile dropdown-avatar">
+                </span>
+              </div>
+              <div *ngIf="isDropdownVisible && isLoggedIn" class="option opt-1" (click)="openProfilePage()">
+                <span class="">{{ 'Pages/Header/dropdown/profile' | translate }}</span>
+              </div>
+              <div *ngIf="isDropdownVisible && isLoggedIn" class="option opt-2" (click)="openSettingsPage()">
+                <span class="">{{ 'Pages/Header/dropdown/settings' | translate }}</span>
+              </div>
+              <div *ngIf="isDropdownVisible && isLoggedIn" class="option opt-3" (click)="logout()">
+                <span class="">{{ 'Pages/Header/dropdown/logout' | translate }}</span>
               </div>
             </div>
           </div>
-          <div class="loginName flex-1" *ngIf="isLoggedIn" class="flex-1">
-            <h3 (click)="onAvatarClick() "
-                class="movedToLeft dropdown--profile flex-1 userName">{{ session?.user?.firstName + ' ' + session?.user?.lastName }}</h3>
-            <div *ngIf="isDropdownVisible && isLoggedIn" class="option opt-1" (click)="openProfilePage()">
-              <span class="">{{ 'Pages/Header/dropdown/profile' | translate }}</span>
-            </div>
-            <div *ngIf="isDropdownVisible && isLoggedIn" class="option opt-2" (click)="openSettingsPage()">
-              <span class="">{{ 'Pages/Header/dropdown/settings' | translate }}</span>
-            </div>
-            <div *ngIf="isDropdownVisible && isLoggedIn" class="option opt-3" (click)="logout()">
-              <span class="">{{ 'Pages/Header/dropdown/logout' | translate }}</span>
-            </div>
+          <div class="loginName flex-1"*ngIf="isLoggedIn" class="flex-1">
+            <h3 (click)="onAvatarClick()" 
+                class="movedToLeft dropdown--profile flex-1 userName">{{ session?.user?.firstName + ' ' + session?.user?.lastName }}
+            </h3>
           </div>
         </div>
       </div>

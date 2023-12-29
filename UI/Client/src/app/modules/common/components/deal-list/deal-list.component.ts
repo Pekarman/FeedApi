@@ -30,6 +30,7 @@ export class DealListComponent implements OnInit {
     }
 
     this.dealService.getAllDeals().subscribe(data => {
+      if (typeof(data) == typeof("")) return;
       this.DealsList = data;
     });
   }

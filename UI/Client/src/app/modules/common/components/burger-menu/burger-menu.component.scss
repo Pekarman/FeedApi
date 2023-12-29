@@ -24,7 +24,6 @@
   height: 3px;
   width: 30px;
   transition: 0.4s;
-
 }
 
 .open .bar:nth-child(1) {
@@ -65,8 +64,8 @@
   font-size: 18px;
 }
 
-.menu a:hover {
-  background-color: #555;
+.menu li:hover {
+  border: 2px solid darkgray;
 }
 
 @media only screen and (max-width: 768px) {

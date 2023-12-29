@@ -1,7 +1,5 @@
 $imageHeight: 150px;
-.horizontal-gradient {
-    background: linear-gradient(to right, darkgray, lightgray);
-  }
+
 div {
     &.imageBlock {
         min-height: $imageHeight;
