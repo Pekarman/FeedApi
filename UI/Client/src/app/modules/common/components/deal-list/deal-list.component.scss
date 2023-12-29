@@ -1,7 +1,10 @@
 $blockHeight : 170px;
 .container {
-  height: $blockHeight;
+
   & .item {
+    height: $blockHeight;
+    background-color: lightgray;
+    margin-top: 10px;
     height: $blockHeight;
   }
   & div {

@@ -1,10 +1,10 @@
 div {
     &.row {
         justify-content: space-between;
+        padding-top: 5px;
     }
 
     &.noImages {
-        border: 2px solid darkgray;
         height: 170px;
     }
 
