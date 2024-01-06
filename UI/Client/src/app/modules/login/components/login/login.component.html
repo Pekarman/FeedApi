@@ -44,8 +44,9 @@
                 <p>{{ errorText }}</p>
               </div>
               <div class="login-form__forgot">
-                <a class="link" id="forgot-password"
-                   href="/Identity/Account/ForgotPassword?returnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3DAuctionCenterPortal%26redirect_uri%3Dhttps%253A%252F%252Fwww.iaai.com%252Fsignin-oidc%26response_type%3Dcode%26scope%3Dopenid%2520profile%2520email%2520phone%2520offline_access%2520BuyerProfileClaims%26code_challenge%3Dp3NhGS4Sb4_jyjOJFTxMFhUKz5gdpj9OiXBlIGAqIdE%26code_challenge_method%3DS256%26response_mode%3Dform_post%26nonce%3D638339282784098062.YjRlNzk0NDQtZjE3Yy00NWVmLWJjNDQtMmZhZjdkNmI5ZjQzZGU5ODQ3OTQtZTI5Mi00MjYzLTk1ZTEtMDg0YmI5N2YzYzc2%26state%3DCfDJ8GTaZxQpzZ9Lj8W9282zg1wOzO81lynQHrWyeJ3dw5Q1awdOOYeX8YNyb9ohg947eMMBlkV7AMd0QdHOcI_vlozvlI3gd_lwLCZkwPlcRuzbc6N5dhsfDOKrhrSwU7gAFlUtCew29i7SrVz3ikO4C86o5n1jrdFwn2alRlYpjpvGh4qsk8V2-J7E5T4Ce8P9pbav1NkeDJ1ArxgTitcBUdgEAxP7Y-qX5oyhVe1lHvFKSMJFXrr_SQaMZNL6AP_zcFWJXDDrZTwP0RBFtYvqIYpUMXIgftHT-TmJtBf-uYpg1I9Z3iTAtiT4-GKR15ElxLhirAFY-daX6pWeH24BoRrvBz8s02PuvfZFUj4idv28BN21Be-fZan3H1ZkCMt8eMmuSZrhf6NNigx9PTZFLckGw9O8qYqokUw22tnfhoa6ZqHKCS7xpFqBPTFHHoV6ZU1gXNZJN1OZ175npZenMuJ6golg_D2LkBwtEQsAIZov">{{ localePath + 'fieldsNames/forgotPassword' | translate : localePath }}</a>
+                <p class="text-center mt-20">{{ localePath + 'dontHaveAccount' | translate }}
+                  <a href="/register">{{ 'Pages/RegisterPage/title' | translate }}</a>
+                </p>
               </div>
             </div>
           </div>

@@ -26,6 +26,7 @@
     },
     "LoginPage": {
       "title": "Log in",
+      "dontHaveAccount" : "Already have account?",
       "fieldsNames": {
         "email": "Email",
         "password": "Password",

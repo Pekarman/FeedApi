@@ -4,7 +4,6 @@ import {IUserRegister} from 'src/app/Models/IUserRegister';
 import {AuthService} from 'src/app/services/auth.service';
 import {SessionService} from 'src/app/services/session.service';
 import {UserService} from 'src/app/services/user.service';
-import value from "*.json";
 
 @Component({
   selector: 'app-register',
@@ -19,7 +18,7 @@ export class RegisterComponent implements OnInit {
     lastName: new FormControl('', [Validators.required]),
     userName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.pattern('^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$')]),
+    password: new FormControl('', [Validators.required, Validators.pattern('^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*"]).*$')]),
     password2: new FormControl('', [Validators.required]),
     phrase: new FormControl('', [Validators.required]),
     phrase2: new FormControl('', [Validators.required]),
@@ -51,6 +50,9 @@ export class RegisterComponent implements OnInit {
   isShowOrHideSecretPhrase: boolean = false;
   isShowOrHideReplSecretPhrase: boolean = false;
 
+  getControl(name: string) {
+    return this.myForm.controls[name];
+  }
 
   togglePhrasesVisibility(phrase: string) {
    switch (phrase){
@@ -68,7 +70,6 @@ export class RegisterComponent implements OnInit {
        break
      default:
        alert(phrase)
-
    }
   }
 

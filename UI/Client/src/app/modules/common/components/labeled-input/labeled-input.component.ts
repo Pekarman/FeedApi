@@ -13,6 +13,8 @@ export class LabeledInputComponent implements OnInit {
   @Input() label: string = '';
   @Input() control!: any;
   @Input() isPasswordField: boolean = true;
+  @Input() fieldName: string = "";
+  @Input() placeholder: string = "";
 
   showPassword: boolean = true;
 
@@ -25,5 +27,12 @@ export class LabeledInputComponent implements OnInit {
 
   togglePassword() {
     this.showPassword = !this.showPassword;
+  }
+
+  getError(name: string) {
+    if (this.control.errors) {
+      return this.control.errors![name];
+    }
+    return false;
   }
 }

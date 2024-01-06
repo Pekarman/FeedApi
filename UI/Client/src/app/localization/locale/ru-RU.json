@@ -26,6 +26,7 @@
     },
     "LoginPage": {
       "title": "Войти",
+      "dontHaveAccount" : "Уже есть аккаунт?",
       "fieldsNames": {
         "email": "Электронная почта",
         "password": "Пароль",

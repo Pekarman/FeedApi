@@ -1,8 +1,13 @@
 <div class="login-form__input">
   <div class="form-Item">
-    <label for="phrase">{{label}}</label>
-    <input [formControl]="control"  [type]="showPassword ? 'text' : 'password'" autocomplete="off" class="form-control form-control-lg"
-           placeholder="" required>
+    <label for="phrase">{{ label }}</label>
+    <input
+     [formControl]="control"
+     [type]="showPassword ? 'text' : 'password'"
+     autocomplete="off"
+     class="form-control form-control-lg"
+     [placeholder]="placeholder"
+     required>
     <span *ngIf="isPasswordField" class="eyeicon" (click)="togglePassword()">
       <ng-container *ngIf="showPassword; else hidePassword">
         <img class="icon"
@@ -12,5 +17,8 @@
         <img class="icon" src="https://seekicon.com/free-icon-download/eye-off-outline_2.svg"/>
       </ng-template>
     </span>
+  </div>
+  <div *ngIf="getError('required') && control.touched" style="color: red">
+    <p>{{ 'Errors/ValidationErrors/FieldIsRequiredError' | translate : label }}</p>
   </div>
 </div>

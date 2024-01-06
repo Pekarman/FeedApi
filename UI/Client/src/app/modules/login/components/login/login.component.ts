@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormControl, FormGroup, NgForm, RequiredValidator, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import {AuthService} from 'src/app/services/auth.service';
 import {SessionService} from 'src/app/services/session.service';
