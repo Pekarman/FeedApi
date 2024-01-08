@@ -8,7 +8,10 @@ enum InformationType {
   CommonInfo = 1,
   AdditionalInfo = 2,
   YourDeals = 3,
-  TrackedDeals = 4
+  TrackedDeals = 4,
+  MyPurchases= 5,
+  MySales = 6,
+  MyFinance = 7
 }
 
 @Component({
@@ -26,11 +29,11 @@ export class ProfilePageComponent implements OnInit {
   getUserIdFilter(): IDealListFilter {
     return {userId: this.user.id, categoryId: -1, watchUserId: -1};
   }
-  
+
   getWatchUserIdFilter(): IDealListFilter {
     return {userId: -1, categoryId: -1, watchUserId: 1};
   }
-  
+
   constructor(private sessionService: SessionService) {}
 
   showOrHideInformation(type: InformationType): void {
@@ -41,4 +44,6 @@ export class ProfilePageComponent implements OnInit {
     this.user = this.sessionService.getSession().user;
     this.toggleInformationType = this.InformationType.CommonInfo;
   }
+
+  // protected readonly InformationType = InformationType;
 }
