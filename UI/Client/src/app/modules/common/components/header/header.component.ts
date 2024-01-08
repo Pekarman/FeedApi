@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from 'src/app/services/auth.service';
 import {SessionService} from 'src/app/services/session.service';
@@ -11,11 +11,13 @@ import {LocalizationService} from "src/app/localization/localization.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @Output() isLoggedInChanged: EventEmitter<boolean> = new EventEmitter<boolean>(false);
 
   session: any;
   isLoggedIn: boolean = false;
   isDropdownVisible: boolean = false;
   isLanguageDropdownVisible: boolean = false;
+
 
   constructor(
     private sessionService: SessionService,
@@ -30,6 +32,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.session = this.sessionService.getSession();
     this.isLoggedIn = this.session !== null;
+
+    this.isLoggedInChanged.emit(this.isLoggedIn)
   }
 
   onAvatarClick() {
@@ -62,6 +66,7 @@ export class HeaderComponent implements OnInit {
       this.sessionService.clearSession();
 
       this.isLoggedIn = false;
+      this.isLoggedInChanged.emit(this.isLoggedIn)
     });
   }
 

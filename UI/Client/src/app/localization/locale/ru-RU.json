@@ -94,7 +94,10 @@
       "Balance": "Баланс",
       "IsActive": "Активен",
       "UserLocale": "Язык",
-      "TrackedDeals": "Отслеживаемые сделки"
+      "TrackedDeals": "Отслеживаемые сделки",
+      "MyPurchases" : "Мои товары",
+      "MySales" : "Мои продажи",
+      "MyFinance" : "Мои финансы"
     },
     "AddDeals": {
       "ProdName": "Имя продукта",
