@@ -2,8 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Router} from '@angular/router';
 import {SessionService} from 'src/app/services/session.service';
 import CategoryTree from 'src/app/modules/dashboard/treeOfGoodsAndServices/treeOfGoodsAndServices.json'
-import {IDealListFilter} from "src/app/modules/common/components/deal-list/IDealListFilter";
-import {HeaderComponent} from "src/app/modules/common/components/header/header.component";
+import {DealListFilter} from "src/app/modules/common/components/deal-list/DealListFilter";
 
 @Component({
   selector: 'app-dashboard',
@@ -17,12 +16,12 @@ export class DashboardComponent implements OnInit {
   isChildOpen: boolean = false;
   isGridVisible: boolean = false;
   categoryTree: any = CategoryTree;
-  filter!: IDealListFilter
+  filter!: DealListFilter
   isCategoryVisible: boolean = false;
   isLoggedIn: boolean = false;
 
 
-  getFilter(filter: IDealListFilter) {
+  getFilter(filter: DealListFilter) {
     this.isGridVisible = !this.isGridVisible
     this.filter = filter
   }

@@ -95,9 +95,8 @@
       "IsActive": "Активен",
       "UserLocale": "Язык",
       "TrackedDeals": "Отслеживаемые сделки",
-      "MyPurchases" : "Мои товары",
-      "MySales" : "Мои продажи",
-      "MyFinance" : "Мои финансы"
+      "MyBoughts": "Мои покупки",
+      "MySells": "Мои продажи"
     },
     "AddDeals": {
       "ProdName": "Имя продукта",

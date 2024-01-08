@@ -7,9 +7,9 @@
     <button class="button" (click)="showOrHideInformation(2)">{{localePath + 'AdditionalInfo' | translate}}</button>
     <button class="button" (click)="showOrHideInformation(3)">{{localePath + 'YourDeals' | translate}}</button>
     <button class="button" (click)="showOrHideInformation(4)">{{localePath + 'TrackedDeals' | translate}}</button>
-    <button class="button" (click)="showOrHideInformation(5)">{{localePath + 'MyPurchases' | translate}}</button>
-    <button class="button" (click)="showOrHideInformation(6)">{{localePath + 'MySales' | translate}}</button>
-    <button class="button" (click)="showOrHideInformation(7)">{{localePath + 'MyFinance' | translate}}</button>
+    <button class="button" (click)="showOrHideInformation(5)">{{localePath + 'MyBoughts' | translate}}</button>
+    <button class="button" (click)="showOrHideInformation(6)">{{localePath + 'MySells' | translate}}</button>
+    <button class="button" (click)="showOrHideInformation(7)">{{localePath + 'Balance' | translate}}</button>
   </div>
 </div>
 <div class="block" *ngIf="toggleInformationType === InformationType.CommonInfo">
@@ -50,11 +50,9 @@
   <div class="textContainer">
     <p>{{localePath + 'Balance' | translate}}:</p>
     <p>{{ user.balance }}</p>
-
   </div>
 </div>
-<div class="block"
-     *ngIf="toggleInformationType === InformationType.YourDeals  || InformationType.MyPurchases || InformationType.MySales">
+<div class="block" *ngIf="toggleInformationType === InformationType.YourDeals">
   <div class="textContainerForDeals">
     <app-deal-list [filter]="getUserIdFilter()"></app-deal-list>
   </div>
@@ -62,6 +60,16 @@
 <div class="block" *ngIf="toggleInformationType === InformationType.TrackedDeals">
   <div class="textContainerForDeals">
     <app-deal-list [filter]="getWatchUserIdFilter()"></app-deal-list>
+  </div>
+</div>
+<div class="block" *ngIf="toggleInformationType === InformationType.MyPurchases">
+  <div class="textContainerForDeals">
+    <app-deal-list [filter]="getBoughtUserIdFilter()"></app-deal-list>
+  </div>
+</div>
+<div class="block" *ngIf="toggleInformationType === InformationType.MySales">
+  <div class="textContainerForDeals">
+    <app-deal-list [filter]="getSellUserIdFilter()"></app-deal-list>
   </div>
 </div>
 

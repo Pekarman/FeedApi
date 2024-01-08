@@ -95,9 +95,8 @@
       "IsActive": "IsActive",
       "UserLocale": "UserLocale",
       "TrackedDeals": "Tracked deals",
-      "MyPurchases" : "My purchases",
-      "MySales" : "My sales",
-      "MyFinance" : "My finance"
+      "MyBoughts": "My boughts",
+      "MySells": "My sells"
 
     },
     "AddDeals": {

@@ -4,8 +4,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IDeal } from '../Models/IDeal';
 import { IWatchDeal } from '../Models/IWatchDeal';
-import { IDealListFilter } from '../modules/common/components/deal-list/IDealListFilter';
+import { DealListFilter } from '../modules/common/components/deal-list/DealListFilter';
 import { IBet } from '../Models/IBet';
+import { ISell } from '../Models/ISell';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class DealService {
     return this.http.get<IDeal>(this.APIUrl + `Api/Deal/${id}`);
   }
 
-  getDealsByFilter(deal: IDealListFilter): Observable<IDeal[]>{
+  getDealsByFilter(deal: DealListFilter): Observable<IDeal[]>{
     return this.http.post<IDeal[]>(this.APIUrl + `Api/Deal/getDealByFilter`, deal);
   }
 
@@ -39,6 +40,10 @@ export class DealService {
 
   makeBet(bet: IBet): Observable<IBet>{
     return this.http.post<IBet>(this.APIUrl + `Api/Deal/makeBet`, bet);
+  }
+
+  buyNow(sell: ISell): Observable<ISell>{
+    return this.http.post<ISell>(this.APIUrl + `Api/Deal/buyNow`, sell);
   }
 
   addWatchDeal(watchDeal: IWatchDeal): Observable<IWatchDeal> {

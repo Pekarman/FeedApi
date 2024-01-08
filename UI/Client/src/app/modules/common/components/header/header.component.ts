@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from 'src/app/services/auth.service';
 import {SessionService} from 'src/app/services/session.service';
@@ -12,6 +12,8 @@ import {LocalizationService} from "src/app/localization/localization.service";
 })
 export class HeaderComponent implements OnInit {
   @Output() isLoggedInChanged: EventEmitter<boolean> = new EventEmitter<boolean>(false);
+
+  @Input() isUserVisible = true;
 
   session: any;
   isLoggedIn: boolean = false;
@@ -27,7 +29,6 @@ export class HeaderComponent implements OnInit {
   ) {
 
   }
-
 
   ngOnInit(): void {
     this.session = this.sessionService.getSession();
