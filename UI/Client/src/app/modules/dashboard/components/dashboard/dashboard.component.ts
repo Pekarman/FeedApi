@@ -63,6 +63,4 @@ export class DashboardComponent implements OnInit {
   addDeals() {
     this.router.navigate(['addDeal'])
   }
-
-  protected readonly HeaderComponent = HeaderComponent;
 }
