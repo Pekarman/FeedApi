@@ -18,10 +18,16 @@ export class DashboardComponent implements OnInit {
   categoryTree: any = CategoryTree;
   filter!: DealListFilter
   isCategoryVisible: boolean = false;
+  isLoggedIn: boolean = false;
+
 
   getFilter(filter: DealListFilter) {
     this.isGridVisible = !this.isGridVisible
     this.filter = filter
+  }
+
+  onIsLoggedInChange(isLoggedIn: boolean) {
+    this.isLoggedIn = isLoggedIn
   }
 
   chooseCategory(category: string) {
@@ -33,9 +39,11 @@ export class DashboardComponent implements OnInit {
   changeSearchValue(value: string) {
     this.searchValue = value;
   }
-  onCategoryOpenChange(isCategoryOpen: boolean){
+
+  onCategoryOpenChange(isCategoryOpen: boolean) {
     this.isCategoryVisible = isCategoryOpen;
   }
+
   onBurgerMenuOpenChange(isOpenBurger: boolean) {
     this.isChildOpen = isOpenBurger;
 
@@ -55,4 +63,6 @@ export class DashboardComponent implements OnInit {
   addDeals() {
     this.router.navigate(['addDeal'])
   }
+
+  protected readonly HeaderComponent = HeaderComponent;
 }

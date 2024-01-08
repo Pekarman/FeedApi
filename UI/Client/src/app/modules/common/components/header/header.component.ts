@@ -11,6 +11,7 @@ import {LocalizationService} from "src/app/localization/localization.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @Output() isLoggedInChanged: EventEmitter<boolean> = new EventEmitter<boolean>(false);
 
   @Input() isUserVisible = true;
 
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
   isLoggedIn: boolean = false;
   isDropdownVisible: boolean = false;
   isLanguageDropdownVisible: boolean = false;
+
 
   constructor(
     private sessionService: SessionService,
@@ -31,6 +33,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.session = this.sessionService.getSession();
     this.isLoggedIn = this.session !== null;
+
+    this.isLoggedInChanged.emit(this.isLoggedIn)
   }
 
   onAvatarClick() {
@@ -63,6 +67,7 @@ export class HeaderComponent implements OnInit {
       this.sessionService.clearSession();
 
       this.isLoggedIn = false;
+      this.isLoggedInChanged.emit(this.isLoggedIn)
     });
   }
 

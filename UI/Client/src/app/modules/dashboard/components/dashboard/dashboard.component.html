@@ -1,5 +1,5 @@
 <div id="header">
-  <app-header></app-header>
+  <app-header (isLoggedInChanged)="onIsLoggedInChange($event)"></app-header>
 </div>
 <div class="content row">
   <div class="filters">
@@ -11,10 +11,10 @@
     </div>
   </div>
   <div class="result" [ngClass]="{resultOpen: isChildOpen}">
-    <div class="row searchBar">
+    <div class="row searchBar" >
       <input class="input" type="text" [(ngModel)]="searchValue"/>
-      <app-users-button label="{{'Find' | translate}}"></app-users-button>
-      <app-users-button (click)="addDeals()" label="{{'Pages/Header/AddDealsButton' | translate}}"></app-users-button>
+      <app-users-button label="{{'Find' | translate}}" [ngClass]="{oneButton : !isLoggedIn}"></app-users-button>
+      <app-users-button (click)="addDeals()" label="{{'Pages/Header/AddDealsButton' | translate}}" *ngIf="isLoggedIn"></app-users-button>
     </div>
     <div *ngIf="!isGridVisible">
       <app-deal-list  [filter]="filter" [searchValue]="searchValue"></app-deal-list>

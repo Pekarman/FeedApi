@@ -9,7 +9,9 @@
   width: 100%;
 
 }
-
+.oneButton{
+  margin-right: 10%;
+}
 .filterBlock {
   border: 2px solid lightgray;
   width: 100%;
@@ -19,7 +21,7 @@
 .openFilter {
   border: 2px solid lightgray;
   height: 200px;
-  width: 370%; 
+  width: 370%;
 }
 
 .subcategories {
@@ -40,7 +42,7 @@ div {
       input {
         height: 50px;
         width: 72%;
-        margin-left: 30px;
+        margin-left: 6%;
       }
 
       app-users-button {
