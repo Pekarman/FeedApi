@@ -12,7 +12,7 @@
             <span class="langItem">{{ ('Language/Language' | translate) }}</span>
             <span class="langItem title">{{ " : " + ('Language/Title' | translate)}}</span>
             <div *ngIf="isLanguageDropdownVisible">
-              <div class=" drop-option drop-0 " (click)="changeLanguage('en-EN')">
+              <div class="drop-option drop-0" (click)="changeLanguage('en-EN')">
                 <span>English</span>
               </div>
               <div class="drop-option drop-1" (click)="changeLanguage('ru-RU')">
@@ -20,15 +20,14 @@
               </div>
             </div>
           </div>
-
-          <div *ngIf="!isLoggedIn" class="flex-1 login">
+          <div *ngIf="!isLoggedIn && isUserVisible" class="flex-1 login">
             <a href="/login" class="">{{ 'Pages/LoginPage/title' | translate }}</a>
           </div>
-          <div *ngIf="!isLoggedIn" class="flex-1 register">
+          <div *ngIf="!isLoggedIn && isUserVisible" class="flex-1 register">
             <a href="/register" class="">{{ 'Pages/RegisterPage/title' | translate }}</a>
           </div>
 
-          <div class="flex-1" *ngIf="isLoggedIn" (click)="onAvatarClick()">
+          <div class="flex-1" *ngIf="isLoggedIn && isUserVisible" (click)="onAvatarClick()">
             <div class="select flex-1 avatarBlock">
               <div class="avatarBlock">
                 <span class="dropdown--profile dropdown-avatar">
@@ -45,7 +44,7 @@
               </div>
             </div>
           </div>
-          <div class="loginName flex-1"*ngIf="isLoggedIn" class="flex-1">
+          <div class="loginName flex-1"*ngIf="isLoggedIn && isUserVisible" class="flex-1">
             <h3 (click)="onAvatarClick()" 
                 class="movedToLeft dropdown--profile flex-1 userName">{{ session?.user?.firstName + ' ' + session?.user?.lastName }}
             </h3>

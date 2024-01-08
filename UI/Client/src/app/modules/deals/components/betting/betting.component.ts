@@ -8,6 +8,7 @@ import { ApiConfig } from 'src/app/configs/apiconfig';
 import { IBet } from 'src/app/Models/IBet';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { ISell } from 'src/app/Models/ISell';
 
 @Component({
   selector: 'app-betting',
@@ -133,7 +134,17 @@ export class BettingComponent implements OnInit {
     this.myForm.controls.bet.setValidators(Validators.min(this.currentBet + 1));
   }
 
-  buyNowClick() {}
+  buyNowClick() {
+    var data: ISell = {
+      id: 0,
+      dealId: this.deal.id,
+      userId: this.sessionService.getSession().userId,
+      ownerId: this.deal.userId,
+    }    
+    this.dealService.buyNow(data).subscribe(sell => {
+      console.log(sell);
+    });
+  }
 
   addToWatchList() {
     var data: IWatchDeal = {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from 'src/app/services/auth.service';
 import {SessionService} from 'src/app/services/session.service';
@@ -11,6 +11,8 @@ import {LocalizationService} from "src/app/localization/localization.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  @Input() isUserVisible = true;
 
   session: any;
   isLoggedIn: boolean = false;
@@ -25,7 +27,6 @@ export class HeaderComponent implements OnInit {
   ) {
 
   }
-
 
   ngOnInit(): void {
     this.session = this.sessionService.getSession();

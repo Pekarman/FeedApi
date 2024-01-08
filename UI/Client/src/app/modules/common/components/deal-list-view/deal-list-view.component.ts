@@ -30,7 +30,7 @@ export class DealListViewComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.showChangeButton = this.deal.userId == this.sessionService.getSession().userId;
+    this.showChangeButton = this.deal.userId == this.sessionService.getSession()?.userId;
     this.renderImage();
   }
 

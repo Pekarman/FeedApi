@@ -13,5 +13,9 @@ namespace Common.EntityFramework.Models
         public int categoryId { get; set; }
 
         public int watchUserId { get; set; }
+
+        public int boughtUserId { get; set; }
+
+        public int sellUserId { get; set; }
     }
 }

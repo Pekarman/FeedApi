@@ -182,6 +182,30 @@ namespace FeedAPI.Controllers
             return new JsonResult($"Bet cannot be added.");
         }
 
+        [HttpPost("buyNow")]
+        public async Task<IActionResult> BuyNowAsync(Sell sell)
+        {
+            try
+            {
+                Sell result = await this.dealService.BuyNowAsync(sell);
+                if (result != null)
+                {
+                    //await this.hubContext.Clients.All.BetMade(result);
+                    return this.Ok(result);
+                }
+            }
+            catch (ArgumentException e)
+            {
+                return new JsonResult(e.Message);
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
+
+            return new JsonResult($"Bet cannot be added.");
+        }
+
         /// <summary>
         /// Changes the deal.
         /// </summary>
