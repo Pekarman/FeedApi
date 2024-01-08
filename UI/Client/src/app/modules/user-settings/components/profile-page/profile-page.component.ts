@@ -2,7 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IDeal } from 'src/app/Models/IDeal';
 import { SessionService } from "src/app/services/session.service";
-import { IDealListFilter } from '../../../common/components/deal-list/IDealListFilter';
+import { DealListFilter } from '../../../common/components/deal-list/DealListFilter';
+import { UserService } from 'src/app/services/user.service';
 
 enum InformationType {
   CommonInfo = 1,
@@ -26,15 +27,23 @@ export class ProfilePageComponent implements OnInit {
   toggleInformationType: InformationType | null = null;
   user: any;
 
-  getUserIdFilter(): IDealListFilter {
-    return {userId: this.user.id, categoryId: -1, watchUserId: -1};
+  constructor(private sessionService: SessionService, private readonly userService: UserService) {}
+
+  getUserIdFilter(): DealListFilter {
+    return {userId: this.user.id, categoryId: -1, watchUserId: -1, boughtUserId: -1, sellUserId: -1};
   }
 
-  getWatchUserIdFilter(): IDealListFilter {
-    return {userId: -1, categoryId: -1, watchUserId: 1};
+  getWatchUserIdFilter(): DealListFilter {
+    return {userId: -1, categoryId: -1, watchUserId: this.user.id, boughtUserId: -1, sellUserId: -1};
   }
 
-  constructor(private sessionService: SessionService) {}
+  getBoughtUserIdFilter(): DealListFilter {
+    return {userId: -1, categoryId: -1, watchUserId: -1, boughtUserId: this.user.id, sellUserId: -1};
+  }
+
+  getSellUserIdFilter(): DealListFilter {
+    return {userId: -1, categoryId: -1, watchUserId: -1, boughtUserId: -1, sellUserId: this.user.id};
+  }
 
   showOrHideInformation(type: InformationType): void {
     this.toggleInformationType = type;

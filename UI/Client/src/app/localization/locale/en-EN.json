@@ -94,7 +94,9 @@
       "Balance": "Balance",
       "IsActive": "IsActive",
       "UserLocale": "UserLocale",
-      "TrackedDeals": "Tracked deals"
+      "TrackedDeals": "Tracked deals",
+      "MyBoughts": "My boughts",
+      "MySells": "My sells"
 
     },
     "AddDeals": {

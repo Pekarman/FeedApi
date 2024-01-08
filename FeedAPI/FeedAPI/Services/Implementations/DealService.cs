@@ -75,7 +75,25 @@ namespace Services.Implementations
                             deals.Add(db.Deals.Where(d => d.Id == watchDeal.DealId).FirstOrDefault());
                         }
                     }
-                    
+
+                    if (filter.boughtUserId != -1)
+                    {
+                        var sells = db.Sells.Where(s => s.UserId == filter.boughtUserId).ToList();
+                        foreach (var sell in sells)
+                        {
+                            deals.Add(db.Deals.Where(d => d.Id == sell.DealId).FirstOrDefault());
+                        }
+                    }
+
+                    if (filter.sellUserId != -1)
+                    {
+                        var sells = db.Sells.Where(s => s.OwnerId == filter.sellUserId).ToList();
+                        foreach (var sell in sells)
+                        {
+                            deals.Add(db.Deals.Where(d => d.Id == sell.DealId).FirstOrDefault());
+                        }
+                    }
+
                     deals.ForEach(deal => deal.Assets = db.Assets.Where(i => i.DealId == deal.Id).ToList());
 
                     return deals;
@@ -135,6 +153,38 @@ namespace Services.Implementations
                 await db.SaveChangesAsync();
 
                 var result = await db.Bets.FindAsync(id);
+                return result;
+            }
+        }
+
+        public async Task<Sell> BuyNowAsync(Sell sell)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                int id;
+                if (db.Sells.Count() == 0) id = 1; else id = db.Sells.Max(item => (int)item.Id + 1);
+                sell.Id = id;
+
+                Deal deal = db.Deals.Where(d => d.Id == sell.DealId).FirstOrDefault();
+                User owner = db.Users.Where(d => d.Id == deal.UserId).FirstOrDefault(); 
+
+                User user = db.Users.Where(u => u.Id == sell.UserId).FirstOrDefault();
+
+                if (!user.Balance.HasValue || user.Balance < deal.PriceBuyNow)
+                {
+                    throw new ArgumentException("Low balance");
+                }
+
+                if (deal.StatusId != 1) throw new ArgumentException("Deal status is not active");
+                    
+                user.Balance -= deal.PriceBuyNow;
+                owner.Balance += deal.PriceBuyNow;
+                deal.StatusId = 3;
+
+                await db.Sells.AddAsync(sell);
+                await db.SaveChangesAsync();
+
+                var result = await db.Sells.FindAsync(id);
                 return result;
             }
         }

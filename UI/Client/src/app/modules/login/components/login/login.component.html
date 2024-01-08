@@ -1,3 +1,6 @@
+<div id="header">
+  <app-header [isUserVisible]="false"></app-header>
+</div>
 <div class="wrapper-inner ">
   <div class="container container-xs container-responsive">
     <div class="tile tile-no-style">
@@ -31,10 +34,6 @@
                                 [control]="myForm.get('phrase')"
                                 fieldName="phrase"
                                 ></app-labeled-input>
-              <div id="invalidPhraseError" *ngIf="invalidPhraseError" class="alert alert-error fade in mb-25"
-                   style="display:block;">
-                <p>{{  'Errors/phraseMatchesError' | translate : localePath }}</p>
-              </div>
               <div class="login-form__submit">
                 <button type="submit" class="btn btn-lg btn-block btn-primary">{{ localePath + 'title' | translate : localePath }}
                 </button>
