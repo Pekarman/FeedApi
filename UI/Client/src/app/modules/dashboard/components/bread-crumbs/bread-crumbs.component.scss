@@ -1,0 +1,35 @@
+.breadCrumbsBlock{
+  margin-left: 5%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: inline;
+  margin-right: 5px;
+
+  &:last-of-type {
+    pointer-events: none;
+
+    a {
+      color: black;
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: large;
+  transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+  color: #0056b3;
+}

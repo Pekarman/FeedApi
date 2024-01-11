@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CategoryGridComponent } from './components/category-grid/category-grid.component';
 import { CategoryGridViewComponent } from './components/category-grid-view/category-grid-view.component';
+import { BreadCrumbsComponent } from './components/bread-crumbs/bread-crumbs.component';
 
 
 
@@ -14,7 +15,8 @@ import { CategoryGridViewComponent } from './components/category-grid-view/categ
   declarations: [
     DashboardComponent,
     CategoryGridComponent,
-    CategoryGridViewComponent
+    CategoryGridViewComponent,
+    BreadCrumbsComponent
   ],
   imports: [
     CommonModule,

@@ -9,8 +9,13 @@
   width: 100%;
 
 }
-.oneButton{
-  margin-right: 10%;
+
+.wideInput{
+ min-width: 84%;
+}
+.dealListBlock{
+  width: 90%;
+  margin-left: 4%;
 }
 .filterBlock {
   border: 2px solid lightgray;
@@ -36,13 +41,13 @@ div {
     justify-content: space-between;
 
     &.searchBar {
-      width: 90%;
+      width: 95%;
       margin-bottom: 20px;
 
-      input {
+      .input {
         height: 50px;
-        width: 72%;
-        margin-left: 6%;
+        width: 70%;
+        margin-left: 5.7%;
       }
 
       app-users-button {
@@ -65,7 +70,7 @@ div {
     }
 
     .result {
-      width: 95%;
+      max-width: 95%;
     }
 
     .resultOpen {
@@ -78,24 +83,34 @@ div {
 @media only screen and (max-width: 768px) {
   .content {
     width: 100%;
+
+
   }
+
   input {
     width: 5%;
+
   }
+
   .result {
     padding-left: 25px;
+    width: 90%;
+
   }
+
 
   .filterBlock {
     width: 500%;
     cursor: pointer;
-    border: 2px solid lightgray;
+
+  }
+  .openFilter{
+    border:none;
   }
   .filterBlockOpen {
     width: 80%;
     height: 30%;
     cursor: pointer;
-    border: 2px solid lightgray;
     position: fixed;
     z-index: 1;
     background-color: white;
@@ -114,6 +129,9 @@ div {
     width: 40% !important;
     margin-top: 20px;
     margin-left: 20px;
+  }
+  .oneButton{
+    margin-left: 35%;
   }
 
   .addDealsButton {
