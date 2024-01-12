@@ -1,6 +1,7 @@
 .menu-wrapper {
   display: flex;
   align-items: center;
+
 }
 
 .menu-label {
@@ -22,7 +23,7 @@
 .bar {
   background-color: #333;
   height: 3px;
-  width: 30px;
+  width: 100%;
   transition: 0.4s;
 }
 
@@ -62,6 +63,8 @@
   color: black;
   text-decoration: none;
   font-size: 18px;
+
+
 }
 
 .menu li:hover {
@@ -76,11 +79,12 @@
     font-size: small;
     margin-bottom: 5px;
   }
-  .bar{
+  .bar {
     margin-left: -5px;
     width: 20px;
   }
   .menu li {
-   background-color: white;
+    background-color: white;
+
   }
 }

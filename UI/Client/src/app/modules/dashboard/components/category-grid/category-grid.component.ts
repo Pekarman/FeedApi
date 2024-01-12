@@ -11,8 +11,12 @@ import {DealListFilter} from "src/app/modules/common/components/deal-list/DealLi
 export class CategoryGridComponent implements OnInit {
   @Input() categories: any
   @Output() filterApply = new EventEmitter<DealListFilter>()
+  @Output() breadCrumbsString = new EventEmitter<string>();
+  @Input() crumbsString: any
+
 
   constructor() {
+
   }
 
   getCategories() {
@@ -20,11 +24,13 @@ export class CategoryGridComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   categoryClick(category: string) {
-    this.categories = this.categories[category]
-    if (this.categories === '') {
+    this.breadCrumbsString.emit(category)
+    this.categories = this.categories[category];
+        if (this.categories === '') {
       const categoryId = Object.values(CategoryEnum).findIndex((cat, index) => cat !== Number(cat) && cat === category ? index : null)
       this.filterApply.emit({userId: -1, categoryId: categoryId, watchUserId: -1, boughtUserId: -1, sellUserId: -1})
     }

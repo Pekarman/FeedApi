@@ -19,12 +19,19 @@ export class DashboardComponent implements OnInit {
   filter!: DealListFilter
   isCategoryVisible: boolean = false;
   isLoggedIn: boolean = false;
+  breadCrumbs: Array<string> = [];
+  getCrumbText: string = ''
+
+  getBreadCrumbs(crumbs: string) {
+    this.breadCrumbs.push(crumbs)
+  }
 
 
   getFilter(filter: DealListFilter) {
     this.isGridVisible = !this.isGridVisible
     this.filter = filter
   }
+
 
   onIsLoggedInChange(isLoggedIn: boolean) {
     this.isLoggedIn = isLoggedIn
@@ -36,13 +43,15 @@ export class DashboardComponent implements OnInit {
     setTimeout(() => this.isGridVisible = true, 1);
   }
 
-  changeSearchValue(value: string) {
-    this.searchValue = value;
+  chooseCategoryFromBreadCrumb(path: string[]) {
+    let partialTree = CategoryTree;
+    path.forEach((el) => partialTree = partialTree[el]);
+    this.categoryTree = partialTree;
+    this.isGridVisible = false;
+    setTimeout(() => this.isGridVisible = true, 1);
   }
 
-  onCategoryOpenChange(isCategoryOpen: boolean) {
-    this.isCategoryVisible = isCategoryOpen;
-  }
+
 
   onBurgerMenuOpenChange(isOpenBurger: boolean) {
     this.isChildOpen = isOpenBurger;
