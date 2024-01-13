@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import {IUserRegister} from 'src/app/Models/IUserRegister';
 import {AuthService} from 'src/app/services/auth.service';
 import {SessionService} from 'src/app/services/session.service';
@@ -29,7 +30,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private router: Router
   ) {
   }
 
@@ -94,9 +96,16 @@ export class RegisterComponent implements OnInit {
     this.userService.createUser(user)
       .subscribe((response: any) => {
         if (response.id) {
-          this.authService.login(response.Email, user.password, user.phrase)
+          this.authService.login(user.email, user.password, user.phrase)
             .subscribe((response: any) => {
-              this.sessionService.setSession(response);
+              if (response.user) {
+                this.sessionService.setSession(response);
+                this.router.navigate(['/']);
+              }
+              else {
+                this.errorText = response;
+                this.invalidResponseError = true;
+              }
             });
 
         } else {

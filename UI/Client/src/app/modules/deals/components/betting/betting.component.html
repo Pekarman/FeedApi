@@ -8,7 +8,12 @@
             <p>{{ deal?.priceBuyNow }} BYN</p>
         </div>
         <div class="col-6">
-            <button class="btn btn-lg btn-block btn-primary" (click)="buyNowClick()">{{ localePath + 'BuyNow' | translate }}</button>
+            <button
+                id="buyNowButton"
+                class="btn btn-lg btn-block btn-primary"
+                (click)="buyNowClick()">
+                {{ localePath + 'BuyNow' | translate }}
+            </button>
         </div>
     </div>
     <div class="row">

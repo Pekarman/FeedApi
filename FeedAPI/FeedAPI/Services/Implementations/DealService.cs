@@ -94,7 +94,10 @@ namespace Services.Implementations
                         }
                     }
 
-                    deals.ForEach(deal => deal.Assets = db.Assets.Where(i => i.DealId == deal.Id).ToList());
+                    deals.ForEach(deal => {
+                        if (deal == null) return;
+                        deal.Assets = db.Assets.Where(a => a.DealId == deal.Id).ToList();
+                    });
 
                     return deals;
                 });

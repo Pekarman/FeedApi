@@ -1,4 +1,5 @@
-﻿using Common.EntityFramework.Models;
+﻿using Common.EntityFramework;
+using Common.EntityFramework.Models;
 using FeedAPI.SignalR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +25,30 @@ namespace FeedAPI.Controllers
         {
             this.dealService = dealService;
             this.hubContext = hubContext;
+        }
+
+        [HttpGet("migrateDeals")]
+        public async Task<IActionResult> MigrateDealsAsync()
+        {
+            try
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    using (ApplicationContext dbDev = new ApplicationContextDev())
+                    {
+                        var deals = dbDev.Deals;
+                        await db.Deals.AddRangeAsync(deals);
+
+                        await db.SaveChangesAsync();
+
+                        return this.Ok(deals.ToList());
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
         }
 
         /// <summary>

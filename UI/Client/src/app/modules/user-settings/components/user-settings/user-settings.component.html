@@ -1,21 +1,29 @@
-<div class="wrapper-inner ">
+<div id="header">
+  <app-header></app-header>
+</div>
+<div class="wrapper-inner">
   <div class="container container-xs container-responsive">
-  <h1>{{localePath + 'Title' | translate}}</h1>
-   <app-users-button label="{{localePath + 'ChangeEmail' | translate}}"
-                    [path]="'userSettings/changeEmail'"
-                    ></app-users-button>
-   <app-users-button label="{{localePath + 'ChangePassword' | translate}}"
-                    [path]="'userSettings/changePassword'"
-                    ></app-users-button>
-   <app-users-button label="{{localePath + 'ChangePhrase' | translate}}"
-                    [path]="'userSettings/changePhrase'"
-                    ></app-users-button>
-   <app-users-button label="{{localePath + 'DeleteUser' | translate}}"
-                    [path]="'userSettings/deleteUser'"
-                    ></app-users-button>
-   <app-users-button label="{{'GoBack' | translate}}"
-                    [path]="''"
-                    ></app-users-button>
+    <h1>{{localePath + 'Title' | translate}}</h1>
+    <app-users-button
+      label="{{localePath + 'ChangeEmail' | translate}}"
+      [path]="'userSettings/changeEmail'"
+      ></app-users-button>
+    <app-users-button
+      label="{{localePath + 'ChangePassword' | translate}}"
+      [path]="'userSettings/changePassword'"
+      ></app-users-button>
+    <app-users-button
+      label="{{localePath + 'ChangePhrase' | translate}}"
+      [path]="'userSettings/changePhrase'"
+      ></app-users-button>
+    <app-users-button
+      label="{{localePath + 'DeleteUser' | translate}}"
+      [path]="'userSettings/deleteUser'"
+      ></app-users-button>
+    <app-users-button
+      label="{{'GoBack' | translate}}"
+      [path]="''"
+      ></app-users-button>
     <div id="invalidPhraseError" *ngIf="responseData" class="alert alert-error fade in mb-25" style="display:block;">
       <p>{{  responseData.value }}</p>
     </div>

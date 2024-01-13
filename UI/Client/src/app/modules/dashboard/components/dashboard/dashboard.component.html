@@ -1,34 +1,47 @@
 <div id="header">
-  <app-header (isLoggedInChanged)="onIsLoggedInChange($event)"></app-header>
+  <app-header
+    (isLoggedInChanged)="onIsLoggedInChange($event)"
+  ></app-header>
 </div>
 <div class="content row">
   <div class="filters">
     <div class="filterBlock" [ngClass]="{openFilter: isChildOpen}">
       <div class="subcategories" [ngClass]="{filterBlockOpen : isChildOpen}">
-        <app-burger-menu (isOpenChange)="onBurgerMenuOpenChange($event)"
-                         (isClickGoods)="chooseCategory($event.category)"
-                         (breadCrumbsString)="getBreadCrumbs($event)">
-
-        </app-burger-menu>
+        <app-burger-menu
+          (isOpenChange)="onBurgerMenuOpenChange($event)"
+          (isClickGoods)="chooseCategory($event.category)"
+          (breadCrumbsString)="getBreadCrumbs($event)"
+        ></app-burger-menu>
       </div>
     </div>
   </div>
   <div class="result" [ngClass]="{resultOpen: isChildOpen}">
     <div class="row searchBar">
-      <input class="input" type="text" [(ngModel)]="searchValue" [ngClass]="{wideInput : !isLoggedIn}"/>
-      <app-users-button label="{{'Find' | translate}}" [ngClass]="{oneButton : !isLoggedIn}"></app-users-button>
+      <input
+        class="input"
+        type="text"
+        [(ngModel)]="searchValue"
+        [ngClass]="{wideInput : !isLoggedIn}"
+      />
+      <app-users-button
+        label="{{'Find' | translate}}"
+        [ngClass]="{oneButton : !isLoggedIn}"
+      ></app-users-button>
       <app-users-button
         (click)="addDeals()"
         label="{{'Pages/Header/AddDealsButton' | translate}}"
-        *ngIf="isLoggedIn">
-      </app-users-button>
+        *ngIf="isLoggedIn"
+      ></app-users-button>
       <app-bread-crumbs *ngIf="breadCrumbs.length > 0"
         [crumbs]="breadCrumbs"
         (crumbsString)="chooseCategoryFromBreadCrumb($event)"
       ></app-bread-crumbs>
     </div>
     <div [ngClass]="{dealListBlock : !isGridVisible}" *ngIf="!isGridVisible">
-      <app-deal-list [filter]="filter" [searchValue]="searchValue" ></app-deal-list>
+      <app-deal-list
+        [filter]="filter"
+        [searchValue]="searchValue"
+      ></app-deal-list>
     </div>
     <div *ngIf="isGridVisible">
       <app-category-grid

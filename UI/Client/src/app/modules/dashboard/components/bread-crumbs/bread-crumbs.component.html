@@ -1,7 +1,7 @@
 <div class="breadCrumbsBlock">
   <ul>
     <li *ngFor="let crumb of crumbs; let last = last ">
-      <a href="#" (click)="setCrumbs(crumb)">{{last ? crumb : crumb + ' ' + '>'}}</a>
+      <a href="#" (click)="setCrumbs(crumb)">{{last ? ('Categories/' + crumb | translate) : ('Categories/' + crumb | translate) + ' ' + '>'}}</a>
     </li>
   </ul>
 </div>

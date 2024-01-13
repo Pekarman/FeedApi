@@ -30,6 +30,8 @@ namespace Services.Implementations
             using (ApplicationContext db = new ApplicationContext())
             {
                 UserSession session = await db.UserSessions.FindAsync(id);
+                session.user = await db.Users.FindAsync(session.UserId);
+                session.user.UserType = await db.UserTypes.FindAsync(session.user.UserTypeId);
                 return session;
             }
         }

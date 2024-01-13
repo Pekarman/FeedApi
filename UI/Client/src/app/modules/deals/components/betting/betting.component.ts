@@ -32,6 +32,8 @@ export class BettingComponent implements OnInit {
 
   responseError: boolean = false;
 
+  isBuyNowButtonEnabled: boolean = true;
+
   IsWatchedByUser() {
     return this.getUserWatchDeal() !== undefined;
   }
@@ -51,10 +53,9 @@ export class BettingComponent implements OnInit {
       }
     });
     if (winnerId !== 0) {
-      let winner = this.userService.getUserById(winnerId);
-      winner.subscribe(user => {
+      this.userService.getUserById(winnerId).subscribe(user => {
         this.winnerFullName = `${user.firstName} ${user.lastName}`;
-      })
+      });
     }    
     return this.currentBet;
   }
@@ -66,14 +67,21 @@ export class BettingComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
+    this.runBroadcast();
     setTimeout(() => {
       this.fillForm();
-      this.runBroadcast();
-    }, 500);
+    }, 1000);
   }
 
   fillForm() {
     if (this.deal == undefined) return;
+    var button = document.getElementById('buyNowButton');
+    if (this.deal.statusId !== 1) {
+      button?.setAttribute('disabled', 'true');
+    }
+    else {
+      button?.removeAttribute('disabled');
+    }
     this.currentBet = this.getCurrentBet();
     this.myForm.controls.bet.setValue(this.currentBet);
     this.myForm.controls.bet.setValidators(Validators.min(this.currentBet + 1));
@@ -142,7 +150,9 @@ export class BettingComponent implements OnInit {
       ownerId: this.deal.userId,
     }    
     this.dealService.buyNow(data).subscribe(sell => {
-      console.log(sell);
+      if (typeof(sell) == typeof("")) alert(sell);
+
+      window.location.reload();
     });
   }
 

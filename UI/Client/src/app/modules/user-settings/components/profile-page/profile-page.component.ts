@@ -1,6 +1,4 @@
-// profile-page.component.ts
 import { Component, OnInit } from '@angular/core';
-import { IDeal } from 'src/app/Models/IDeal';
 import { SessionService } from "src/app/services/session.service";
 import { DealListFilter } from '../../../common/components/deal-list/DealListFilter';
 import { UserService } from 'src/app/services/user.service';
@@ -51,8 +49,10 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.sessionService.getSession().user;
+    this.sessionService.getSessionAsync().subscribe((session: any) => {
+      this.sessionService.setSession(session);
+      this.user = session.user;
+    });
     this.toggleInformationType = this.InformationType.CommonInfo;
   }
-
-  // protected readonly InformationType = InformationType;
 }

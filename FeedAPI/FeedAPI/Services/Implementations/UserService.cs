@@ -67,14 +67,19 @@ namespace Services.Implementations
                 bool isExistEmail = db.Users.Where(u => u.Email == email).Any();
                 if (isExistEmail) throw new ArgumentException($"User with email {email} already exists.");
 
-                int id = db.Users.Count() + 1;
+                int id;
+                if (db.Users.Count() == 0) id = 1; else id = db.Users.Max(item => (int)item.Id + 1);
+
                 user = new User(id, firstName, lastName, username, email, usertypeid);
+
+                int passId;
+                if (db.PassData.Count() == 0) passId = 1; else passId = db.PassData.Max(item => (int)item.Id + 1);
 
                 var passHash = BCrypt.Net.BCrypt.EnhancedHashPassword(password, 11);
                 var secretPhraseHash = BCrypt.Net.BCrypt.EnhancedHashPassword(secretPhrase, 11);
 
                 await db.Users.AddAsync(user);
-                await db.PassData.AddAsync(new PassData(id, passHash, secretPhraseHash));
+                await db.PassData.AddAsync(new PassData(passId, passHash, secretPhraseHash));
                 await db.SaveChangesAsync();
 
                 var result = await db.Users.FindAsync(id);

@@ -3,17 +3,17 @@
 }
 
 .button-container {
-  margin-left: 40px;
+  margin-left: 3%;
   background-color: white;
   display: flex;
-  width: 90%;
-  justify-content: left;
+  width: 92%;
+  justify-content: space-evenly;
   max-width: 210vh;
 }
 
 .button {
   background-color: #6c6969;
-  width: 12%;
+  min-width: 12%;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -21,10 +21,6 @@
   border-radius: 4px;
   cursor: pointer;
   margin: 0 10px;
-}
-
-.button:first-child {
-  margin-left: 10px;
 }
 
 .button:hover {

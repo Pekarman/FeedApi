@@ -11,8 +11,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonComponentsModule } from 'src/app/modules/common/common-components.module';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 
-
-
 @NgModule({
   declarations: [
     ProfilePageComponent,
@@ -37,6 +35,8 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
     UserPasswordChangeComponent,
     UserPhraseChangeComponent,
     DeleteUserComponent
+  ],
+  providers: [
   ]
 })
 export class UserSettingsModule { }
