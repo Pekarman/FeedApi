@@ -57,6 +57,28 @@ namespace Services.Implementations
             return deal;
         }
 
+        public async Task<Auction> GetAuctionAsync(int dealId)
+        {
+            Auction auction = new Auction();
+
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                await Task.Run(() => {
+                    auction = db.Auctions.Where(u => u.DealId == dealId).FirstOrDefault();
+
+                    if (auction != null)
+                    {
+                        auction.Bets = db.Bets.Where(b => b.DealId == dealId).ToList();
+                        auction.AutoBets = db.AutoBets.Where(a => a.DealId == dealId).ToList();
+                    }
+
+                    return auction;
+                });
+            }
+
+            return auction;
+        }
+
         public async Task<List<Deal>> GetOwnerDealsAsync(DealFilter filter)
         {
             List<Deal> deals = new List<Deal>();
@@ -141,22 +163,105 @@ namespace Services.Implementations
             }
         }
 
-        public async Task<Bet> MakeBetAsync(Bet bet)
+        public async Task<Auction> SetAutoBetAsync(AutoBet autobet)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                int id;
-                if (db.Bets.Count() == 0) id = 1; else id = db.Bets.Max(item => (int)item.Id + 1);
-                bet.Id = id;
+                var sameAutoBet = db.AutoBets.Where(b => b.UserId == autobet.UserId && b.DealId == autobet.DealId).FirstOrDefault();
 
-                var sameBets = db.Bets.Where(b => b.UserId == bet.UserId && b.DealId == bet.DealId);
-                db.Bets.RemoveRange(sameBets);
+                if (sameAutoBet != null)
+                {
+                    sameAutoBet.BetStep = autobet.BetStep;
+                    sameAutoBet.MaxBet = autobet.MaxBet;
+                    await db.SaveChangesAsync();
+                }
+                else
+                {
+                    await db.AutoBets.AddAsync(autobet);
+                    await db.SaveChangesAsync();
+                }
 
-                await db.Bets.AddAsync(bet);
+                Deal deal = db.Deals.Where(d => d.Id == autobet.DealId).FirstOrDefault();
+                Auction auction = db.Auctions.Where(a => a.DealId == autobet.DealId).FirstOrDefault();
+
+                if (auction == null)
+                {
+                    auction = this.CreateAuctionFromDeal(deal, db);
+
+                    await db.SaveChangesAsync();
+                }
+
+                auction.Bets = db.Bets.Where(b => b.DealId == auction.DealId).ToList();
+                auction.AutoBets = db.AutoBets.Where(a => a.DealId == auction.DealId).ToList();
+
+                return auction;
+            }
+        }
+
+        public async Task<Auction> CancelAutoBetAsync(AutoBet autobet)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var autoBets = db.AutoBets.Where(b => b.UserId == autobet.UserId && b.DealId == autobet.DealId);
+                db.AutoBets.RemoveRange(autoBets);
+
                 await db.SaveChangesAsync();
 
-                var result = await db.Bets.FindAsync(id);
-                return result;
+                Auction auction = db.Auctions.Where(a => a.DealId == autobet.DealId).FirstOrDefault();
+
+                auction.Bets = db.Bets.Where(b => b.DealId == auction.DealId).ToList();
+                auction.AutoBets = db.AutoBets.Where(a => a.DealId == auction.DealId).ToList();
+
+                return auction;
+            }
+        }
+
+        public async Task<Auction> MakeBetAsync(Bet bet)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var sameBet = db.Bets.Where(b => b.UserId == bet.UserId && b.DealId == bet.DealId).FirstOrDefault();
+
+                if (sameBet != null)
+                {
+                    sameBet.CurrentBet = bet.CurrentBet;
+                    await db.SaveChangesAsync();
+                }
+                else
+                {
+                    await db.Bets.AddAsync(bet);
+                    await db.SaveChangesAsync();
+                }
+
+                Deal deal = db.Deals.Where(d => d.Id == bet.DealId).FirstOrDefault();
+                Auction auction = db.Auctions.Where(a => a.DealId == bet.DealId).FirstOrDefault();
+
+                if (auction == null)
+                {
+                    auction = this.CreateAuctionFromDeal(deal, db);
+
+                    await db.Auctions.AddAsync(auction);
+                }
+
+                auction.Bets = db.Bets.Where(b => b.DealId == auction.DealId).ToList();
+                auction.AutoBets = db.AutoBets.Where(a => a.DealId == auction.DealId).ToList();
+
+                DateTime now = DateTime.UtcNow;
+
+                bool auctionInProgress = now.CompareTo(auction.AuctionEnd) < 0 && auction.AuctionStart.Value.CompareTo(now) < 0;
+                bool auctionEnded = auction.AuctionEnd.Value.CompareTo(now) < 0;
+
+                if (auctionInProgress)
+                {
+                    deal.StatusId = 2;
+                    auction.AuctionEnd = auction.AuctionEnd.Value.AddSeconds((double)auction.AuctionLength);
+                }
+
+                if (auctionEnded) deal.StatusId = 3;
+
+                await db.SaveChangesAsync();
+
+                return auction;
             }
         }
 
@@ -237,6 +342,19 @@ namespace Services.Implementations
 
                 return deal;
             }
+        }
+
+        private Auction CreateAuctionFromDeal(Deal deal, ApplicationContext db)
+        {
+            Auction auction = new Auction();
+
+            auction.UserId = (int)deal.UserId;
+            auction.DealId = (int)deal.Id;
+            auction.AuctionStart = deal.StartTime;
+            auction.AuctionLength = deal.Duration;
+            auction.AuctionEnd = auction.AuctionStart.Value.AddSeconds((double)deal.Duration);
+
+            return auction;
         }
     }
 }

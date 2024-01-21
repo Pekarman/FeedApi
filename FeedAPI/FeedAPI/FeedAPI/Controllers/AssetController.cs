@@ -21,30 +21,6 @@ namespace FeedAPI.Controllers
             this.assetService = assetService;
         }
 
-        [HttpGet("migrateAssets")]
-        public async Task<IActionResult> MigrateAssetsAsync()
-        {
-            try
-            {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    using (ApplicationContext dbDev = new ApplicationContextDev())
-                    {
-                        var assets = dbDev.Assets;
-                        await db.Assets.AddRangeAsync(assets);
-
-                        await db.SaveChangesAsync();
-
-                        return this.Ok(assets);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                return new JsonResult(e.Message);
-            }
-        }
-
         /// <summary>
         /// Get all assets.
         /// </summary>

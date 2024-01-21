@@ -91,13 +91,13 @@
       "PayerRegNumber": "PayerRegNumber",
       "BankAccount": "BankAccount",
       "BankCode": "BankCode",
+      "Finances": "Finances",
       "Balance": "Balance",
       "IsActive": "IsActive",
       "UserLocale": "UserLocale",
       "TrackedDeals": "Tracked deals",
       "MyBoughts": "My boughts",
       "MySells": "My sells"
-
     },
     "AddDeals": {
       "ProdName": "Product Name",
@@ -111,7 +111,7 @@
       "PriceBuyNow": "Price Buy Now",
       "Auction": "Auction",
       "StartTime": "Start Time",
-      "AuctionDuration": "Auction Duration(minutes)",
+      "AuctionDuration": "Auction duration (seconds)",
       "StartBet": "Start Bet",
       "Ok": "Ok",
       "Cancel": "Cancel",
@@ -143,6 +143,12 @@
         "StartBet": "Start bet",
         "CurrentBet": "Current bet",
         "YourBet": "Your bet",
+        "AutoBet": "Auto bet",
+        "MaxBet": "Max bet",
+        "BetStep": "Bet step",
+        "Apply": "Apply",
+        "Cancel": "Cancel",
+        "AutobetApplied": "Autobet applied",
         "BuyNow": "Buy now",
         "MakeBet": "Make a bet",
         "AddToWatchList": "Add to my watch list",
@@ -163,7 +169,8 @@
     "newPhraseMatchesOldError": "New phrase cannot be equal to new one.",
     "MinBetError": "Your bet should be more than actual bet.",
     "ValidationErrors": {
-      "FieldIsRequiredError": "{0} is required."
+      "FieldIsRequiredError": "{0} is required.",
+      "LessThenError": "Value should be more than {0}."
     }
   },
   "GoBack": "Back",

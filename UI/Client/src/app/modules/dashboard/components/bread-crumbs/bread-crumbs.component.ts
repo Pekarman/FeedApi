@@ -11,16 +11,13 @@ export class BreadCrumbsComponent implements OnInit {
   @Input() crumbs : Array<string> = [];
   @Output() crumbsString  =  new EventEmitter<string[]>();
 
+  constructor() {}
+
+  ngOnInit(): void {}
+  
   setCrumbs(crumb: string){
     let index = this.crumbs.indexOf(crumb);
     this.crumbs.splice(index + 1, this.crumbs.length - index );
     this.crumbsString.emit(this.crumbs);
   }
-  constructor() {
-
-  }
-
-  ngOnInit(): void {
-  }
-
 }

@@ -14,7 +14,7 @@ export interface IDeal{
     priceBuyNow: number;
     canBuyNow: boolean;
     startTime: Date;
-    endTime: Date;
+    duration: number;
     isChecked: boolean;
     statusId: number;
     userId: number;

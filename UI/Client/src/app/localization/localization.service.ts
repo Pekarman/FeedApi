@@ -34,23 +34,22 @@ export class LocalizationService {
     localStorage.setItem('selectedLanguage', locale);
   }
 
-
-
-  translate(input: string, args: any): string {
+  translate(path: string, args: any): string {
     if (!this.locale?.Pages) this.initiate(this.locale as unknown as string);
-    var item = this.locale;
-    var keys = input.split('/');
+
+    var tree = this.locale;
+    var keys = path.split('/');
+
     keys.forEach(key => {
-      item = item[key];
+      tree = tree[key];
     });
 
     if (args?.length > 0) {
       args.forEach((arg: string) => {
         var replaceItem = this.translate(arg, null);
-        item = (item as string).replace(/{(\d+)}/g, replaceItem == undefined ? arg : replaceItem);
+        tree = (tree as string).replace(/{(\d+)}/g, replaceItem == undefined ? arg : replaceItem);
       });
     }
-
-    return item;
+    return tree;
   }
 }

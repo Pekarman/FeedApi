@@ -36,30 +36,81 @@
             <p>{{ currentBet }} BYN</p>
         </div>
     </div>
+    <div class="row makeAutoBetBlock">
+        <h3>{{ localePath + 'AutoBet' | translate }}</h3>
+        <form class="row" [formGroup]="autoBetForm">
+            <div class="col-6 padding-top-0">
+                <app-labeled-input
+                    label="{{ localePath + 'MaxBet' | translate }}"
+                    labelThan="{{ localePath + 'CurrentBet' | translate }}"
+                    [control]="autoBetForm.get('maxBet')"
+                    [isPasswordField]="false">
+                </app-labeled-input>
+            </div>
+            <div class="col-6 padding-top-0">
+                <app-labeled-input
+                    label="{{ localePath + 'BetStep' | translate }}"
+                    labelThan="0"
+                    [control]="autoBetForm.get('betStep')"
+                    [isPasswordField]="false">
+                </app-labeled-input>
+            </div>
+            <div class="col-12" *ngIf="isAutoBetApplied()">
+                <p>{{ localePath + 'AutobetApplied' | translate }}</p>
+            </div>
+            <div class="col-6">
+                <button
+                    (click)="cancelAutoBet()"
+                    class="btn btn-lg btn-block btn-secondary make-bet">
+                    {{ localePath + 'Cancel' | translate }}
+                </button>
+            </div>
+            <div class="col-6">
+                <button
+                    (click)="setAutoBet(autoBetForm)"
+                    class="btn btn-lg btn-block btn-primary make-bet">
+                    {{ localePath + 'Apply' | translate }}
+                </button>
+            </div>
+        </form>
+    </div>
     <div class="row makeBetBlock">
-        <form class="row" [formGroup]="myForm" (ngSubmit)="makeBet(myForm)">
+        <form
+            class="row"
+            [formGroup]="myForm"
+            (ngSubmit)="makeBet(myForm)">
+            
             <div class="col-6 padding-top-0">
                 <app-labeled-input
                     label="{{ localePath + 'YourBet' | translate }}"
+                    labelThan="{{ localePath + 'CurrentBet' | translate }}"
                     [control]="myForm.get('bet')"
                     [isPasswordField]="false">
                 </app-labeled-input>
             </div>
             <div class="col-6">
-                <button type="submit" class="btn btn-lg btn-block btn-primary make-bet">{{ localePath + 'MakeBet' | translate }}</button>
+                <button
+                    type="submit"
+                    class="btn btn-lg btn-block btn-primary make-bet">
+                    {{ localePath + 'MakeBet' | translate }}
+                </button>
             </div>
         </form>
     </div>
-    <div *ngIf="responseError" class="alert alert-error fade in"
-        style="display:block;">
-      <p>{{ 'Errors/MinBetError' | translate }}</p>
-    </div>
     <div class="row">
         <div class="col-12" *ngIf="!IsWatchedByUser()">
-            <button class="btn btn-lg btn-block btn-secondary" (click)="addToWatchList()">{{ localePath + 'AddToWatchList' | translate }}</button>
+            <button
+                class="btn btn-lg btn-block btn-secondary"
+                (click)="addToWatchList()">
+                {{ localePath + 'AddToWatchList' | translate }}
+            </button>
         </div>
         <div class="col-12" *ngIf="IsWatchedByUser()">
-            <button class="btn btn-lg btn-block btn-secondary" (click)="removeFromWatchList()">{{ localePath + 'RemoveFromWatchList' | translate }}</button>
+            <button
+                class="btn btn-lg btn-block btn-secondary"
+                (click)="removeFromWatchList()">
+                {{ localePath + 'RemoveFromWatchList' | translate }}
+            </button>
         </div>
     </div>
 </div>

@@ -5,6 +5,7 @@ import {IDeal} from 'src/app/Models/IDeal';
 import {DealService} from 'src/app/services/deal.service';
 import {SessionService} from "src/app/services/session.service";
 import {DealStatusEnum} from "src/app/enums/DealStatus";
+import { IAuction } from 'src/app/Models/IAuction';
 
 
 @Component({
@@ -15,6 +16,7 @@ import {DealStatusEnum} from "src/app/enums/DealStatus";
 export class DealComponent implements OnInit {
 
   deal!: IDeal;
+  auction!: IAuction;
   base64Image!: any;
   localePath: string = 'Pages/DealPage/'
   statusEnum = Object.values(DealStatusEnum).filter(el => el !== Number(el));
@@ -33,16 +35,19 @@ export class DealComponent implements OnInit {
   changeStatus() {
     const id = this.route.snapshot.params.id as unknown as number;
     this.dealService.updateStatusActive(id).subscribe(response => {
-      if (response.id) {
+      if (response.statusId) {
         this.statusEnum.forEach((el, index) => response.statusId === index ? this.countStatus = el : null)
       }
-
     })
   }
 
   ngOnInit(): void {
-    var id = this.route.snapshot.params.id as unknown as number;
-    this.dealService.getDeal(id).subscribe(deal => {
+    this.loadResources();
+  }
+
+  loadResources() {
+    var dealId = this.route.snapshot.params.id as unknown as number;
+    this.dealService.getDeal(dealId).subscribe(deal => {
       this.deal = deal;
       this.renderImages(deal);
 
@@ -53,6 +58,9 @@ export class DealComponent implements OnInit {
       });
     });
 
+    this.dealService.getAuction(dealId).subscribe(auction => {
+      this.auction = auction;
+    });
   }
 
   redirectToChangeDeal() {
@@ -65,7 +73,4 @@ export class DealComponent implements OnInit {
       this.base64Image = this.domSanitizer.bypassSecurityTrustUrl("data:image/jpeg;base64, " + asset.imageData);
     });
   }
-
-  protected readonly DealStatusEnum = DealStatusEnum;
-  protected readonly status = status;
 }

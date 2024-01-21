@@ -62,10 +62,6 @@ export class AddDealsComponent implements OnInit {
         this.dealFlag = true;
         let stringFromStartTime = String(response.startTime).split("").slice(11, 16).join('');
         let stringFromStartTimeToStartDate = String(response.startTime).split("").slice(0, 10).join('')
-        let durationFromStringToEndTime = String(response.endTime).split('').slice(11, 16).join('')
-        let startTime = new Date(`${stringFromStartTimeToStartDate}T${stringFromStartTime}`);
-        let endTime = new Date(`${stringFromStartTimeToStartDate}T${durationFromStringToEndTime}`);
-        let differenceInMinutes = Math.floor((endTime.getTime() - startTime.getTime()) / (1000 * 60));
 
         this.myForm.patchValue({
           prodName: response.productName,
@@ -79,7 +75,7 @@ export class AddDealsComponent implements OnInit {
           priceBuyNow: response.priceBuyNow || 0,
           startTime: stringFromStartTime,
           startDate: stringFromStartTimeToStartDate,
-          duration: String(differenceInMinutes),
+          duration: response.duration,
           startBet: response.startBet,
         })
         if (response.canBuyNow) {
@@ -99,18 +95,6 @@ export class AddDealsComponent implements OnInit {
       return;
     }
 
-    let durationTime = form.controls.startTime.value;
-    let [hours, minutes] = durationTime.split(':').map((time: any) => Number(time));
-    const durationMinutes = parseInt(form.controls.duration.value) || 0;
-    minutes += durationMinutes;
-    if (minutes > 59) {
-      const additionalHours = Math.floor(minutes / 60);
-      hours += additionalHours;
-      minutes %= 60;
-    }
-    const endDateTime = new Date(form.controls.startDate.value)
-      .setUTCHours(hours, minutes);
-
     var startTime = (form.controls.startTime.value as string).split(':');
     var startDateTime = new Date(form.controls.startDate.value)
       .setUTCHours(Number(startTime[0]), Number(startTime[1]));
@@ -127,7 +111,7 @@ export class AddDealsComponent implements OnInit {
       priceBuyNow: form.controls.priceBuyNow.value || 0,
       canBuyNow: form.controls.canBuyNow.value || false,
       startTime: new Date(startDateTime),
-      endTime: new Date(endDateTime),
+      duration: form.controls.duration.value || 0,
       isChecked: false,
       statusId: 0,
       userId: this.sessionServise.getSession().userId,

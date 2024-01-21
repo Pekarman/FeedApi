@@ -1,13 +1,7 @@
-#header {
-  min-height: 80px;
-  background-color: lightgray;
-}
-
 .content {
   margin-top: 15px;
   margin-left: 7px;
   width: 100%;
-
 }
 
 .wideInput{
@@ -33,7 +27,6 @@
   border: 2px solid lightgray;
   height: 40px;
   margin: 3px;
-
 }
 
 div {
@@ -61,12 +54,10 @@ div {
         color: #fff;
         border: none;
       }
-
     }
 
     .filters {
       width: 5%;
-
     }
 
     .result {
@@ -75,7 +66,6 @@ div {
 
     .resultOpen {
       width: 85%;
-
     }
   }
 }
@@ -83,30 +73,26 @@ div {
 @media only screen and (max-width: 768px) {
   .content {
     width: 100%;
-
-
   }
 
   input {
     width: 5%;
-
   }
 
   .result {
     padding-left: 25px;
     width: 90%;
-
   }
-
 
   .filterBlock {
     width: 500%;
     cursor: pointer;
-
   }
+
   .openFilter{
     border:none;
   }
+
   .filterBlockOpen {
     width: 80%;
     height: 30%;
@@ -115,10 +101,9 @@ div {
     z-index: 1;
     background-color: white;
   }
+
   .filters {
     height: 100%;
-  }
-  .subcategories {
   }
 
   input.input {
@@ -130,6 +115,7 @@ div {
     margin-top: 20px;
     margin-left: 20px;
   }
+
   .oneButton{
     margin-left: 35%;
   }
@@ -145,6 +131,3 @@ div {
 app-deal-list {
   width: 100%;
 }
-
-
-

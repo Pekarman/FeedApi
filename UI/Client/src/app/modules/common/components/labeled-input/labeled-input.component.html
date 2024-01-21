@@ -21,4 +21,7 @@
   <div *ngIf="getError('required') && control.touched" style="color: red">
     <p>{{ 'Errors/ValidationErrors/FieldIsRequiredError' | translate : label }}</p>
   </div>
+  <div *ngIf="getError('min') && control.touched" style="color: red">
+    <p>{{ 'Errors/ValidationErrors/LessThenError' | translate : labelThan }}</p>
+  </div>
 </div>

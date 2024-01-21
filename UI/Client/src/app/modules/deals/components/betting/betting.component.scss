@@ -12,9 +12,22 @@ div {
         background-color: darkgray;
         font-weight: bolder;
 
-        h2 {
+        &:first-child {
             margin-top: 10px;
             text-align: center;
+        }
+    }
+
+    &.makeAutoBetBlock {
+        justify-content: center;
+
+        form div button {
+            margin-top: 0px;;
+        }
+
+        h3 {            
+            font-weight: 500;
+            border-bottom: 2px solid darkgray;
         }
     }
 

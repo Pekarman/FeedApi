@@ -91,6 +91,7 @@
       "PayerRegNumber": "Регистрационный номер плательщика",
       "BankAccount": "Банковский счет",
       "BankCode": "Код банка",
+      "Finances": "Финансы",
       "Balance": "Баланс",
       "IsActive": "Активен",
       "UserLocale": "Язык",
@@ -110,7 +111,7 @@
       "PriceBuyNow": "Цена при покупке",
       "Auction": "Аукцион",
       "StartTime": "Дата начала аукциона",
-      "AuctionDuration": "Конец аукциона(минуты)",
+      "AuctionDuration": "Конец аукциона (секунды)",
       "StartBet": "Начальная ставка",
       "Ok": "Подтвердить",
       "Cancel": "Отмена",
@@ -141,6 +142,12 @@
         "StartBet": "Начальная ставка",
         "CurrentBet": "Текущая ставка",
         "YourBet": "Ваша ставка",
+        "AutoBet": "Авто ставка",
+        "MaxBet": "Предел ставки",
+        "BetStep": "Шаг ставки",
+        "Apply": "Применить",
+        "Cancel": "Отменить",
+        "AutobetApplied": "Автоставка применена",
         "BuyNow": "Купить сейчас",
         "MakeBet": "Сделать ставку",
         "AddToWatchList": "Добавить в отслеживаемые сделки",
@@ -161,7 +168,8 @@
     "newPhraseMatchesOldError": "Новая секретная фраза не может быть идентична старой.",
     "MinBetError": "Ваша ставка должна быть больше актуальной.",
     "ValidationErrors": {
-      "FieldIsRequiredError": "{0} обязательно для заполнения."
+      "FieldIsRequiredError": "{0} обязательно для заполнения.",
+      "LessThenError": "Значение должно быть больше, чем {0}."
     }
   },
   "GoBack": "Назад",

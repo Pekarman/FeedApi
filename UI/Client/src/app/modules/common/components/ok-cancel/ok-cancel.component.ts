@@ -1,8 +1,5 @@
 import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "src/app/services/auth.service";
-import {SessionService} from "src/app/services/session.service";
-import {Router} from "@angular/router";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-ok-cancel',
@@ -15,12 +12,11 @@ export class OkCancelComponent implements OnInit {
   @Input() okText: string = '';
   @Input() cancelText: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private location: Location) {}
 
   goUserSetting(){
-    this.router.navigate(['/userSettings'])
-  }
-  ngOnInit(): void {
+    this.location.back();
   }
 
+  ngOnInit(): void {}
 }

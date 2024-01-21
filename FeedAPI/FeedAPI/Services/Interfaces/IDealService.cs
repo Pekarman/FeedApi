@@ -1,8 +1,5 @@
 ﻿using Common.EntityFramework.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Services.Interfaces
@@ -19,7 +16,13 @@ namespace Services.Interfaces
 
         public Task<List<Deal>> GetOwnerDealsAsync(DealFilter userId);
 
-        public Task<Bet> MakeBetAsync(Bet bet);
+        public Task<Auction> GetAuctionAsync(int id);
+
+        public Task<Auction> SetAutoBetAsync(AutoBet auto);
+
+        public Task<Auction> CancelAutoBetAsync(AutoBet autobet);
+
+        public Task<Auction> MakeBetAsync(Bet bet);
 
         public Task<WatchDeal> AddWatchDealAsync(WatchDeal watchDeal);
 

@@ -7,6 +7,8 @@ import { IWatchDeal } from '../Models/IWatchDeal';
 import { DealListFilter } from '../modules/common/components/deal-list/DealListFilter';
 import { IBet } from '../Models/IBet';
 import { ISell } from '../Models/ISell';
+import { IAutoBet } from '../Models/IAutoBet';
+import { IAuction } from '../Models/IAuction';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +28,10 @@ export class DealService {
     return this.http.get<IDeal[]>(this.APIUrl + 'Api/Deal');
   }
 
+  getAuction(id: number): Observable<IAuction> {
+    return this.http.get<IAuction>(this.APIUrl + `Api/Deal/GetAuctionByDealId/${id}`);
+  }
+
   getDeal(id: number): Observable<IDeal> {
     return this.http.get<IDeal>(this.APIUrl + `Api/Deal/${id}`);
   }
@@ -38,8 +44,16 @@ export class DealService {
     return this.http.post<IDeal>(this.APIUrl + `Api/Deal/changeDeal`, deal);
   }
 
-  makeBet(bet: IBet): Observable<IBet>{
-    return this.http.post<IBet>(this.APIUrl + `Api/Deal/makeBet`, bet);
+  makeBet(bet: IBet): Observable<IAuction>{
+    return this.http.post<IAuction>(this.APIUrl + `Api/Deal/makeBet`, bet);
+  }
+
+  setAutoBet(autoBet: IAutoBet): Observable<IAuction> {
+    return this.http.post<IAuction>(this.APIUrl + `Api/Deal/setAutoBet`, autoBet);
+  }
+
+  cancelAutoBet(autoBet: IAutoBet): Observable<IAuction> {
+    return this.http.post<IAuction>(this.APIUrl + `Api/Deal/cancelAutoBet`, autoBet);
   }
 
   buyNow(sell: ISell): Observable<ISell>{

@@ -13,6 +13,10 @@ namespace Common.EntityFramework
 
         public DbSet<Bet> Bets { get; set; } = null!;
 
+        public DbSet<AutoBet> AutoBets { get; set; } = null;
+
+        public DbSet<Auction> Auctions { get; set; } = null;
+
         public DbSet<Asset> Assets { get; set; } = null!;
 
         public DbSet<User> Users { get; set; } = null!;
@@ -27,7 +31,7 @@ namespace Common.EntityFramework
 
         public ApplicationContext()
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -3,5 +3,6 @@ export enum DealStatusEnum {
   Active,
   Auction,
   Sold,
+  AuctionEnd,
   Delivery
 }
