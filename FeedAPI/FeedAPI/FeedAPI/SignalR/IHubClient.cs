@@ -10,5 +10,7 @@ namespace FeedAPI.SignalR
         Task BroadcastMessage(string message);
 
         Task BetMade(Bet bet);
+
+        Task UpdateAuction(Auction autoBet);
     }
 }

@@ -10,6 +10,7 @@ namespace Common.EntityFramework.Models
     [Table("bets")]
     public class Bet
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
         public int Id { get; set; }
 

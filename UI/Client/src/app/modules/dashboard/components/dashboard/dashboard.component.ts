@@ -26,12 +26,10 @@ export class DashboardComponent implements OnInit {
     this.breadCrumbs.push(crumbs)
   }
 
-
   getFilter(filter: DealListFilter) {
     this.isGridVisible = !this.isGridVisible
     this.filter = filter
   }
-
 
   onIsLoggedInChange(isLoggedIn: boolean) {
     this.isLoggedIn = isLoggedIn

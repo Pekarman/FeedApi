@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using FeedAPI.Services;
 using FeedAPI.SignalR;
 using Microsoft.AspNetCore.Builder;
@@ -39,7 +38,7 @@ namespace FeedAPI
             services.AddTransient<IAssetService, AssetService>();
             services.AddTransient<IBetService, BetService>();
 
-            services.AddDistributedMemoryCache(); // добавляем IDistributedMemoryCache
+            services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);

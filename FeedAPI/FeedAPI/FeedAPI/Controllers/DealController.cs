@@ -1,17 +1,17 @@
-﻿using Common.EntityFramework;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Common.EntityFramework.Models;
 using FeedAPI.SignalR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FeedAPI.Controllers
 {
+    /// <summary>
+    /// Deal controller.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class DealController : ControllerBase
@@ -19,36 +19,17 @@ namespace FeedAPI.Controllers
         private readonly IHubContext<BroadcastHub, IHubClient> hubContext;
         private readonly IDealService dealService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DealController"/> class.
+        /// </summary>
+        /// <param name="dealService">Deal service.</param>
+        /// <param name="hubContext">SignalR context.</param>
         public DealController(
             IDealService dealService,
             IHubContext<BroadcastHub, IHubClient> hubContext)
         {
             this.dealService = dealService;
             this.hubContext = hubContext;
-        }
-
-        [HttpGet("migrateDeals")]
-        public async Task<IActionResult> MigrateDealsAsync()
-        {
-            try
-            {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    using (ApplicationContext dbDev = new ApplicationContextDev())
-                    {
-                        var deals = dbDev.Deals;
-                        await db.Deals.AddRangeAsync(deals);
-
-                        await db.SaveChangesAsync();
-
-                        return this.Ok(deals.ToList());
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                return new JsonResult(e.Message);
-            }
         }
 
         /// <summary>
@@ -99,10 +80,35 @@ namespace FeedAPI.Controllers
         }
 
         /// <summary>
-        /// Get specific deal owned by user.
+        /// Gets auction by deal id.
         /// </summary>
-        /// <param name="userId">Requested deal id.</param>
-        /// <returns>Requested deal.</returns>
+        /// <param name="dealId">Deal Id.</param>
+        /// <returns>Founded auction.</returns>
+        [HttpGet("GetAuctionByDealId/{dealId}")]
+        public async Task<IActionResult> GetAuctionAsync(int dealId)
+        {
+            try
+            {
+                Auction auction = await this.dealService.GetAuctionAsync(dealId);
+
+                if (auction != null)
+                {
+                    return this.Ok(auction);
+                }
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
+
+            return new JsonResult($"Auction with dealId={dealId} not found.");
+        }
+
+        /// <summary>
+        /// Get specific deal by filter.
+        /// </summary>
+        /// <param name="filter">Requested deal filter.</param>
+        /// <returns>Requested deals.</returns>
         [HttpPost("getDealByFilter")]
         public async Task<IActionResult> GetDealsByFilterAsync(DealFilter filter)
         {
@@ -179,6 +185,64 @@ namespace FeedAPI.Controllers
         }
 
         /// <summary>
+        /// Sets autobet.
+        /// </summary>
+        /// <param name="autoBet">Autobet to set.</param>
+        /// <returns>Updated auction.</returns>
+        [HttpPost("setAutoBet")]
+        public async Task<IActionResult> SetAutoBetAsync(AutoBet autoBet)
+        {
+            try
+            {
+                Auction result = await this.dealService.SetAutoBetAsync(autoBet);
+                if (result != null)
+                {
+                    await this.hubContext.Clients.All.UpdateAuction(result);
+                    return this.Ok(result);
+                }
+            }
+            catch (ArgumentException e)
+            {
+                return new JsonResult(e.Message);
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
+
+            return new JsonResult($"Autobet cannot be set.");
+        }
+
+        /// <summary>
+        /// Cancels autobet.
+        /// </summary>
+        /// <param name="autoBet">Autobet to cancel.</param>
+        /// <returns>Updated auction.</returns>
+        [HttpPost("cancelAutoBet")]
+        public async Task<IActionResult> CancelAutoBetAsync(AutoBet autoBet)
+        {
+            try
+            {
+                Auction result = await this.dealService.CancelAutoBetAsync(autoBet);
+                if (result != null)
+                {
+                    await this.hubContext.Clients.All.UpdateAuction(result);
+                    return this.Ok(result);
+                }
+            }
+            catch (ArgumentException e)
+            {
+                return new JsonResult(e.Message);
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
+
+            return new JsonResult($"Autobet cannot be canceled.");
+        }
+
+        /// <summary>
         /// Makes bet.
         /// </summary>
         /// <param name="bet">Bet to make.</param>
@@ -188,10 +252,10 @@ namespace FeedAPI.Controllers
         {
             try
             {
-                Bet result = await this.dealService.MakeBetAsync(bet);
+                Auction result = await this.dealService.MakeBetAsync(bet);
                 if (result != null)
                 {
-                    await this.hubContext.Clients.All.BetMade(result);
+                    await this.hubContext.Clients.All.UpdateAuction(result);
                     return this.Ok(result);
                 }
             }
@@ -207,6 +271,11 @@ namespace FeedAPI.Controllers
             return new JsonResult($"Bet cannot be added.");
         }
 
+        /// <summary>
+        /// Buys the deal.
+        /// </summary>
+        /// <param name="sell">Sell info.</param>
+        /// <returns>Created deal sell.</returns>
         [HttpPost("buyNow")]
         public async Task<IActionResult> BuyNowAsync(Sell sell)
         {
@@ -215,7 +284,7 @@ namespace FeedAPI.Controllers
                 Sell result = await this.dealService.BuyNowAsync(sell);
                 if (result != null)
                 {
-                    //await this.hubContext.Clients.All.BetMade(result);
+                    // await this.hubContext.Clients.All.BetMade(result);
                     return this.Ok(result);
                 }
             }
@@ -263,7 +332,7 @@ namespace FeedAPI.Controllers
         /// Deletes WatchDeal.
         /// </summary>
         /// <param name="watchDeal">WatchDeal to delete.</param>
-        /// <returns>true if success</returns>
+        /// <returns>True if success.</returns>
         [HttpPost("deleteWatchDeal")]
         public async Task<IActionResult> DeleteWatchDealAsync(WatchDeal watchDeal)
         {
@@ -314,6 +383,5 @@ namespace FeedAPI.Controllers
 
             return new JsonResult($"Deal cannot be moved to Active status.");
         }
-
     }
 }

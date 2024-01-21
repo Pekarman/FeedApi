@@ -11,10 +11,10 @@ export class UsersButtonComponent implements OnInit {
   @Input() background: string = ''
   @Input() path: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
+
   onClick() {
     this.router.navigate([this.path]);
   }

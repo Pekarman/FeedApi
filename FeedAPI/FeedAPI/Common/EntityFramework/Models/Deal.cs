@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.EntityFramework.Models
 {
-
     [Table("deals")]
     public class Deal
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Column("productname")]
         public string? ProductName { get; set; }
@@ -59,13 +56,19 @@ namespace Common.EntityFramework.Models
         [Column("starttime")]
         public DateTime? StartTime { get; set; }
 
-        [Column("endtime")]
-        public DateTime? EndTime { get; set; }
+        [Column("duration")]
+        public int? Duration { get; set; }
 
+        [NotMapped]
         public List<Bet> Bets { get; set; }
 
+        [NotMapped]
         public List<Asset> Assets { get; set; }
 
+        [NotMapped]
         public List<WatchDeal> WatchDeals { get; set; }
+
+        [NotMapped]
+        public Auction Auction { get; set; }
     }
 }

@@ -10,7 +10,8 @@ import {SessionService} from "src/app/services/session.service";
   encapsulation: ViewEncapsulation.Emulated
 })
 export class LabeledInputComponent implements OnInit {
-  @Input() label: string = '';
+  @Input() label: string = "";
+  @Input() labelThan: string = "";
   @Input() control!: any;
   @Input() isPasswordField: boolean = true;
   @Input() fieldName: string = "";
