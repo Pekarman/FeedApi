@@ -52,6 +52,44 @@ export class BettingComponent implements OnInit {
     return isApplied;
   }
 
+  isAuctionStarted() {
+    if (this.auction == undefined || typeof(this.auction) == typeof("")) return false;
+    var now = new Date();
+    var start = new Date(this.auction.auctionStart);
+    var end = new Date(this.auction.auctionEnd);
+    
+    var toStart = +now - +start;
+    var toEnd = +now - +end;
+
+    return toStart > 0 && toEnd < 0;
+  }
+
+  isTenMinutesBeforeStart() {
+    if (this.auction == undefined || typeof(this.auction) == typeof("")) return false;
+    var now = new Date();
+    var start = new Date(this.auction.auctionStart);
+    
+    var toStart = +now - +start;    
+    var negative = false;
+    if (toStart < 0) {
+      negative = true;
+      toStart *= -1;
+    }
+    var minutesLeft = Math.floor(toStart / 60000);
+
+    return negative && minutesLeft < 10;
+  }
+
+  isAuctionEnded() {
+    if (this.auction == undefined || typeof(this.auction) == typeof("")) return false;
+    var now = new Date();
+    var end = new Date(this.auction.auctionEnd);
+    
+    var toStart = +now - +end;
+
+    return toStart > 0;
+  }
+
   IsWatchedByUser() {
     return this.getUserWatchDeal() !== undefined;
   }
@@ -245,6 +283,40 @@ export class BettingComponent implements OnInit {
     });
   }
 
+  timeLeftToStart() {
+    if (this.auction == undefined || typeof(this.auction) == typeof("")) return;
+
+    var now = new Date();    
+    var start = new Date(this.auction?.auctionStart);
+
+    var leftMilliseconds = +start - +now;
+
+    if (leftMilliseconds < 0) leftMilliseconds *= -1;
+
+    var minutesLeft = Math.floor(leftMilliseconds / 60000);
+    if (minutesLeft >= 1) leftMilliseconds %= 60000;
+    var secondsLeft = Math.floor(leftMilliseconds / 1000);
+
+    return `${minutesLeft}:${secondsLeft < 10 ? `0${secondsLeft}` : secondsLeft}`;
+  }
+
+  timeLeft() {
+    if (this.auction == undefined || typeof(this.auction) == typeof("")) return;
+
+    var now = new Date();    
+    var end = new Date(this.auction?.auctionEnd);
+
+    var leftMilliseconds = +end - +now;
+
+    if (leftMilliseconds < 0) leftMilliseconds *= -1;
+
+    var minutesLeft = Math.floor(leftMilliseconds / 60000);
+    if (minutesLeft >= 1) leftMilliseconds %= 60000;
+    var secondsLeft = Math.floor(leftMilliseconds / 1000);
+
+    return `${minutesLeft}:${secondsLeft < 10 ? `0${secondsLeft}` : secondsLeft}`;
+  }  
+  
   addToWatchList() {
     var data: IWatchDeal = {
       id: 0,

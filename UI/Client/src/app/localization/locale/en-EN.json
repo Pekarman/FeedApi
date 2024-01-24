@@ -138,6 +138,9 @@
       "Betting": {
         "Auction": "Auction",
         "AuctionStart": "Auction start",
+        "TenMinutesToStart": "You cannot set bets when there is less than 10 minutes to auction start.",
+        "TimeLeft": "Time left: ",
+        "AuctionEnded": "Auction ended",
         "CurrentWinner": "Current winner",
         "PriceBuyNow": "Price buy now",
         "StartBet": "Start bet",
@@ -167,7 +170,6 @@
     "phraseMatchesError": "Secret phrase doesn't match.",
     "newPasswordMatchesOldError": "New password cannot be equal to new one.",
     "newPhraseMatchesOldError": "New phrase cannot be equal to new one.",
-    "MinBetError": "Your bet should be more than actual bet.",
     "ValidationErrors": {
       "FieldIsRequiredError": "{0} is required.",
       "LessThenError": "Value should be more than {0}."

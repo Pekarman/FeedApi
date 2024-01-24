@@ -254,7 +254,7 @@ namespace Services.Implementations
                 if (auctionInProgress)
                 {
                     deal.StatusId = 2;
-                    auction.AuctionEnd = auction.AuctionEnd.Value.AddSeconds((double)auction.AuctionLength);
+                    auction.AuctionEnd = now.AddSeconds((double)auction.AuctionLength);
                 }
 
                 if (auctionEnded) deal.StatusId = 3;

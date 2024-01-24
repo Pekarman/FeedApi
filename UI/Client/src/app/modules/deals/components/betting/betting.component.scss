@@ -18,16 +18,43 @@ div {
         }
     }
 
+    &.time-left {
+        div {
+            background-color: lightcoral;
+            p {
+                font-size: larger;
+                font-weight: 700;
+                text-align: center;
+            }
+        } 
+    }
+
+    &.winner-block div {        
+        border-bottom: 1px solid black;
+    }
+
+    &.auction-start-settings div {
+        border-bottom: 1px solid black;
+        p {
+            font-size: medium;
+            font-weight: 500;
+        }
+    }
+
     &.makeAutoBetBlock {
         justify-content: center;
 
+        form {
+            padding-bottom: 5px;     
+            border-bottom: 1px solid black;
+        }
+
         form div button {
-            margin-top: 0px;;
+            margin-top: 0px;
         }
 
         h3 {            
-            font-weight: 500;
-            border-bottom: 2px solid darkgray;
+            font-weight: 600;
         }
     }
 

@@ -16,17 +16,17 @@
             </button>
         </div>
     </div>
-    <div class="row">
+    <div class="row auction-start-settings" *ngIf="!isAuctionEnded()">
         <div class="col-6">
             <p>{{ localePath + 'AuctionStart' | translate }}</p>
-            <p>{{ deal?.startTime | date:'long' }}</p>
+            <p>{{ auction?.auctionStart | date:'short' }}</p>
         </div>
         <div class="col-6">
             <p>{{ localePath + 'StartBet' | translate }}</p>
             <p>{{ deal?.startBet }} BYN</p>
         </div>
     </div>
-    <div class="row">
+    <div class="row winner-block">
         <div class="col-6">
             <p>{{ localePath + 'CurrentWinner' | translate }}</p>
             <p>{{ winnerFullName }}</p>
@@ -36,7 +36,7 @@
             <p>{{ currentBet }} BYN</p>
         </div>
     </div>
-    <div class="row makeAutoBetBlock">
+    <div class="row makeAutoBetBlock" *ngIf="!isAuctionEnded()">
         <h3>{{ localePath + 'AutoBet' | translate }}</h3>
         <form class="row" [formGroup]="autoBetForm">
             <div class="col-6 padding-top-0">
@@ -61,6 +61,7 @@
             <div class="col-6">
                 <button
                     (click)="cancelAutoBet()"
+                    [attr.disabled]="!isTenMinutesBeforeStart() ? null : ''"
                     class="btn btn-lg btn-block btn-secondary make-bet">
                     {{ localePath + 'Cancel' | translate }}
                 </button>
@@ -68,13 +69,14 @@
             <div class="col-6">
                 <button
                     (click)="setAutoBet(autoBetForm)"
+                    [attr.disabled]="!isTenMinutesBeforeStart() ? null : ''"
                     class="btn btn-lg btn-block btn-primary make-bet">
                     {{ localePath + 'Apply' | translate }}
                 </button>
             </div>
         </form>
     </div>
-    <div class="row makeBetBlock">
+    <div class="row makeBetBlock" *ngIf="!isAuctionEnded()">
         <form
             class="row"
             [formGroup]="myForm"
@@ -90,12 +92,31 @@
             </div>
             <div class="col-6">
                 <button
+                    [attr.disabled]="!isTenMinutesBeforeStart() ? null : ''"
                     type="submit"
                     class="btn btn-lg btn-block btn-primary make-bet">
                     {{ localePath + 'MakeBet' | translate }}
                 </button>
             </div>
         </form>
+    </div>
+    <div class="row time-left" *ngIf="isTenMinutesBeforeStart()">
+        <div class="col-12">
+            <p>{{ localePath + 'TenMinutesToStart' | translate }}</p>
+            <p>{{ localePath + 'TimeLeft' | translate }}</p>
+            <p>{{ timeLeftToStart() }}</p>
+        </div>
+    </div>
+    <div class="row time-left" *ngIf="isAuctionStarted()">
+        <div class="col-12">
+            <p>{{ localePath + 'TimeLeft' | translate }}</p>
+            <p>{{ timeLeft() }}</p>
+        </div>
+    </div>
+    <div class="row time-left" *ngIf="isAuctionEnded()">
+        <div class="col-12">
+            <p>{{ localePath + 'AuctionEnded' | translate }}</p>
+        </div>
     </div>
     <div class="row">
         <div class="col-12" *ngIf="!IsWatchedByUser()">
