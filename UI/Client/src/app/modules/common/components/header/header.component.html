@@ -2,58 +2,85 @@
   <div class="row">
     <div class="flex-1 titleBlock">
       <a href="../../../index.html">
+        <mat-icon>home</mat-icon>
         <h2>{{ 'Pages/Header/title' | translate }}</h2>
       </a>
     </div>
     <div class="flex-1">
       <div class="profile">
         <div class="header__user flex-1" id="loginRow">
-          <div class="langBlock" (click)="onLanguageClick()">
-            <span class="langItem">{{ ('Language/Language' | translate) }}</span>
-            <span class="langItem title">{{ " : " + ('Language/Title' | translate)}}</span>
-            <div *ngIf="isLanguageDropdownVisible">
-              <div class="drop-option drop-0" (click)="changeLanguage('en-EN')">
-                <span>English</span>
-              </div>
-              <div class="drop-option drop-1" (click)="changeLanguage('ru-RU')">
-                <span>Русский</span>
-              </div>
-            </div>
+          <div class="langBlock">
+            <button
+              class="langItem lang"
+              mat-button
+              [matMenuTriggerFor]="langMenu">
+              {{ 'Language/Language' | translate }}
+            </button>
+            <button
+              class="langItem title"
+              mat-button
+              [matMenuTriggerFor]="langMenu">
+              {{ ('Language/Language' | translate) + " : " + ('Language/Title' | translate)}}
+            </button>
+            <mat-menu #langMenu="matMenu">
+              <button
+                mat-menu-item
+                (click)="changeLanguage('en-EN')">
+                English
+              </button>                
+              <button
+                mat-menu-item
+                (click)="changeLanguage('ru-RU')">
+                Русский
+              </button>
+            </mat-menu>
           </div>
           <div *ngIf="!isLoggedIn && isUserVisible" class="flex-1 login">
-            <a href="/login" class="">{{ 'Pages/LoginPage/title' | translate }}</a>
+            <button
+              mat-button
+              (click)="router.navigate(['/login'])">
+              {{ 'Pages/LoginPage/title' | translate }}
+            </button>
+            <button
+              mat-button
+              (click)="router.navigate(['/register'])">
+              {{ 'Pages/RegisterPage/title' | translate }}
+            </button>
           </div>
-          <div *ngIf="!isLoggedIn && isUserVisible" class="flex-1 register">
-            <a href="/register" class="">{{ 'Pages/RegisterPage/title' | translate }}</a>
-          </div>
-
-          <div class="flex-1" *ngIf="isLoggedIn && isUserVisible" (click)="onAvatarClick()">
-            <div class="select flex-1 avatarBlock">
-              <div class="avatarBlock">
-                <span class="dropdown--profile dropdown-avatar">
-                </span>
-              </div>
-              <div *ngIf="isDropdownVisible && isLoggedIn" class="option opt-1" (click)="openProfilePage()">
-                <span class="">{{ 'Pages/Header/dropdown/profile' | translate }}</span>
-              </div>
-              <div *ngIf="isDropdownVisible && isLoggedIn" class="option opt-2" (click)="openSettingsPage()">
-                <span class="">{{ 'Pages/Header/dropdown/settings' | translate }}</span>
-              </div>
-              <div *ngIf="isDropdownVisible && isLoggedIn" class="option opt-3" (click)="logout()">
-                <span class="">{{ 'Pages/Header/dropdown/logout' | translate }}</span>
-              </div>
-            </div>
-          </div>
-          <div class="loginName flex-1"*ngIf="isLoggedIn && isUserVisible" class="flex-1">
-            <h3 (click)="onAvatarClick()" 
-                class="movedToLeft dropdown--profile flex-1 userName">{{ session?.user?.firstName + ' ' + session?.user?.lastName }}
-            </h3>
-          </div>
+          <div class="avatarBlock">
+            <button
+              class="dropdown-avatar"
+              *ngIf="isLoggedIn && isUserVisible"
+              mat-button
+              [matMenuTriggerFor]="userMenu">
+            </button>
+            <button
+              class="userName"
+              *ngIf="isLoggedIn && isUserVisible"
+              mat-button
+              [matMenuTriggerFor]="userMenu">
+              {{ session?.user?.firstName + ' ' + session?.user?.lastName }}
+            </button>
+            <mat-menu #userMenu="matMenu">
+              <button
+                mat-menu-item
+                (click)="openProfilePage()">
+                {{ 'Pages/Header/dropdown/profile' | translate }}
+              </button>
+              <button
+                mat-menu-item
+                (click)="openSettingsPage()">
+                {{ 'Pages/Header/dropdown/settings' | translate }}
+              </button>  
+              <button
+                mat-menu-item
+                (click)="logout()">
+                {{ 'Pages/Header/dropdown/logout' | translate }}
+              </button>  
+            </mat-menu>
+          </div>          
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-

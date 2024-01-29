@@ -7,7 +7,7 @@ namespace Common.EntityFramework.Models
     [Table("deals")]
     public class Deal
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
         public int Id { get; set; }
 

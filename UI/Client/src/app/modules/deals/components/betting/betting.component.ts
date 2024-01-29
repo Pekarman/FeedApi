@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { IDeal } from 'src/app/Models/IDeal';
-import { IWatchDeal } from 'src/app/Models/IWatchDeal';
 import { DealService } from 'src/app/services/deal.service';
 import { SessionService } from 'src/app/services/session.service';
 import * as signalR from "@microsoft/signalr"
@@ -8,17 +7,17 @@ import { ApiConfig } from 'src/app/configs/apiconfig';
 import { IBet } from 'src/app/Models/IBet';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
-import { ISell } from 'src/app/Models/ISell';
 import { IAuction } from 'src/app/Models/IAuction';
 import { IAutoBet } from 'src/app/Models/IAutoBet';
 import { IUser } from 'src/app/Models/IUser';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-betting',
   templateUrl: './betting.component.html',
   styleUrls: ['./betting.component.scss']
 })
-export class BettingComponent implements OnInit {
+export class BettingComponent implements OnInit, OnDestroy {
 
   @Input() deal!: IDeal;
   @Input() auction!: IAuction;
@@ -41,8 +40,29 @@ export class BettingComponent implements OnInit {
   currentBet: number = 0;
   winnerUser!: IUser;
   winnerFullName: string = "";
+  
+  private connection!: signalR.HubConnection;
+  
+  constructor(
+    private readonly sessionService: SessionService,
+    private readonly userService: UserService,
+    private readonly dealService: DealService,
+    @Inject(MAT_DIALOG_DATA) public data: { deal: IDeal, auction: IAuction }
+    ) {
+    this.deal = data.deal;
+    this.auction = data.auction;
+  }
 
-  isBuyNowButtonEnabled: boolean = true;
+  ngOnInit(): void {
+    this.runBroadcast();
+    setInterval(() => {
+      this.fillForm();
+    }, 1000);
+  }
+
+  ngOnDestroy(): void {
+    this.connection.stop();
+  }
 
   isAutoBetApplied(): boolean {
     var isApplied = false;
@@ -90,39 +110,10 @@ export class BettingComponent implements OnInit {
     return toStart > 0;
   }
 
-  IsWatchedByUser() {
-    return this.getUserWatchDeal() !== undefined;
-  }
-
-  getUserWatchDeal() {
-    return this.deal?.watchDeals?.find(w => w.userId == this.sessionService.getSession().userId) as IWatchDeal;
-  }
-
-  constructor(
-    private readonly sessionService: SessionService,
-    private readonly userService: UserService,
-    private readonly dealService: DealService
-    ) {}
-
-  ngOnInit(): void {
-    this.runBroadcast();
-    setInterval(() => {
-      this.fillForm();
-    }, 1000);
-  }
-
   isFormFilled = false;
 
   fillForm() {
     if (this.deal == undefined || this.isFormFilled) return;
-    var button = document.getElementById('buyNowButton');
-    if (this.deal.statusId !== 1) {
-      button?.setAttribute('disabled', 'true');
-    }
-    else {
-      button?.removeAttribute('disabled');
-    }
-
     this.getCurrentBet();
     this.getMyAutoBet();
 
@@ -130,12 +121,12 @@ export class BettingComponent implements OnInit {
   }
 
   runBroadcast() {
-    const connection = new signalR.HubConnectionBuilder()
+    this.connection = new signalR.HubConnectionBuilder()
       .configureLogging(signalR.LogLevel.Information)
       .withUrl(this.APIUrl + "notify")
       .build();
 
-    connection.start()
+    this.connection.start()
       .then(() => {
         console.log("signalR connected.");
       })
@@ -143,11 +134,11 @@ export class BettingComponent implements OnInit {
         return console.error(error);
       })
 
-    connection.on("BroadcastMessage", (response) => {
+    this.connection.on("BroadcastMessage", (response) => {
       console.log(`Broadcast message received: ${response}.`);
     })
      
-    connection.on("UpdateAuction", (auction: IAuction) => {
+    this.connection.on("UpdateAuction", (auction: IAuction) => {
       if (auction.dealId !== this.deal.id) return;
       this.updateAuction(auction);
       this.makeAutoBet();
@@ -220,11 +211,10 @@ export class BettingComponent implements OnInit {
 
   updateAuction(auction: IAuction) {
     this.auction = auction;
-    this.updateBets(auction);
+    this.updateBets();
   }
 
-  updateBets(auction: IAuction) {
-    this.deal.bets = auction.bets;
+  updateBets() {
     this.getCurrentBet();
     this.getMyAutoBet();
   }
@@ -233,7 +223,7 @@ export class BettingComponent implements OnInit {
     if (this.deal == null) return 0;
     let winnerId = 0;
     this.currentBet = this.deal?.startBet;
-    this.deal?.bets?.forEach(bet => {
+    this.auction?.bets?.forEach(bet => {
       if (bet.currentBet > this.currentBet && this.deal.id == bet.dealId) {
         this.currentBet = bet.currentBet;
         winnerId = bet.userId;
@@ -269,20 +259,6 @@ export class BettingComponent implements OnInit {
     this.myAutoBet;
   }
 
-  buyNowClick() {
-    var data: ISell = {
-      id: 0,
-      dealId: this.deal.id,
-      userId: this.sessionService.getSession().userId,
-      ownerId: this.deal.userId,
-    }    
-    this.dealService.buyNow(data).subscribe(sell => {
-      if (typeof(sell) == typeof("")) alert(sell);
-
-      window.location.reload();
-    });
-  }
-
   timeLeftToStart() {
     if (this.auction == undefined || typeof(this.auction) == typeof("")) return;
 
@@ -315,23 +291,5 @@ export class BettingComponent implements OnInit {
     var secondsLeft = Math.floor(leftMilliseconds / 1000);
 
     return `${minutesLeft}:${secondsLeft < 10 ? `0${secondsLeft}` : secondsLeft}`;
-  }  
-  
-  addToWatchList() {
-    var data: IWatchDeal = {
-      id: 0,
-      dealId: this.deal.id,
-      userId: this.sessionService.getSession().userId
-    }
-
-    this.dealService.addWatchDeal(data).subscribe(watchDeal => {
-      this.deal.watchDeals?.push(watchDeal);
-    });
-  }
-
-  removeFromWatchList() {
-    this.dealService.deleteWatchDeal(this.getUserWatchDeal()).subscribe(response => {
-      if (response == true) this.deal.watchDeals?.splice(this.deal.watchDeals?.indexOf(this.getUserWatchDeal()));
-    });
-  }
+  }    
 }

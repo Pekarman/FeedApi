@@ -16,8 +16,7 @@ export class SelectImagesComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   isImageSelected(id: number): boolean {
     return id == this.selectedId;

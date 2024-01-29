@@ -2,49 +2,18 @@
   min-height: 10vh;
 }
 
-.button-container {
-  margin-left: 3%;
-  background-color: white;
-  display: flex;
-  width: 92%;
-  justify-content: space-evenly;
-  max-width: 210vh;
-}
-
-.button {
-  background-color: #6c6969;
-  min-width: 12%;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin: 0 10px;
-}
-
-.button:hover {
-  background-color: #3f3d3d;
-  color: white;
-}
-
-.block {
+mat-tab-group {
   margin-top: 20px;
   margin-left: 3%;
-  min-height: 500px;
+  min-height: 600px;
   width: 95%;
-  background-color: lightgray;
-  margin-bottom: 30px;
+  background-color: darkgrey;
+  margin-bottom: 20px;
 }
 
 .text {
   font-size: 18px;
   color: #333;
-}
-
-
-.content{
-  margin-top: 15px;
 }
 
 .textContainer{
@@ -56,17 +25,10 @@
 
 .textContainerForDeals{
   margin: 20px 0 0 0;
-  display: grid;
-  grid-template-columns: repeat(2, max-content);
-  gap: 10px;
   width: 100%;
 }
 
 .textContainer p {
   margin-right: 200px;
-  margin-top: 20px;
-}
-
-app-deal-list{
   margin-top: 20px;
 }

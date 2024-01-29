@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private sessionService: SessionService,
     private authService: AuthService,
-    private router: Router,
+    public router: Router,
     private localizationService: LocalizationService
   ) {
 
@@ -51,11 +51,6 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/userSettings']);
   }
 
-  onLanguageClick() {
-    this.isLanguageDropdownVisible = !this.isLanguageDropdownVisible;
-    this.isDropdownVisible = false;
-  }
-
   changeLanguage(lang: string) {
     this.localizationService.initiate(lang);
     this.isLanguageDropdownVisible = false;
@@ -70,6 +65,4 @@ export class HeaderComponent implements OnInit {
       this.isLoggedInChanged.emit(this.isLoggedIn)
     });
   }
-
-  protected readonly String = String;
 }

@@ -125,8 +125,16 @@
       "Quantity": "Количество",
       "Status": "Статус",
       "Owner": "Владелец",
+      "PriceBuyNow": "Стоимость",
+      "BuyNow": "Купить сейчас",
+      "Actions": "Действия",
       "ChangeDeal": "Изменить",
+      "DeleteDeal": "Удалить",
+      "DealDeleted": "Сделка успешно  удалена.",
+      "DealActivated": "Сделка успешно активирована.",
       "MoveToActive": "Активировать",
+      "AddToWatchList": "Отслеживать",
+      "RemoveFromWatchList": "Не отслеживать",
       "Statuses": {
         "Draft": "Неактивный",
         "Active": "Активный",
@@ -141,7 +149,6 @@
         "TimeLeft": "Осталось времени: ",
         "AuctionEnded": "Аукцион завершён",
         "CurrentWinner": "Текущий победитель",
-        "PriceBuyNow": "Цена при покупке сейчас",
         "StartBet": "Начальная ставка",
         "CurrentBet": "Текущая ставка",
         "YourBet": "Ваша ставка",
@@ -151,7 +158,6 @@
         "Apply": "Применить",
         "Cancel": "Отменить",
         "AutobetApplied": "Автоставка применена",
-        "BuyNow": "Купить сейчас",
         "MakeBet": "Сделать ставку",
         "AddToWatchList": "Добавить в отслеживаемые сделки",
         "RemoveFromWatchList": "Удалить из отслеживаемых сделок"
@@ -177,6 +183,7 @@
   "GoBack": "Назад",
   "Change": "Изменить",
   "Find": "Поиск",
+  "Ok": "Ок",
 
   "Categories": {
     "NotFound": "В этой категории нет товаров.",

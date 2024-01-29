@@ -1,75 +1,65 @@
 <div id="header">
   <app-header></app-header>
 </div>
-<div class="content">
-  <div class="button-container">
-    <button class="button" (click)="showOrHideInformation(1)">{{localePath + 'CommonInfo' | translate}}</button>
-    <button class="button" (click)="showOrHideInformation(2)">{{localePath + 'AdditionalInfo' | translate}}</button>
-    <button class="button" (click)="showOrHideInformation(3)">{{localePath + 'YourDeals' | translate}}</button>
-    <button class="button" (click)="showOrHideInformation(4)">{{localePath + 'TrackedDeals' | translate}}</button>
-    <button class="button" (click)="showOrHideInformation(5)">{{localePath + 'MyBoughts' | translate}}</button>
-    <button class="button" (click)="showOrHideInformation(6)">{{localePath + 'MySells' | translate}}</button>
-    <button class="button" (click)="showOrHideInformation(7)">{{localePath + 'Finances' | translate}}</button>
-  </div>
-</div>
-<div class="block" *ngIf="toggleInformationType === InformationType.CommonInfo">
-  <div class="textContainer">
-    <p>{{localePath + 'FirstName' | translate}}:</p>
-    <p>{{ user.firstName }}</p>
-    <p>{{localePath + 'LastName' | translate}}:</p>
-    <p>{{ user.lastName }}</p>
-    <p>{{localePath + 'Email' | translate}}:</p>
-    <p>{{ user.email }}</p>
-    <p>{{localePath + 'UserName' | translate}}:</p>
-    <p>{{ user.username }}</p>
-    <p>{{localePath + 'UserPhone' | translate}}:</p>
-    <p>{{ user.phone }}</p>
-    <p>{{localePath + 'UserType' | translate}}:</p>
-    <p>{{ user.userType.typeName }}</p>
-  </div>
-</div>
-<div class="block" *ngIf="toggleInformationType === InformationType.AdditionalInfo">
-  <div class="textContainer">
-    <p>{{localePath + 'CompanyName' | translate}}:</p>
-    <p>{{ user.companyName }}</p>
-    <p>{{localePath + 'PassportNumber' | translate}}:</p>
-    <p>{{ user.passportNumber }}</p>
-    <p>{{localePath + 'PayerRegNumber' | translate}}:</p>
-    <p>{{ user.userType.typeName }}</p>
-    <p>{{localePath + 'BankAccount' | translate}}:</p>
-    <p>{{ user.bankAccount }}</p>
-    <p>{{localePath + 'BankCode' | translate}}:</p>
-    <p>{{ user.bankCode }}</p>
-    <p>{{localePath + 'IsActive' | translate}}:</p>
-    <p>{{ user.isActive }}</p>
-    <p>{{localePath + 'UserLocale' | translate}}:</p>
-    <p>{{ user.locale }}</p>
-  </div>
-</div>
-<div class="block" *ngIf="toggleInformationType === InformationType.MyFinance">
-  <div class="textContainer">
-    <p>{{localePath + 'Balance' | translate}}:</p>
-    <p>{{ user.balance }}</p>
-  </div>
-</div>
-<div class="block" *ngIf="toggleInformationType === InformationType.YourDeals">
-  <div class="textContainerForDeals">
-    <app-deal-list [filter]="getUserIdFilter()"></app-deal-list>
-  </div>
-</div>
-<div class="block" *ngIf="toggleInformationType === InformationType.TrackedDeals">
-  <div class="textContainerForDeals">
-    <app-deal-list [filter]="getWatchUserIdFilter()"></app-deal-list>
-  </div>
-</div>
-<div class="block" *ngIf="toggleInformationType === InformationType.MyPurchases">
-  <div class="textContainerForDeals">
-    <app-deal-list [filter]="getBoughtUserIdFilter()"></app-deal-list>
-  </div>
-</div>
-<div class="block" *ngIf="toggleInformationType === InformationType.MySales">
-  <div class="textContainerForDeals">
-    <app-deal-list [filter]="getSellUserIdFilter()"></app-deal-list>
-  </div>
-</div>
-
+<mat-tab-group backgroundColor="primary" color="accent">
+  <mat-tab label="{{ localePath + 'CommonInfo' | translate }}">    
+    <div class="textContainer">
+      <p>{{ localePath + 'FirstName' | translate }}:</p>
+      <p>{{ user.firstName }}</p>
+      <p>{{ localePath + 'LastName' | translate }}:</p>
+      <p>{{ user.lastName }}</p>
+      <p>{{ localePath + 'Email' | translate }}:</p>
+      <p>{{ user.email }}</p>
+      <p>{{ localePath + 'UserName' | translate }}:</p>
+      <p>{{ user.username }}</p>
+      <p>{{ localePath + 'UserPhone' | translate }}:</p>
+      <p>{{ user.phone }}</p>
+      <p>{{ localePath + 'UserType' | translate }}:</p>
+      <p>{{ user.userType.typeName }}</p>
+    </div>
+  </mat-tab>
+  <mat-tab label="{{ localePath + 'AdditionalInfo' | translate }}">
+    <div class="textContainer">
+      <p>{{ localePath + 'CompanyName' | translate }}:</p>
+      <p>{{ user.companyName }}</p>
+      <p>{{ localePath + 'PassportNumber' | translate }}:</p>
+      <p>{{ user.passportNumber }}</p>
+      <p>{{ localePath + 'PayerRegNumber' | translate }}:</p>
+      <p>{{ user.userType.typeName }}</p>
+      <p>{{ localePath + 'BankAccount' | translate }}:</p>
+      <p>{{ user.bankAccount }}</p>
+      <p>{{ localePath + 'BankCode' | translate }}:</p>
+      <p>{{ user.bankCode }}</p>
+      <p>{{ localePath + 'IsActive' | translate }}:</p>
+      <p>{{ user.isActive }}</p>
+      <p>{{ localePath + 'UserLocale' | translate }}:</p>
+      <p>{{ user.locale }}</p>
+    </div>
+  </mat-tab>
+  <mat-tab label="{{ localePath + 'YourDeals' | translate }}">
+    <div class="textContainerForDeals">
+      <app-deal-list [filter]="getUserIdFilter()"></app-deal-list>
+    </div>
+  </mat-tab>
+  <mat-tab label="{{ localePath + 'TrackedDeals' | translate }}">
+    <div class="textContainerForDeals">
+      <app-deal-list [filter]="getWatchUserIdFilter()"></app-deal-list>
+    </div>
+  </mat-tab>
+  <mat-tab label="{{ localePath + 'MyBoughts' | translate }}">
+    <div class="textContainerForDeals">
+      <app-deal-list [filter]="getBoughtUserIdFilter()"></app-deal-list>
+    </div>
+  </mat-tab>
+  <mat-tab label="{{ localePath + 'MySells' | translate }}">
+    <div class="textContainerForDeals">
+      <app-deal-list [filter]="getSellUserIdFilter()"></app-deal-list>
+    </div>
+  </mat-tab>
+  <mat-tab label="{{ localePath + 'Finances' | translate }}">
+    <div class="textContainer">
+      <p>{{ localePath + 'Balance' | translate }}:</p>
+      <p>{{ user.balance }}</p>
+    </div>
+  </mat-tab>
+</mat-tab-group>

@@ -60,8 +60,16 @@ export class AddDealsComponent implements OnInit {
     this.dealService.getDeal(id).subscribe(response => {
       if (response) {
         this.dealFlag = true;
+
         let stringFromStartTime = String(response.startTime).split("").slice(11, 16).join('');
-        let stringFromStartTimeToStartDate = String(response.startTime).split("").slice(0, 10).join('')
+        
+        var date = new Date();
+
+        date.setUTCHours(stringFromStartTime.split(':')[0] as unknown as number);
+        date.setMinutes(stringFromStartTime.split(':')[1] as unknown as number);
+        
+        let stringFromStartTimeNew = `${date.getHours().toString()}:${date.getMinutes().toString()}`;
+        let stringFromStartTimeToStartDateNew = String(response.startTime).split("").slice(0, 10).join('')
 
         this.myForm.patchValue({
           prodName: response.productName,
@@ -73,8 +81,8 @@ export class AddDealsComponent implements OnInit {
           quantity: response.quantity || 1,
           canBuyNow: response.canBuyNow || false,
           priceBuyNow: response.priceBuyNow || 0,
-          startTime: stringFromStartTime,
-          startDate: stringFromStartTimeToStartDate,
+          startTime: stringFromStartTimeNew,
+          startDate: stringFromStartTimeToStartDateNew,
           duration: response.duration,
           startBet: response.startBet,
         })
@@ -96,8 +104,9 @@ export class AddDealsComponent implements OnInit {
     }
 
     var startTime = (form.controls.startTime.value as string).split(':');
-    var startDateTime = new Date(form.controls.startDate.value)
-      .setUTCHours(Number(startTime[0]), Number(startTime[1]));
+    var startDateTime = new Date(form.controls.startDate.value);
+    startDateTime.setHours(0);
+    startDateTime.setHours(Number(startTime[0]), Number(startTime[1]));
 
     const deal: IDeal = {
       id: this.dealFlag ? Number(this.route.snapshot.params.id) : 0,

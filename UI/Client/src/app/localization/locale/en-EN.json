@@ -126,8 +126,16 @@
       "Quantity": "Quantity",
       "Status": "Status",
       "Owner": "Owner",
+      "PriceBuyNow": "Price",
+      "BuyNow": "Buy now",
+      "Actions": "Actions",
       "ChangeDeal": "Change",
+      "DeleteDeal": "Delete",
+      "DealDeleted": "Deal successfully deleted.",
+      "DealActivated": "Deal activated.",
       "MoveToActive": "Activate",
+      "AddToWatchList": "Track",
+      "RemoveFromWatchList": "Untrack",
       "Statuses": {
         "Draft": "Draft",
         "Active": "Active",
@@ -142,7 +150,6 @@
         "TimeLeft": "Time left: ",
         "AuctionEnded": "Auction ended",
         "CurrentWinner": "Current winner",
-        "PriceBuyNow": "Price buy now",
         "StartBet": "Start bet",
         "CurrentBet": "Current bet",
         "YourBet": "Your bet",
@@ -152,10 +159,7 @@
         "Apply": "Apply",
         "Cancel": "Cancel",
         "AutobetApplied": "Autobet applied",
-        "BuyNow": "Buy now",
-        "MakeBet": "Make a bet",
-        "AddToWatchList": "Add to my watch list",
-        "RemoveFromWatchList": "Remove from my watch list"
+        "MakeBet": "Make a bet"
       }
     }
   },
@@ -178,6 +182,8 @@
   "GoBack": "Back",
   "Change": "Change",
   "Find": "Find",
+  "Ok": "Ok",
+
   "Categories": {
     "NotFound": "No items found for this category.",
     "Menu": "Menu",

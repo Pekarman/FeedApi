@@ -2,21 +2,7 @@
     <div class="betting-header row col-12">
         <h2>{{ localePath + 'Auction' | translate }}</h2>
     </div>
-    <div class="row" *ngIf="deal?.canBuyNow">
-        <div class="col-6">
-            <p>{{ localePath + 'PriceBuyNow' | translate }}</p>
-            <p>{{ deal?.priceBuyNow }} BYN</p>
-        </div>
-        <div class="col-6">
-            <button
-                id="buyNowButton"
-                class="btn btn-lg btn-block btn-primary"
-                (click)="buyNowClick()">
-                {{ localePath + 'BuyNow' | translate }}
-            </button>
-        </div>
-    </div>
-    <div class="row auction-start-settings" *ngIf="!isAuctionEnded()">
+    <div class="row auction-start-settings" *ngIf="!isAuctionEnded() && !isAuctionStarted()">
         <div class="col-6">
             <p>{{ localePath + 'AuctionStart' | translate }}</p>
             <p>{{ auction?.auctionStart | date:'short' }}</p>
@@ -116,22 +102,6 @@
     <div class="row time-left" *ngIf="isAuctionEnded()">
         <div class="col-12">
             <p>{{ localePath + 'AuctionEnded' | translate }}</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12" *ngIf="!IsWatchedByUser()">
-            <button
-                class="btn btn-lg btn-block btn-secondary"
-                (click)="addToWatchList()">
-                {{ localePath + 'AddToWatchList' | translate }}
-            </button>
-        </div>
-        <div class="col-12" *ngIf="IsWatchedByUser()">
-            <button
-                class="btn btn-lg btn-block btn-secondary"
-                (click)="removeFromWatchList()">
-                {{ localePath + 'RemoveFromWatchList' | translate }}
-            </button>
         </div>
     </div>
 </div>

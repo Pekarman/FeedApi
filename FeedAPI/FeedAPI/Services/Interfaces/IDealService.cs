@@ -14,6 +14,8 @@ namespace Services.Interfaces
 
         public Task<Deal> ChangeDealAsync(Deal dealChanges);
 
+        public Task<bool> DeleteDealAsync(Deal deal);
+
         public Task<List<Deal>> GetOwnerDealsAsync(DealFilter userId);
 
         public Task<Auction> GetAuctionAsync(int id);

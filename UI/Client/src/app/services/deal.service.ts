@@ -44,6 +44,10 @@ export class DealService {
     return this.http.post<IDeal>(this.APIUrl + `Api/Deal/changeDeal`, deal);
   }
 
+  deleteDeal(deal:IDeal): Observable<any>{
+    return this.http.post<any>(this.APIUrl + `Api/Deal/deleteDeal`, deal);
+  }
+
   makeBet(bet: IBet): Observable<IAuction>{
     return this.http.post<IAuction>(this.APIUrl + `Api/Deal/makeBet`, bet);
   }

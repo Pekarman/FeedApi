@@ -185,6 +185,34 @@ namespace FeedAPI.Controllers
         }
 
         /// <summary>
+        /// Deletes the deal.
+        /// </summary>
+        /// <param name="deal">Deal to delete.</param>
+        /// <returns>True if success.</returns>
+        [HttpPost("deleteDeal")]
+        public async Task<IActionResult> DeleteDealAsync(Deal deal)
+        {
+            try
+            {
+                bool result = await this.dealService.DeleteDealAsync(deal);
+                if (result)
+                {
+                    return this.Ok(result);
+                }
+            }
+            catch (ArgumentException e)
+            {
+                return new JsonResult(e.Message);
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message);
+            }
+
+            return new JsonResult($"Deal cannot be deleted.");
+        }
+
+        /// <summary>
         /// Sets autobet.
         /// </summary>
         /// <param name="autoBet">Autobet to set.</param>

@@ -16,6 +16,9 @@ import { CommonComponentsModule } from './modules/common/common-components.modul
 import { DealsModule } from './modules/deals/deals.module';
 import { LoginModule } from './modules/login/login.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalService } from './services/modal.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -33,12 +36,16 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
     DealsModule,
     DashboardModule,
     UserSettingsModule,
-    CommonComponentsModule
+    CommonComponentsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     ArticleHttpService,
     AuthService,
     SessionService,
+    ModalService,
+    { provide: MatDialogRef, useValue: {}},
+    { provide: MAT_DIALOG_DATA, useValue: {}},
   ],
   bootstrap: [AppComponent]
 })

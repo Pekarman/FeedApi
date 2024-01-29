@@ -7,6 +7,11 @@ import { BettingComponent } from 'src/app/modules/deals/components/betting/betti
 import { LocalizationModule } from 'src/app/localization/localization.module';
 import { AddDealsComponent } from './components/add-deals/add-deals.component';
 import { ImagesModule } from '../images/images.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -22,7 +27,12 @@ import { ImagesModule } from '../images/images.module';
     ReactiveFormsModule,
     LocalizationModule,
     CommonComponentsModule,
-    ImagesModule
+    ImagesModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatSnackBarModule
   ],
   exports: [
     DealComponent,

@@ -12,8 +12,9 @@ import { DealListViewComponent } from 'src/app/modules/common/components/deal-li
 import { DealListComponent } from 'src/app/modules/common/components/deal-list/deal-list.component';
 import { ImagesModule } from '../images/images.module';
 import { BurgerMenuComponent } from './components/burger-menu/burger-menu.component';
-
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,10 @@ import { BurgerMenuComponent } from './components/burger-menu/burger-menu.compon
     FormsModule,
     ReactiveFormsModule,
     LocalizationModule,
-    ImagesModule
+    ImagesModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule
   ],
   exports: [
     LabeledInputComponent,

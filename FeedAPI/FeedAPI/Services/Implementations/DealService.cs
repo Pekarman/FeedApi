@@ -59,24 +59,25 @@ namespace Services.Implementations
 
         public async Task<Auction> GetAuctionAsync(int dealId)
         {
-            Auction auction = new Auction();
-
+            Auction auction = null;
             using (ApplicationContext db = new ApplicationContext())
             {
-                await Task.Run(() => {
-                    auction = db.Auctions.Where(u => u.DealId == dealId).FirstOrDefault();
+                auction = db.Auctions.Where(u => u.DealId == dealId).FirstOrDefault();
 
-                    if (auction != null)
-                    {
-                        auction.Bets = db.Bets.Where(b => b.DealId == dealId).ToList();
-                        auction.AutoBets = db.AutoBets.Where(a => a.DealId == dealId).ToList();
-                    }
+                if (auction == null)
+                {
+                    Deal deal = db.Deals.Where(d => d.Id == dealId).FirstOrDefault();
+                    auction = await this.CreateAuctionFromDeal(deal, db);
+                }
 
-                    return auction;
-                });
+                if (auction != null)
+                {
+                    auction.Bets = db.Bets.Where(b => b.DealId == dealId).ToList();
+                    auction.AutoBets = db.AutoBets.Where(a => a.DealId == dealId).ToList();
+                }
+
+                return auction;
             }
-
-            return auction;
         }
 
         public async Task<List<Deal>> GetOwnerDealsAsync(DealFilter filter)
@@ -156,11 +157,46 @@ namespace Services.Implementations
 
                 TypeExtension.CompareAndChangeType(dealChanges, deal);
 
+                Auction auction = db.Auctions.Where(a => a.DealId == id).FirstOrDefault();
+                if (auction == null) auction = await this.CreateAuctionFromDeal(deal, db);
+                else
+                {
+                    auction.AuctionStart = deal.StartTime;
+                    auction.AuctionLength = deal.Duration;
+                    auction.AuctionEnd = auction.AuctionStart.Value.AddSeconds((double)deal.Duration);
+                }
+
                 await db.SaveChangesAsync();
 
                 var result = await db.Deals.FindAsync(deal.Id);
                 return result;
             }
+        }
+
+        public async Task<bool> DeleteDealAsync(Deal deal)
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                Deal dealToDelete = db.Deals.Where(d => d.Id == deal.Id).FirstOrDefault();
+                Auction auction = db.Auctions.Where(a => a.DealId == deal.Id).FirstOrDefault();
+                List<Bet> bets = db.Bets.Where(b => b.DealId == deal.Id).ToList();
+                List<AutoBet> autobets = db.AutoBets.Where(a => a.DealId == deal.Id).ToList();
+                List<WatchDeal> watchdeals = db.WatchDeals.Where(w => w.DealId == deal.Id).ToList();
+                List<Asset> assets = db.Assets.Where(a => a.DealId == deal.Id).ToList();
+                List<Sell> sells = db.Sells.Where(s => s.DealId == deal.Id).ToList();
+
+                db.Assets.RemoveRange(assets);
+                db.Sells.RemoveRange(sells);
+                db.WatchDeals.RemoveRange(watchdeals);
+                db.Bets.RemoveRange(bets);
+                db.AutoBets.RemoveRange(autobets);
+                if (auction != null) db.Auctions.Remove(auction);
+                if (dealToDelete != null) db.Deals.Remove(dealToDelete);
+
+                await db.SaveChangesAsync();
+            }
+
+            return true;
         }
 
         public async Task<Auction> SetAutoBetAsync(AutoBet autobet)
@@ -186,9 +222,7 @@ namespace Services.Implementations
 
                 if (auction == null)
                 {
-                    auction = this.CreateAuctionFromDeal(deal, db);
-
-                    await db.SaveChangesAsync();
+                    auction = await this.CreateAuctionFromDeal(deal, db);
                 }
 
                 auction.Bets = db.Bets.Where(b => b.DealId == auction.DealId).ToList();
@@ -238,9 +272,7 @@ namespace Services.Implementations
 
                 if (auction == null)
                 {
-                    auction = this.CreateAuctionFromDeal(deal, db);
-
-                    await db.Auctions.AddAsync(auction);
+                    auction = await this.CreateAuctionFromDeal(deal, db);
                 }
 
                 auction.Bets = db.Bets.Where(b => b.DealId == auction.DealId).ToList();
@@ -344,7 +376,7 @@ namespace Services.Implementations
             }
         }
 
-        private Auction CreateAuctionFromDeal(Deal deal, ApplicationContext db)
+        private async Task<Auction> CreateAuctionFromDeal(Deal deal, ApplicationContext db)
         {
             Auction auction = new Auction();
 
@@ -354,6 +386,9 @@ namespace Services.Implementations
             auction.AuctionLength = deal.Duration;
             auction.AuctionEnd = auction.AuctionStart.Value.AddSeconds((double)deal.Duration);
 
+            await db.Auctions.AddAsync(auction);
+            await db.SaveChangesAsync();
+            
             return auction;
         }
     }

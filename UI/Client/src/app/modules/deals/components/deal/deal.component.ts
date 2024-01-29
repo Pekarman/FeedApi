@@ -6,6 +6,12 @@ import {DealService} from 'src/app/services/deal.service';
 import {SessionService} from "src/app/services/session.service";
 import {DealStatusEnum} from "src/app/enums/DealStatus";
 import { IAuction } from 'src/app/Models/IAuction';
+import { ModalService } from 'src/app/services/modal.service';
+import { BettingComponent } from '../betting/betting.component';
+import { ISell } from 'src/app/Models/ISell';
+import { IWatchDeal } from 'src/app/Models/IWatchDeal';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { LocalizationService } from 'src/app/localization/localization.service';
 
 
 @Component({
@@ -23,26 +29,83 @@ export class DealComponent implements OnInit {
   countStatus: string | DealStatusEnum = '';
 
   constructor(
-    private domSanitizer: DomSanitizer,
-    private route: ActivatedRoute,
+    public readonly sessionService: SessionService,
+    private readonly domSanitizer: DomSanitizer,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
     private readonly dealService: DealService,
-    private router: Router,
-    public userSession: SessionService
-  ) {
+    private readonly modalService: ModalService,
+    private readonly localizationService: LocalizationService,
+    private readonly snackBar: MatSnackBar
+  ) {}
 
+  ngOnInit(): void {
+    this.loadResources();
+  }
+
+  isBuyNowEnabled() {
+    return this.deal?.statusId == 1;
+  }
+
+  isOwnedDeal() {
+    return this.deal?.userId === this.sessionService.getSession()?.userId;
+  }
+
+  addToWatchList() {
+    var data: IWatchDeal = {
+      id: 0,
+      dealId: this.deal.id,
+      userId: this.sessionService.getSession().userId
+    }
+
+    this.dealService.addWatchDeal(data).subscribe(watchDeal => {
+      this.deal.watchDeals?.push(watchDeal);
+    });
+  }
+
+  removeFromWatchList() {
+    this.dealService.deleteWatchDeal(this.getUserWatchDeal()).subscribe(response => {
+      if (response == true) this.deal.watchDeals?.splice(this.deal.watchDeals?.indexOf(this.getUserWatchDeal()));
+    });
+  }
+  
+  IsWatchedByUser() {
+    return this.getUserWatchDeal() !== undefined;
+  }
+
+  getUserWatchDeal() {
+    return this.deal?.watchDeals?.find(w => w.userId == this.sessionService.getSession().userId) as IWatchDeal;
+  }
+
+  buyNowClick() {
+    var data: ISell = {
+      id: 0,
+      dealId: this.deal.id,
+      userId: this.sessionService.getSession().userId,
+      ownerId: this.deal.userId,
+    }    
+    this.dealService.buyNow(data).subscribe(sell => {
+      if (typeof(sell) == typeof("")) alert(sell);
+
+      window.location.reload();
+    });
   }
 
   changeStatus() {
     const id = this.route.snapshot.params.id as unknown as number;
     this.dealService.updateStatusActive(id).subscribe(response => {
       if (response.statusId) {
-        this.statusEnum.forEach((el, index) => response.statusId === index ? this.countStatus = el : null)
+        this.statusEnum.forEach((el, index) => response.statusId === index ? this.countStatus = el : null);        
+        this.snackBar.open(
+          this.localizationService.translate(this.localePath + 'DealActivated', null),
+          this.localizationService.translate("Ok", null),
+        );
       }
     })
   }
 
-  ngOnInit(): void {
-    this.loadResources();
+  openBettingModal() {
+    this.modalService.openModal(BettingComponent, {deal: this.deal, auction: this.auction})
   }
 
   loadResources() {
@@ -65,6 +128,20 @@ export class DealComponent implements OnInit {
 
   redirectToChangeDeal() {
     this.router.navigate([`changeDeal/${this.deal.id}`])
+  }
+
+  deleteDeal() {
+    this.dealService.deleteDeal(this.deal).subscribe(response => {
+      if (response == true) {
+        this.snackBar.open(
+          this.localizationService.translate(this.localePath + 'DealDeleted', null),
+          this.localizationService.translate("Ok", null),
+          );
+        this.router.navigate(['']);
+      } else {
+        this.snackBar.open(response as string, 'Ok');
+      }
+    });
   }
 
   renderImages(deal: IDeal) {

@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonComponentsModule } from 'src/app/modules/common/common-components.module';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
     FormsModule,
     ReactiveFormsModule,
     LocalizationModule,
-    CommonComponentsModule
+    CommonComponentsModule,
+    MatTabsModule
   ],
   exports: [
     ProfilePageComponent,

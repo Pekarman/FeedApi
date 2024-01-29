@@ -2,9 +2,66 @@
   <app-header></app-header>
 </div>
 <div class="row">
-  <div class="contentBlock col-9">
+  <div class="contentBlock col-12">
     <div class="container">
-      <div class="row">
+      <div class="row col-12">
+        <div class="menuBlock">
+          <p>{{ localePath + 'PriceBuyNow' | translate }} : {{ deal?.priceBuyNow }} BYN</p>
+          <button
+            *ngIf="isBuyNowEnabled() && !isOwnedDeal()"
+            mat-flat-button
+            color="primary"
+            (click)="buyNowClick()">
+            {{ localePath + 'BuyNow' | translate }}
+          </button>
+          <button
+            mat-button
+            *ngIf="!IsWatchedByUser()"
+            (click)="addToWatchList()">
+            {{ localePath + 'AddToWatchList' | translate }}
+          </button>
+          <button
+            mat-flat-button
+            color="basic"
+            *ngIf="IsWatchedByUser()"
+            (click)="removeFromWatchList()">
+            {{ localePath + 'RemoveFromWatchList' | translate }}
+          </button>
+          <button
+            mat-button
+            [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+            {{ localePath + 'Actions' | translate }}
+          </button>
+          <mat-menu #menu="matMenu">
+            <button
+              mat-menu-item
+              *ngIf="countStatus === 'Draft'"
+              (click)="changeStatus()">
+              {{ localePath + 'MoveToActive' | translate }}
+            </button>                
+            <button
+              mat-menu-item
+              *ngIf="auction !== undefined"
+              (click)="openBettingModal()">
+              {{ 'Pages/DealPage/Betting/Auction' | translate }}
+            </button>
+            <button
+              mat-menu-item
+              *ngIf="isOwnedDeal()"
+              (click)="redirectToChangeDeal()">
+              {{ localePath + 'ChangeDeal' | translate}}
+            </button>
+            <button
+              mat-menu-item
+              *ngIf="isOwnedDeal()"
+              (click)="deleteDeal()">
+              {{ localePath + 'DeleteDeal' | translate }}
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+      <div class="row col-12">
         <div class="imageBlock">
           <app-select-images [dealId]="deal?.id" [assets]="deal?.assets"></app-select-images>
         </div>
@@ -16,23 +73,18 @@
               <p>{{deal?.productName}}</p>
             </div>
           </div>
-          <div class="buttonBlock">
-            <button *ngIf="deal?.userId === userSession.getSession()?.userId"
-                    (click)="redirectToChangeDeal()">{{localePath + 'ChangeDeal' | translate}}</button>
-            <button *ngIf="countStatus === 'Draft'" (click)="changeStatus()">{{localePath + 'MoveToActive' | translate}}</button>
-          </div>
           <div class="shortDescBlock">
             <div class="shortDescription">
-              <h3>{{localePath + 'ShortDescription' | translate}}</h3>
+              <h3>{{ localePath + 'ShortDescription' | translate }}</h3>
               <hr>
-              <p class="desc">{{deal?.shortDesc}}</p>
+              <p class="desc">{{ deal?.shortDesc }}</p>
             </div>
           </div>
           <div class="quantityBlock">
             <div class="quantityDescription">
-              <h3>{{localePath + 'Quantity' | translate}} </h3>
+              <h3>{{ localePath + 'Quantity' | translate }} </h3>
               <hr>
-              <p>{{deal?.quantity + ' ' + deal?.uoM}}</p>
+              <p>{{ deal?.quantity + ' ' + deal?.uoM }}</p>
             </div>
           </div>
           <div class="statusBlock">
@@ -60,20 +112,13 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="row-2">
-      <div class="longDescBlock">
-        <h3>{{localePath + 'LongDescription' | translate}}</h3>
-        <hr>
-        <p class="desc">{{deal?.longDesc}}</p>
+      <div class="row col-12">
+        <div class="fullDescBlock">
+          <h3>{{localePath + 'LongDescription' | translate}}</h3>
+          <hr>
+          <p class="desc">{{deal?.longDesc}}</p>
+        </div>
       </div>
     </div>
   </div>
-  <div class="bettingBlock col-3">
-    <app-betting
-      [deal]="deal"
-      [auction]="auction">
-    </app-betting>
-  </div>
 </div>
-

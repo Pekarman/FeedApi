@@ -13,7 +13,9 @@ import { IUser } from '../Models/IUser';
   providedIn: 'root'
 })
 export class UserService {
+
   readonly APIUrl=new ApiConfig().ApiUrl;
+  
   constructor(private http:HttpClient) { }
  
   getUserById(id: number):Observable<IUser>{
@@ -23,15 +25,19 @@ export class UserService {
   createUser(user: IUserRegister):Observable<IUserRegister>{
     return this.http.put<IUserRegister>(this.APIUrl + 'Api/User',user);
   }
+
   changePassword(user: IChangePassword):Observable<any>{
     return this.http.patch<any>(this.APIUrl + 'Api/User',user);
   }
+
   changePhrase(data:IChangePassword):Observable<any>{
     return this.http.patch<any>(this.APIUrl + 'Api/User',data);
   }
+
   changeEmail(data:IChangeEmail):Observable<any>{
     return this.http.patch<any>(this.APIUrl + 'Api/User/changeEmail',data);
   }
+
   deleteUser(data:IDeleteUser):Observable<any>{
     return this.http.post<any>(this.APIUrl + 'Api/User/deleteUser', data)
   }
