@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 
-namespace FeedAPI.SignalR
+namespace Common.SignalR
 {
     public class BroadcastHub : Hub<IHubClient>
     {

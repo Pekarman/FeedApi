@@ -1,7 +1,7 @@
 ﻿using Common.EntityFramework.Models;
 using System.Threading.Tasks;
 
-namespace FeedAPI.SignalR
+namespace Common.SignalR
 {
     public interface IHubClient
     {
@@ -11,6 +11,8 @@ namespace FeedAPI.SignalR
 
         Task BetMade(Bet bet);
 
-        Task UpdateAuction(Auction autoBet);
+        Task UpdateAuction(Auction auction);
+
+        Task AuctionEnded(Auction auction);
     }
 }

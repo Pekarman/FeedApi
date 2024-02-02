@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common.EntityFramework.Models;
-using FeedAPI.SignalR;
+using Common.SignalR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Services.Interfaces;
@@ -280,11 +280,11 @@ namespace FeedAPI.Controllers
         {
             try
             {
-                Auction result = await this.dealService.MakeBetAsync(bet);
-                if (result != null)
+                Auction auction = await this.dealService.MakeBetAsync(bet);
+                if (auction != null)
                 {
-                    await this.hubContext.Clients.All.UpdateAuction(result);
-                    return this.Ok(result);
+                    await this.hubContext.Clients.All.UpdateAuction(auction);
+                    return this.Ok(auction);
                 }
             }
             catch (ArgumentException e)

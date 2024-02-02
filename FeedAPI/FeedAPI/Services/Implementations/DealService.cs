@@ -12,6 +12,12 @@ namespace Services.Implementations
 {
     public class DealService : IDealService
     {
+        ITaskService taskService;
+        public DealService(ITaskService _taskService)
+        {
+            this.taskService = _taskService;
+        }
+
         public async Task<List<Deal>> GetAllDeals()
         {
             List<Deal> deals = new List<Deal>();
@@ -168,6 +174,8 @@ namespace Services.Implementations
 
                 await db.SaveChangesAsync();
 
+                this.taskService.UpdateTasks();
+
                 var result = await db.Deals.FindAsync(deal.Id);
                 return result;
             }
@@ -259,6 +267,7 @@ namespace Services.Implementations
                 if (sameBet != null)
                 {
                     sameBet.CurrentBet = bet.CurrentBet;
+                    sameBet.TimeStamp = bet.TimeStamp;
                     await db.SaveChangesAsync();
                 }
                 else
@@ -281,15 +290,12 @@ namespace Services.Implementations
                 DateTime now = DateTime.UtcNow;
 
                 bool auctionInProgress = now.CompareTo(auction.AuctionEnd) < 0 && auction.AuctionStart.Value.CompareTo(now) < 0;
-                bool auctionEnded = auction.AuctionEnd.Value.CompareTo(now) < 0;
 
                 if (auctionInProgress)
                 {
-                    deal.StatusId = 2;
                     auction.AuctionEnd = now.AddSeconds((double)auction.AuctionLength);
+                    Task.Run(() => this.taskService.ChangeAuctionEndTime(auction));
                 }
-
-                if (auctionEnded) deal.StatusId = 3;
 
                 await db.SaveChangesAsync();
 

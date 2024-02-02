@@ -1,6 +1,7 @@
 using System;
+using System.Threading;
+using Common.SignalR;
 using FeedAPI.Services;
-using FeedAPI.SignalR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Services.Implementations;
 using Services.Interfaces;
+using IApplicationLifetime = Microsoft.AspNetCore.Hosting.IApplicationLifetime;
 
 namespace FeedAPI
 {
@@ -37,6 +39,8 @@ namespace FeedAPI
             services.AddTransient<IDealService, DealService>();
             services.AddTransient<IAssetService, AssetService>();
             services.AddTransient<IBetService, BetService>();
+
+            services.AddSingleton<ITaskService, TaskService>();
 
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
@@ -74,7 +78,7 @@ namespace FeedAPI
         /// <summary>
         /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         /// </summary>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApplicationLifetime lifetime, ITaskService taskService)
         {
             if (env.IsDevelopment())
             {
@@ -104,6 +108,8 @@ namespace FeedAPI
 
                 endpoints.MapHub<BroadcastHub>("/notify");
             });
+
+            lifetime.ApplicationStarted.Register(taskService.UpdateTasks);
         }
     }
 }
