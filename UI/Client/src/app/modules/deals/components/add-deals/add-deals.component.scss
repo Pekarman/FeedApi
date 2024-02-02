@@ -16,7 +16,6 @@
   width: 100%;
   margin-left: 5%;
   margin-top: 30px;
-
 }
 
 .row-1 {
@@ -75,7 +74,6 @@
   margin-bottom: 20px;
 }
 
-
 .partNumberBlock {
   margin-left: 38%;
 
@@ -88,6 +86,7 @@
 .canBuyNowBlock {
   border: 1px solid black;
   width: 100%;
+  padding: 10px;
 
   label {
     text-align: center;
@@ -111,8 +110,10 @@
 }
 
 .buttonBlock {
-  width: 35%;
-  margin: 7% 0 10% 67%;
+  width: 33%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: 67%;
   order: 3;
 }
 
@@ -178,6 +179,7 @@
   border: 1px solid black;
   width: 100%;
   margin-top: 20px;
+  padding: 20px;
 
   h3 {
     text-align: center;
@@ -189,7 +191,6 @@
 }
 
 .startTimeBlock {
-  margin-left: 20px;
   width: 100%;
 }
 
@@ -199,12 +200,10 @@
 
 .AuctionDurationBlock {
   margin-top: 10px;
-  margin-left: 30px;
 }
 
 .StartBetBlock {
   margin-top: 10px;
-  margin-left: 30px;
 }
 
 

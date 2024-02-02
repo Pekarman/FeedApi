@@ -1,6 +1,19 @@
 * {
     color: black;
 }
+
+tr {
+    &.mat-header-row {
+        background-color: darkgray;
+    }
+    &.mat-row {
+        &:first-of-type {
+            background-color: lightgreen;
+        }
+        background-color: lightgray;
+    }
+}
+
 div {
     &.row {
         padding: 10px;

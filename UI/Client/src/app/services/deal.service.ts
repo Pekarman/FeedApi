@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiConfig } from '../configs/apiconfig';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IDeal } from '../Models/IDeal';
 import { IWatchDeal } from '../Models/IWatchDeal';
@@ -9,6 +9,7 @@ import { IBet } from '../Models/IBet';
 import { ISell } from '../Models/ISell';
 import { IAutoBet } from '../Models/IAutoBet';
 import { IAuction } from '../Models/IAuction';
+import { SpinnerService } from '../modules/spinner/spinner.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,10 @@ export class DealService {
 
   readonly APIUrl = new ApiConfig().ApiUrl;
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(
+    private http: HttpClient,
+    private readonly spinnerService: SpinnerService,
+    ) {}
 
   createDeal(deal: IDeal): Observable<IDeal> {
     return this.http.put<IDeal>(this.APIUrl + 'Api/Deal', deal);
@@ -49,7 +52,7 @@ export class DealService {
   }
 
   makeBet(bet: IBet): Observable<IAuction>{
-    return this.http.post<IAuction>(this.APIUrl + `Api/Deal/makeBet`, bet);
+    return this.spinnerService.wrap(this.http.post<IAuction>(this.APIUrl + `Api/Deal/makeBet`, bet));
   }
 
   setAutoBet(autoBet: IAutoBet): Observable<IAuction> {

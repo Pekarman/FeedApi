@@ -3,5 +3,5 @@ export interface IBet{
   dealId: number;
   userId: number;
   currentBet: number;
-  timestamp: Date;
+  timeStamp: Date;
 }

@@ -17,13 +17,13 @@ namespace Services.Implementations
     {
         private readonly IHubContext<BroadcastHub, IHubClient> hubContext;
         private List<(Auction, TimeSpan)> auctionsToStart;
-        private List<(Auction, TimeSpan, CancellationTokenSource, CancellationToken)> auctionsToFinish;
+        private List<(Auction, TimeSpan, CancellationTokenSource)> auctionsToFinish;
 
         public TaskService(IHubContext<BroadcastHub, IHubClient> hubContext)
         {
             this.hubContext = hubContext;
             auctionsToStart = new List<(Auction, TimeSpan)>();
-            auctionsToFinish = new List<(Auction, TimeSpan, CancellationTokenSource, CancellationToken)>();
+            auctionsToFinish = new List<(Auction, TimeSpan, CancellationTokenSource)>();
         }
 
         public async void UpdateTasks()
@@ -80,15 +80,15 @@ namespace Services.Implementations
                         sameAuction.Item3.Cancel();
 
                         auctionsToFinish.Remove(sameAuction);
-                        auctionsToFinish.Add((auction, delay, tokenSource, token));
+                        auctionsToFinish.Add((auction, delay, tokenSource));
 
-                        await RunAuctionToFinish((auction, delay, tokenSource, token));
+                        await RunAuctionToFinish((auction, delay, tokenSource));
                         return;
                     }
 
-                    auctionsToFinish.Add((auction, delay, tokenSource, token));
+                    auctionsToFinish.Add((auction, delay, tokenSource));
 
-                    await RunAuctionToFinish((auction, delay, tokenSource, token));
+                    await RunAuctionToFinish((auction, delay, tokenSource));
                 });
             }
         }
@@ -103,7 +103,6 @@ namespace Services.Implementations
                 if (delay < TimeSpan.Zero) delay *= -1;
 
                 var tokenSource = new CancellationTokenSource();
-                CancellationToken token = tokenSource.Token;
 
                 var sameAuction = auctionsToFinish.Where(af => af.Item1.Id == auction.Id).FirstOrDefault();
                 if (sameAuction.Item1 != null)
@@ -111,25 +110,25 @@ namespace Services.Implementations
                     sameAuction.Item3.Cancel();
 
                     auctionsToFinish.Remove(sameAuction);
-                    auctionsToFinish.Add((auction, delay, tokenSource, token));
+                    auctionsToFinish.Add((auction, delay, tokenSource));
 
-                    await RunAuctionToFinish((auction, delay, tokenSource, token));
+                    await RunAuctionToFinish((auction, delay, tokenSource));
                 }
             }
         }
 
-        private async Task RunAuctionToFinish((Auction, TimeSpan, CancellationTokenSource, CancellationToken) t)
+        private async Task RunAuctionToFinish((Auction, TimeSpan, CancellationTokenSource) t)
         {
             try
             {
                 await Task.Run(async () =>
                 {
                     await Task.Delay(t.Item2);
-                    t.Item4.ThrowIfCancellationRequested();
+                    t.Item3.Token.ThrowIfCancellationRequested();
                     await this.AuctionFinished(t.Item1.DealId);
                     await this.hubContext.Clients.All.AuctionEnded(t.Item1);
-                    return;
-                }, t.Item4);
+                    this.auctionsToFinish.Remove(t);
+                }, t.Item3.Token);
             }
             catch (OperationCanceledException e)
             {

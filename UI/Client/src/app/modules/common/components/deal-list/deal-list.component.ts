@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IDeal } from 'src/app/Models/IDeal';
 import { DealService } from 'src/app/services/deal.service';
 import { DealListFilter } from './DealListFilter';
+import { SpinnerService } from 'src/app/modules/spinner/spinner.service';
 
 @Component({
   selector: 'app-deal-list',
@@ -15,7 +16,7 @@ export class DealListComponent implements OnInit {
 
   DealsList : IDeal[] = [];
 
-  constructor(private readonly dealService: DealService) { }
+  constructor(private readonly dealService: DealService, private readonly spinnerService: SpinnerService) { }
 
   ngOnInit(): void {
     this.refreshDealsList();
@@ -23,16 +24,17 @@ export class DealListComponent implements OnInit {
 
   refreshDealsList(){
     if(this.filter) {
-      this.dealService.getDealsByFilter(this.filter).subscribe(data => {
-        if (typeof(data) == typeof("")) {
-          return
-        }
-        this.DealsList = data;
-      });
+      this.spinnerService.wrap(this.dealService.getDealsByFilter(this.filter))
+        .subscribe(data => {
+          if (typeof(data) == typeof("")) {
+            return
+          }
+          this.DealsList = data;
+        });
       return;
     }
 
-    this.dealService.getAllDeals().subscribe(data => {
+    this.spinnerService.wrap(this.dealService.getAllDeals()).subscribe(data => {
       if (typeof(data) == typeof("")) return;
       this.DealsList = data;
     });

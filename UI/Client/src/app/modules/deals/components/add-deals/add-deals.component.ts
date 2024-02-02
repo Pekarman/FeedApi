@@ -6,6 +6,7 @@ import {IDeal} from "src/app/Models/IDeal";
 import {SessionService} from 'src/app/services/session.service';
 import {ActivatedRoute, Router} from "@angular/router";
 import { Observable } from 'rxjs';
+import { SpinnerService } from 'src/app/modules/spinner/spinner.service';
 
 @Component({
   selector: 'app-add-deals',
@@ -21,7 +22,7 @@ export class AddDealsComponent implements OnInit {
     partNumber: new FormControl('', [Validators.required, Validators.minLength(1)]),
     uom: new FormControl('', [Validators.required, Validators.minLength(1)]),
     quantity: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/), Validators.minLength(1)]),
-    canBuyNow: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    canBuyNow: new FormControl(true, [Validators.required, Validators.minLength(1)]),
     priceBuyNow: new FormControl('', [Validators.required, Validators.pattern(/^\d+$/), Validators.minLength(1)]),
     startTime: new FormControl('', [Validators.required, Validators.minLength(1)]),
     startDate: new FormControl('', [Validators.required, Validators.minLength(1)]),
@@ -45,6 +46,7 @@ export class AddDealsComponent implements OnInit {
   constructor(
     private readonly dealService: DealService,
     private readonly sessionServise: SessionService,
+    private readonly spinnerService: SpinnerService,
     private route: ActivatedRoute,
     private router:Router,
   ) {
@@ -57,7 +59,7 @@ export class AddDealsComponent implements OnInit {
 
   fillForm() {
     const id = this.route.snapshot.params.id as unknown as number;
-    this.dealService.getDeal(id).subscribe(response => {
+    this.spinnerService.wrap(this.dealService.getDeal(id)).subscribe(response => {
       if (response) {
         this.dealFlag = true;
 
@@ -67,8 +69,10 @@ export class AddDealsComponent implements OnInit {
 
         date.setUTCHours(stringFromStartTime.split(':')[0] as unknown as number);
         date.setMinutes(stringFromStartTime.split(':')[1] as unknown as number);
-        
-        let stringFromStartTimeNew = `${date.getHours().toString()}:${date.getMinutes().toString()}`;
+
+        let minutes = date.getMinutes().toString();
+
+        let stringFromStartTimeNew = `${date.getHours().toString()}:${minutes.length == 1 ? `0${minutes}` : minutes}`;
         let stringFromStartTimeToStartDateNew = String(response.startTime).split("").slice(0, 10).join('')
 
         this.myForm.patchValue({
@@ -86,9 +90,6 @@ export class AddDealsComponent implements OnInit {
           duration: response.duration,
           startBet: response.startBet,
         })
-        if (response.canBuyNow) {
-          this.togglePriceBuyNow()
-        }
       }
     })
   }
@@ -136,9 +137,5 @@ export class AddDealsComponent implements OnInit {
     subscription.subscribe(deal => {
       this.router.navigate([`deal/${deal.id}`]);
     });
-  }
-
-  togglePriceBuyNow() {
-    this.visibilityPriceBuyNow = !this.visibilityPriceBuyNow
   }
 }

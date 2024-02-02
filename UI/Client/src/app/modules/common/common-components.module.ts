@@ -15,6 +15,7 @@ import { BurgerMenuComponent } from './components/burger-menu/burger-menu.compon
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { SpinnerModule } from '../spinner/spinner.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MatMenuModule } from '@angular/material/menu';
     ImagesModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    SpinnerModule
   ],
   exports: [
     LabeledInputComponent,

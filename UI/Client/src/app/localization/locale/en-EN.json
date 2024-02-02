@@ -151,6 +151,8 @@
         "AuctionEnded": "Auction ended",
         "CurrentWinner": "Current winner",
         "StartBet": "Start bet",
+        "UserId": "User Id",
+        "TimeStamp": "Time stamp",
         "CurrentBet": "Current bet",
         "YourBet": "Your bet",
         "AutoBet": "Auto bet",
@@ -159,7 +161,8 @@
         "Apply": "Apply",
         "Cancel": "Cancel",
         "AutobetApplied": "Autobet applied",
-        "MakeBet": "Make a bet"
+        "MakeBet": "Make a bet",
+        "BetMade": "Bet made"
       }
     }
   },

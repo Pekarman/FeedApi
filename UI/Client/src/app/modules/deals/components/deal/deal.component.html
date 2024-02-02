@@ -39,10 +39,9 @@
               *ngIf="countStatus === 'Draft'"
               (click)="changeStatus()">
               {{ localePath + 'MoveToActive' | translate }}
-            </button>                
+            </button>
             <button
               mat-menu-item
-              *ngIf="auction !== undefined"
               (click)="openBettingModal()">
               {{ 'Pages/DealPage/Betting/Auction' | translate }}
             </button>

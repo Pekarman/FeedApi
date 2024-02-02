@@ -19,6 +19,7 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalService } from './services/modal.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { SpinnerModule } from './modules/spinner/spinner.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
     DashboardModule,
     UserSettingsModule,
     CommonComponentsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SpinnerModule,
   ],
   providers: [
     ArticleHttpService,

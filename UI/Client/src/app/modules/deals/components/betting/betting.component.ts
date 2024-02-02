@@ -6,11 +6,13 @@ import * as signalR from "@microsoft/signalr"
 import { ApiConfig } from 'src/app/configs/apiconfig';
 import { IBet } from 'src/app/Models/IBet';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
 import { IAuction } from 'src/app/Models/IAuction';
 import { IAutoBet } from 'src/app/Models/IAutoBet';
 import { IUser } from 'src/app/Models/IUser';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { LocalizationService } from 'src/app/localization/localization.service';
+import { SpinnerService } from 'src/app/modules/spinner/spinner.service';
 
 @Component({
   selector: 'app-betting',
@@ -39,25 +41,31 @@ export class BettingComponent implements OnInit, OnDestroy {
 
   currentBet: number = 0;
   winnerUser!: IUser;
+  winnerId = 0;
   winnerFullName: string = "";
+  
+  displayedColumns: string[] = ['UserId', 'Timestamp', 'CurrentBet'];
   
   private connection!: signalR.HubConnection;
   
   constructor(
     private readonly sessionService: SessionService,
-    private readonly userService: UserService,
     private readonly dealService: DealService,
-    @Inject(MAT_DIALOG_DATA) public data: { deal: IDeal, auction: IAuction }
+    private readonly snackBar: MatSnackBar,
+    private readonly localizationService: LocalizationService,
+    private readonly spinnerService: SpinnerService,
+    @Inject(MAT_DIALOG_DATA) public data: { deal: IDeal }
     ) {
     this.deal = data.deal;
-    this.auction = data.auction;
+    this.spinnerService.wrap(this.dealService.getAuction(this.deal.id)).subscribe(auction => {
+      this.auction = auction;
+      this.auction.bets?.sort((a, b) => a.currentBet < b.currentBet ? 1 : -1);
+    });
   }
 
   ngOnInit(): void {
     this.runBroadcast();
-    setInterval(() => {
-      this.fillForm();
-    }, 1000);
+    setInterval(() => this.fillForm(),1000);
   }
 
   ngOnDestroy(): void {
@@ -137,12 +145,35 @@ export class BettingComponent implements OnInit, OnDestroy {
     this.connection.on("BroadcastMessage", (response) => {
       console.log(`Broadcast message received: ${response}.`);
     })
-     
+
     this.connection.on("UpdateAuction", (auction: IAuction) => {
       if (auction.dealId !== this.deal.id) return;
+      this.snackBar.open(
+        this.localizationService.translate(this.localePath + "BetMade", null),
+        this.localizationService.translate("Ok", null),
+        {
+          horizontalPosition: 'end',
+          verticalPosition: 'top',
+          duration: 3000
+        },
+      );
       this.updateAuction(auction);
       this.makeAutoBet();
-    })
+    });
+    
+    this.connection.on("AuctionEnded", (auction: IAuction) => {
+      if (auction.dealId !== this.deal.id) return;
+      this.snackBar.open(
+        this.localizationService.translate(this.localePath + "AuctionEnded", null),
+        this.localizationService.translate("Ok", null),
+        {
+          horizontalPosition: 'end',
+          verticalPosition: 'top',
+          duration: 3000
+        },
+      );
+      this.updateAuction(auction);
+    });     
   }
 
   setAutoBet(form: FormGroup) {
@@ -165,7 +196,7 @@ export class BettingComponent implements OnInit, OnDestroy {
 
   makeAutoBet() {
     setTimeout(() => {
-      if (this.isAutoBetApplied() && this.winnerUser.id != this.sessionService.getSession().userId) {
+      if (this.isAutoBetApplied() && this.winnerId != this.sessionService.getSession().userId) {
         var newBet = this.currentBet + this.myAutoBet.betStep;
         if (newBet > this.myAutoBet.maxBet) return;
         this.myForm.controls.bet.setValue(newBet);
@@ -199,13 +230,10 @@ export class BettingComponent implements OnInit, OnDestroy {
       dealId: this.deal.id,
       userId: this.sessionService.getSession().userId,
       currentBet: form.controls.bet.value,
-      timestamp: new Date()
+      timeStamp: new Date()
     }
 
     this.dealService.makeBet(data).subscribe(auction => {
-      // console.log(auction);
-      // this.auction = auction;
-      // this.updateBets(auction);
     });
   }
 
@@ -220,25 +248,19 @@ export class BettingComponent implements OnInit, OnDestroy {
   }
 
   getCurrentBet() {
-    if (this.deal == null) return 0;
-    let winnerId = 0;
+    if (this.auction == null) return 0;
     this.currentBet = this.deal?.startBet;
     this.auction?.bets?.forEach(bet => {
       if (bet.currentBet > this.currentBet && this.deal.id == bet.dealId) {
         this.currentBet = bet.currentBet;
-        winnerId = bet.userId;
+        this.winnerId = bet.userId;
       }
     });
+    this.auction.bets?.sort((a, b) => a.currentBet < b.currentBet ? 1 : -1);
 
     this.myForm.controls.bet.setValue(this.currentBet);
     this.myForm.controls.bet.setValidators(Validators.min(this.currentBet + 1));
-
-    if (winnerId !== 0) {
-      this.userService.getUserById(winnerId).subscribe(user => {
-        this.winnerUser = user;
-        this.winnerFullName = `${user.firstName} ${user.lastName}`;
-      });
-    }
+    
     return this.currentBet;
   }
 

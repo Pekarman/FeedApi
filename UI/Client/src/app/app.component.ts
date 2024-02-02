@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ArticleHttpService} from './services/article.http.service';
 import {LocalizationService} from './localization/localization.service';
+import { SpinnerService } from './modules/spinner/spinner.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ import {LocalizationService} from './localization/localization.service';
 export class AppComponent implements OnInit {
 
   constructor(
-    private localizationService: LocalizationService
+    private localizationService: LocalizationService,
+    public spinnerService: SpinnerService
   ) {
   }
 

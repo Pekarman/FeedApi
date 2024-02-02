@@ -12,6 +12,7 @@ import { ISell } from 'src/app/Models/ISell';
 import { IWatchDeal } from 'src/app/Models/IWatchDeal';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LocalizationService } from 'src/app/localization/localization.service';
+import { SpinnerService } from 'src/app/modules/spinner/spinner.service';
 
 
 @Component({
@@ -36,7 +37,8 @@ export class DealComponent implements OnInit {
     private readonly dealService: DealService,
     private readonly modalService: ModalService,
     private readonly localizationService: LocalizationService,
-    private readonly snackBar: MatSnackBar
+    private readonly snackBar: MatSnackBar,
+    private readonly spinnerService: SpinnerService,
   ) {}
 
   ngOnInit(): void {
@@ -58,13 +60,13 @@ export class DealComponent implements OnInit {
       userId: this.sessionService.getSession().userId
     }
 
-    this.dealService.addWatchDeal(data).subscribe(watchDeal => {
+    this.spinnerService.wrap(this.dealService.addWatchDeal(data)).subscribe(watchDeal => {
       this.deal.watchDeals?.push(watchDeal);
     });
   }
 
   removeFromWatchList() {
-    this.dealService.deleteWatchDeal(this.getUserWatchDeal()).subscribe(response => {
+    this.spinnerService.wrap(this.dealService.deleteWatchDeal(this.getUserWatchDeal())).subscribe(response => {
       if (response == true) this.deal.watchDeals?.splice(this.deal.watchDeals?.indexOf(this.getUserWatchDeal()));
     });
   }
@@ -84,7 +86,7 @@ export class DealComponent implements OnInit {
       userId: this.sessionService.getSession().userId,
       ownerId: this.deal.userId,
     }    
-    this.dealService.buyNow(data).subscribe(sell => {
+    this.spinnerService.wrap(this.dealService.buyNow(data)).subscribe(sell => {
       if (typeof(sell) == typeof("")) alert(sell);
 
       window.location.reload();
@@ -93,24 +95,28 @@ export class DealComponent implements OnInit {
 
   changeStatus() {
     const id = this.route.snapshot.params.id as unknown as number;
-    this.dealService.updateStatusActive(id).subscribe(response => {
+    this.spinnerService.wrap(this.dealService.updateStatusActive(id)).subscribe(response => {
       if (response.statusId) {
         this.statusEnum.forEach((el, index) => response.statusId === index ? this.countStatus = el : null);        
         this.snackBar.open(
           this.localizationService.translate(this.localePath + 'DealActivated', null),
           this.localizationService.translate("Ok", null),
+          {
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+          },
         );
       }
     })
   }
 
   openBettingModal() {
-    this.modalService.openModal(BettingComponent, {deal: this.deal, auction: this.auction})
+    this.modalService.openModal(BettingComponent, {deal: this.deal});
   }
 
   loadResources() {
     var dealId = this.route.snapshot.params.id as unknown as number;
-    this.dealService.getDeal(dealId).subscribe(deal => {
+    this.spinnerService.wrap(this.dealService.getDeal(dealId)).subscribe(deal => {
       this.deal = deal;
       this.renderImages(deal);
 
@@ -120,10 +126,6 @@ export class DealComponent implements OnInit {
         }
       });
     });
-
-    this.dealService.getAuction(dealId).subscribe(auction => {
-      this.auction = auction;
-    });
   }
 
   redirectToChangeDeal() {
@@ -131,7 +133,7 @@ export class DealComponent implements OnInit {
   }
 
   deleteDeal() {
-    this.dealService.deleteDeal(this.deal).subscribe(response => {
+    this.spinnerService.wrap(this.dealService.deleteDeal(this.deal)).subscribe(response => {
       if (response == true) {
         this.snackBar.open(
           this.localizationService.translate(this.localePath + 'DealDeleted', null),

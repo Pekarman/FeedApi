@@ -79,17 +79,19 @@
     </div>
   </div>
   <div class="auctionAndCanBuyNowBlock">
-    <div class="canBuyNowBlock">
-      <label>{{localePath + 'CanBuyNow' | translate }}</label>
-      <input type="checkbox" class="checkbox" formControlName="canBuyNow" (change)="togglePriceBuyNow()"/>
-      <div *ngIf="visibilityPriceBuyNow">
-        <label>{{localePath + 'PriceBuyNow' | translate }}</label>
-        <input class="label" formControlName="priceBuyNow" type="number"/>
-        <div *ngIf=" visibilityPriceBuyNow && getControl('priceBuyNow').errors && getControl('priceBuyNow').touched"
-             style="color: red">
-          <p>{{ ValidationRequiredError | translate : localePath + 'PriceBuyNow' }}</p>
-        </div>
-      </div>
+    <div class="canBuyNowBlock">      
+      <p>
+        <mat-checkbox
+          formControlName="canBuyNow">
+          {{localePath + 'CanBuyNow' | translate }}
+        </mat-checkbox>
+      </p>
+      <app-labeled-input
+        label="{{localePath + 'PriceBuyNow' | translate}}"
+        [control]="myForm.get('priceBuyNow')"
+        fieldName="priceBuyNow"
+        [isPasswordField]="false">
+      </app-labeled-input>
     </div>
     <div class="auctionBlock col-3">
       <h3>{{localePath + 'Auction' | translate }}</h3>
@@ -105,18 +107,20 @@
         </div>
       </div>
       <div class="AuctionDurationBlock">
-        <label>{{localePath + 'AuctionDuration' | translate }}</label>
-        <input type="number" formControlName="duration" class="inputForAuction">
-        <div *ngIf="getControl('duration').errors && getControl('duration').touched" style="color: red">
-          <p>{{ ValidationRequiredError | translate : localePath + 'AuctionDuration' }}</p>
-        </div>
+        <app-labeled-input
+          label="{{localePath + 'AuctionDuration' | translate}}"
+          [control]="myForm.get('duration')"
+          fieldName="duration"
+          [isPasswordField]="false">
+        </app-labeled-input>
       </div>
       <div class="StartBetBlock">
-        <label>{{localePath + 'StartBet' | translate }}</label>
-        <input class="inputForAuction" type="number" formControlName="startBet">
-        <div *ngIf="getControl('startBet').errors && getControl('startBet').touched" style="color: red">
-          <p>{{ ValidationRequiredError | translate : localePath + 'StartBet' }}</p>
-        </div>
+        <app-labeled-input
+          label="{{localePath + 'StartBet' | translate}}"
+          [control]="myForm.get('startBet')"
+          fieldName="startBet"
+          [isPasswordField]="false">
+        </app-labeled-input>
       </div>
     </div>
   </div>

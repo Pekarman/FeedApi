@@ -5,6 +5,7 @@
 <div id="content">
     <!-- <app-article-list [item] = "searchValue"></app-article-list> -->
     <router-outlet></router-outlet>
+    <app-spinner *ngIf="spinnerService.isLoading"></app-spinner>
 </div>
 
 <div id="footer">
