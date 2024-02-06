@@ -172,6 +172,12 @@ namespace Services.Implementations
                     auction.AuctionEnd = auction.AuctionStart.Value.AddSeconds((double)deal.Duration);
                 }
 
+                var bets = db.Bets.Where(b => b.DealId == deal.Id).ToList();
+                var autobets = db.AutoBets.Where(ab => ab.DealId == deal.Id).ToList();
+
+                db.Bets.RemoveRange(bets);
+                db.AutoBets.RemoveRange(autobets);
+
                 await db.SaveChangesAsync();
 
                 this.taskService.UpdateTasks();
@@ -264,14 +270,27 @@ namespace Services.Implementations
             {
                 var sameBet = db.Bets.Where(b => b.UserId == bet.UserId && b.DealId == bet.DealId).FirstOrDefault();
 
+                User user = db.Users.Where(u => u.Id == bet.UserId).FirstOrDefault();
+
                 if (sameBet != null)
                 {
-                    sameBet.CurrentBet = bet.CurrentBet;
+                    var betsSum = db.Bets.Where(b => b.UserId == bet.UserId).ToList().Sum(b => b.CurrentBet);
+
+                    var betDiff = bet.CurrentBet - sameBet.CurrentBet;
+                    var totalBetsSum = (double)(betsSum + betDiff);
+
+                    if (totalBetsSum > user.Balance) throw new InvalidOperationException("Low balance to bet.");
+
+                    sameBet.CurrentBet += betDiff;
                     sameBet.TimeStamp = bet.TimeStamp;
                     await db.SaveChangesAsync();
                 }
                 else
                 {
+                    var betsSum = (double)db.Bets.Where(b => b.UserId == bet.UserId).ToList().Sum(b => b.CurrentBet);
+
+                    if (betsSum > user.Balance) throw new InvalidOperationException("Low balance to bet.");
+
                     await db.Bets.AddAsync(bet);
                     await db.SaveChangesAsync();
                 }

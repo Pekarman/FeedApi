@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SessionService } from './session.service';
-import { ApiConfig } from '../configs/apiconfig';
+import ApiConfig from '../configs/apiconfig.json';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  readonly ApiUrl=new ApiConfig().ApiUrl;
+  readonly ApiUrl = ApiConfig.ApiUrl;
   
   constructor(private http: HttpClient, private sessionService: SessionService) { }
 

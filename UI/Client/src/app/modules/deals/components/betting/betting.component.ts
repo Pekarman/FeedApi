@@ -3,7 +3,7 @@ import { IDeal } from 'src/app/Models/IDeal';
 import { DealService } from 'src/app/services/deal.service';
 import { SessionService } from 'src/app/services/session.service';
 import * as signalR from "@microsoft/signalr"
-import { ApiConfig } from 'src/app/configs/apiconfig';
+import ApiConfig from '../../../../configs/apiconfig.json'
 import { IBet } from 'src/app/Models/IBet';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IAuction } from 'src/app/Models/IAuction';
@@ -26,7 +26,7 @@ export class BettingComponent implements OnInit, OnDestroy {
 
   localePath: string = "Pages/DealPage/Betting/";
 
-  readonly APIUrl = new ApiConfig().ApiUrl;
+  readonly APIUrl = ApiConfig.ApiUrl;
 
   myForm = new FormGroup({
     bet: new FormControl(0, [Validators.required])

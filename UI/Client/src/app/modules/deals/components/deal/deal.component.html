@@ -42,6 +42,7 @@
             </button>
             <button
               mat-menu-item
+              *ngIf="countStatus === 'Active' || countStatus === 'Auction' || countStatus === 'Sold'"
               (click)="openBettingModal()">
               {{ 'Pages/DealPage/Betting/Auction' | translate }}
             </button>

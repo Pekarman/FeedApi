@@ -1,0 +1,4 @@
+{
+    "ApiUrl": "https://localhost:44341/",
+    "ApiUrlP": "http://feed-api.us-east-1.elasticbeanstalk.com/"
+}

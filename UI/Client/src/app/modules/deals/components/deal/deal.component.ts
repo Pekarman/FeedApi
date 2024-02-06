@@ -111,7 +111,11 @@ export class DealComponent implements OnInit {
   }
 
   openBettingModal() {
-    this.modalService.openModal(BettingComponent, {deal: this.deal});
+    const dialogRef = this.modalService.openModal(BettingComponent, {deal: this.deal});
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadResources();
+    });
   }
 
   loadResources() {

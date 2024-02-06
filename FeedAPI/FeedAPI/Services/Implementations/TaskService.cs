@@ -4,10 +4,8 @@ using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-using Newtonsoft.Json.Linq;
 using Common.SignalR;
 using Microsoft.AspNetCore.SignalR;
 
@@ -16,6 +14,7 @@ namespace Services.Implementations
     public class TaskService : ITaskService
     {
         private readonly IHubContext<BroadcastHub, IHubClient> hubContext;
+
         private List<(Auction, TimeSpan)> auctionsToStart;
         private List<(Auction, TimeSpan, CancellationTokenSource)> auctionsToFinish;
 
@@ -162,10 +161,25 @@ namespace Services.Implementations
             {
                 Deal deal = db.Deals.Where(w => w.Id == dealId).FirstOrDefault();
 
+                var winnerBet = db.Bets.Where(b => b.DealId == dealId).ToList().MaxBy(b => b.CurrentBet);
+
                 if (deal == null) throw new ArgumentNullException($"Deal with dealId={dealId} is not exists");
+
+                Sell sell = new Sell();
+
+                User owner = db.Users.Where(u => u.Id == deal.UserId).FirstOrDefault();
+                User client = db.Users.Where(u => u.Id == winnerBet.UserId).FirstOrDefault();
+
+                client.Balance -= deal.PriceBuyNow;
+                owner.Balance += deal.PriceBuyNow;
 
                 deal.StatusId = 3;
 
+                sell.DealId = dealId;
+                sell.OwnerId = owner.Id;
+                sell.UserId = client.Id;
+
+                await db.Sells.AddAsync(sell);
                 await db.SaveChangesAsync();
 
                 return true;

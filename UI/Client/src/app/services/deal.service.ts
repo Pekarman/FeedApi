@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApiConfig } from '../configs/apiconfig';
+import ApiConfig from '../configs/apiconfig.json';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IDeal } from '../Models/IDeal';
@@ -16,7 +16,7 @@ import { SpinnerService } from '../modules/spinner/spinner.service';
 })
 export class DealService {
 
-  readonly APIUrl = new ApiConfig().ApiUrl;
+  readonly APIUrl = ApiConfig.ApiUrl;
 
   constructor(
     private http: HttpClient,

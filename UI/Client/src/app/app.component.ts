@@ -1,13 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ArticleHttpService} from './services/article.http.service';
 import {LocalizationService} from './localization/localization.service';
 import { SpinnerService } from './modules/spinner/spinner.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  providers: [ArticleHttpService]
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
 

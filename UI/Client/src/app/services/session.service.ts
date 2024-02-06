@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { LocalizationService } from '../localization/localization.service';
-import { ApiConfig } from '../configs/apiconfig';
+import ApiConfig from '../configs/apiconfig.json';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
+  
   private sessionKey = 'session';
-  readonly APIUrl = new ApiConfig().ApiUrl;
+  readonly APIUrl = ApiConfig.ApiUrl;
 
   constructor(private localizationService: LocalizationService, private http: HttpClient) { }
 

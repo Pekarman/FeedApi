@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ApiConfig } from '../configs/apiconfig';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IUserRegister } from '../Models/IUserRegister';
@@ -7,6 +6,7 @@ import {IChangePassword} from "src/app/Models/IChangePassword";
 import {IChangeEmail} from "src/app/Models/IChangeEmail";
 import {IDeleteUser} from "src/app/Models/IDeleteUser";
 import { IUser } from '../Models/IUser';
+import ApiConfig from '../configs/apiconfig.json';
 
 
 @Injectable({
@@ -14,8 +14,8 @@ import { IUser } from '../Models/IUser';
 })
 export class UserService {
 
-  readonly APIUrl=new ApiConfig().ApiUrl;
-  
+  readonly APIUrl = ApiConfig.ApiUrl;
+
   constructor(private http:HttpClient) { }
  
   getUserById(id: number):Observable<IUser>{

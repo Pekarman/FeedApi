@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ArticleHttpService } from './services/article.http.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -42,7 +41,6 @@ import { SpinnerModule } from './modules/spinner/spinner.module';
     SpinnerModule,
   ],
   providers: [
-    ArticleHttpService,
     AuthService,
     SessionService,
     ModalService,
