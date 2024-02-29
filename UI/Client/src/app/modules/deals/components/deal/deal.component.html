@@ -6,7 +6,6 @@
     <div class="container">
       <div class="row col-12">
         <div class="menuBlock">
-          <p>{{ localePath + 'PriceBuyNow' | translate }} : {{ deal?.priceBuyNow }} BYN</p>
           <button
             *ngIf="isBuyNowEnabled() && !isOwnedDeal()"
             mat-flat-button
@@ -66,54 +65,47 @@
           <app-select-images [dealId]="deal?.id" [assets]="deal?.assets"></app-select-images>
         </div>
         <div class="row-1">
-          <div class="prodNameBlock">
-            <div class="prodNameDescription">
-              <h3>{{localePath + 'ProdName' | translate}}</h3>
-              <hr>
-              <p>{{deal?.productName}}</p>
-            </div>
+          <div class="halfBlock">
+            <h3>{{localePath + 'ProdName' | translate}}</h3>
+            <hr>
+            <p>{{deal?.productName}}</p>
           </div>
-          <div class="shortDescBlock">
-            <div class="shortDescription">
-              <h3>{{ localePath + 'ShortDescription' | translate }}</h3>
-              <hr>
-              <p class="desc">{{ deal?.shortDesc }}</p>
-            </div>
+          <div class="halfBlock">
+            <h3>{{localePath + 'PriceBuyNow' | translate}}</h3>
+            <hr>
+            <p>{{deal?.priceBuyNow}} BYN</p>
           </div>
-          <div class="quantityBlock">
-            <div class="quantityDescription">
-              <h3>{{ localePath + 'Quantity' | translate }} </h3>
-              <hr>
-              <p>{{ deal?.quantity + ' ' + deal?.uoM }}</p>
-            </div>
+          <div class="fullBlock">
+            <h3>{{ localePath + 'ShortDescription' | translate }}</h3>
+            <hr>
+            <p class="desc">{{ deal?.shortDesc }}</p>
           </div>
-          <div class="statusBlock">
-            <div class="statusDescription">
-              <h3>{{localePath + 'Status' | translate}}</h3>
-              <hr>
-              <p>{{localePath + 'Statuses/' + countStatus | translate}}</p>
-            </div>
+          <div class="halfBlock">
+            <h3>{{ localePath + 'Quantity' | translate }} </h3>
+            <hr>
+            <p>{{ deal?.quantity + ' ' + deal?.uoM }}</p>
+          </div>
+          <div class="halfBlock">
+            <h3>{{localePath + 'Status' | translate}}</h3>
+            <hr>
+            <p>{{localePath + 'Statuses/' + countStatus | translate}}</p>
           </div>
           <div class="ownerAndPartNumberBlock">
-            <div class="ownerBlock">
-              <div class="ownerDescription">
-                <h3>{{localePath + 'Owner' | translate}}</h3>
-                <hr>
-                <p>{{deal?.userFullName}}</p>
-              </div>
+            <div class="halfBlock">
+              <h3>{{localePath + 'Owner' | translate}}</h3>
+              <hr>
+              <p>{{deal?.userFullName}}</p>
             </div>
-            <div class="partNumberBlock">
-              <div class="partNumberDescription">
-                <h3>{{localePath + 'PartNumber' | translate}}</h3>
-                <hr>
-                <p>{{deal?.partNumber}}</p>
-              </div>
+            <div class="halfBlock">
+              <h3>{{localePath + 'PartNumber' | translate}}</h3>
+              <hr>
+              <p>{{deal?.partNumber}}</p>
             </div>
           </div>
         </div>
       </div>
       <div class="row col-12">
-        <div class="fullDescBlock">
+        <div class="fullBlock">
           <h3>{{localePath + 'LongDescription' | translate}}</h3>
           <hr>
           <p class="desc">{{deal?.longDesc}}</p>

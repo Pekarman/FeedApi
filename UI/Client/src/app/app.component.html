@@ -1,9 +1,4 @@
-<!-- <div id="header">
-  <app-header (textGhanged) = "changeSearchValue($event)"></app-header>
-</div> -->
-
 <div id="content">
-    <!-- <app-article-list [item] = "searchValue"></app-article-list> -->
     <router-outlet></router-outlet>
     <app-spinner *ngIf="spinnerService.isLoading"></app-spinner>
 </div>

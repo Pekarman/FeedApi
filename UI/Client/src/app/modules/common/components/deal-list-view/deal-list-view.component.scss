@@ -1,6 +1,5 @@
 div {
   &.row {
-    justify-content: space-between;
     padding-top: 5px;
   }
 
@@ -21,15 +20,45 @@ div {
   height: 170px;
 }
 
-.usersButton {
-  margin-top: 10px;
-}
 @media only screen and (max-width: 768px){
   .desc{
     font-size: xx-small;
   }
 }
 
+.imageBlock {
+  display: flex;
+  padding: 10px;
+  width: 30%;
+}
 
+.descBlock {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 40%;
 
+  h3 {
+    font-weight: 500;
+    margin-bottom: 0px;
+  }
 
+  .row {
+    justify-content: space-between;
+  }
+}
+
+.buttonsBlock {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 30%;
+
+  button {
+    width: 100%;
+    margin-bottom: 5px;
+    border: 2px solid;
+    border-radius: 3px;
+    border-color: darkgray;
+  }
+}

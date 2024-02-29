@@ -29,10 +29,6 @@ namespace FeedAPI
         /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IOnlinerRss, OnlinerRSS>();
-            services.AddTransient<INewsApiClient, NewsApi>();
-
-            services.AddTransient<IItemsApiClient, ItemsApi>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUserSessionService, UserSessionService>();
             services.AddTransient<IAuthService, AuthService>();

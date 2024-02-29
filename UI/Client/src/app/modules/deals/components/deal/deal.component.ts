@@ -45,6 +45,20 @@ export class DealComponent implements OnInit {
     this.loadResources();
   }
 
+  loadResources() {
+    var dealId = this.route.snapshot.params.id as unknown as number;
+    this.spinnerService.wrap(this.dealService.getDeal(dealId)).subscribe(deal => {
+      this.deal = deal;
+      this.renderImages(deal);
+
+      this.statusEnum.forEach((el, index) => {
+        if (this.deal.statusId === index) {
+          this.countStatus = el;
+        }
+      });
+    });
+  }
+
   isBuyNowEnabled() {
     return this.deal?.statusId == 1;
   }
@@ -115,20 +129,6 @@ export class DealComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(() => {
       this.loadResources();
-    });
-  }
-
-  loadResources() {
-    var dealId = this.route.snapshot.params.id as unknown as number;
-    this.spinnerService.wrap(this.dealService.getDeal(dealId)).subscribe(deal => {
-      this.deal = deal;
-      this.renderImages(deal);
-
-      this.statusEnum.forEach((el, index) => {
-        if (this.deal.statusId === index) {
-          this.countStatus = el;
-        }
-      });
     });
   }
 

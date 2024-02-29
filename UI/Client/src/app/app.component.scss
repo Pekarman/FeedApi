@@ -1,19 +1,10 @@
-#header {
-    max-height: 50px;
-    margin-bottom: 10px;
-    
-    border-bottom-style: dashed;
-    border-bottom-color: rgb(40, 46, 73);
-    border-bottom-width: 5px;
+#content {
+    min-height: 700px;
+    background-color: white;
 }
 
 #footer {
     background-color: #ddd;
     height: 60px;
     width: 100%;
-}
-
-#content {
-    min-height: 500px;
-    background-color: white;
 }

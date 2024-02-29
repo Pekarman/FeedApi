@@ -1,23 +1,43 @@
 <div class="desktop row">
-  <div class="col-3">
+  <div class="imageBlock">
     <app-select-images *ngIf="deal.assets!.length !== 0" [dealId]="deal.id" [assets]="deal.assets"></app-select-images>
     <div *ngIf="deal.assets!.length == 0" class="noImages"></div>
   </div>
-  <div class="col-9">
+  <div class="descBlock">
     <div class="row col-12">
       <div class="col-6">
         <a (click)="onClick()">
           <h3>{{deal.productName}}</h3>
         </a>
       </div>
-      <div class="col-3" *ngIf="showChangeButton">
-        <app-users-button id="changeDeal" label="{{'Change' | translate}}"
-                          [path]="getChangeDealPath()"
-        ></app-users-button>
+      <div class="col-3">
+        <p>{{ deal?.priceBuyNow }} BYN</p>
       </div>
     </div>
     <div>
       <p class="desc">{{deal.shortDesc}}</p>
     </div>
+  </div>
+  <div class="buttonsBlock">
+    <button
+      *ngIf="isBuyNowEnabled() && !isOwnedDeal()"
+      mat-flat-button
+      color="primary"
+      (click)="buyNowClick()">
+      {{ localePath + 'BuyNow' | translate }}
+    </button>
+    <button
+      mat-button
+      *ngIf="!IsWatchedByUser()"
+      (click)="addToWatchList()">
+      {{ localePath + 'AddToWatchList' | translate }}
+    </button>
+    <button
+      mat-flat-button
+      color="basic"
+      *ngIf="IsWatchedByUser()"
+      (click)="removeFromWatchList()">
+      {{ localePath + 'RemoveFromWatchList' | translate }}
+    </button>
   </div>
 </div>

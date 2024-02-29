@@ -42,7 +42,7 @@
   margin-top: 5px;
 }
 
-.prodNameBlock {
+.halfBlock {
   width: 50%;
   margin-bottom: 20px;
   hr{
@@ -50,71 +50,17 @@
   }
 }
 
-.buttonBlock {
-  width: 20%;
-  button{
-    width: 100%;
-    height: 50px;
-    background-color: #018dc9;
-    color: white;
-    border: none;
-    margin-bottom: 10px;
-
-    &:disabled {
-      background-color: lightgray;
-    }
-  }
-}
-
-.shortDescBlock {
+.fullBlock {
   width: 100%;
   margin-bottom: 20px;
   hr{
     width: 100%;
-  }
-}
-
-.quantityBlock {
-  width:50%;
-  margin-bottom: 20px;
-  hr{
-    width: 50%;
-  }
-}
-
-.statusBlock {
-  width:50%;
-  hr{
-    width: 50%;
   }
 }
 
 .ownerAndPartNumberBlock{
   display: flex;
   width: 100%;
-}
-
-.ownerBlock {
-  width:50%;
-  hr{
-    width: 50%;
-  }
-}
-
-.partNumberBlock {
-  width: 50%;
-  hr{
-    width: 50%;
-  }
-}
-
-.fullDescBlock{
-  width: 90%;
-  margin-top: 40px;
-  margin-left: 20px;
-  hr{
-    width: 90%;
-  }
 }
 
 h3{

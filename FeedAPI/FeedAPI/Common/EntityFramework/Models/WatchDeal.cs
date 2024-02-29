@@ -10,6 +10,7 @@ namespace Common.EntityFramework.Models
     [Table("watchdeal")]
     public class WatchDeal
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
         public int? Id { get; set; }
 

@@ -145,7 +145,7 @@ namespace Services.Implementations
             {
                 Deal deal = db.Deals.Where(w => w.Id == dealId).FirstOrDefault();
 
-                if (deal == null) throw new ArgumentNullException($"Deal with dealId={dealId} is not exists");
+                if (deal == null) throw new ArgumentNullException($"Deal with dealId={dealId} is not exist.");
 
                 deal.StatusId = 2;
 

@@ -126,6 +126,7 @@ namespace Services.Implementations
                     deals.ForEach(deal => {
                         if (deal == null) return;
                         deal.Assets = db.Assets.Where(a => a.DealId == deal.Id).ToList();
+                        deal.WatchDeals = db.WatchDeals.Where(w => w.DealId == deal.Id).ToList();
                     });
 
                     return deals;
@@ -326,10 +327,6 @@ namespace Services.Implementations
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                int id;
-                if (db.Sells.Count() == 0) id = 1; else id = db.Sells.Max(item => (int)item.Id + 1);
-                sell.Id = id;
-
                 Deal deal = db.Deals.Where(d => d.Id == sell.DealId).FirstOrDefault();
                 User owner = db.Users.Where(d => d.Id == deal.UserId).FirstOrDefault(); 
 
@@ -349,24 +346,21 @@ namespace Services.Implementations
                 await db.Sells.AddAsync(sell);
                 await db.SaveChangesAsync();
 
-                var result = await db.Sells.FindAsync(id);
-                return result;
+                return sell;
             }
         }
 
-        public async Task<WatchDeal> AddWatchDealAsync(WatchDeal watchDeal)
+        public async Task<WatchDeal> AddWatchDealAsync(WatchDeal _watchDeal)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                int id;
-                if (db.WatchDeals.Count() == 0) id = 1; else id = db.WatchDeals.Max(item => (int)item.Id + 1);
-
-                watchDeal.Id = id;
+                WatchDeal watchDeal = new WatchDeal();
+                watchDeal.UserId = _watchDeal.UserId;
+                watchDeal.DealId = _watchDeal.DealId;
                 await db.WatchDeals.AddAsync(watchDeal);
                 await db.SaveChangesAsync();
 
-                var result = await db.WatchDeals.FindAsync(id);
-                return result;
+                return watchDeal;
             }
         }
 
