@@ -93,6 +93,7 @@
       "BankCode": "BankCode",
       "Finances": "Finances",
       "Balance": "Balance",
+      "BetsLeft": "Bets left",
       "IsActive": "IsActive",
       "UserLocale": "UserLocale",
       "TrackedDeals": "Tracked deals",

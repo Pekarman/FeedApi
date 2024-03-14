@@ -2,6 +2,26 @@
   <app-header></app-header>
 </div>
 <mat-tab-group backgroundColor="primary" color="accent">
+  <mat-tab label="{{ localePath + 'YourDeals' | translate }}">
+    <div class="textContainerForDeals">
+      <app-deal-list [filter]="getUserIdFilter()"></app-deal-list>
+    </div>
+  </mat-tab>
+  <mat-tab label="{{ localePath + 'TrackedDeals' | translate }}">
+    <div class="textContainerForDeals">
+      <app-deal-list [filter]="getWatchUserIdFilter()"></app-deal-list>
+    </div>
+  </mat-tab>
+  <mat-tab label="{{ localePath + 'MyBoughts' | translate }}">
+    <div class="textContainerForDeals">
+      <app-deal-list [filter]="getBoughtUserIdFilter()"></app-deal-list>
+    </div>
+  </mat-tab>
+  <mat-tab label="{{ localePath + 'MySells' | translate }}">
+    <div class="textContainerForDeals">
+      <app-deal-list [filter]="getSellUserIdFilter()"></app-deal-list>
+    </div>
+  </mat-tab>
   <mat-tab label="{{ localePath + 'CommonInfo' | translate }}">    
     <div class="textContainer">
       <p>{{ localePath + 'FirstName' | translate }}:</p>
@@ -36,30 +56,14 @@
       <p>{{ user.locale }}</p>
     </div>
   </mat-tab>
-  <mat-tab label="{{ localePath + 'YourDeals' | translate }}">
-    <div class="textContainerForDeals">
-      <app-deal-list [filter]="getUserIdFilter()"></app-deal-list>
-    </div>
-  </mat-tab>
-  <mat-tab label="{{ localePath + 'TrackedDeals' | translate }}">
-    <div class="textContainerForDeals">
-      <app-deal-list [filter]="getWatchUserIdFilter()"></app-deal-list>
-    </div>
-  </mat-tab>
-  <mat-tab label="{{ localePath + 'MyBoughts' | translate }}">
-    <div class="textContainerForDeals">
-      <app-deal-list [filter]="getBoughtUserIdFilter()"></app-deal-list>
-    </div>
-  </mat-tab>
-  <mat-tab label="{{ localePath + 'MySells' | translate }}">
-    <div class="textContainerForDeals">
-      <app-deal-list [filter]="getSellUserIdFilter()"></app-deal-list>
-    </div>
-  </mat-tab>
   <mat-tab label="{{ localePath + 'Finances' | translate }}">
     <div class="textContainer">
       <p>{{ localePath + 'Balance' | translate }}:</p>
       <p>{{ user.balance }}</p>
+    </div>
+    <div class="textContainer">
+      <p>{{ localePath + 'BetsLeft' | translate }}:</p>
+      <p>{{ user.balanceBets }}</p>
     </div>
   </mat-tab>
 </mat-tab-group>

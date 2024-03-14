@@ -53,6 +53,9 @@ namespace Common.EntityFramework.Models
         [Column("balance")]
         public double? Balance { get; set; }
 
+        [Column("balancebets")]
+        public double? BalanceBets { get; set; }
+
         [Column("isactive")]
         public bool IsActive { get; set; }
 

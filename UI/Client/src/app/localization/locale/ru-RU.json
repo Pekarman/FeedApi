@@ -93,6 +93,7 @@
       "BankCode": "Код банка",
       "Finances": "Финансы",
       "Balance": "Баланс",
+      "BetsLeft": "Ставки",
       "IsActive": "Активен",
       "UserLocale": "Язык",
       "TrackedDeals": "Отслеживаемые сделки",
